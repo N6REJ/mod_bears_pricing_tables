@@ -2,7 +2,7 @@
 /**
  * bears_GridGallery
  * 
- * @version     2025.05.11
+ * @version     2025.05.11.1
  * @package     J51_Module_GridGallery
  * @author      J51
  * @copyright   Copyright (c) 2024 J51
