@@ -26,6 +26,7 @@
 	</languages>
 	<config>
 		<fields name="params" addfieldpath="/modules/mod_bears_pricing_tables/elements">
+		<stylesheet>css/admin.css</stylesheet>
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<field name="bears_num_images" type="radio" default="3" label="MOD_BEARS_NUMIMAGES" description="MOD_BEARS_NUMIMAGES_DESC"
