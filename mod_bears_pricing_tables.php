@@ -2,7 +2,7 @@
 /**
  * N6REJ_Pricing-Table
  * 
- * @version     2025.05.11.2.1
+ * @version     2025.05.11.3.2.1
  * @package     N6REJ_Pricing-Table
  * @author      N6REJ
  * @email       troy@hallhome.us
