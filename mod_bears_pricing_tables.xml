@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="5.0.0" client="site" method="upgrade">
+<extension type="module" client="site" method="upgrade">
 	<name>Bears Pricing Tables</name>
 	<author>N6REJ</author>
 	<creationDate>2025 May 11</creationDate>
 	<copyright>Copyright (C)2025 N6REJ</copyright>
-	<license>GNU General Public License version 3 or later</license>
+	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.11.4</version>
-	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by N6REJ]]></description>
+	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<namespace path="src">N6REJ\Module\PricingTables</namespace>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
-		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.xml</filename>
-		<filename module="mod_bears_pricing_tables">helper.php</filename>
-		<filename module="mod_bears_pricing_tables">License.txt</filename>
-		<filename module="mod_bears_pricing_tables">index.html</filename>
+		<filename>mod_bears_pricing_tables.xml</filename>
+		<filename>helper.php</filename>
+		<filename>License.txt</filename>
+		<filename>index.html</filename>
 		<folder>css</folder>
 		<folder>elements</folder>
 		<folder>tmpl</folder>
@@ -25,13 +25,12 @@
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.ini</language>
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.sys.ini</language>
 	</languages>
-	<config>	
+	<config>
 		<fields name="params" addfieldpath="/modules/mod_bears_pricing_tables/elements">
-			
+
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<field name="bears_num_images" type="radio" default="3" label="MOD_BEARS_NUMIMAGES" description="MOD_BEARS_NUMIMAGES_DESC"
-				checked="checked" 
-				class="btn-group">
+					   class="btn-group btn-group-yesno">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -48,105 +47,101 @@
 				<field name="bears_features_color" type="color" default="#424242" label="Features Color" description="Set the features text color" />
 				<field name="bears_button_color" type="color" default="#252525" label="Button Color" description="Set the button color" />
 			</fieldset>
-			
-			
+
+
 			<fieldset name="column1">
 				<field name="bears_title1" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price1" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle1" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="Feature(s)" description="Add column feature(s)" />
 				<field name="bears_highlight1" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
-				checked="checked" 
-				class="btn-group">
+					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
 				</field>
-				<field name="bears_buttontext1" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" published="1"/>
+				<field name="bears_buttontext1" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" />
 				<field name="bears_buttonurl1" type="text" default="" label="MOD_BEARS_BUTTONURL" description="MOD_BEARS_BUTTONURL_DESC" />
 			</fieldset>
 
 			<fieldset name="column2">
 				<field name="bears_title2" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price2" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle2" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="Feature(s)" description="Add column feature(s)" />
 				<field name="bears_highlight2" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
-				checked="checked" 
-				class="btn-group">
+					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
 				</field>
-				<field name="bears_buttontext2" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" published="1"/>
+				<field name="bears_buttontext2" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" />
 				<field name="bears_buttonurl2" type="text" default="" label="MOD_BEARS_BUTTONURL" description="MOD_BEARS_BUTTONURL_DESC" />
 			</fieldset>
 
 			<fieldset name="column3">
 				<field name="bears_title3" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price3" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle3" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="Feature(s)" description="Add column feature(s)" />
 				<field name="bears_highlight3" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
-				checked="checked" 
-				class="btn-group">
+					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
 				</field>
-				<field name="bears_buttontext3" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" published="1"/>
+				<field name="bears_buttontext3" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" />
 				<field name="bears_buttonurl3" type="text" default="" label="MOD_BEARS_BUTTONURL" description="MOD_BEARS_BUTTONURL_DESC" />
 			</fieldset>
 
 			<fieldset name="column4">
 				<field name="bears_title4" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price4" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle4" type="text" filter="raw" rows="4" cols="42" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="Feature(s)" description="Add column feature(s)" />
 				<field name="bears_highlight4" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
-				checked="checked" 
-				class="btn-group">
+					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
 				</field>
-				<field name="bears_buttontext4" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" published="1"/>
+				<field name="bears_buttontext4" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" />
 				<field name="bears_buttonurl4" type="text" default="" label="MOD_BEARS_BUTTONURL" description="MOD_BEARS_BUTTONURL_DESC" />
 			</fieldset>
-			
+
 			<fieldset name="advanced">
 				<field
-					name="layout"
-					type="modulelayout"
-					label="JFIELD_ALT_LAYOUT_LABEL"
-					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+						name="layout"
+						type="modulelayout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
 
 				<field
-					name="moduleclass_sfx"
-					type="text"
-					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
 
 				<field
-					name="cache"
-					type="list"
-					default="1"
-					label="COM_MODULES_FIELD_CACHING_LABEL"
-					description="COM_MODULES_FIELD_CACHING_DESC">
+						name="cache"
+						type="list"
+						default="1"
+						label="COM_MODULES_FIELD_CACHING_LABEL"
+						description="COM_MODULES_FIELD_CACHING_DESC">
 					<option
-						value="1">JGLOBAL_USE_GLOBAL</option>
+							value="1">JGLOBAL_USE_GLOBAL</option>
 					<option
-						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
 				</field>
 
 				<field
-					name="cache_time"
-					type="text"
-					default="900"
-					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+						name="cache_time"
+						type="text"
+						default="900"
+						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
 				<field
-					name="cachemode"
-					type="hidden"
-					default="static">
+						name="cachemode"
+						type="hidden"
+						default="static">
 					<option
-						value="static">
+							value="static">
 					</option>
 				</field>
 			</fieldset>
