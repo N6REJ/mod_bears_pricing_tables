@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables - Blue Template
  * 
- * @version     1.0.2
+ * @version     2025.05.11.14
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
