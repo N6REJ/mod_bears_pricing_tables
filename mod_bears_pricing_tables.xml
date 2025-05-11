@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="5.0" client="site" method="upgrade">
+<extension type="module" version="5.0.0" client="site" method="upgrade">
 	<name>Bears Pricing Tables</name>
 	<author>N6REJ</author>
 	<creationDate>2025 May 11</creationDate>
 	<copyright>Copyright (C)2025 N6REJ</copyright>
 	<license>GNU General Public License version 3 or later</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
-	<authorUrl>http://hallhome.us</authorUrl>
+	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.11</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by N6REJ]]></description>
 	<namespace path="src">N6REJ\Module\PricingTables</namespace>
