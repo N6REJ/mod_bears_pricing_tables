@@ -1,0 +1,164 @@
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
+
+.blue_pricing_tables {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  color: #495057;
+  text-align: left;
+  font-size: 16px;
+}
+
+.blue_pricing_tables * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.blue_pricing_tables .column {
+  float: left;
+  width: 23%;
+  margin: 0 1%;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+}
+
+.blue_pricing_tables .column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.blue_pricing_tables .header {
+  padding: 25px 20px;
+  text-align: center;
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+
+.blue_pricing_tables .title {
+  line-height: 1.2;
+  position: relative;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.blue_pricing_tables .title:after {
+  position: absolute;
+  content: '';
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.blue_pricing_tables .price {
+  font-weight: 700;
+  font-size: 2.5em;
+  margin: 20px 0 5px;
+  display: block;
+}
+
+.blue_pricing_tables .subtitle {
+  opacity: 0.8;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.blue_pricing_tables .features {
+  padding: 20px;
+  margin: 0;
+  list-style: outside none none;
+}
+
+.blue_pricing_tables .features li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.blue_pricing_tables .features li:last-child {
+  border-bottom: none;
+}
+
+.blue_pricing_tables .features i {
+  margin-right: 8px;
+  color: #1a73e8;
+}
+
+.blue_pricing_tables .button {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #e9ecef;
+}
+
+.blue_pricing_tables .button a {
+  display: inline-block;
+  background-color: #1a73e8;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 25px;
+  font-size: 0.9em;
+  font-weight: 600;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.blue_pricing_tables .button a:hover {
+  background-color: #1557b0;
+  transform: scale(1.05);
+}
+
+.blue_pricing_tables .highlight {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: none;
+  z-index: 1;
+  position: relative;
+}
+
+.blue_pricing_tables .highlight .header {
+  background-color: #1557b0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.blue_pricing_tables .highlight .button a {
+  background-color: #1557b0;
+}
+
+/* Clear floats after columns */
+.blue_pricing_tables:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+  .blue_pricing_tables .column {
+    width: 48%;
+    margin: 1%;
+  }
+  
+  .blue_pricing_tables .highlight {
+    transform: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .blue_pricing_tables .column {
+    width: 98%;
+    margin: 1% 1% 5% 1%;
+  }
+}
