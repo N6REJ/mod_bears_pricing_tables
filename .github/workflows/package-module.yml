@@ -1,0 +1,335 @@
+name: Package and Release N6REJ Pricing Tables Module
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+  workflow_dispatch:
+    # Allows manual triggering
+
+jobs:
+  update-version-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Explicitly grant permission to write to repository
+      pull-requests: write  # Permission to update PR
+    
+    steps:
+      - name: Determine workflow context
+        id: context
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            if [ "${{ github.event.action }}" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+              echo "is_pr_merge=true" >> $GITHUB_OUTPUT
+              echo "is_pr_update=false" >> $GITHUB_OUTPUT
+              echo "is_manual=false" >> $GITHUB_OUTPUT
+              echo "Running in PR merge context"
+            else
+              echo "is_pr_merge=false" >> $GITHUB_OUTPUT
+              echo "is_pr_update=true" >> $GITHUB_OUTPUT
+              echo "is_manual=false" >> $GITHUB_OUTPUT
+              echo "Running in PR update context"
+            fi
+          else
+            echo "is_pr_merge=false" >> $GITHUB_OUTPUT
+            echo "is_pr_update=false" >> $GITHUB_OUTPUT
+            echo "is_manual=true" >> $GITHUB_OUTPUT
+            echo "Running in manual trigger context"
+          fi
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
+          token: ${{ secrets.GITHUB_TOKEN }}  # Needed for pushing changes
+          ref: ${{ github.event.pull_request.head.ref || 'main' }} # Checkout PR branch or main if manual run
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }} # Checkout PR repo or current repo
+      
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          
+      # Generate version for all contexts (PR update, PR merge, and manual run)
+      - name: Generate version and dates
+        id: set_version
+        run: |
+          # Generate base version from current date
+          BASE_VERSION=$(date +'%Y.%m.%d')
+          CREATION_DATE=$(date +'%Y %B %d')
+          CURRENT_YEAR=$(date +'%Y')
+          
+          # Get all existing tags
+          git fetch --tags
+          
+          # Check if the base version tag already exists
+          if git rev-parse "$BASE_VERSION" >/dev/null 2>&1; then
+            echo "Tag $BASE_VERSION already exists, finding next available version..."
+            
+            # Find all tags that match the pattern {BASE_VERSION}.{n}
+            MATCHING_TAGS=$(git tag -l "$BASE_VERSION.*")
+            
+            if [ -z "$MATCHING_TAGS" ]; then
+              # No sub-versions exist, use .1
+              VERSION="${BASE_VERSION}.1"
+            else
+              # Find the highest sub-version
+              HIGHEST_SUBVERSION=$(echo "$MATCHING_TAGS" | sed "s/^$BASE_VERSION\.//" | sort -n | tail -1)
+              NEXT_SUBVERSION=$((HIGHEST_SUBVERSION + 1))
+              VERSION="${BASE_VERSION}.$NEXT_SUBVERSION"
+            fi
+          else
+            VERSION="$BASE_VERSION"
+          fi
+          
+          echo "Generated version: $VERSION"
+          echo "Creation date: $CREATION_DATE"
+          echo "Current year: $CURRENT_YEAR"
+          
+          # Set outputs for use later
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "creation_date=$CREATION_DATE" >> $GITHUB_OUTPUT
+          echo "current_year=$CURRENT_YEAR" >> $GITHUB_OUTPUT
+      
+      # Update files for all contexts
+      - name: Update XML file in repository
+        run: |
+          # Find the XML file
+          XML_FILE="mod_bears_pricing_tables.xml"
+          
+          if [ -f "$XML_FILE" ]; then
+            echo "Found XML file at: $XML_FILE"
+            
+            # Make a backup of the original file
+            cp "$XML_FILE" "${XML_FILE}.bak"
+            
+            # Display original content
+            echo "Original XML content (specific lines):"
+            grep -A 6 "<creationDate>" "$XML_FILE" || true
+            
+            # Update version, creationDate, and copyright using sed with exact line matching
+            sed -i "s|<version>.*</version>|<version>${{ steps.set_version.outputs.version }}</version>|g" "$XML_FILE"
+            sed -i "s|<creationDate>.*</creationDate>|<creationDate>${{ steps.set_version.outputs.creation_date }}</creationDate>|g" "$XML_FILE"
+            
+            # Update copyright with year range if needed
+            if [ "${{ steps.set_version.outputs.current_year }}" -gt "2025" ]; then
+              sed -i "s|<copyright>Copyright (C)[0-9]\{4\} N6REJ</copyright>|<copyright>Copyright (C)2025 - ${{ steps.set_version.outputs.current_year }} N6REJ</copyright>|g" "$XML_FILE"
+              sed -i "s|<copyright>Copyright (C)[0-9]\{4\} - [0-9]\{4\} N6REJ</copyright>|<copyright>Copyright (C)2025 - ${{ steps.set_version.outputs.current_year }} N6REJ</copyright>|g" "$XML_FILE"
+            else
+              sed -i "s|<copyright>Copyright (C)[0-9]\{4\} N6REJ</copyright>|<copyright>Copyright (C)${{ steps.set_version.outputs.current_year }} N6REJ</copyright>|g" "$XML_FILE"
+            fi
+            
+            echo "Updated XML file in repository"
+            echo "Updated XML content (specific lines):"
+            grep -A 6 "<creationDate>" "$XML_FILE" || true
+          else
+            echo "::error::XML file not found in repository"
+            exit 1
+          fi
+      
+      - name: Update PHP file version
+        run: |
+          # Find PHP files and update version if they exist
+          find . -name "*.php" | while read -r PHP_FILE; do
+            if [ -f "$PHP_FILE" ]; then
+              if grep -q "@version" "$PHP_FILE"; then
+                echo "Updating version in PHP file: $PHP_FILE"
+                sed -i "s|@version[ ]*[0-9]\{4\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}|@version     ${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+                sed -i "s|Version[ ]*:[ ]*[0-9]\{4\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}|Version : ${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+              fi
+            fi
+          done
+      
+      - name: Update existing language files
+        run: |
+          # Find language files and update copyright if they exist
+          find . -name "*.ini" -o -name "*.sys.ini" | while read -r LANG_FILE; do
+            if [ -f "$LANG_FILE" ]; then
+              echo "Updating copyright in language file: $LANG_FILE"
+              if [ "${{ steps.set_version.outputs.current_year }}" -gt "2025" ]; then
+                sed -i "s|; Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ|; Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$LANG_FILE"
+                sed -i "s|; Copyright (C) [0-9]\{4\} N6REJ|; Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$LANG_FILE"
+              else
+                sed -i "s|; Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ|; Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$LANG_FILE"
+                sed -i "s|; Copyright (C) [0-9]\{4\} N6REJ|; Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$LANG_FILE"
+              fi
+            fi
+          done
+      
+      - name: Update CSS file copyright
+        run: |
+          # Find CSS files and update copyright if they exist
+          find . -name "*.css" | while read -r CSS_FILE; do
+            if [ -f "$CSS_FILE" ]; then
+              echo "Updating copyright in CSS file: $CSS_FILE"
+              
+              # Check if copyright header already exists
+              if grep -q "Copyright (C)" "$CSS_FILE"; then
+                # Update existing copyright with year range if needed
+                if [ "${{ steps.set_version.outputs.current_year }}" -gt "2025" ]; then
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} N6REJ \*/|/* Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ \*/|/* Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} N6REJ| * Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ| * Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                else
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} N6REJ \*/|/* Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ \*/|/* Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                fi
+              fi
+            fi
+          done
+      
+      # For PR updates: Commit changes to PR branch
+      - name: Commit changes to PR branch
+        if: steps.context.outputs.is_pr_update == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Check if there are changes to commit
+          if git diff --exit-code; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Update version to ${{ steps.set_version.outputs.version }}, creation date to ${{ steps.set_version.outputs.creation_date }}, and copyright year to ${{ steps.set_version.outputs.current_year }}"
+            git push origin ${{ github.event.pull_request.head.ref }}
+            echo "Changes committed and pushed to PR branch"
+          fi
+      
+      # For PR merges: Commit changes to main branch
+      - name: Commit changes to main branch for PR merge
+        if: steps.context.outputs.is_pr_merge == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Check if there are changes to commit
+          if git diff --exit-code; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Update version to ${{ steps.set_version.outputs.version }} for release"
+            git push origin main
+            echo "Changes committed and pushed to main branch"
+          fi
+      
+      # For manual runs: Commit changes to main branch
+      - name: Commit changes to main branch for manual run
+        if: steps.context.outputs.is_manual == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Check if there are changes to commit
+          if git diff --exit-code; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Update version to ${{ steps.set_version.outputs.version }}, creation date to ${{ steps.set_version.outputs.creation_date }}, and copyright year to ${{ steps.set_version.outputs.current_year }}"
+            git push origin main
+            echo "Changes committed and pushed to main branch"
+          fi
+      
+      # For PR merges or manual runs: Create release
+      - name: Create package directory
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: mkdir -p package/mod_bears_pricing_tables
+      
+      - name: Copy module files
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          # Copy required files
+          cp mod_bears_pricing_tables.php package/mod_bears_pricing_tables/
+          cp mod_bears_pricing_tables.xml package/mod_bears_pricing_tables/
+          cp helper.php package/mod_bears_pricing_tables/
+          
+          # Copy optional files if they exist
+          if [ -f "License.txt" ]; then
+            cp License.txt package/mod_bears_pricing_tables/
+          fi
+          
+          if [ -f "index.html" ]; then
+            cp index.html package/mod_bears_pricing_tables/
+          fi
+          
+          # Copy directories
+          if [ -d "css" ]; then
+            cp -r css package/mod_bears_pricing_tables/
+          fi
+          
+          if [ -d "elements" ]; then
+            cp -r elements package/mod_bears_pricing_tables/
+          fi
+          
+          if [ -d "tmpl" ]; then
+            cp -r tmpl package/mod_bears_pricing_tables/
+          fi
+          
+          if [ -d "language" ]; then
+            cp -r language package/mod_bears_pricing_tables/
+          fi
+          
+          # List the contents of the package directory
+          echo "Package contents:"
+          ls -la package/mod_bears_pricing_tables/
+      
+      - name: Generate directory tree
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          apt-get update && apt-get install -y tree
+          tree package/mod_bears_pricing_tables > package/directory-structure.txt
+      
+      - name: Create ZIP archive
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          cd package
+          zip -r mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip mod_bears_pricing_tables
+          echo "Created ZIP archive: mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip"
+      
+      - name: Create GitHub Release
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.set_version.outputs.version }}
+          name: N6REJ Pricing Tables ${{ steps.set_version.outputs.version }}
+          files: |
+            package/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip
+            package/directory-structure.txt
+          draft: false
+          prerelease: false
+          body: |
+            N6REJ Pricing Tables Module ${{ steps.set_version.outputs.version }}
+            
+            ### Download Options:
+            - Download directly from this release page
+            - Access the artifact from the Actions tab of this workflow run
+            
+            ### Changes:
+            - Updated version to ${{ steps.set_version.outputs.version }}
+            - Updated creation date to ${{ steps.set_version.outputs.creation_date }}
+            - Updated copyright year to ${{ steps.set_version.outputs.current_year }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Upload artifact for easy access from GitHub Actions
+      - name: Upload to GitHub Artifacts
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        id: upload_artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}
+          path: package/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip
+          retention-days: 90
+          if-no-files-found: warn
+      
+      # Add information about downloading the artifact
+      - name: Artifact Download Information
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          echo "::notice::The module package has been uploaded as an artifact."
+          echo "::notice::You can download it from the Actions tab of this workflow run."
+          echo "::notice::Go to Actions → This workflow → This run → Artifacts section → Download 'mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}'"

@@ -703,3 +703,8 @@
 /README.txt
 /robots.txt.dist
 /web.config.txt
+
+# Internal
+/.idea
+/.qodo
+*.bak

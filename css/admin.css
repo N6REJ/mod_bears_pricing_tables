@@ -1,0 +1,31 @@
+/*
+ * N6REJ Pricing Tables Admin Styles
+ * Copyright (C) 2025 N6REJ. All rights reserved.
+ * License http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
+ */
+
+
+.bears-admin-header {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+
+/* When Yes is checked - green background */
+.btn-group input[id$="1"]:checked + label {
+  background-color: #28a745 !important; /* text-success color */
+  border-color: #28a745 !important;
+  font-weight: bold;
+  color: #ffffff !important;
+}
+
+/* When No is checked - red text with 10% opacity */
+.btn-group input[id$="0"]:checked + label {
+  background-color: rgba(220, 53, 69, 0.1) !important; /* text-danger with 10% opacity */
+  border-color: #dc3545 !important;
+  color: #dc3545 !important;
+}
+
+/* Make sure we're only targeting the direct label after the input */
