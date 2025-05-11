@@ -1,6 +1,6 @@
 <?php
 /**
- * N6REJ_Pricing-Table
+ * Bears Pricing Tables
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us

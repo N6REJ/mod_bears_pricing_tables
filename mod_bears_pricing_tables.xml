@@ -8,7 +8,7 @@
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.11.6</version>
-	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
+	<description><![CDATA[Pricing Tables module by Bear]]></description>
 	<namespace path="src">N6REJ\Module\PricingTables</namespace>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
