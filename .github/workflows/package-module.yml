@@ -135,8 +135,9 @@ jobs:
             if [ -f "$PHP_FILE" ]; then
               if grep -q "@version" "$PHP_FILE"; then
                 echo "Updating version in PHP file: $PHP_FILE"
-                sed -i "s|@version[ ]*[0-9]\{4\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}|@version     ${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
-                sed -i "s|Version[ ]*:[ ]*[0-9]\{4\}\.[0-9]\{1,2\}\.[0-9]\{1,2\}|Version : ${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+                # Updated regex to handle versions with .n suffixes and variable spacing
+                sed -i -E "s|(@version[ ]+).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+                sed -i -E "s|(Version[ ]*:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
               fi
             fi
           done

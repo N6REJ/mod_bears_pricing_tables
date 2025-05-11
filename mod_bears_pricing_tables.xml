@@ -9,7 +9,6 @@
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.11.8</version>
 	<description>Pricing Tables module by Bear</description>
-	<namespace path="src">N6REJ\Module\PricingTables</namespace>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
 		<filename>mod_bears_pricing_tables.xml</filename>
@@ -30,7 +29,7 @@
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<field name="bears_num_images" type="radio" default="3" label="MOD_BEARS_NUMIMAGES" description="MOD_BEARS_NUMIMAGES_DESC"
-					   class="btn-group btn-group-yesno">
+					   class="btn-group">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
