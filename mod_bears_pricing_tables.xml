@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.11.7</version>
+	<version>2025.05.11.8</version>
 	<description>Pricing Tables module by Bear</description>
 	<namespace path="src">N6REJ\Module\PricingTables</namespace>
 	<files>
