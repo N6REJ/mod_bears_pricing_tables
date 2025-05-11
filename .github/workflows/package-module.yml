@@ -1,4 +1,4 @@
-name: Package and Release N6REJ Pricing Tables Module
+name: Package and Release Bears Pricing Tables Module
 
 on:
   pull_request:
