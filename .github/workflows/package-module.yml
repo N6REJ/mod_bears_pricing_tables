@@ -295,14 +295,14 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.set_version.outputs.version }}
-          name: N6REJ Pricing Tables ${{ steps.set_version.outputs.version }}
+          name: Bears Pricing Tables ${{ steps.set_version.outputs.version }}
           files: |
             package/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip
             package/directory-structure.txt
           draft: false
           prerelease: false
           body: |
-            N6REJ Pricing Tables Module ${{ steps.set_version.outputs.version }}
+            Bears Pricing Tables Module ${{ steps.set_version.outputs.version }}
             
             ### Download Options:
             - Download directly from this release page
