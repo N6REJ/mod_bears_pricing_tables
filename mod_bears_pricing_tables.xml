@@ -8,7 +8,7 @@
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.11.12</version>
-	<description>Pricing Tables module by Bear</description>
+	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
 		<filename>mod_bears_pricing_tables.xml</filename>
@@ -16,14 +16,10 @@
 		<filename>License.txt</filename>
 		<filename>index.html</filename>
 		<folder>elements</folder>
+		<folder>css</folder>
 		<folder>tmpl</folder>
 		<folder>language</folder>
 	</files>
-
-	<!-- Media files -->
-	<media destination="mod_bears_pricing_tables" folder="media">
-		<folder>css</folder>
-	</media>
 	<languages>
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.ini</language>
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.sys.ini</language>
