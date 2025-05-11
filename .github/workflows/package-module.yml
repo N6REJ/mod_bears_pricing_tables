@@ -39,12 +39,14 @@ jobs:
           fi
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for proper versioning
           token: ${{ secrets.GITHUB_TOKEN }}  # Needed for pushing changes
-          ref: ${{ github.event.pull_request.head.ref || 'main' }} # Checkout PR branch or main if manual run
-          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }} # Checkout PR repo or current repo
+          # For PR merges, always use main branch; for PR updates use the PR branch; for manual runs use main
+          ref: ${{ (steps.context.outputs.is_pr_merge == 'true' && 'main') || (steps.context.outputs.is_pr_update == 'true' && github.event.pull_request.head.ref) || 'main' }}
+          # For PR updates, use the PR repository; otherwise use the current repository
+          repository: ${{ (steps.context.outputs.is_pr_update == 'true' && github.event.pull_request.head.repo.full_name) || github.repository }}
       
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
