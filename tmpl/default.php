@@ -39,7 +39,7 @@ $bears_moduleid = isset($module->id) ? $module->id : 0;
 
 $baseurl = Uri::base(); // Updated from JURI::base()
 
-$bears_num_images     = $params->get('bears_num_images', 3);
+$bears_num_columns     = $params->get('bears_num_columns', 3);
 $bears_image_margin_y = $params->get('bears_image_margin_y', 20);
 $bears_image_margin_x = $params->get('bears_image_margin_x', 20);
 $bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
@@ -99,19 +99,19 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:af
 $document->addStyleDeclaration($bears_css);
 
 /* Columns */
-if ($bears_num_images == '1') :
+if ($bears_num_columns == '1') :
     $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 100%; } ';
     $document->addStyleDeclaration($style);
 endif;
-if ($bears_num_images == '2') :
+if ($bears_num_columns == '2') :
     $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 50%; } ';
     $document->addStyleDeclaration($style);
 endif;
-if ($bears_num_images == '3') :
+if ($bears_num_columns == '3') :
     $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 33.3%; } ';
     $document->addStyleDeclaration($style);
 endif;
-if ($bears_num_images == '4') :
+if ($bears_num_columns == '4') :
     $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 25%; } ';
     $document->addStyleDeclaration($style);
 endif;
@@ -121,7 +121,7 @@ endif;
     <div class="bears_pricing_tables-container">
     <?php
     $imagenr = 0;
-    for ($i = 1; $i <= $bears_num_images; $i++) {
+    for ($i = 1; $i <= $bears_num_columns; $i++) {
         if (isset($image_ref[$imagenr])) {
             $cur_img = $image_ref[$imagenr];
             if (!empty($cur_img)) {

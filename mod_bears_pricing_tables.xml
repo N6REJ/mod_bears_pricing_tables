@@ -17,6 +17,7 @@
 		<filename>index.html</filename>
 		<folder>elements</folder>
 		<folder>css</folder>
+		<filename>css/modern.css</filename>
 		<folder>tmpl</folder>
 		<folder>language</folder>
 	</files>
@@ -28,7 +29,24 @@
 		<fields name="params" addfieldpath="/modules/mod_bears_pricing_tables/elements">
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
-				<field name="bears_num_images" type="radio" default="3" label="MOD_BEARS_NUMIMAGES" description="MOD_BEARS_NUMIMAGES_DESC"
+				<!-- Template selection dropdown -->
+				<field 
+					name="bears_template" 
+					type="list" 
+					default="1" 
+					label="Template Style" 
+					description="Select the template style for the pricing table">
+					<option value="1">1 - Default</option>
+					<option value="2">2 - Blue</option>
+					<option value="3">3 - Dark</option>
+					<option value="4">4 - Purple</option>
+					<option value="5">5 - Gray</option>
+					<option value="6">6 - Coins</option>
+					<option value="7">7 - Rounded</option>
+					<option value="8">8 - Circle</option>
+					<option value="9">9 - Simple</option>
+				</field>
+				<field name="bears_num_columns" type="radio" default="3" label="MOD_BEARS_NUMCOLUMNS" description="MOD_BEARS_NUMCOLUMNS_DESC"
 					   class="btn-group">
 					<option value="1">1</option>
 					<option value="2">2</option>
