@@ -15,18 +15,21 @@
 		<filename>helper.php</filename>
 		<filename>License.txt</filename>
 		<filename>index.html</filename>
-		<folder>css</folder>
 		<folder>elements</folder>
 		<folder>tmpl</folder>
 		<folder>language</folder>
 	</files>
+
+	<!-- Media files -->
+	<media destination="mod_bears_pricing_tables" folder="media">
+		<folder>css</folder>
+	</media>
 	<languages>
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.ini</language>
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params" addfieldpath="/modules/mod_bears_pricing_tables/elements">
-		<stylesheet>css/admin.css</stylesheet>
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<field name="bears_num_images" type="radio" default="3" label="MOD_BEARS_NUMIMAGES" description="MOD_BEARS_NUMIMAGES_DESC"
@@ -106,6 +109,16 @@
 			</fieldset>
 
 			<fieldset name="advanced">
+				<field
+						name="load_stylesheet"
+						type="radio"
+						default="1"
+						label="Load Module CSS"
+						description="Choose whether to load the module's CSS stylesheet"
+						class="btn-group btn-group-yesno">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 				<field
 						name="layout"
 						type="modulelayout"

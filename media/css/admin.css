@@ -11,40 +11,36 @@
   border-radius: 4px;
   margin-bottom: 15px;
 }
+
 /* Yes/No button group styling */
 .btn-group-yesno {
-    margin: 10px 0;
-}
+    margin: 1rem 0;
+    gap: 0.5rem;
+    }
 
-/* Base button styles */
 .btn-group-yesno .btn {
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    color: #495057;
-}
+    min-width: 60px;
+    position: all 0.3s ease;
+    }
 
-/* Active/Checked states */
-.btn-group-yesno input:checked + .btn {
-    color: white !important;
-    font-weight: bold;
-    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-}
+/* Active state for both buttons */
+.btn-group-yesno input[type="radio"]:checked + .btn {
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
 
-/* Specific checked states */
+/* Specific yes button styling */
 .btn-group-yesno input[value="yes"]:checked + .btn {
     background-color: #28a745 !important;
-    border-color: #218838 !important;
-}
+    }
 
+/* Specific no button styling */
 .btn-group-yesno input[value="no"]:checked + .btn {
     background-color: #dc3545 !important;
-    border-color: #c82333 !important;
-}
+    }
 
 /* Hover states */
 .btn-group-yesno .btn:hover {
     filter: brightness(90%);
-}
+    }

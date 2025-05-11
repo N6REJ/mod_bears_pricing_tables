@@ -26,10 +26,7 @@ if ($app->isClient('administrator')) {
     $wa = $app->getDocument()->getWebAssetManager();
     $wa->registerAndUseStyle(
         'mod_bears_pricing_tables.admin',
-        'mod_bears_pricing_tables/css/admin.css',
-        [],
-        [],
-        ['admin']
+        'mod_bears_pricing_tables/css/admin.css'
     );
 }
 
