@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 3 or later</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.11</version>
+	<version>2025.05.11.1</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by N6REJ]]></description>
 	<namespace path="src">N6REJ\Module\PricingTables</namespace>
 	<files>
