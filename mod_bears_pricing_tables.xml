@@ -14,7 +14,7 @@
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.xml</filename>
 		<filename module="mod_bears_pricing_tables">helper.php</filename>
-		<filename module="mod_bears_pricing_tables">License.txt</filename>
+		<filename module="mod_bears_pricing_tables">LICENSE</filename>
 		<filename module="mod_bears_pricing_tables">index.html</filename>
 		<folder>css</folder>
 		<folder>elements</folder>
