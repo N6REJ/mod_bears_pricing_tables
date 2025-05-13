@@ -35,6 +35,11 @@
   box-sizing: border-box;
 }
 
+.bears_pricing_tables ul {
+  list-style: none;
+  }
+
+
 /* Plan styling */
 .bears_pricing_tables .plan {
   margin: 0 auto;
