@@ -36,16 +36,17 @@
 					default="1" 
 					label="Template Style" 
 					description="Select the template style for the pricing table">
-					<option value="1">1 - Default</option>
-					<option value="2">2 - Blue</option>
-					<option value="3">3 - Dark</option>
-					<option value="4">4 - Purple</option>
-					<option value="5">5 - Gray</option>
-					<option value="6">6 - Coins</option>
-					<option value="7">7 - Rounded</option>
-					<option value="8">8 - Circle</option>
-					<option value="9">9 - Simple</option>
-					<option value="10">10 - White</option>
+					<option value="1">1 - Default ( Large Accent )</option> <!-- 1276 -->
+					<option value="2">2 - Blue ( Rounded )</option><!-- 1517 -->
+					<option value="3">3 - Dark ( Small Accent )</option><!-- 1299 -->
+					<option value="4">4 - Purple ( Wedge Accent )</option><!-- 1404 -->
+					<option value="5">5 - Orange ( With Icon )</option> <!-- 1265 -->
+					<option value="6">6 - Coins ( Blue )</option><!-- 1240 -->
+					<option value="7">7 - Offset ( Accent color )</option><!-- 1464 -->
+					<option value="8">8 - Burgundy ( Coin Pricing )</option><!-- 1223 -->
+					<option value="9">9 - Simple ( Blue on white )</option><!-- 1207 -->
+					<option value="10">10 - White ( Black & White )</option><!-- custom -->
+					<option value="10">11 - Small ( Small Title )</option><!-- 1214 -->
 				</field>
 				<field name="bears_num_columns" type="radio" default="3" label="MOD_BEARS_NUMCOLUMNS" description="MOD_BEARS_NUMCOLUMNS_DESC"
 					   class="btn-group">

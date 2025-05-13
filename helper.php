@@ -42,16 +42,17 @@ class ModBearsPricingTablesHelper
         if ($loadCSS) {
             // Map template values to CSS files
             $templateFiles = [
-                1 => 'default.css',
-                2 => 'blue.css',
-                3 => 'dark.css',
-                4 => 'purple.css',
-                5 => 'gray.css',
-                6 => 'coins.css',
-                7 => 'rounded.css',
-                8 => 'circle.css',
-                9 => 'simple.css',
-                10 => 'white.css'
+                1 => 'default.css',    // 1 - Default ( Large Accent )
+                2 => 'blue.css',       // 2 - Blue ( Rounded )
+                3 => 'dark.css',       // 3 - Dark ( Small Accent )
+                4 => 'purple.css',     // 4 - Purple ( Wedge Accent )
+                5 => 'orange.css',     // 5 - Orange ( With Icon )
+                6 => 'coins.css',      // 6 - Coins ( Blue )
+                7 => 'offset.css',     // 7 - Offset ( Accent color )
+                8 => 'burgundy.css',   // 8 - Burgundy ( Coin Pricing )
+                9 => 'simple.css',     // 9 - Simple ( Blue on white )
+                10 => 'white.css',     // 10 - White ( Black & White )
+                11 => 'small.css'      // 11 - Small ( Small Title )
             ];
             
             // Get the CSS file for the selected template
@@ -75,16 +76,17 @@ class ModBearsPricingTablesHelper
         
         // Map template values to template names
         $templateNames = [
-            1 => 'default',
-            2 => 'blue',
-            3 => 'dark',
-            4 => 'purple',
-            5 => 'gray',
-            6 => 'coins',
-            7 => 'rounded',
-            8 => 'circle',
-            9 => 'simple',
-            10 => 'white'
+            1 => 'default',    // 1 - Default ( Large Accent )
+            2 => 'blue',       // 2 - Blue ( Rounded )
+            3 => 'dark',       // 3 - Dark ( Small Accent )
+            4 => 'purple',     // 4 - Purple ( Wedge Accent )
+            5 => 'orange',     // 5 - Orange ( With Icon )
+            6 => 'coins',      // 6 - Coins ( Blue )
+            7 => 'offset',     // 7 - Offset ( Accent color )
+            8 => 'burgundy',   // 8 - Burgundy ( Coin Pricing )
+            9 => 'simple',     // 9 - Simple ( Blue on white )
+            10 => 'white',     // 10 - White ( Black & White )
+            11 => 'small'      // 11 - Small ( Small Title )
         ];
         
         // Return the template name for the selected template
