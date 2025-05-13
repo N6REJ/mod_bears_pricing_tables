@@ -216,6 +216,7 @@ jobs:
                   "exhaustive": false
                 }
               ],
+              "default_category": "## 🧰 Maintenance",
               "template": "#{{CHANGELOG}}\n\n",
               "pr_template": "* {{TITLE}} ({{URL}})",
               "empty_template": "* No changes",
