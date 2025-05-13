@@ -45,6 +45,7 @@
 					<option value="7">7 - Rounded</option>
 					<option value="8">8 - Circle</option>
 					<option value="9">9 - Simple</option>
+					<option value="10">10 - White</option>
 				</field>
 				<field name="bears_num_columns" type="radio" default="3" label="MOD_BEARS_NUMCOLUMNS" description="MOD_BEARS_NUMCOLUMNS_DESC"
 					   class="btn-group">
