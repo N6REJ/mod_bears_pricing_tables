@@ -188,69 +188,44 @@ jobs:
       # Generate changelog for PR merges or manual runs
       - name: Generate changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
-        id: generate_changelog
-        run: |
-          # Create a changelog file
-          CHANGELOG_FILE="CHANGELOG.md"
-          
-          # Find the most recent tag
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-          
-          if [ -z "$LATEST_TAG" ]; then
-            echo "No previous tags found. Generating changelog from all commits."
-            # Get all commits
-            echo "# Changelog" > $CHANGELOG_FILE
-            echo "" >> $CHANGELOG_FILE
-            echo "## ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" >> $CHANGELOG_FILE
-            echo "" >> $CHANGELOG_FILE
-            
-            # Get all commits and format them as changelog entries
-            git log --pretty=format:"* %s (%h)" >> $CHANGELOG_FILE
-          else
-            echo "Previous tag found: $LATEST_TAG. Generating changelog from commits since that tag."
-            
-            # Check if changelog file exists
-            if [ -f "$CHANGELOG_FILE" ]; then
-              # Backup existing changelog
-              cp $CHANGELOG_FILE ${CHANGELOG_FILE}.bak
-              
-              # Create new changelog with current version at the top
-              echo "# Changelog" > ${CHANGELOG_FILE}.new
-              echo "" >> ${CHANGELOG_FILE}.new
-              echo "## ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" >> ${CHANGELOG_FILE}.new
-              echo "" >> ${CHANGELOG_FILE}.new
-              
-              # Get commits since the last tag and format them as changelog entries
-              git log ${LATEST_TAG}..HEAD --pretty=format:"* %s (%h)" >> ${CHANGELOG_FILE}.new
-              echo "" >> ${CHANGELOG_FILE}.new
-              echo "" >> ${CHANGELOG_FILE}.new
-              
-              # Append the rest of the old changelog (skip the header)
-              tail -n +1 ${CHANGELOG_FILE}.bak >> ${CHANGELOG_FILE}.new
-              
-              # Replace the old changelog with the new one
-              mv ${CHANGELOG_FILE}.new $CHANGELOG_FILE
-            else
-              # Create new changelog file
-              echo "# Changelog" > $CHANGELOG_FILE
-              echo "" >> $CHANGELOG_FILE
-              echo "## ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" >> $CHANGELOG_FILE
-              echo "" >> $CHANGELOG_FILE
-              
-              # Get commits since the last tag and format them as changelog entries
-              git log ${LATEST_TAG}..HEAD --pretty=format:"* %s (%h)" >> $CHANGELOG_FILE
-            fi
-          fi
-          
-          # Display the generated changelog
-          echo "Generated changelog:"
-          cat $CHANGELOG_FILE
-          
-          # Store the changelog content for the release description
-          CHANGELOG_CONTENT=$(cat $CHANGELOG_FILE)
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          configuration: |
+            {
+              "categories": [
+                {
+                  "title": "## 🚀 Features",
+                  "labels": ["feature", "enhancement"]
+                },
+                {
+                  "title": "## 🐛 Fixes",
+                  "labels": ["fix", "bug"]
+                },
+                {
+                  "title": "## 🚧 Blockers",
+                  "labels": ["blocker"]
+                },
+                {
+                  "title": "## 📚 Documentation",
+                  "labels": ["documentation"]
+                }
+              ],
+              "template": "#{{CHANGELOG}}\n\n",
+              "pr_template": "* {{TITLE}} ({{URL}})",
+              "empty_template": "* No changes",
+              "max_tags_to_fetch": 5,
+              "max_pull_requests": 50,
+              "max_back_track_time_days": 365,
+              "tag_resolver": {
+                "method": "semver"
+              },
+              "base_branches": [
+                "main"
+              ]
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       # For PR updates: Commit changes to PR branch
       - name: Commit changes to PR branch
@@ -382,7 +357,8 @@ jobs:
             - Download directly from this release page
             - Access the artifact from the Actions tab of this workflow run
             
-            ${{ steps.generate_changelog.outputs.changelog }}
+            ## Changelog
+            ${{ steps.github_release.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
