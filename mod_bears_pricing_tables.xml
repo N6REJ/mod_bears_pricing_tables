@@ -53,8 +53,8 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 				</field>
-				<field name="bears_image_margin_x" type="textpx" default="20" label="MOD_BEARS_IMAGE_MARGINH" description="MOD_BEARS_IMAGE_MARGINH_DESC" />
-				<field name="bears_image_margin_y" type="textpx" default="10" label="MOD_BEARS_IMAGE_MARGINV" description="MOD_BEARS_IMAGE_MARGINV_DESC" />
+				<field name="bears_column_margin_x" type="textpx" default="20" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
+				<field name="bears_column_margin_y" type="textpx" default="10" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
 				<field name="bears_column_bg" type="color" default="#ffffff" label="Background Color" description="Set the column background color" />
 				<field name="bears_header_bg" type="color" default="#ffffff" label="Header Background Color" description="Set the column header color" />
 				<field name="bears_highlight_bg" type="color" default="#252525" label="Highlight Background Color" description="Set the highlight column header color" />

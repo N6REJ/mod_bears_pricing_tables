@@ -40,8 +40,8 @@ $bears_moduleid = isset($module->id) ? $module->id : 0;
 $baseurl = Uri::base(); // Updated from JURI::base()
 
 $bears_num_columns     = $params->get('bears_num_columns', 3);
-$bears_image_margin_y = $params->get('bears_image_margin_y', 20);
-$bears_image_margin_x = $params->get('bears_image_margin_x', 20);
+$bears_column_margin_y = $params->get('bears_column_margin_y', 20);
+$bears_column_margin_x = $params->get('bears_column_margin_x', 20);
 $bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
 $bears_header_bg      = $params->get('bears_header_bg', '#2c3e50');
 $bears_highlight_bg   = $params->get('bears_highlight_bg', '#e74c3c');
@@ -51,7 +51,7 @@ $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
 $bears_features_color = $params->get('bears_features_color', '#7f8c8d');
 $bears_button_color   = $params->get('bears_button_color', '#3498db');
 
-$image_ref      = array();
+$column_ref      = array();
 $bears_title      = array();
 $bears_subtitle   = array();
 $bears_price      = array();
@@ -60,10 +60,10 @@ $bears_buttontext = array();
 $bears_buttonurl  = array();
 $bears_highlight  = array();
 
-$max_images = 15;
-for ($i = 1; $i <= $max_images; $i++) {
+$max_columns = 15;
+for ($i = 1; $i <= $max_columns; $i++) {
     if ($params->get('bears_title' . $i)) {
-        $image_ref[]        = $i;
+        $column_ref[]        = $i;
         $bears_title[$i]      = $params->get('bears_title' . $i);
         $bears_subtitle[$i]   = $params->get('bears_subtitle' . $i);
         $bears_price[$i]      = $params->get('bears_price' . $i);
@@ -81,7 +81,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/def
 
 // Styling from module parameters
 $bears_css = '';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { padding:' . $bears_image_margin_y . 'px ' . $bears_image_margin_x . 'px; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { padding:' . $bears_column_margin_y . 'px ' . $bears_column_margin_x . 'px; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { background-color:' . $bears_column_bg . '; box-shadow: inset 0 0 0 5px ' . $bears_header_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background-color: ' . $bears_header_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header:after { border-color: ' . $bears_header_bg . ' transparent transparent transparent; }';
@@ -120,10 +120,10 @@ endif;
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
     <div class="bears_pricing_tables-container">
     <?php
-    $imagenr = 0;
+    $columnnr = 0;
     for ($i = 1; $i <= $bears_num_columns; $i++) {
-        if (isset($image_ref[$imagenr])) {
-            $cur_img = $image_ref[$imagenr];
+        if (isset($column_ref[$columnnr])) {
+            $cur_img = $column_ref[$columnnr];
             if (!empty($cur_img)) {
                 ?>
                 <div class="bears_pricing_tables">
@@ -191,7 +191,7 @@ endif;
                 </div>
                 <?php
             }
-            $imagenr++;
+            $columnnr++;
         }
     }
     ?>
