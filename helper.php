@@ -51,7 +51,7 @@ class ModBearsPricingTablesHelper
                 7 => 'offset.css',     // 7 - Offset ( Accent color )
                 8 => 'burgundy.css',   // 8 - Burgundy ( Coin Pricing )
                 9 => 'simple.css',     // 9 - Simple ( Blue on white )
-                10 => 'white.css',     // 10 - White ( Black & White )
+                10 => 'white.css',     // 10 - White ( Black and White )
                 11 => 'small.css'      // 11 - Small ( Small Title )
             ];
             
