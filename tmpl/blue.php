@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables
+ * Bears Pricing Tables - Purple Template
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -42,14 +42,14 @@ $baseurl = Uri::base(); // Updated from JURI::base()
 $bears_num_columns     = $params->get('bears_num_columns', 3);
 $bears_column_margin_y = $params->get('bears_column_margin_y', 20);
 $bears_column_margin_x = $params->get('bears_column_margin_x', 20);
-$bears_column_bg      = $params->get('bears_column_bg', '#222f3d');
-$bears_header_bg      = $params->get('bears_header_bg', '#222f3d');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#156dab');
+$bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
+$bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
+$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
 $bears_title_color    = $params->get('bears_title_color', '#ffffff');
-$bears_price_color    = $params->get('bears_price_color', '#ffffff');
+$bears_price_color    = $params->get('bears_price_color', '#8e44ad');
 $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
-$bears_features_color = $params->get('bears_features_color', '#ffffff');
-$bears_button_color   = $params->get('bears_button_color', '#156dab');
+$bears_features_color = $params->get('bears_features_color', '#7f8c8d');
+$bears_button_color   = $params->get('bears_button_color', '#8e44ad');
 
 $column_ref      = array();
 $bears_title      = array();
@@ -73,6 +73,9 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_highlight[$i]  = $params->get('bears_highlight' . $i);
     }
 }
+
+// Note: CSS is now loaded by the helper class, so we don't need to add:
+// $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/default.css');
 
 // Get document
 $document = Factory::getDocument();
@@ -195,13 +198,4 @@ endif;
         ?>
 	</div>
 	<div class="clear"></div>
-</div>
-<?php
-// Proper debugging code - uncomment to see what's in the features array
-/*
-echo '<pre style="text-align:left; background:#f5f5f5; padding:10px; margin:10px; border:1px solid #ccc;">';
-echo "All features:<br>";
-var_dump($bears_features);
-echo '</pre>';
-*/
-?>
+</div></qodoArtifact>

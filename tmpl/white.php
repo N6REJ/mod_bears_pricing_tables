@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables - White Template
+ * Bears Pricing Tables - Purple Template
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -43,13 +43,13 @@ $bears_num_columns     = $params->get('bears_num_columns', 3);
 $bears_column_margin_y = $params->get('bears_column_margin_y', 20);
 $bears_column_margin_x = $params->get('bears_column_margin_x', 20);
 $bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
-$bears_header_bg      = $params->get('bears_header_bg', '#f8f8f8');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#e8e8e8');
-$bears_title_color    = $params->get('bears_title_color', '#333333');
-$bears_price_color    = $params->get('bears_price_color', '#333333');
-$bears_pricesub_color = $params->get('bears_pricesub_color', '#666666');
-$bears_features_color = $params->get('bears_features_color', '#333333');
-$bears_button_color   = $params->get('bears_button_color', '#3498db');
+$bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
+$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
+$bears_title_color    = $params->get('bears_title_color', '#ffffff');
+$bears_price_color    = $params->get('bears_price_color', '#8e44ad');
+$bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
+$bears_features_color = $params->get('bears_features_color', '#7f8c8d');
+$bears_button_color   = $params->get('bears_button_color', '#8e44ad');
 
 $column_ref      = array();
 $bears_title      = array();
@@ -83,7 +83,7 @@ $document = Factory::getDocument();
 // Styling from module parameters
 $bears_css = '';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { padding:' . $bears_column_margin_y . 'px ' . $bears_column_margin_x . 'px; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { background-color:' . $bears_column_bg . '; border: 1px solid #e0e0e0; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { background-color:' . $bears_column_bg . '; box-shadow: inset 0 0 0 5px ' . $bears_header_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background-color: ' . $bears_header_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header:after { border-color: ' . $bears_header_bg . ' transparent transparent transparent; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-title { color:' . $bears_title_color . '; }';
@@ -92,7 +92,7 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-type { color:
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features { color:' . $bears_features_color . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn { background-color: ' . $bears_button_color . '; color: #ffffff; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_color . '; opacity: 0.9; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { box-shadow: 0 0 10px rgba(0,0,0,0.1); }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
 
@@ -198,4 +198,4 @@ endif;
         ?>
 	</div>
 	<div class="clear"></div>
-</div>
+</div></qodoArtifact>

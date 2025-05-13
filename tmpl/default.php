@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables
+ * Bears Pricing Tables - Purple Template
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -43,13 +43,13 @@ $bears_num_columns     = $params->get('bears_num_columns', 3);
 $bears_column_margin_y = $params->get('bears_column_margin_y', 20);
 $bears_column_margin_x = $params->get('bears_column_margin_x', 20);
 $bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
-$bears_header_bg      = $params->get('bears_header_bg', '#2c3e50');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#e74c3c');
+$bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
+$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
 $bears_title_color    = $params->get('bears_title_color', '#ffffff');
-$bears_price_color    = $params->get('bears_price_color', '#2c3e50');
+$bears_price_color    = $params->get('bears_price_color', '#8e44ad');
 $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
 $bears_features_color = $params->get('bears_features_color', '#7f8c8d');
-$bears_button_color   = $params->get('bears_button_color', '#3498db');
+$bears_button_color   = $params->get('bears_button_color', '#8e44ad');
 
 $column_ref      = array();
 $bears_title      = array();
@@ -73,6 +73,9 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_highlight[$i]  = $params->get('bears_highlight' . $i);
     }
 }
+
+// Note: CSS is now loaded by the helper class, so we don't need to add:
+// $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/default.css');
 
 // Get document
 $document = Factory::getDocument();
@@ -117,13 +120,13 @@ endif;
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
 	<div class="bears_pricing_tables-container">
-    <?php
-    $columnnr = 0;
-    for ($i = 1; $i <= $bears_num_columns; $i++) {
-        if (isset($column_ref[$columnnr])) {
-            $cur_column = $column_ref[$columnnr];
-            if (!empty($cur_column)) {
-                ?>
+        <?php
+        $columnnr = 0;
+        for ($i = 1; $i <= $bears_num_columns; $i++) {
+            if (isset($column_ref[$columnnr])) {
+                $cur_column = $column_ref[$columnnr];
+                if (!empty($cur_column)) {
+                    ?>
 					<div class="bears_pricing_tables">
 						<div class="plan <?php
                         if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
@@ -139,45 +142,45 @@ endif;
 							</header>
 
 							<ul class="plan-features dot">
-                            <?php
-                            if (!empty($bears_features[$cur_column])) {
-                                $features = $bears_features[$cur_column];
-                                
-                                // Process features based on their structure
-                                if (is_object($features)) {
-                                    // Handle subform data structure
-                                    foreach ($features as $key => $item) {
-                                        if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                <?php
+                                if (!empty($bears_features[$cur_column])) {
+                                    $features = $bears_features[$cur_column];
+
+                                    // Process features based on their structure
+                                    if (is_object($features)) {
+                                        // Handle subform data structure
+                                        foreach ($features as $key => $item) {
+                                            if (is_object($item) && isset($item->bears_feature)) {
+                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            }
                                         }
-                                    }
-                                } elseif (is_array($features)) {
-                                    // Handle array of features
-                                    foreach ($features as $item) {
-                                        if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
-                                        } elseif (is_string($item)) {
-                                            echo '<li>' . htmlspecialchars($item) . '</li>';
-                                        }
-                                    }
-                                } elseif (is_string($features)) {
-                                    // Try to decode if it's a JSON string
-                                    $decoded = json_decode($features);
-                                    if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-                                        foreach ($decoded as $item) {
+                                    } elseif (is_array($features)) {
+                                        // Handle array of features
+                                        foreach ($features as $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
                                                 echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                             } elseif (is_string($item)) {
                                                 echo '<li>' . htmlspecialchars($item) . '</li>';
                                             }
                                         }
-                                    } else {
-                                        // It's just a plain string
-                                        echo '<li>' . htmlspecialchars($features) . '</li>';
+                                    } elseif (is_string($features)) {
+                                        // Try to decode if it's a JSON string
+                                        $decoded = json_decode($features);
+                                        if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                                            foreach ($decoded as $item) {
+                                                if (is_object($item) && isset($item->bears_feature)) {
+                                                    echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                                } elseif (is_string($item)) {
+                                                    echo '<li>' . htmlspecialchars($item) . '</li>';
+                                                }
+                                            }
+                                        } else {
+                                            // It's just a plain string
+                                            echo '<li>' . htmlspecialchars($features) . '</li>';
+                                        }
                                     }
                                 }
-                            }
-                            ?>
+                                ?>
 							</ul>
 
 							<div class="plan-select">
@@ -187,12 +190,12 @@ endif;
 							</div>
 						</div>
 					</div>
-                <?php
+                    <?php
+                }
+                $columnnr++;
             }
-            $columnnr++;
         }
-    }
-    ?>
+        ?>
 	</div>
 	<div class="clear"></div>
-</div>
+</div></qodoArtifact>

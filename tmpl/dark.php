@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables - Dark Template
+ * Bears Pricing Tables - Purple Template
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -42,14 +42,14 @@ $baseurl = Uri::base(); // Updated from JURI::base()
 $bears_num_columns     = $params->get('bears_num_columns', 3);
 $bears_column_margin_y = $params->get('bears_column_margin_y', 20);
 $bears_column_margin_x = $params->get('bears_column_margin_x', 20);
-$bears_column_bg      = $params->get('bears_column_bg', '#1a1a1a');
-$bears_header_bg      = $params->get('bears_header_bg', '#000000');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#e74c3c');
+$bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
+$bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
+$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
 $bears_title_color    = $params->get('bears_title_color', '#ffffff');
-$bears_price_color    = $params->get('bears_price_color', '#ffffff');
+$bears_price_color    = $params->get('bears_price_color', '#8e44ad');
 $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
-$bears_features_color = $params->get('bears_features_color', '#cccccc');
-$bears_button_color   = $params->get('bears_button_color', '#e74c3c');
+$bears_features_color = $params->get('bears_features_color', '#7f8c8d');
+$bears_button_color   = $params->get('bears_button_color', '#8e44ad');
 
 $column_ref      = array();
 $bears_title      = array();
@@ -119,7 +119,7 @@ endif;
 ?>
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
-	<div class="bears_pricing_tables-container">
+    <div class="bears_pricing_tables-container">
         <?php
         $columnnr = 0;
         for ($i = 1; $i <= $bears_num_columns; $i++) {
@@ -127,21 +127,21 @@ endif;
                 $cur_column = $column_ref[$columnnr];
                 if (!empty($cur_column)) {
                     ?>
-					<div class="bears_pricing_tables">
-						<div class="plan <?php
+                    <div class="bears_pricing_tables">
+                        <div class="plan <?php
                         if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
                         endif; ?>">
-							<header>
-								<h4 class="plan-title">
+                            <header>
+                                <h4 class="plan-title">
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
-								</h4>
-								<div class="plan-cost">
-									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
-									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
-								</div>
-							</header>
+                                </h4>
+                                <div class="plan-cost">
+                                    <span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
+                                    <span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
+                                </div>
+                            </header>
 
-							<ul class="plan-features dot">
+                            <ul class="plan-features dot">
                                 <?php
                                 if (!empty($bears_features[$cur_column])) {
                                     $features = $bears_features[$cur_column];
@@ -181,21 +181,21 @@ endif;
                                     }
                                 }
                                 ?>
-							</ul>
+                            </ul>
 
-							<div class="plan-select">
-								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                            <div class="plan-select">
+                                <a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
                                     <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
-								</a>
-							</div>
-						</div>
-					</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <?php
                 }
                 $columnnr++;
             }
         }
         ?>
-	</div>
-	<div class="clear"></div>
+    </div>
+    <div class="clear"></div>
 </div></qodoArtifact>
