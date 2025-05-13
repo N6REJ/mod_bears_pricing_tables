@@ -209,6 +209,11 @@ jobs:
                 {
                   "title": "## 📚 Documentation",
                   "labels": ["documentation"]
+                },
+                {
+                  "title": "## 🧰 Maintenance",
+                  "labels": ["chore", "maintenance"],
+                  "exhaustive": false
                 }
               ],
               "template": "#{{CHANGELOG}}\n\n",
@@ -222,6 +227,19 @@ jobs:
               },
               "base_branches": [
                 "main"
+              ],
+              "ignore_labels": [
+                "ignore-for-release"
+              ],
+              "sort": {
+                "order": "ASC",
+                "on_property": "title"
+              },
+              "transformers": [
+                {
+                  "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
+                  "target": "- $4\n  - $6"
+                }
               ]
             }
         env:
