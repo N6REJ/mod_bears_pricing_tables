@@ -74,10 +74,8 @@ for ($i = 1; $i <= $max_columns; $i++) {
     }
 }
 
-// Load CSS/JS
-// Update for Joomla 5: Use Factory::getDocument() instead of JFactory
+// Get document
 $document = Factory::getDocument();
-$document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/default.css');
 
 // Styling from module parameters
 $bears_css = '';
@@ -93,7 +91,7 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .be
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_color . '; opacity: 0.9; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_header_bg . ' transparent transparent transparent; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
 
 // Put styling in header
 $document->addStyleDeclaration($bears_css);
@@ -118,7 +116,7 @@ endif;
 ?>
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
-    <div class="bears_pricing_tables-container">
+	<div class="bears_pricing_tables-container">
     <?php
     $columnnr = 0;
     for ($i = 1; $i <= $bears_num_columns; $i++) {
@@ -126,21 +124,21 @@ endif;
             $cur_column = $column_ref[$columnnr];
             if (!empty($cur_column)) {
                 ?>
-                <div class="bears_pricing_tables">
-                    <div class="plan <?php
-                    if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
-                    endif; ?>">
-                        <header>
-                            <h4 class="plan-title">
-                                <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
-                            </h4>
-                            <div class="plan-cost">
-                                <span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
-                                <span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
-                            </div>
-                        </header>
+					<div class="bears_pricing_tables">
+						<div class="plan <?php
+                        if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
+                        endif; ?>">
+							<header>
+								<h4 class="plan-title">
+                                    <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+								</h4>
+								<div class="plan-cost">
+									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
+									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
+								</div>
+							</header>
 
-                        <ul class="plan-features dot">
+							<ul class="plan-features dot">
                             <?php
                             if (!empty($bears_features[$cur_column])) {
                                 $features = $bears_features[$cur_column];
@@ -180,30 +178,21 @@ endif;
                                 }
                             }
                             ?>
-						</ul>
+							</ul>
 
-                        <div class="plan-select">
-                            <a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
-                                <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+							<div class="plan-select">
+								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                                    <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
+								</a>
+							</div>
+						</div>
+					</div>
                 <?php
             }
             $columnnr++;
         }
     }
     ?>
-    </div>
-    <div class="clear"></div>
+	</div>
+	<div class="clear"></div>
 </div>
-<?php
-// Proper debugging code - uncomment to see what's in the features array
-/*
-echo '<pre style="text-align:left; background:#f5f5f5; padding:10px; margin:10px; border:1px solid #ccc;">';
-echo "All features:<br>";
-var_dump($bears_features);
-echo '</pre>';
-*/
-?>

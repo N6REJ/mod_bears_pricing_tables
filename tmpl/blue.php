@@ -74,10 +74,8 @@ for ($i = 1; $i <= $max_columns; $i++) {
     }
 }
 
-// Load CSS/JS
-// Update for Joomla 5: Use Factory::getDocument() instead of JFactory
+// Get document
 $document = Factory::getDocument();
-$document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/default.css');
 
 // Styling from module parameters
 $bears_css = '';
@@ -93,7 +91,7 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .be
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_color . '; opacity: 0.9; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_header_bg . ' transparent transparent transparent; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
 
 // Put styling in header
 $document->addStyleDeclaration($bears_css);
