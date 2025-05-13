@@ -189,32 +189,28 @@ jobs:
       - name: Generate changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
         id: changelog
+        uses: saadmk11/changelog-ci@v1.1.2
+        with:
+          changelog_filename: CHANGELOG.md
+          config_file: .github/changelog-ci-config.yaml
+          committer_username: 'github-actions[bot]'
+          committer_email: 'github-actions[bot]@users.noreply.github.com'
+          release_version: ${{ steps.set_version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Read changelog content
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        id: read_changelog
         run: |
-          # Get the previous tag
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-          
-          if [ -z "$PREVIOUS_TAG" ]; then
-            # If no previous tag exists, use the first commit
-            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+          if [ -f "CHANGELOG.md" ]; then
+            CHANGELOG_CONTENT=$(cat CHANGELOG.md)
+            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "changelog=* No changes found" >> $GITHUB_OUTPUT
           fi
-          
-          echo "Previous tag: $PREVIOUS_TAG"
-          
-          # Generate changelog
-          CHANGELOG=$(git log --pretty=format:"* %s (%h)" $PREVIOUS_TAG..HEAD)
-          
-          if [ -z "$CHANGELOG" ]; then
-            CHANGELOG="* Initial release or no changes since last release"
-          fi
-          
-          # Save changelog to file and output
-          echo "$CHANGELOG" > CHANGELOG.md
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-          
-          echo "Generated changelog:"
-          echo "$CHANGELOG"
       
       # For PR updates: Commit changes to PR branch
       - name: Commit changes to PR branch
@@ -347,7 +343,7 @@ jobs:
             - Access the artifact from the Actions tab of this workflow run
             
             ## Changelog
-            ${{ steps.changelog.outputs.changelog }}
+            ${{ steps.read_changelog.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
