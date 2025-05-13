@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  * 
- * @version     2025.05.11.14
+ * @version     2025.05.13
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -33,5 +33,11 @@ if ($app->isClient('administrator')) {
 // Include helper file
 require_once __DIR__ . '/helper.php';
 
+// Load the appropriate CSS file based on template selection
+ModBearsPricingTablesHelper::loadTemplateCSS($params);
+
+// Get the template name to load
+$templateName = ModBearsPricingTablesHelper::getTemplateName($params);
+
 // Load the layout
-require ModuleHelper::getLayoutPath('mod_bears_pricing_tables');
+require ModuleHelper::getLayoutPath('mod_bears_pricing_tables', $templateName);
