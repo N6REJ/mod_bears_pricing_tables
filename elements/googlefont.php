@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables - Google Font Field
  * 
- * @version     2025.05.13.5
+ * @version     2025.05.13.6
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
