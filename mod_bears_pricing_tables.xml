@@ -73,6 +73,21 @@
 
 			<fieldset name="column1">
 				<field name="bears_title1" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
+				<field name="icon_group1" type="note" class="bears-icon-group" label="" description="" />
+				<field name="bears_icon1" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
+				<field name="bears_icon_color1" type="color" default="#424242" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
+				<field name="bears_icon_location1" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
+					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
+					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
+					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
+					<option value="middle-right">MOD_BEARS_ICON_LOCATION_MIDDLE_RIGHT</option>
+					<option value="center-center">MOD_BEARS_ICON_LOCATION_CENTER_CENTER</option>
+					<option value="bottom-right">MOD_BEARS_ICON_LOCATION_BOTTOM_RIGHT</option>
+					<option value="bottom-center">MOD_BEARS_ICON_LOCATION_BOTTOM_CENTER</option>
+					<option value="bottom-left">MOD_BEARS_ICON_LOCATION_BOTTOM_LEFT</option>
+					<option value="middle-left">MOD_BEARS_ICON_LOCATION_MIDDLE_LEFT</option>
+				</field>
 				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
@@ -87,6 +102,21 @@
 
 			<fieldset name="column2">
 				<field name="bears_title2" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
+				<field name="icon_group2" type="note" class="bears-icon-group" label="" description="" />
+				<field name="bears_icon2" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
+				<field name="bears_icon_color2" type="color" default="#424242" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
+				<field name="bears_icon_location2" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
+					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
+					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
+					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
+					<option value="middle-right">MOD_BEARS_ICON_LOCATION_MIDDLE_RIGHT</option>
+					<option value="center-center">MOD_BEARS_ICON_LOCATION_CENTER_CENTER</option>
+					<option value="bottom-right">MOD_BEARS_ICON_LOCATION_BOTTOM_RIGHT</option>
+					<option value="bottom-center">MOD_BEARS_ICON_LOCATION_BOTTOM_CENTER</option>
+					<option value="bottom-left">MOD_BEARS_ICON_LOCATION_BOTTOM_LEFT</option>
+					<option value="middle-left">MOD_BEARS_ICON_LOCATION_MIDDLE_LEFT</option>
+				</field>
 				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
@@ -101,6 +131,21 @@
 
 			<fieldset name="column3">
 				<field name="bears_title3" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
+				<field name="icon_group3" type="note" class="bears-icon-group" label="" description="" />
+				<field name="bears_icon3" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
+				<field name="bears_icon_color3" type="color" default="#424242" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
+				<field name="bears_icon_location3" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
+					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
+					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
+					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
+					<option value="middle-right">MOD_BEARS_ICON_LOCATION_MIDDLE_RIGHT</option>
+					<option value="center-center">MOD_BEARS_ICON_LOCATION_CENTER_CENTER</option>
+					<option value="bottom-right">MOD_BEARS_ICON_LOCATION_BOTTOM_RIGHT</option>
+					<option value="bottom-center">MOD_BEARS_ICON_LOCATION_BOTTOM_CENTER</option>
+					<option value="bottom-left">MOD_BEARS_ICON_LOCATION_BOTTOM_LEFT</option>
+					<option value="middle-left">MOD_BEARS_ICON_LOCATION_MIDDLE_LEFT</option>
+				</field>
 				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
@@ -115,6 +160,21 @@
 
 			<fieldset name="column4">
 				<field name="bears_title4" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
+				<field name="icon_group4" type="note" class="bears-icon-group" label="" description="" />
+				<field name="bears_icon4" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
+				<field name="bears_icon_color4" type="color" default="#424242" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
+				<field name="bears_icon_location4" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
+					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
+					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
+					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
+					<option value="middle-right">MOD_BEARS_ICON_LOCATION_MIDDLE_RIGHT</option>
+					<option value="center-center">MOD_BEARS_ICON_LOCATION_CENTER_CENTER</option>
+					<option value="bottom-right">MOD_BEARS_ICON_LOCATION_BOTTOM_RIGHT</option>
+					<option value="bottom-center">MOD_BEARS_ICON_LOCATION_BOTTOM_CENTER</option>
+					<option value="bottom-left">MOD_BEARS_ICON_LOCATION_BOTTOM_LEFT</option>
+					<option value="middle-left">MOD_BEARS_ICON_LOCATION_MIDDLE_LEFT</option>
+				</field>
 				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="20" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />

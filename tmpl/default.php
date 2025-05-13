@@ -51,6 +51,13 @@ $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
 $bears_features_color = $params->get('bears_features_color', '#7f8c8d');
 $bears_button_color   = $params->get('bears_button_color', '#8e44ad');
 
+// Font family settings
+$bears_title_font     = $params->get('bears_title_font', '');
+$bears_price_font     = $params->get('bears_price_font', '');
+$bears_subtitle_font  = $params->get('bears_subtitle_font', '');
+$bears_features_font  = $params->get('bears_features_font', '');
+$bears_button_font    = $params->get('bears_button_font', '');
+
 $column_ref      = array();
 $bears_title      = array();
 $bears_subtitle   = array();
@@ -59,6 +66,14 @@ $bears_features   = array();
 $bears_buttontext = array();
 $bears_buttonurl  = array();
 $bears_highlight  = array();
+$bears_icon      = array();
+$bears_icon_location = array();
+$bears_icon_color = array();
+$bears_title_font = array();
+$bears_price_font = array();
+$bears_subtitle_font = array();
+$bears_features_font = array();
+$bears_button_font = array();
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -71,6 +86,14 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
         $bears_highlight[$i]  = $params->get('bears_highlight' . $i);
+        $bears_icon[$i]      = $params->get('bears_icon' . $i);
+        $bears_icon_location[$i] = $params->get('bears_icon_location' . $i, 'center-center');
+        $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
+        $bears_title_font[$i] = $params->get('bears_title_font' . $i, '');
+        $bears_price_font[$i] = $params->get('bears_price_font' . $i, '');
+        $bears_subtitle_font[$i] = $params->get('bears_subtitle_font' . $i, '');
+        $bears_features_font[$i] = $params->get('bears_features_font' . $i, '');
+        $bears_button_font[$i] = $params->get('bears_button_font' . $i, '');
     }
 }
 
@@ -95,6 +118,16 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hove
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-icon { font-size: 24px; margin: 10px; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-center-center { text-align: center; display: block; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-top-left { float: left; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-top-center { text-align: center; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-top-right { float: right; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-middle-left { float: left; margin-right: 10px; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-middle-right { float: right; margin-left: 10px; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-left { float: left; clear: both; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-center { text-align: center; clear: both; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-right { float: right; clear: both; }';
 
 // Put styling in header
 $document->addStyleDeclaration($bears_css);
@@ -132,16 +165,71 @@ endif;
                         if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
                         endif; ?>">
 							<header>
-								<h4 class="plan-title">
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-left'): ?>
+                                    <div class="plan-icon icon-top-left">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-center'): ?>
+                                    <div class="plan-icon icon-top-center">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-right'): ?>
+                                    <div class="plan-icon icon-top-right">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'middle-left'): ?>
+                                    <div class="plan-icon icon-middle-left">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+								<h4 class="plan-title" <?php echo !empty($bears_title_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_title_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'middle-right'): ?>
+                                    <div class="plan-icon icon-middle-right">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
 								<div class="plan-cost">
-									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
-									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
+									<span class="plan-price" <?php echo !empty($bears_price_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_price_font[$cur_column]) . '\', sans-serif;"' : ''; ?>><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
+									<span class="plan-type" <?php echo !empty($bears_subtitle_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_subtitle_font[$cur_column]) . '\', sans-serif;"' : ''; ?>><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
 								</div>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-left'): ?>
+                                    <div class="plan-icon icon-bottom-left">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-center'): ?>
+                                    <div class="plan-icon icon-bottom-center">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-right'): ?>
+                                    <div class="plan-icon icon-bottom-right">
+                                        <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                    </div>
+                                <?php endif; ?>
 							</header>
+                            
+                            <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'center-center'): ?>
+                                <div class="plan-icon icon-center-center">
+                                    <i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+                                </div>
+                            <?php endif; ?>
 
-							<ul class="plan-features dot">
+							<ul class="plan-features dot" <?php echo !empty($bears_features_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_features_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
                                 <?php
                                 if (!empty($bears_features[$cur_column])) {
                                     $features = $bears_features[$cur_column];
@@ -184,7 +272,7 @@ endif;
 							</ul>
 
 							<div class="plan-select">
-								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>" <?php echo !empty($bears_button_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_button_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
                                     <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
 								</a>
 							</div>

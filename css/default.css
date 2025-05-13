@@ -24,10 +24,11 @@
 .bears_pricing_tables .plan {
   margin: 0;
   position: relative;
-  background-color: #e6e6e6;
+  background-color: #ffffff;
   overflow: hidden;
   border-radius: 4px;
   box-shadow: rgba(110, 110, 110, 0.1) 0px 5px 15px 0px;
+  text-align: center;
   }
 .bears_pricing_tables * {
   -webkit-box-sizing: border-box;
@@ -46,6 +47,12 @@
   margin-bottom: 40px;
   text-align: center;
   }
+/* When center-center icon is present, add some opacity to the header content */
+.bears_pricing_tables .plan-icon.icon-center-center ~ .plan-title,
+.bears_pricing_tables .plan-icon.icon-center-center ~ .plan-cost {
+  position: relative;
+  z-index: 1;
+  }
 .bears_pricing_tables header:after {
   width: 0;
   height: 0;
@@ -62,6 +69,36 @@
 .bears_pricing_tables .plan-title {
   top: 0;
   margin-bottom: 12px;
+  }
+.bears_pricing_tables .plan-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+  font-size: 28px;
+  color: #424242;
+  }
+.bears_pricing_tables .icon-center-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 36px;
+  z-index: 2;
+  }
+.bears_pricing_tables .featured .plan-icon {
+  background-color: #252525;
+  color: #ffffff;
+  }
+.bears_pricing_tables .plan-icon i {
+  line-height: 1;
+  margin-right: 0;
+  opacity: 1;
   }
 .bears_pricing_tables .plan-cost {
   margin: 8px 0 0;

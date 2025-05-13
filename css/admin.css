@@ -44,3 +44,74 @@
 .btn-group-yesno .btn:hover {
     filter: brightness(90%);
     }
+
+/* Icon group styling */
+.bears-icon-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 15px;
+  border: none !important;
+  background: none !important;
+}
+
+.bears-icon-group + .input-inline {
+  display: inline-block;
+  margin-right: 10px;
+  width: auto;
+}
+
+.bears-icon-group + .input-inline label {
+  min-width: 80px;
+  display: inline-block;
+}
+
+.bears-icon-group + .input-inline + .input-inline {
+  margin-left: 0;
+}
+
+/* Fix for color picker alignment */
+.bears-icon-group + .input-inline .minicolors {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Hide the note label */
+.bears-icon-group .control-label {
+  display: none;
+}
+
+/* Make the fields appear in a single row */
+.control-group:has(.bears-icon-group) + .control-group,
+.control-group:has(.bears-icon-group) + .control-group + .control-group {
+  display: inline-block;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  vertical-align: top;
+}
+
+/* Adjust spacing for the icon fields */
+.control-group:has(.bears-icon-group) + .control-group .control-label,
+.control-group:has(.bears-icon-group) + .control-group + .control-group .control-label,
+.control-group:has(.bears-icon-group) + .control-group + .control-group + .control-group .control-label {
+  width: auto;
+  padding-right: 10px;
+}
+
+/* Adjust the controls width */
+.control-group:has(.bears-icon-group) + .control-group .controls,
+.control-group:has(.bears-icon-group) + .control-group + .control-group .controls,
+.control-group:has(.bears-icon-group) + .control-group + .control-group + .control-group .controls {
+  margin-left: 0;
+  display: inline-block;
+}
+
+/* Make the icon input field wider */
+.control-group:has(.bears-icon-group) + .control-group input[type="text"] {
+  width: 150px;
+}
+
+/* Make the location dropdown wider */
+.control-group:has(.bears-icon-group) + .control-group + .control-group + .control-group select {
+  width: 150px;
+}
