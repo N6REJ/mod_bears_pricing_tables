@@ -188,63 +188,33 @@ jobs:
       # Generate changelog for PR merges or manual runs
       - name: Generate changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v4
-        with:
-          configuration: |
-            {
-              "categories": [
-                {
-                  "title": "## 🚀 Features",
-                  "labels": ["feature", "enhancement"]
-                },
-                {
-                  "title": "## 🐛 Fixes",
-                  "labels": ["fix", "bug"]
-                },
-                {
-                  "title": "## 🚧 Blockers",
-                  "labels": ["blocker"]
-                },
-                {
-                  "title": "## 📚 Documentation",
-                  "labels": ["documentation"]
-                },
-                {
-                  "title": "## 🧰 Maintenance",
-                  "labels": ["chore", "maintenance"],
-                  "exhaustive": false
-                }
-              ],
-              "default_category": "## 🧰 Maintenance",
-              "template": "#{{CHANGELOG}}\n\n",
-              "pr_template": "* {{TITLE}} ({{URL}})",
-              "empty_template": "* No changes",
-              "max_tags_to_fetch": 5,
-              "max_pull_requests": 50,
-              "max_back_track_time_days": 365,
-              "tag_resolver": {
-                "method": "semver"
-              },
-              "base_branches": [
-                "main"
-              ],
-              "ignore_labels": [
-                "ignore-for-release"
-              ],
-              "sort": {
-                "order": "ASC",
-                "on_property": "title"
-              },
-              "transformers": [
-                {
-                  "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
-                  "target": "- $4\n  - $6"
-                }
-              ]
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: changelog
+        run: |
+          # Get the previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # If no previous tag exists, use the first commit
+            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
+          
+          echo "Previous tag: $PREVIOUS_TAG"
+          
+          # Generate changelog
+          CHANGELOG=$(git log --pretty=format:"* %s (%h)" $PREVIOUS_TAG..HEAD)
+          
+          if [ -z "$CHANGELOG" ]; then
+            CHANGELOG="* Initial release or no changes since last release"
+          fi
+          
+          # Save changelog to file and output
+          echo "$CHANGELOG" > CHANGELOG.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          echo "Generated changelog:"
+          echo "$CHANGELOG"
       
       # For PR updates: Commit changes to PR branch
       - name: Commit changes to PR branch
@@ -377,7 +347,7 @@ jobs:
             - Access the artifact from the Actions tab of this workflow run
             
             ## Changelog
-            ${{ steps.github_release.outputs.changelog }}
+            ${{ steps.changelog.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
