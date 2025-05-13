@@ -123,27 +123,27 @@ endif;
         $columnnr = 0;
         for ($i = 1; $i <= $bears_num_columns; $i++) {
             if (isset($column_ref[$columnnr])) {
-                $cur_img = $column_ref[$columnnr];
-                if (!empty($cur_img)) {
+                $cur_column = $column_ref[$columnnr];
+                if (!empty($cur_column)) {
                     ?>
 					<div class="bears_pricing_tables">
 						<div class="plan <?php
-                        if (isset($bears_highlight[$cur_img]) && $bears_highlight[$cur_img] == 'yes') : ?>featured<?php
+                        if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
                         endif; ?>">
 							<header>
 								<h4 class="plan-title">
-                                    <?php echo htmlspecialchars($bears_title[$cur_img] ?? ''); ?>
+                                    <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
 								<div class="plan-cost">
-									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_img] ?? ''); ?></span>
-									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_img] ?? ''); ?></span>
+									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
+									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
 								</div>
 							</header>
 
 							<ul class="plan-features dot">
                                 <?php
-                                if (!empty($bears_features[$cur_img])) {
-                                    $features = $bears_features[$cur_img];
+                                if (!empty($bears_features[$cur_column])) {
+                                    $features = $bears_features[$cur_column];
 
                                     // Process features based on their structure
                                     if (is_object($features)) {
@@ -183,8 +183,8 @@ endif;
 							</ul>
 
 							<div class="plan-select">
-								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_img] ?? '#'); ?>">
-                                    <?php echo htmlspecialchars($bears_buttontext[$cur_img] ?? ''); ?>
+								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                                    <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
 								</a>
 							</div>
 						</div>
