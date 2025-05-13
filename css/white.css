@@ -85,6 +85,7 @@
 }
 
 .bears_pricing_tables header:after {
+    display: none;
     content: '';
     position: absolute;
     bottom: -10px;
@@ -96,6 +97,7 @@
 }
 
 .bears_pricing_tables .featured header:after {
+    display: block;
     border-color: #252525 transparent transparent transparent;
 }
 
@@ -168,7 +170,7 @@
     background-color: #252525;
     color: #ffffff;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 0px;
     font-weight: 600;
     transition: all 0.3s ease;
     text-transform: uppercase;

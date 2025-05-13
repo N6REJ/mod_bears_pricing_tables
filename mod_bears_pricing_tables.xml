@@ -63,6 +63,10 @@
 				<field name="bears_price_color" type="color" default="#424242" label="Price Color" description="Set the price color" />
 				<field name="bears_pricesub_color" type="color" default="#5c5c5c" label="Price Sub Color" description="Set the price sub color" />
 				<field name="bears_features_color" type="color" default="#424242" label="Features Color" description="Set the features text color" />
+				<field name="bears_border_color" type="color" default="transparent" label="Border Color" description="Set the column border color" />
+				<field name="bears_featured_border_color" type="color" default="transparent" label="Featured Border Color" description="Set the featured column border color" />
+				<field name="bears_accent_color" type="color" default="#333333" label="Accent Color" description="Set the accent color for icons and highlights" />
+				<field name="bears_highlight_accent_color" type="color" default="#5c5c5c" label="Highlight Accent Color" description="Set the accent color for the featured column" />
 				<field name="bears_button_color" type="color" default="#252525" label="Button Color" description="Set the button color" />
 			</fieldset>
 
