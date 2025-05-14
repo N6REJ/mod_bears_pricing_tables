@@ -1,3 +1,11 @@
+# #  2025.05.14
+
+
+#### 🚀 Features
+
+* [#3](https://github.com/N6REJ/mod_bears_pricing_tables/pull/3): Create universal default template
+
+
 # Changelog
 
 ## 2025.05.13.3 (2025 May 13)
