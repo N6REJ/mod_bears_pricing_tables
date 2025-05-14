@@ -378,8 +378,7 @@ jobs:
             - Download directly from this release page
             - Access the artifact from the Actions tab of this workflow run
             
-            ## Changelog
-            ${{ steps.read_changelog.outputs.changelog }}
+            ${{ steps.changelog.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
