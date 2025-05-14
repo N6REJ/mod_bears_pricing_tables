@@ -36,7 +36,7 @@ class ModBearsPricingTablesHelper
     public static function getParams($params)
     {
         // Get global parameters
-        $bears_template = $params->get('bears_template', '1276');
+        $bears_template = $params->get('bears_template', 'default');
         $bears_num_columns = (int) $params->get('bears_num_columns', 3);
         $bears_column_margin_x = $params->get('bears_column_margin_x');
         $bears_column_margin_y = $params->get('bears_column_margin_y');
@@ -165,13 +165,13 @@ class ModBearsPricingTablesHelper
       $app = Factory::getApplication();
 
       // Get template selection with default fallback
-      $template = $params->get('bears_template', '1276');
+      $template = $params->get('bears_template', 'default');
       
       // Create CSS filename from template value
       $cssFile = $template . '.css';
-      $cssPath = JPATH_SITE . '/modules/mod_bears_pricing_tables/css/' . $cssFile;
       
       // Debug information
+      $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
       $app->enqueueMessage('Looking for CSS file: ' . $cssPath, 'notice');
       $app->enqueueMessage('CSS file exists: ' . (file_exists($cssPath) ? 'Yes' : 'No'), 'notice');
       
@@ -192,20 +192,22 @@ class ModBearsPricingTablesHelper
     public static function getTemplateName($params)
     {
         // Get template selection with default fallback
-        $template = $params->get('bears_template', '1276');
+        $template = $params->get('bears_template', 'default');
+        
+        // Get application
+        $app = Factory::getApplication();
         
         // Check if the template file exists
-        $templateFile = JPATH_SITE . '/modules/mod_bears_pricing_tables/tmpl/' . $template . '.php';
+        $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
         
         // Debug information
-        $app = Factory::getApplication();
         $app->enqueueMessage('Looking for template file: ' . $templateFile, 'notice');
         $app->enqueueMessage('Template file exists: ' . (file_exists($templateFile) ? 'Yes' : 'No'), 'notice');
         
-        // If the template file doesn't exist, fall back to 1276.php (our renamed default)
+        // If the template file doesn't exist, fall back to default.php
         if (!file_exists($templateFile)) {
-            $app->enqueueMessage('Falling back to 1276.php', 'notice');
-            return '1276';
+            $app->enqueueMessage('Falling back to default.php', 'notice');
+            return 'default';
         }
         
         // Return the template value
