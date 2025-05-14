@@ -199,27 +199,53 @@ jobs:
       - name: Generate changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
         id: changelog
-        uses: saadmk11/changelog-ci@v1.1.2
-        with:
-          changelog_filename: CHANGELOG.md
-          config_file: .github/changelog-ci-config.yaml
-          committer_username: 'github-actions[bot]'
-          committer_email: 'github-actions[bot]@users.noreply.github.com'
-          release_version: ${{ steps.set_version.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 --always $(git rev-list --tags --skip=1 --max-count=1) 2>/dev/null || echo "")
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # If no previous tag exists, use the first commit
+            echo "No previous tag found, using all commits"
+            CHANGELOG=$(git log --pretty=format:"* %s (%h)" --reverse)
+          else
+            echo "Previous tag: $PREVIOUS_TAG"
+            # Get all commits since the previous tag
+            CHANGELOG=$(git log --pretty=format:"* %s (%h)" ${PREVIOUS_TAG}..HEAD --reverse)
+          fi
+          
+          # Create changelog file
+          echo "# ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "## What's Changed" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "$CHANGELOG" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          
+          # If previous changelog exists, append it
+          if [ -f "CHANGELOG.md.bak" ]; then
+            # Skip the first line of the backup (the previous version header)
+            tail -n +2 "CHANGELOG.md.bak" >> CHANGELOG.md
+          fi
+          
+          # Save changelog to output
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "## What's Changed" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Display the generated changelog
+          echo "Generated changelog:"
+          cat CHANGELOG.md
       
-      - name: Read changelog content
+      - name: Backup existing changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
-        id: read_changelog
         run: |
           if [ -f "CHANGELOG.md" ]; then
-            CHANGELOG_CONTENT=$(cat CHANGELOG.md)
-            echo "changelog<<EOF" >> $GITHUB_OUTPUT
-            echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            cp CHANGELOG.md CHANGELOG.md.bak
+            echo "Backed up existing changelog"
           else
-            echo "changelog=* No changes found" >> $GITHUB_OUTPUT
+            echo "No existing changelog to backup"
           fi
       
       # For PR updates: Commit changes to PR branch
