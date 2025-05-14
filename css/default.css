@@ -30,13 +30,13 @@
   --bears-border-color: #efefef;
   --bears-featured-border-color: #2b3c4e;
   --bears-accent-color: #191919;
-  --bears-featured-accent-color: #191919;
-  --bears-border-radius: 5px;
+  --bears-featured-accent-color: #222f3d;
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
   --bears-icon-location: center-center; /* Default icon location */
   
   /* Border variables */
+  --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
 }
@@ -113,6 +113,7 @@
   margin-bottom: 40px;
   text-align: center;
   border-radius: var(--bears-border-radius) var(--bears-border-radius) 0 0;
+  overflow: visible; /* Ensure the :after element isn't clipped */
 }
 
 /* Flexbox rows for header */
@@ -145,15 +146,17 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 15px 15px 0 15px;
+  border-width: 24px 150px 0 150px;
   border-color: var(--bears-accent-color) transparent transparent transparent;
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -23px; /* Adjusted to match the larger border-width */
   left: 50%;
-  margin-left: -15px;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
+  margin-left: 0; /* Remove margin-left since we're using transform */
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 1; /* Ensure the accent appears above any potential gaps */
+  margin-bottom: 0; /* Remove any margin that might create a gap */
 }
 .bears_pricing_tables .plan-title {
   top: 0;
@@ -280,7 +283,7 @@
 }
 /* Style for alternating rows in feature list */
 .bears_pricing_tables .plan-features li:nth-child(even) {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Remove duplicate bottom border from adjacent items */
@@ -332,6 +335,8 @@
 }
 .bears_pricing_tables .plan.featured header:after {
   border-color: var(--bears-featured-accent-color) transparent transparent transparent;
+  /* Maintain the same larger size for featured plans */
+  border-width: 24px 150px 0 150px;
 }
 .bears_pricing_tables .plan.featured .plan-select {
   padding: 30px 20px;
