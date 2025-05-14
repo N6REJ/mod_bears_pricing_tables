@@ -1,10 +1,7 @@
-# 2025.05.14.3 (2025 May 14)
+# 2025.05.14.4 (2025 May 14)
 
 ## What's Changed
 
-* Fix changelog output in GitHub release body (6617720)
-* Merge remote-tracking branch 'origin/main' (dffb51d)
-* Update version to 2025.05.14.2, creation date to 2025 May 14, and copyright year to 2025 (d2dc28f)
 * Add border style button group styling and hover effects in admin CSS (4cef84d)
 * Enhance header styling with wider accent triangle and improve feature list contrast (956ebff)
 * Standardize terminology from "highlight" to "featured" in pricing tables module (e839444)
@@ -17,4 +14,7 @@
 * Update @since version tag from 1.0.0 to 2025.5.10 in helper class (36b69bd)
 * Merge branch 'main' into default (b75029d)
 * Merge pull request #4 from N6REJ/default (0dc0694)
+* Update version to 2025.05.14.3 for release (baa1bac)
+* Add debug messages and default parameter values to pricing tables helper (430a82e)
+* Merge remote-tracking branch 'origin/main' (7439bf7)
 
