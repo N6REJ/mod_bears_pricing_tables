@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables - Purple Template
+ * Bears Pricing Tables - Default Template
  * Version : 2025.5.10
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -16,6 +16,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\Registry\Registry;
+use Joomla\CMS\HTML\HTMLHelper;
 
 // Make sure $app is defined
 $app = Factory::getApplication();
@@ -39,29 +40,33 @@ $bears_moduleid = isset($module->id) ? $module->id : 0;
 
 $baseurl = Uri::base(); // Updated from JURI::base()
 
-$bears_num_columns     = $params->get('bears_num_columns', 3);
-$bears_column_margin_y = $params->get('bears_column_margin_y', 20);
-$bears_column_margin_x = $params->get('bears_column_margin_x', 20);
-$bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
-$bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
-$bears_title_color    = $params->get('bears_title_color', '#ffffff');
-$bears_price_color    = $params->get('bears_price_color', '#8e44ad');
-$bears_highlight_price_color = $params->get('bears_highlight_price_color', '#ffffff'); // New field for highlight price color
-$bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
-$bears_features_color = $params->get('bears_features_color', '#7f8c8d');
-$bears_button_color   = $params->get('bears_button_color', '#8e44ad');
-$bears_border_color   = $params->get('bears_border_color', 'transparent');
-$bears_featured_border_color = $params->get('bears_featured_border_color', 'transparent');
-$bears_accent_color   = $params->get('bears_accent_color', '#333333');
-$bears_highlight_accent_color = $params->get('bears_highlight_accent_color', '#5c5c5c');
+// Note: CSS is now loaded by the helper class in the main module file
+// No need to load it here
+
+// Get parameters - removed default values as they're now in CSS
+$bears_num_columns     = $params->get('bears_num_columns');
+$bears_column_margin_y = $params->get('bears_column_margin_y');
+$bears_column_margin_x = $params->get('bears_column_margin_x');
+$bears_column_bg      = $params->get('bears_column_bg');
+$bears_header_bg      = $params->get('bears_header_bg');
+$bears_highlight_bg   = $params->get('bears_highlight_bg');
+$bears_title_color    = $params->get('bears_title_color');
+$bears_price_color    = $params->get('bears_price_color');
+$bears_highlight_price_color = $params->get('bears_highlight_price_color');
+$bears_pricesub_color = $params->get('bears_pricesub_color');
+$bears_features_color = $params->get('bears_features_color');
+$bears_button_color   = $params->get('bears_button_color');
+$bears_border_color   = $params->get('bears_border_color');
+$bears_featured_border_color = $params->get('bears_featured_border_color');
+$bears_accent_color   = $params->get('bears_accent_color');
+$bears_highlight_accent_color = $params->get('bears_highlight_accent_color');
 
 // Font family settings
-$bears_title_font     = $params->get('bears_title_font', '');
-$bears_price_font     = $params->get('bears_price_font', '');
-$bears_subtitle_font  = $params->get('bears_subtitle_font', '');
-$bears_features_font  = $params->get('bears_features_font', '');
-$bears_button_font    = $params->get('bears_button_font', '');
+$bears_title_font     = $params->get('bears_title_font');
+$bears_price_font     = $params->get('bears_price_font');
+$bears_subtitle_font  = $params->get('bears_subtitle_font');
+$bears_features_font  = $params->get('bears_features_font');
+$bears_button_font    = $params->get('bears_button_font');
 
 $column_ref      = array();
 $bears_title      = array();
