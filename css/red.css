@@ -44,7 +44,7 @@
   /* Typography */
   --bears-title-font-size: 24px;
   --bears-price-font-size: 3em;
-  --bears-features-font-size: 1.2em; /* Added features font size */
+  --bears-features-font-size: 19.2px; /* Added features font size */
   
   /* Effects */
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
@@ -101,6 +101,7 @@
   position: relative; /* Added to establish positioning context */
   /* Add a minimum height to ensure consistent sizing */
   min-height: 100%;
+  font-size: 16px;
 }
 
 .bears_pricing_tables ul {

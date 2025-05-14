@@ -174,8 +174,6 @@ class ModBearsPricingTablesHelper
       
       // Debug information
       $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
-      $app->enqueueMessage('Looking for CSS file: ' . $cssPath, 'notice');
-      $app->enqueueMessage('CSS file exists: ' . (file_exists($cssPath) ? 'Yes' : 'No'), 'notice');
       
       // Add the CSS file to the document
       $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
@@ -201,11 +199,7 @@ class ModBearsPricingTablesHelper
         
         // Check if the template file exists
         $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
-        
-        // Debug information
-        $app->enqueueMessage('Looking for template file: ' . $templateFile, 'notice');
-        $app->enqueueMessage('Template file exists: ' . (file_exists($templateFile) ? 'Yes' : 'No'), 'notice');
-        
+
         // If the template file doesn't exist, fall back to default.php
         if (!file_exists($templateFile)) {
             $app->enqueueMessage('Falling back to default.php', 'notice');
