@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Bears Pricing Tables - Default Template
@@ -40,15 +41,16 @@ $bears_moduleid = isset($module->id) ? $module->id : 0;
 
 $baseurl = Uri::base(); // Updated from JURI::base()
 
-// Get parameters with fallbacks to CSS variables
+// Get parameters without default values - will use CSS variables as defaults
 $bears_num_columns     = $params->get('bears_num_columns');
-$bears_column_margin_y = $params->get('bears_column_margin_y') ?: '10';
-$bears_column_margin_x = $params->get('bears_column_margin_x') ?: '20';
+$bears_column_margin_y = $params->get('bears_column_margin_y');
+$bears_column_margin_x = $params->get('bears_column_margin_x');
 $bears_column_bg      = $params->get('bears_column_bg');
 $bears_header_bg      = $params->get('bears_header_bg');
 $bears_featured_bg   = $params->get('bears_featured_bg');
 $bears_header_featured_bg = $params->get('bears_header_featured_bg');
 $bears_title_color    = $params->get('bears_title_color');
+$bears_featured_title_color = $params->get('bears_featured_title_color');
 $bears_price_color    = $params->get('bears_price_color');
 $bears_featured_price_color = $params->get('bears_featured_price_color');
 $bears_pricesub_color = $params->get('bears_pricesub_color');
@@ -57,13 +59,10 @@ $bears_button_color   = $params->get('bears_button_color');
 $bears_button_hover_color = $params->get('bears_button_hover_color');
 $bears_border_color   = $params->get('bears_border_color');
 $bears_featured_border_color = $params->get('bears_featured_border_color');
-$bears_border_style   = $params->get('bears_border_style', 'solid');
-$bears_featured_border_style = $params->get('bears_featured_border_style', 'solid');
+$bears_border_style   = $params->get('bears_border_style', 'shadow');
+$bears_featured_border_style = $params->get('bears_featured_border_style', 'shadow');
 $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
-
-// Debug output - uncomment if needed
- echo "<!-- Featured border color: " . var_dump($bears_featured_border_color) . " -->";
 
 // Font family settings
 $bears_title_font     = $params->get('bears_title_font');
@@ -116,134 +115,207 @@ for ($i = 1; $i <= $max_columns; $i++) {
 // Get document
 $document = Factory::getDocument();
 
+// Define CSS variables for the module
+$bears_css = '
+/* CSS Variables for Bears Pricing Tables Module ' . $bears_moduleid . ' */
+.bears_pricing_tables' . $bears_moduleid . ' {
+    --bears-column-margin-y: 10px;
+    --bears-column-margin-x: 20px;
+    --bears-column-bg: #e6e6e6;
+    --bears-header-bg: #191919;
+    --bears-featured-bg: #e6e6e6;
+    --bears-header-featured-bg: #222f3d;
+    --bears-title-color: #fff;
+    --bears-featured-title-color: #fff;
+    --bears-price-color: #fff;
+    --bears-featured-price-color: #fff;
+    --bears-pricesub-color: #fff;
+    --bears-features-color: #7f8c8d;
+    --bears-button-color: #191919;
+    --bears-button-hover-color: #666666;
+    --bears-border-color: #efefef;
+    --bears-featured-border-color: #2b3c4e;
+    --bears-accent-color: #191919;
+    --bears-featured-accent-color: #222f3d;
+    --bears-title-font-size: 24px;
+    --bears-price-font-size: 3em;
+}
+';
+
 // Add custom CSS for this specific module instance
-$bears_css = '';
-
-// Only add CSS rules when parameters are explicitly set
-// Add padding values if specified
-if (!empty($bears_column_margin_y) && !empty($bears_column_margin_x)) {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { padding:' . $bears_column_margin_y . 'px ' . $bears_column_margin_x . 'px; }';
+$bears_css .= '
+/* Base styles using CSS variables */
+.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables {
+    padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
 }
-
-// Add column background color if specified (including "transparent")
-if ($bears_column_bg !== null && $bears_column_bg !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { background-color:' . $bears_column_bg . '; }';
+.bears_pricing_tables' . $bears_moduleid . ' .plan {
+    background-color: var(--bears-column-bg);
 }
-
-// Add header background color if specified (including "transparent")
-if ($bears_header_bg !== null && $bears_header_bg !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background-color: ' . $bears_header_bg . '; }';
+.bears_pricing_tables' . $bears_moduleid . ' header {
+    background-color: var(--bears-header-bg);
 }
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured {
+    background-color: var(--bears-featured-bg);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured header {
+    background-color: var(--bears-header-featured-bg);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-title {
+    color: var(--bears-title-color);
+    font-size: var(--bears-title-font-size);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-title {
+    color: var(--bears-featured-title-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-price {
+    color: var(--bears-price-color);
+    font-size: var(--bears-price-font-size);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-price {
+    color: var(--bears-featured-price-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-type {
+    color: var(--bears-pricesub-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-features li {
+    color: var(--bears-features-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-features {
+    color: var(--bears-accent-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-features {
+    color: var(--bears-featured-accent-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-select a,
+.bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn {
+    background-color: var(--bears-button-color);
+}
+.bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover,
+.bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover {
+    background-color: var(--bears-button-hover-color);
+}
+/* Fix for the 1px gap around featured header */
+.bears_pricing_tables' . $bears_moduleid . ' .plan.featured header {
+    margin: -1px -1px 0 -1px;
+    width: calc(100% + 2px);
+    box-sizing: border-box;
+}
+';
 
 // Apply border styles based on selection
 if ($bears_border_style === 'shadow') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
-} else if ($bears_border_style === 'solid' && $bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: none !important; }';
-} else if ($bears_border_style === 'both' && $bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+} else if ($bears_border_style === 'solid') {
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid var(--bears-border-color) !important; box-shadow: none !important; }';
+} else if ($bears_border_style === 'both') {
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid var(--bears-border-color) !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
 } else if ($bears_border_style === 'none') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
-} else {
-    // Default if no valid option is selected
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
 }
 
 // Apply featured border styles based on selection
 if ($bears_featured_border_style === 'shadow') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
-} else if ($bears_featured_border_style === 'solid' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: none !important; }';
-} else if ($bears_featured_border_style === 'both' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; overflow: hidden; }';
+} else if ($bears_featured_border_style === 'solid') {
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid var(--bears-featured-border-color) !important; box-shadow: none !important; overflow: hidden; }';
+} else if ($bears_featured_border_style === 'both') {
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid var(--bears-featured-border-color) !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; overflow: hidden; }';
 } else if ($bears_featured_border_style === 'none') {
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
-} else {
-    // Default if no valid option is selected
-    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
+    $bears_css .= 'body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; overflow: hidden; }';
 }
 
-// Add featured background if specified (including "transparent")
+// Override CSS variables with parameter values if they are set
+$css_overrides = '';
+
+// Only add CSS rules when parameters are explicitly set
+if (!empty($bears_column_margin_y) && !empty($bears_column_margin_x)) {
+    $css_overrides .= '--bears-column-margin-y: ' . $bears_column_margin_y . 'px; ';
+    $css_overrides .= '--bears-column-margin-x: ' . $bears_column_margin_x . 'px; ';
+}
+if ($bears_column_bg !== null && $bears_column_bg !== '') {
+    $css_overrides .= '--bears-column-bg: ' . $bears_column_bg . '; ';
+}
+if ($bears_header_bg !== null && $bears_header_bg !== '') {
+    $css_overrides .= '--bears-header-bg: ' . $bears_header_bg . '; ';
+}
 if ($bears_featured_bg !== null && $bears_featured_bg !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { background-color: ' . $bears_featured_bg . '; }';
+    $css_overrides .= '--bears-featured-bg: ' . $bears_featured_bg . '; ';
 }
-
-// Add header featured background if specified (including "transparent")
 if ($bears_header_featured_bg !== null && $bears_header_featured_bg !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured header { background-color: ' . $bears_header_featured_bg . '; }';
+    $css_overrides .= '--bears-header-featured-bg: ' . $bears_header_featured_bg . '; ';
 }
-
-// Add title color if specified (including "transparent")
 if ($bears_title_color !== null && $bears_title_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-title { color:' . $bears_title_color . '; }';
+    $css_overrides .= '--bears-title-color: ' . $bears_title_color . '; ';
 }
-
-// Add title font size if specified
-if (!empty($bears_title_font_size)) {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-title { font-size:' . $bears_title_font_size . 'px; }';
+if ($bears_featured_title_color !== null && $bears_featured_title_color !== '') {
+    $css_overrides .= '--bears-featured-title-color: ' . $bears_featured_title_color . '; ';
 }
-
-// Add price font size if specified
-if (!empty($bears_price_font_size)) {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-price { font-size:' . $bears_price_font_size . 'px; }';
-}
-
-// Add price color if specified (including "transparent")
 if ($bears_price_color !== null && $bears_price_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-price { color:' . $bears_price_color . '; }';
+    $css_overrides .= '--bears-price-color: ' . $bears_price_color . '; ';
 }
-
-// Add featured price color if specified (including "transparent")
 if ($bears_featured_price_color !== null && $bears_featured_price_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-price { color:' . $bears_featured_price_color . '; }';
+    $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-
-// Add subtitle color if specified (including "transparent")
 if ($bears_pricesub_color !== null && $bears_pricesub_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-type { color:' . $bears_pricesub_color . '; }';
+    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
 }
-
-// Add features color if specified (including "transparent")
 if ($bears_features_color !== null && $bears_features_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features li { color:' . $bears_features_color . '; }';
+    $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
 }
-
-// Add accent colors if specified (including "transparent")
-if ($bears_accent_color !== null && $bears_accent_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features { color:' . $bears_accent_color . '; }';
-}
-
-if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-features { color:' . $bears_featured_accent_color . '; }';
-}
-
-// Add button color if specified (including "transparent")
 if ($bears_button_color !== null && $bears_button_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn { background-color: ' . $bears_button_color . '; }';
+    $css_overrides .= '--bears-button-color: ' . $bears_button_color . '; ';
+}
+if ($bears_button_hover_color !== null && $bears_button_hover_color !== '') {
+    $css_overrides .= '--bears-button-hover-color: ' . $bears_button_hover_color . '; ';
+}
+if ($bears_border_color !== null && $bears_border_color !== '') {
+    $css_overrides .= '--bears-border-color: ' . $bears_border_color . '; ';
+}
+if ($bears_featured_border_color !== null && $bears_featured_border_color !== '') {
+    $css_overrides .= '--bears-featured-border-color: ' . $bears_featured_border_color . '; ';
+}
+if ($bears_accent_color !== null && $bears_accent_color !== '') {
+    $css_overrides .= '--bears-accent-color: ' . $bears_accent_color . '; ';
+}
+if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== '') {
+    $css_overrides .= '--bears-featured-accent-color: ' . $bears_featured_accent_color . '; ';
+}
+if (!empty($bears_title_font_size)) {
+    $css_overrides .= '--bears-title-font-size: ' . $bears_title_font_size . 'px; ';
+}
+if (!empty($bears_price_font_size)) {
+    $css_overrides .= '--bears-price-font-size: ' . $bears_price_font_size . 'px; ';
 }
 
-// Add button hover color if specified (including "transparent")
-if ($bears_button_hover_color !== null && $bears_button_hover_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_hover_color . '; }';
+// Add overrides if any exist
+if (!empty($css_overrides)) {
+    $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }';
+}
+
+// Add accent triangle if accent colors are specified
+if ($bears_accent_color !== null && $bears_accent_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header:after { border-color: ' . $bears_accent_color . ' transparent transparent transparent; }';
+}
+if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured header:after { border-color: ' . $bears_featured_accent_color . ' transparent transparent transparent; }';
 }
 
 // Put styling in header
 $document->addStyleDeclaration($bears_css);
 
 /* Columns */
+$column_width = '33.3%'; // Default to 3 columns
 if ($bears_num_columns == '1') {
-    $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 100%; } ';
-    $document->addStyleDeclaration($style);
+    $column_width = '100%';
 } elseif ($bears_num_columns == '2') {
-    $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 50%; } ';
-    $document->addStyleDeclaration($style);
+    $column_width = '50%';
 } elseif ($bears_num_columns == '3') {
-    $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 33.3%; } ';
-    $document->addStyleDeclaration($style);
+    $column_width = '33.3%';
 } elseif ($bears_num_columns == '4') {
-    $style = ' .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 25%; } ';
-    $document->addStyleDeclaration($style);
+    $column_width = '25%';
 }
+
+$document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: ' . $column_width . '; }');
 ?>
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
