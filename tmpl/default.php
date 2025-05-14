@@ -47,6 +47,7 @@ $bears_column_margin_x = $params->get('bears_column_margin_x') ?: '20';
 $bears_column_bg      = $params->get('bears_column_bg');
 $bears_header_bg      = $params->get('bears_header_bg');
 $bears_highlight_bg   = $params->get('bears_highlight_bg');
+$bears_header_highlight_bg = $params->get('bears_header_highlight_bg');
 $bears_title_color    = $params->get('bears_title_color');
 $bears_price_color    = $params->get('bears_price_color');
 $bears_highlight_price_color = $params->get('bears_highlight_price_color');
@@ -55,9 +56,12 @@ $bears_features_color = $params->get('bears_features_color');
 $bears_button_color   = $params->get('bears_button_color');
 $bears_button_hover_color = $params->get('bears_button_hover_color');
 $bears_border_color   = $params->get('bears_border_color');
-$bears_featured_border_color = $params->get('bears_featured_border_color');
+$bears_highlight_border_color = $params->get('bears_highlight_border_color');
 $bears_accent_color   = $params->get('bears_accent_color');
 $bears_highlight_accent_color = $params->get('bears_highlight_accent_color');
+
+// Debug output - uncomment if needed
+// echo "<!-- Featured border color: " . var_dump($bears_highlight_border_color) . " -->";
 
 // Font family settings
 $bears_title_font     = $params->get('bears_title_font');
@@ -129,19 +133,30 @@ if ($bears_header_bg !== null && $bears_header_bg !== '') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background-color: ' . $bears_header_bg . '; }';
 }
 
-// Add border color if specified (including "transparent")
+// Add border color only if explicitly specified
 if ($bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border-color: ' . $bears_border_color . '; }';
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border: 3px solid ' . $bears_border_color . '; }';
+} else {
+    // Explicitly remove border if no color specified
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border: none; }';
 }
 
 // Add featured border color if specified (including "transparent")
-if ($bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border-color: ' . $bears_featured_border_color . '; }';
+if ($bears_highlight_border_color !== null && $bears_highlight_border_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_highlight_border_color . ' !important; }';
+} else {
+    // If no featured border color specified, use the same rule as regular plans
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; }';
 }
 
 // Add highlight background if specified (including "transparent")
 if ($bears_highlight_bg !== null && $bears_highlight_bg !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { background-color: ' . $bears_highlight_bg . '; }';
+}
+
+// Add header highlight background if specified (including "transparent")
+if ($bears_header_highlight_bg !== null && $bears_header_highlight_bg !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured header { background-color: ' . $bears_header_highlight_bg . '; }';
 }
 
 // Add title color if specified (including "transparent")
@@ -185,7 +200,7 @@ if ($bears_accent_color !== null && $bears_accent_color !== '') {
 }
 
 if ($bears_highlight_accent_color !== null && $bears_highlight_accent_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured .plan-features { color:' . $bears_highlight_accent_color . '; }';
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-features { color:' . $bears_highlight_accent_color . '; }';
 }
 
 // Add button color if specified (including "transparent")
@@ -227,9 +242,7 @@ if ($bears_num_columns == '1') {
                 if (!empty($cur_column)) {
                     ?>
 					<div class="bears_pricing_tables">
-						<div class="plan <?php
-                        if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
-                        endif; ?>">
+						<div class="plan<?php if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?> featured<?php endif; ?>">
 							<header>
                                 <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-left'): ?>
 									<div class="plan-icon icon-top-left">

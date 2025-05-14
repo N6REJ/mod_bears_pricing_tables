@@ -57,8 +57,9 @@
 				<field name="bears_column_margin_x" type="textpx" default="20" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
 				<field name="bears_column_margin_y" type="textpx" default="10" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
 				<field name="bears_column_bg" type="color" default="" label="MOD_BEARS_COLUMN_BG" description="MOD_BEARS_COLUMN_BG_DESC" />
-				<field name="bears_header_bg" type="color" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
 				<field name="bears_highlight_bg" type="color" default="" label="MOD_BEARS_HIGHLIGHT_BG" description="MOD_BEARS_HIGHLIGHT_BG_DESC" />
+				<field name="bears_header_bg" type="color" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
+				<field name="bears_header_highlight_bg" type="color" default="" label="MOD_BEARS_HEADER_HIGHLIGHT_BG" description="MOD_BEARS_HEADER_HIGHLIGHT_BG_DESC" />
 				<field name="bears_title_color" type="color" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
 				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
 				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
