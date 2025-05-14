@@ -34,9 +34,32 @@ class ModBearsPricingTablesHelper
      */
     public static function getParams($params)
     {
-        $bears_num_columns = (int) $params->get('bears_num_columns', 3);
+        // Get global parameters
+        $bears_template = $params->get('bears_template');
+        $bears_num_columns = (int) $params->get('bears_num_columns');
+        $bears_column_margin_x = $params->get('bears_column_margin_x');
+        $bears_column_margin_y = $params->get('bears_column_margin_y');
+        $bears_column_bg = $params->get('bears_column_bg');
+        $bears_column_featured_bg = $params->get('bears_column_featured_bg');
+        $bears_header_bg = $params->get('bears_header_bg');
+        $bears_header_featured_bg = $params->get('bears_header_featured_bg');
+        $bears_title_color = $params->get('bears_title_color');
+        $bears_title_font_size = $params->get('bears_title_font_size');
+        $bears_price_font_size = $params->get('bears_price_font_size');
+        $bears_price_color = $params->get('bears_price_color');
+        $bears_featured_price_color = $params->get('bears_featured_price_color');
+        $bears_pricesub_color = $params->get('bears_pricesub_color');
+        $bears_features_color = $params->get('bears_features_color');
+        $bears_border_color = $params->get('bears_border_color');
+        $bears_border_style = $params->get('bears_border_style');
+        $bears_featured_border_color = $params->get('bears_featured_border_color');
+        $bears_featured_border_style = $params->get('bears_featured_border_style');
+        $bears_accent_color = $params->get('bears_accent_color');
+        $bears_featured_accent_color = $params->get('bears_featured_accent_color');
+        $bears_button_color = $params->get('bears_button_color');
+        $bears_button_hover_color = $params->get('bears_button_hover_color');
         
-        // Initialize arrays
+        // Initialize arrays for column-specific parameters
         $bears_title = array();
         $bears_icon_class = array();
         $bears_icon_color = array();
@@ -59,29 +82,54 @@ class ModBearsPricingTablesHelper
         
         // Get parameters for each column
         for ($i = 1; $i <= 4; $i++) {
-            $bears_title[$i] = $params->get('bears_title' . $i, '');
-            $bears_icon_class[$i] = $params->get('bears_icon' . $i, '');
-            $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '#424242');
-            $bears_icon_location[$i] = $params->get('bears_icon_location' . $i, 'none');
-            $bears_price[$i] = $params->get('bears_price' . $i, '');
-            $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
+            $bears_title[$i] = $params->get('bears_title' . $i);
+            $bears_icon_class[$i] = $params->get('bears_icon' . $i);
+            $bears_icon_color[$i] = $params->get('bears_icon_color' . $i);
+            $bears_icon_location[$i] = $params->get('bears_icon_location' . $i);
+            $bears_price[$i] = $params->get('bears_price' . $i);
+            $bears_subtitle[$i] = $params->get('bears_subtitle' . $i);
             $bears_features[$i] = $params->get('bears_features' . $i, array());
-            $bears_featured[$i] = $params->get('bears_featured' . $i, 'no');
-            $bears_buttontext[$i] = $params->get('bears_buttontext' . $i, '');
-            $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
+            $bears_featured[$i] = $params->get('bears_column_featured' . $i);
+            $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
+            $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i);
             
             // Get font parameters
-            $bears_use_google_font[$i] = $params->get('bears_use_google_font' . $i, 'no');
-            $bears_google_font_url[$i] = $params->get('bears_google_font_url' . $i, '');
-            $bears_title_font[$i] = $params->get('bears_title_font' . $i, '');
-            $bears_subtitle_font[$i] = $params->get('bears_subtitle_font' . $i, '');
-            $bears_price_font[$i] = $params->get('bears_price_font' . $i, '');
-            $bears_features_font[$i] = $params->get('bears_features_font' . $i, '');
-            $bears_button_font[$i] = $params->get('bears_button_font' . $i, '');
+            $bears_use_google_font[$i] = $params->get('bears_use_google_font' . $i);
+            $bears_google_font_url[$i] = $params->get('bears_google_font_url' . $i);
+            $bears_title_font[$i] = $params->get('bears_title_font' . $i);
+            $bears_subtitle_font[$i] = $params->get('bears_subtitle_font' . $i);
+            $bears_price_font[$i] = $params->get('bears_price_font' . $i);
+            $bears_features_font[$i] = $params->get('bears_features_font' . $i);
+            $bears_button_font[$i] = $params->get('bears_button_font' . $i);
         }
         
         return array(
+            // Global parameters
+            'bears_template' => $bears_template,
             'bears_num_columns' => $bears_num_columns,
+            'bears_column_margin_x' => $bears_column_margin_x,
+            'bears_column_margin_y' => $bears_column_margin_y,
+            'bears_column_bg' => $bears_column_bg,
+            'bears_column_featured_bg' => $bears_column_featured_bg,
+            'bears_header_bg' => $bears_header_bg,
+            'bears_header_featured_bg' => $bears_header_featured_bg,
+            'bears_title_color' => $bears_title_color,
+            'bears_title_font_size' => $bears_title_font_size,
+            'bears_price_font_size' => $bears_price_font_size,
+            'bears_price_color' => $bears_price_color,
+            'bears_featured_price_color' => $bears_featured_price_color,
+            'bears_pricesub_color' => $bears_pricesub_color,
+            'bears_features_color' => $bears_features_color,
+            'bears_border_color' => $bears_border_color,
+            'bears_border_style' => $bears_border_style,
+            'bears_featured_border_color' => $bears_featured_border_color,
+            'bears_featured_border_style' => $bears_featured_border_style,
+            'bears_accent_color' => $bears_accent_color,
+            'bears_featured_accent_color' => $bears_featured_accent_color,
+            'bears_button_color' => $bears_button_color,
+            'bears_button_hover_color' => $bears_button_hover_color,
+            
+            // Column-specific parameters
             'bears_title' => $bears_title,
             'bears_icon_class' => $bears_icon_class,
             'bears_icon_color' => $bears_icon_color,
@@ -115,13 +163,10 @@ class ModBearsPricingTablesHelper
       $document = Factory::getDocument();
 
       // Get template selection
-      $template = $params->get('bears_template', '1276');
-      
-      // Special case for 'white' template since it doesn't follow the numeric pattern
-      $cssFile = $template . '.css';
+      $template = $params->get('bears_template');
       
       // Add the CSS file to the document
-      $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
+      $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css');
 
       // Load Google Fonts if needed
       self::loadGoogleFonts($params);
@@ -137,7 +182,7 @@ class ModBearsPricingTablesHelper
  public static function getTemplateName($params)
  {
      // Simply return the template value from parameters
-     return $params->get('bears_template', '1276');
+     return $params->get('bears_template');
  }
     /**
      * Load Google Fonts based on module parameters
@@ -153,7 +198,7 @@ class ModBearsPricingTablesHelper
         
         // Check each column for Google Fonts
         for ($i = 1; $i <= 4; $i++) {
-            $useGoogleFont = $params->get('bears_use_google_font' . $i, 'no');
+            $useGoogleFont = $params->get('bears_use_google_font' . $i);
             
             if ($useGoogleFont === 'yes') {
                 // Get all font selections for this column
