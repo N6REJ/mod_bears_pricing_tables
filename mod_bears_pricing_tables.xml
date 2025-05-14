@@ -73,6 +73,7 @@
 					<option value="none">MOD_BEARS_BORDER_STYLE_NONE</option>
 					<option value="solid">MOD_BEARS_BORDER_STYLE_SOLID</option>
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
+					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
 				<field name="bears_featured_border_color" type="color" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
 				<field name="bears_featured_border_style" type="radio" default="shadow" label="MOD_BEARS_FEATURED_BORDER_STYLE" description="MOD_BEARS_FEATURED_BORDER_STYLE_DESC"
@@ -80,6 +81,7 @@
 					<option value="none">MOD_BEARS_BORDER_STYLE_NONE</option>
 					<option value="solid">MOD_BEARS_BORDER_STYLE_SOLID</option>
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
+					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
 				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
 				<field name="bears_featured_accent_color" type="color" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />

@@ -101,7 +101,7 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_features[$i]   = $params->get('bears_features' . $i);
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
-        $bears_featured[$i]  = $params->get('bears_featured' . $i);
+        $bears_featured[$i]  = $params->get('bears_column_featured' . $i, 'no');
         $bears_icon[$i]      = $params->get('bears_icon' . $i);
         $bears_icon_location[$i] = $params->get('bears_icon_location' . $i);
         $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
@@ -140,8 +140,10 @@ if ($bears_border_style === 'shadow') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
 } else if ($bears_border_style === 'solid' && $bears_border_color !== null && $bears_border_color !== '') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: none !important; }';
+} else if ($bears_border_style === 'both' && $bears_border_color !== null && $bears_border_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
 } else {
-    // None option or no color specified for solid
+    // None option or no color specified for solid/both
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
 }
 
@@ -150,8 +152,10 @@ if ($bears_featured_border_style === 'shadow') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
 } else if ($bears_featured_border_style === 'solid' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: none !important; }';
+} else if ($bears_featured_border_style === 'both' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
 } else {
-    // None option or no color specified for solid
+    // None option or no color specified for solid/both
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
 }
 
@@ -246,9 +250,11 @@ if ($bears_num_columns == '1') {
             if (isset($column_ref[$columnnr])) {
                 $cur_column = $column_ref[$columnnr];
                 if (!empty($cur_column)) {
+                    // Check if this column is marked as featured
+                    $is_featured = isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes';
                     ?>
 					<div class="bears_pricing_tables">
-						<div class="plan<?php if (isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes') : ?> featured<?php endif; ?>">
+						<div class="plan<?php echo $is_featured ? ' featured' : ''; ?>">
 							<header>
                                 <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-left'): ?>
 									<div class="plan-icon icon-top-left">

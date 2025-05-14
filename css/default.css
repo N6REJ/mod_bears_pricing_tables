@@ -272,7 +272,8 @@
   text-align: center;
   }
 .bears_pricing_tables .plan-features li {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 40px;
   line-height: 1.4rem;
   color: var(--bears-features-color);
@@ -280,6 +281,16 @@
 /* Style for alternating rows in feature list */
 .bears_pricing_tables .plan-features li:nth-child(even) {
   background: rgba(0, 0, 0, 0.08);
+}
+
+/* Remove duplicate bottom border from adjacent items */
+.bears_pricing_tables .plan-features li + li {
+  border-top: none;
+}
+
+/* Add border to the last feature item */
+.bears_pricing_tables .plan-features li:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .bears_pricing_tables .plan-features li::before {
   display: none;
