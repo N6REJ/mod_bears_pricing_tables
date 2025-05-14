@@ -3,6 +3,12 @@
  * Copyright (C) 2025 N6REJ. All rights reserved.
  * License http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
+.bears_pricing_tables {
+  border: 3px solid #efefef;
+  }
+.bears_pricing_tables137 .featured.plan {
+  border: 3px solid #252525;
+  }
 
 .bears_pricing_tables-outer {
   text-align: center;
