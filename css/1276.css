@@ -6,37 +6,54 @@
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  */
-
-/* Default values moved from PHP */
+/* 1272 Template */
+/* Default CSS Variables for Bears Pricing Tables */
 :root {
+  /* Layout Variables */
   --bears-num-columns: 3;
   --bears-column-margin-y: 20px;
   --bears-column-margin-x: 20px;
+  
+  /* Background Colors */
   --bears-column-bg: #e6e6e6;
   --bears-header-bg: #191919;
   --bears-featured-bg: #e6e6e6;
-  --bears-featured-header-bg: #222f3d; /* Header background for featured plans */
+  --bears-header-featured-bg: #222f3d; /* Header background for featured plans */
   --bears-featured-button-bg: #222f3d; /* Button background for featured plans */
+  
+  /* Text Colors */
   --bears-title-color: #fff;
-  --bears-title-font-size: 24px;
   --bears-featured-title-color: #fff; /* Title color for featured plans */
-  --bears-price-font-size: 3em;
   --bears-price-color: #fff;
   --bears-featured-price-color: #fff;
   --bears-pricesub-color: #fff;
-  --bears-features-color: #7f8c8d;
+  --bears-features-color: #000000;
+  
+  /* Button Colors */
   --bears-button-color: #191919;
   --bears-button-hover-color: #666666;
+  
+  /* Border Colors */
   --bears-border-color: #efefef;
-  --bears-featured-border-color: #2b3c4e;
+  --bears-featured-border-color: #222f3d;
+  
+  /* Accent Colors */
   --bears-accent-color: #191919;
-  --bears-featured-accent-color: #191919;
-  --bears-border-radius: 5px;
+  --bears-featured-accent-color: #222f3d;
+  
+  /* Typography */
+  --bears-title-font-size: 24px;
+  --bears-price-font-size: 3em;
+  
+  /* Effects */
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
+  
+  /* Icon Settings */
   --bears-icon-location: center-center; /* Default icon location */
   
-  /* Border variables */
+  /* Border Settings */
+  --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
 }
@@ -54,27 +71,41 @@
   margin: 0 auto;
   text-align: center;
   color: #495057;
+  display: block; /* Ensure it's a block element */
+  clear: both; /* Clear any floats */
+  overflow: auto; /* Contain floated children */
 }
 
 .bears_pricing_tables-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start; /* Ensure columns align at the top */
   margin: 0 auto;
+  position: relative; /* Added to establish positioning context */
+  overflow: visible; /* Allow content to be visible outside the container */
+  clear: both; /* Clear any floats */
+  /* Add padding to account for the featured scaling */
+  padding: 10px 10px 30px; /* Top, sides, bottom padding */
 }
 
 /* Column styles */
 .bears_pricing_tables {
   box-sizing: border-box;
   padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   text-align: center;
-  vertical-align: top;
+  position: relative; /* Added to establish positioning context */
+  /* Add a minimum height to ensure consistent sizing */
+  min-height: 100%;
 }
 
 .bears_pricing_tables ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .bears_pricing_tables .plan {
@@ -87,14 +118,21 @@
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: var(--bears-box-shadow);
   transition: all var(--bears-transition-speed) ease;
+  font-size: .8em;
+  height: 100%; /* Ensure all plans have the same height */
 }
 
 .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-  margin-top: -10px;
   color: #ffffff;
   z-index: 100;
   transform: scale(1.05);
+  transform-origin: top center; /* Make the scaling start from the top */
+  font-size: .8em;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  /* Create space for the scaled element */
+  margin: 0 -2.5% 0; /* Negative horizontal margin to compensate for scaling */
 }
 .bears_pricing_tables * {
   -webkit-box-sizing: border-box;
@@ -113,6 +151,7 @@
   margin-bottom: 40px;
   text-align: center;
   border-radius: var(--bears-border-radius) var(--bears-border-radius) 0 0;
+  overflow: visible; /* Ensure the :after element isn't clipped */
 }
 
 /* Flexbox rows for header */
@@ -145,15 +184,17 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 15px 15px 0 15px;
+  border-width: 24px 150px 0 150px;
   border-color: var(--bears-accent-color) transparent transparent transparent;
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -23px; /* Adjusted to match the larger border-width */
   left: 50%;
-  margin-left: -15px;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
+  margin-left: 0; /* Remove margin-left since we're using transform */
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 1; /* Ensure the accent appears above any potential gaps */
+  margin-bottom: 0; /* Remove any margin that might create a gap */
 }
 .bears_pricing_tables .plan-title {
   top: 0;
@@ -280,7 +321,7 @@
 }
 /* Style for alternating rows in feature list */
 .bears_pricing_tables .plan-features li:nth-child(even) {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Remove duplicate bottom border from adjacent items */
@@ -328,10 +369,15 @@
   background-color: var(--bears-featured-button-bg);
 }
 .bears_pricing_tables .plan.featured header {
-  background-color: var(--bears-featured-header-bg, var(--bears-featured-bg));
+  background-color: var(--bears-header-featured-bg);
+  margin: 0 -1px 40px -1px;
+  width: calc(100% + 2px);
+  box-sizing: border-box;
 }
 .bears_pricing_tables .plan.featured header:after {
   border-color: var(--bears-featured-accent-color) transparent transparent transparent;
+  /* Maintain the same larger size for featured plans */
+  border-width: 24px 150px 0 150px;
 }
 .bears_pricing_tables .plan.featured .plan-select {
   padding: 30px 20px;
@@ -353,6 +399,15 @@
   width: 25%;
 }
 
+/* Add padding to the bottom of the container to account for the featured scaling */
+.bears_pricing_tables-container::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 30px; /* Increased from 20px to provide more space */
+  clear: both;
+}
+
 @media only screen and (max-width: 767px) {
   .bears_pricing_tables {
     width: 100% !important;
@@ -361,6 +416,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 0 20px; /* Reduce padding on mobile */
   }
   
   .bears_pricing_tables .plan-title,
@@ -376,8 +432,8 @@
     padding: 20px;
   }
   .bears_pricing_tables .plan.featured {
-    margin-top: 0;
     transform: none;
+    margin: 0 auto 20px; /* Reset margins on mobile */
     border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   }
   

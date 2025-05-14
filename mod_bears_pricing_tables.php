@@ -48,7 +48,7 @@ $bears_icon_location = $params_array['bears_icon_location'];
 $bears_price = $params_array['bears_price'];
 $bears_subtitle = $params_array['bears_subtitle'];
 $bears_features = $params_array['bears_features'];
-$bears_highlight = $params_array['bears_highlight'];
+$bears_featured = $params_array['bears_featured'];
 $bears_buttontext = $params_array['bears_buttontext'];
 $bears_buttonurl = $params_array['bears_buttonurl'];
 

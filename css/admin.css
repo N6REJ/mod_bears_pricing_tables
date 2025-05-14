@@ -44,3 +44,16 @@
 .btn-group-yesno .btn:hover {
     filter: brightness(90%);
     }
+
+/* Border style button group styling */
+.btn-group input[type="radio"]:checked + .btn {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+/* Border style button hover state */
+.btn-group .btn:hover {
+    filter: brightness(90%);
+    }
