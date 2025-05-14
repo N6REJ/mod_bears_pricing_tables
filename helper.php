@@ -9,7 +9,7 @@
  * @website     https://www.hallhome.us
  * @copyright   Copyright (c) 2025 N6REJ
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
- * @since       1.0.0
+ * @since       2025.5.10
  */
 
 defined('_JEXEC') or die;
@@ -21,7 +21,7 @@ use Joomla\CMS\Factory;
 /**
  * Helper class for Bears Pricing Tables module
  *
- * @since  1.0.0
+ * @since  2025.5.10
  */
 class ModBearsPricingTablesHelper
 {
