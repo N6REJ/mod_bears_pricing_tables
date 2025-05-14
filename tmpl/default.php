@@ -115,35 +115,8 @@ for ($i = 1; $i <= $max_columns; $i++) {
 // Get document
 $document = Factory::getDocument();
 
-// Define CSS variables for the module
-$bears_css = '
-/* CSS Variables for Bears Pricing Tables Module ' . $bears_moduleid . ' */
-.bears_pricing_tables' . $bears_moduleid . ' {
-    --bears-column-margin-y: 10px;
-    --bears-column-margin-x: 20px;
-    --bears-column-bg: #e6e6e6;
-    --bears-header-bg: #191919;
-    --bears-featured-bg: #e6e6e6;
-    --bears-header-featured-bg: #222f3d;
-    --bears-title-color: #fff;
-    --bears-featured-title-color: #fff;
-    --bears-price-color: #fff;
-    --bears-featured-price-color: #fff;
-    --bears-pricesub-color: #fff;
-    --bears-features-color: #7f8c8d;
-    --bears-button-color: #191919;
-    --bears-button-hover-color: #666666;
-    --bears-border-color: #efefef;
-    --bears-featured-border-color: #2b3c4e;
-    --bears-accent-color: #191919;
-    --bears-featured-accent-color: #222f3d;
-    --bears-title-font-size: 24px;
-    --bears-price-font-size: 3em;
-}
-';
-
 // Add custom CSS for this specific module instance
-$bears_css .= '
+$bears_css = '
 /* Base styles using CSS variables */
 .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables {
     padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
@@ -193,12 +166,6 @@ $bears_css .= '
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover {
     background-color: var(--bears-button-hover-color);
-}
-/* Fix for the 1px gap around featured header */
-.bears_pricing_tables' . $bears_moduleid . ' .plan.featured header {
-    margin: -1px -1px 0 -1px;
-    width: calc(100% + 2px);
-    box-sizing: border-box;
 }
 ';
 
