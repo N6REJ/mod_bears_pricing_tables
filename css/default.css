@@ -13,22 +13,23 @@
   --bears-column-margin-y: 20px;
   --bears-column-margin-x: 20px;
   --bears-column-bg: #ffffff;
-  --bears-header-bg: #0C221D;
-  --bears-featured-bg: #ffffff;
+  --bears-header-bg: #ffffff;
+  --bears-featured-bg: #252525;
   --bears-featured-header-bg: #252525; /* Header background for featured plans */
-  --bears-title-color: #ffffff;
+  --bears-title-color: #252525;
   --bears-title-font-size: 24px;
+  --bears-featured-title-color: #ffffff; /* Title color for featured plans */
   --bears-price-font-size: 3em;
   --bears-price-color: #ffffff;
   --bears-featured-price-color: #ffffff;
   --bears-pricesub-color: #ffffff;
   --bears-features-color: #7f8c8d;
-  --bears-button-color: #125f94;
-  --bears-button-hover-color: #156dab;
+  --bears-button-color: #252525;
+  --bears-button-hover-color: #666666;
   --bears-border-color: #efefef;
   --bears-featured-border-color: #252525;
-  --bears-accent-color: #333333;
-  --bears-featured-accent-color: #5c5c5c;
+  --bears-accent-color: #252525;
+  --bears-featured-accent-color: #252525;
   --bears-border-radius: 5px;
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
@@ -160,6 +161,10 @@
   font-weight: 700;
   text-transform: uppercase;
   flex: 1;
+}
+
+.bears_pricing_tables .plan.featured .plan-title {
+  color: var(--bears-featured-title-color);
 }
 .bears_pricing_tables .plan-icon {
   display: flex;
