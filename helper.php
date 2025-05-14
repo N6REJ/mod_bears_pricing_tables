@@ -47,6 +47,7 @@ class ModBearsPricingTablesHelper
         $bears_title_color = $params->get('bears_title_color');
         $bears_title_font_size = $params->get('bears_title_font_size');
         $bears_price_font_size = $params->get('bears_price_font_size');
+        $bears_features_font_size = $params->get('bears_features_font_size');
         $bears_price_color = $params->get('bears_price_color');
         $bears_featured_price_color = $params->get('bears_featured_price_color');
         $bears_pricesub_color = $params->get('bears_pricesub_color');
@@ -117,6 +118,7 @@ class ModBearsPricingTablesHelper
             'bears_title_color' => $bears_title_color,
             'bears_title_font_size' => $bears_title_font_size,
             'bears_price_font_size' => $bears_price_font_size,
+            'bears_features_font_size' => $bears_features_font_size,
             'bears_price_color' => $bears_price_color,
             'bears_featured_price_color' => $bears_featured_price_color,
             'bears_pricesub_color' => $bears_pricesub_color,
