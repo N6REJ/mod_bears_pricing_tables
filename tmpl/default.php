@@ -57,6 +57,8 @@ $bears_button_color   = $params->get('bears_button_color');
 $bears_button_hover_color = $params->get('bears_button_hover_color');
 $bears_border_color   = $params->get('bears_border_color');
 $bears_featured_border_color = $params->get('bears_featured_border_color');
+$bears_border_style   = $params->get('bears_border_style', 'solid');
+$bears_featured_border_style = $params->get('bears_featured_border_style', 'solid');
 $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
 
@@ -133,20 +135,24 @@ if ($bears_header_bg !== null && $bears_header_bg !== '') {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background-color: ' . $bears_header_bg . '; }';
 }
 
-// Add border color only if explicitly specified
-if ($bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border: 3px solid ' . $bears_border_color . '; }';
+// Apply border styles based on selection
+if ($bears_border_style === 'shadow') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+} else if ($bears_border_style === 'solid' && $bears_border_color !== null && $bears_border_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: none !important; }';
 } else {
-    // Explicitly remove border if no color specified
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border: none; }';
+    // None option or no color specified for solid
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
 }
 
-// Add featured border color if specified (including "transparent")
-if ($bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; }';
+// Apply featured border styles based on selection
+if ($bears_featured_border_style === 'shadow') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
+} else if ($bears_featured_border_style === 'solid' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: none !important; }';
 } else {
-    // If no featured border color specified, use the same rule as regular plans
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; }';
+    // None option or no color specified for solid
+    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
 }
 
 // Add featured background if specified (including "transparent")
