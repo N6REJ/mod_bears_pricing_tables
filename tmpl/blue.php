@@ -23,5 +23,5 @@ if (!empty($bears_featured_border_color)) {
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
 }
 
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_featured_bg . '; }';
 ?>

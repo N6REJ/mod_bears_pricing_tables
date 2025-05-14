@@ -44,7 +44,7 @@ $bears_column_margin_y = $params->get('bears_column_margin_y', 20);
 $bears_column_margin_x = $params->get('bears_column_margin_x', 20);
 $bears_column_bg      = $params->get('bears_column_bg', '#ffffff');
 $bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
-$bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
+$bears_featured_bg   = $params->get('bears_featured_bg', '#9b59b6');
 $bears_title_color    = $params->get('bears_title_color', '#ffffff');
 $bears_price_color    = $params->get('bears_price_color', '#8e44ad');
 $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
@@ -58,7 +58,7 @@ $bears_price      = array();
 $bears_features   = array();
 $bears_buttontext = array();
 $bears_buttonurl  = array();
-$bears_highlight  = array();
+$bears_featured  = array();
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -70,7 +70,7 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_features[$i]   = $params->get('bears_features' . $i);
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
-        $bears_highlight[$i]  = $params->get('bears_highlight' . $i);
+        $bears_featured[$i]  = $params->get('bears_featured' . $i);
     }
 }
 
@@ -93,8 +93,8 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features { co
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn { background-color: ' . $bears_button_color . '; color: #ffffff; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_color . '; opacity: 0.9; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_featured_bg . '; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_featured_bg . ' transparent transparent transparent; }';
 
 // Put styling in header
 $document->addStyleDeclaration($bears_css);
@@ -129,7 +129,7 @@ endif;
                     ?>
 					<div class="bears_pricing_tables">
 						<div class="plan <?php
-                        if (isset($bears_highlight[$cur_column]) && $bears_highlight[$cur_column] == 'yes') : ?>featured<?php
+                        if (isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes') : ?>featured<?php
                         endif; ?>">
 							<header>
 								<h4 class="plan-title">

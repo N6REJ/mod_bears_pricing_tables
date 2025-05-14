@@ -40,7 +40,7 @@ class ModBearsPricingTablesHelper
         $bears_price = array();
         $bears_subtitle = array();
         $bears_features = array();
-        $bears_highlight = array();
+        $bears_featured = array();
         $bears_buttontext = array();
         $bears_buttonurl = array();
         
@@ -62,7 +62,7 @@ class ModBearsPricingTablesHelper
             $bears_price[$i] = $params->get('bears_price' . $i, '');
             $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
             $bears_features[$i] = $params->get('bears_features' . $i, array());
-            $bears_highlight[$i] = $params->get('bears_highlight' . $i, 'no');
+            $bears_featured[$i] = $params->get('bears_featured' . $i, 'no');
             $bears_buttontext[$i] = $params->get('bears_buttontext' . $i, '');
             $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
             
@@ -85,7 +85,7 @@ class ModBearsPricingTablesHelper
             'bears_price' => $bears_price,
             'bears_subtitle' => $bears_subtitle,
             'bears_features' => $bears_features,
-            'bears_highlight' => $bears_highlight,
+            'bears_featured' => $bears_featured,
             'bears_buttontext' => $bears_buttontext,
             'bears_buttonurl' => $bears_buttonurl,
             'bears_use_google_font' => $bears_use_google_font,

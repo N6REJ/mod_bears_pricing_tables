@@ -63,7 +63,7 @@ $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
 
 // Debug output - uncomment if needed
-// echo "<!-- Featured border color: " . var_dump($bears_highlight_border_color) . " -->";
+ echo "<!-- Featured border color: " . var_dump($bears_featured_border_color) . " -->";
 
 // Font family settings
 $bears_title_font     = $params->get('bears_title_font');
@@ -137,26 +137,30 @@ if ($bears_header_bg !== null && $bears_header_bg !== '') {
 
 // Apply border styles based on selection
 if ($bears_border_style === 'shadow') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
 } else if ($bears_border_style === 'solid' && $bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: none !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: none !important; }';
 } else if ($bears_border_style === 'both' && $bears_border_color !== null && $bears_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: 3px solid ' . $bears_border_color . ' !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; }';
+} else if ($bears_border_style === 'none') {
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
 } else {
-    // None option or no color specified for solid/both
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
+    // Default if no valid option is selected
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured) { border: none !important; box-shadow: none !important; }';
 }
 
 // Apply featured border styles based on selection
 if ($bears_featured_border_style === 'shadow') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
 } else if ($bears_featured_border_style === 'solid' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: none !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: none !important; }';
 } else if ($bears_featured_border_style === 'both' && $bears_featured_border_color !== null && $bears_featured_border_color !== '') {
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; }';
+} else if ($bears_featured_border_style === 'none') {
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
 } else {
-    // None option or no color specified for solid/both
-    $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
+    // Default if no valid option is selected
+    $bears_css .= ' body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: none !important; box-shadow: none !important; }';
 }
 
 // Add featured background if specified (including "transparent")
