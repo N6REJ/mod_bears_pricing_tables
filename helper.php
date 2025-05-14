@@ -9,6 +9,7 @@
  * @website     https://www.hallhome.us
  * @copyright   Copyright (c) 2025 N6REJ
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
+ * @since       1.0.0
  */
 
 defined('_JEXEC') or die;
@@ -19,6 +20,8 @@ use Joomla\CMS\Factory;
 
 /**
  * Helper class for Bears Pricing Tables module
+ *
+ * @since  1.0.0
  */
 class ModBearsPricingTablesHelper
 {
@@ -27,6 +30,7 @@ class ModBearsPricingTablesHelper
      *
      * @param   object  $params  The module parameters
      * @return  array   Array of parameters for the template
+     * @since   2025.5.10
      */
     public static function getParams($params)
     {
@@ -103,74 +107,77 @@ class ModBearsPricingTablesHelper
      *
      * @param   object  $params  The module parameters
      * @return  void
+     * @since   2025.5.10
      */
-    public static function loadTemplateCSS($params)
-    {
-        // Get the document
-        $document = Factory::getDocument();
-        
-        // Get template selection
-        $template = (int) $params->get('bears_template', 1);
-        
-        // Map template values to CSS files
-        $templateFiles = [
-            1 => 'default.css',    // 1 - Default ( Large Accent )
-            2 => 'blue.css',       // 2 - Blue ( Rounded )
-            3 => 'dark.css',       // 3 - Dark ( Small Accent )
-            4 => 'purple.css',     // 4 - Purple ( Wedge Accent )
-            5 => 'orange.css',     // 5 - Orange ( With Icon )
-            6 => 'coins.css',      // 6 - Coins ( Blue )
-            7 => 'offset.css',     // 7 - Offset ( Accent color )
-            8 => 'burgundy.css',   // 8 - Burgundy ( Coin Pricing )
-            9 => 'simple.css',     // 9 - Simple ( Blue on white )
-            10 => 'white.css',     // 10 - White ( Black and White )
-            11 => 'small.css'      // 11 - Small ( Small Title )
-        ];
-        
-        // Get the CSS file for the selected template
-        $cssFile = isset($templateFiles[$template]) ? $templateFiles[$template] : 'default.css';
-        
-        // Add the CSS file to the document
-        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
-        
-        // Load Google Fonts if needed
-        self::loadGoogleFonts($params);
-    }
+  public static function loadTemplateCSS($params)
+{
+    // Get the document
+    $document = Factory::getDocument();
+
+    // Get template selection
+    $template = $params->get('bears_template', '1276');
+
+    // Map template values to CSS files - these match the XML option values
+    $templateFiles = [
+        '1276' => '1276.css',    // 1 - Default ( Large Accent )
+        '1517' => '1517.css',    // 2 - Blue ( Rounded )
+        '1299' => '1299.css',    // 3 - Dark ( Small Accent )
+        '1404' => '1404.css',    // 4 - Purple ( Wedge Accent )
+        '1265' => '1265.css',    // 5 - Orange ( With Icon )
+        '1240' => '1240.css',    // 6 - Coins ( Blue )
+        '1464' => '1464.css',    // 7 - Offset ( Accent offset )
+        '1223' => '1223.css',    // 8 - Burgundy ( Coin Pricing )
+        '1207' => '1207.css',    // 9 - Simple ( Blue on white )
+        'white' => 'white.css',  // 10 - White ( Black and White )
+        '1214' => '1214.css'     // 11 - Small ( Small Title )
+    ];
+
+    // Get the CSS file for the selected template
+    $cssFile = isset($templateFiles[$template]) ? $templateFiles[$template] : '1276.css';
+
+    // Add the CSS file to the document
+    $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
+
+    // Load Google Fonts if needed
+    self::loadGoogleFonts($params);
+}
     
     /**
      * Get the appropriate template file based on template selection
      *
      * @param   object  $params  The module parameters
      * @return  string  The template file name without extension
+     * @since   2025.5.10
      */
-    public static function getTemplateName($params)
-    {
-        // Get template selection
-        $template = (int) $params->get('bears_template', 1);
-        
-        // Map template values to template names
-        $templateNames = [
-            1 => 'default',    // 1 - Default ( Large Accent )
-            2 => 'blue',       // 2 - Blue ( Rounded )
-            3 => 'dark',       // 3 - Dark ( Small Accent )
-            4 => 'purple',     // 4 - Purple ( Wedge Accent )
-            5 => 'orange',     // 5 - Orange ( With Icon )
-            6 => 'coins',      // 6 - Coins ( Blue )
-            7 => 'offset',     // 7 - Offset ( Accent color )
-            8 => 'burgundy',   // 8 - Burgundy ( Coin Pricing )
-            9 => 'simple',     // 9 - Simple ( Blue on white )
-            10 => 'white',     // 10 - White ( Black & White )
-            11 => 'small'      // 11 - Small ( Small Title )
-        ];
-        
-        // Return the template name for the selected template
-        return isset($templateNames[$template]) ? $templateNames[$template] : 'default';
-    }
+ public static function getTemplateName($params)
+{
+    // Get template selection - this matches the XML option values
+    $template = $params->get('bears_template', '1276');
+
+    // Map template values to template names - these match the XML option values
+    $templateNames = [
+        '1276' => '1276',    // 1 - Default ( Large Accent )
+        '1517' => '1517',    // 2 - Blue ( Rounded )
+        '1299' => '1299',    // 3 - Dark ( Small Accent )
+        '1404' => '1404',    // 4 - Purple ( Wedge Accent )
+        '1265' => '1265',    // 5 - Orange ( With Icon )
+        '1240' => '1240',    // 6 - Coins ( Blue )
+        '1464' => '1464',    // 7 - Offset ( Accent offset )
+        '1223' => '1223',    // 8 - Burgundy ( Coin Pricing )
+        '1207' => '1207',    // 9 - Simple ( Blue on white )
+        'white' => 'white',  // 10 - White ( Black & White )
+        '1214' => '1214'     // 11 - Small ( Small Title )
+    ];
+
+    // Return the template name for the selected template
+    return isset($templateNames[$template]) ? $templateNames[$template] : '1276';
+}
     /**
      * Load Google Fonts based on module parameters
      *
      * @param   object  $params  The module parameters
      * @return  void
+     * @since   2025.5.10
      */
     public static function loadGoogleFonts($params)
     {
