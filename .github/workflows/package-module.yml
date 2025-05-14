@@ -37,22 +37,32 @@ jobs:
             echo "is_manual=true" >> $GITHUB_OUTPUT
             echo "Running in manual trigger context"
           fi
-      
+
+      - name: Check if repository is shallow
+        id: check_shallow
+        run: |
+          if [ -f "$(git rev-parse --git-dir)/shallow" ]; then
+            echo "is_shallow=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_shallow=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper versioning
+          # Use fetch-depth: 0 for changelog generation when PR is merged or manual run
+          # Otherwise use fetch-depth: 1 for PR updates to be more efficient
+          fetch-depth: ${{ ((steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true') && '0') || '1' }}
           token: ${{ secrets.GITHUB_TOKEN }}  # Needed for pushing changes
           # For PR merges, always use main branch; for PR updates use the PR branch; for manual runs use main
           ref: ${{ (steps.context.outputs.is_pr_merge == 'true' && 'main') || (steps.context.outputs.is_pr_update == 'true' && github.event.pull_request.head.ref) || 'main' }}
           # For PR updates, use the PR repository; otherwise use the current repository
           repository: ${{ (steps.context.outputs.is_pr_update == 'true' && github.event.pull_request.head.repo.full_name) || github.repository }}
-      
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          
       # Generate version for all contexts (PR update, PR merge, and manual run)
       - name: Generate version and dates
         id: set_version
@@ -189,27 +199,53 @@ jobs:
       - name: Generate changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
         id: changelog
-        uses: saadmk11/changelog-ci@v1.1.2
-        with:
-          changelog_filename: CHANGELOG.md
-          config_file: .github/changelog-ci-config.yaml
-          committer_username: 'github-actions[bot]'
-          committer_email: 'github-actions[bot]@users.noreply.github.com'
-          release_version: ${{ steps.set_version.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 --always $(git rev-list --tags --skip=1 --max-count=1) 2>/dev/null || echo "")
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # If no previous tag exists, use the first commit
+            echo "No previous tag found, using all commits"
+            CHANGELOG=$(git log --pretty=format:"* %s (%h)" --reverse)
+          else
+            echo "Previous tag: $PREVIOUS_TAG"
+            # Get all commits since the previous tag
+            CHANGELOG=$(git log --pretty=format:"* %s (%h)" ${PREVIOUS_TAG}..HEAD --reverse)
+          fi
+          
+          # Create changelog file
+          echo "# ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "## What's Changed" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "$CHANGELOG" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          
+          # If previous changelog exists, append it
+          if [ -f "CHANGELOG.md.bak" ]; then
+            # Skip the first line of the backup (the previous version header)
+            tail -n +2 "CHANGELOG.md.bak" >> CHANGELOG.md
+          fi
+          
+          # Save changelog to output
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "## What's Changed" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Display the generated changelog
+          echo "Generated changelog:"
+          cat CHANGELOG.md
       
-      - name: Read changelog content
+      - name: Backup existing changelog
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
-        id: read_changelog
         run: |
           if [ -f "CHANGELOG.md" ]; then
-            CHANGELOG_CONTENT=$(cat CHANGELOG.md)
-            echo "changelog<<EOF" >> $GITHUB_OUTPUT
-            echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            cp CHANGELOG.md CHANGELOG.md.bak
+            echo "Backed up existing changelog"
           else
-            echo "changelog=* No changes found" >> $GITHUB_OUTPUT
+            echo "No existing changelog to backup"
           fi
       
       # For PR updates: Commit changes to PR branch
@@ -342,8 +378,7 @@ jobs:
             - Download directly from this release page
             - Access the artifact from the Actions tab of this workflow run
             
-            ## Changelog
-            ${{ steps.read_changelog.outputs.changelog }}
+            ${{ steps.changelog.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
