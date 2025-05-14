@@ -61,6 +61,7 @@
 				<field name="bears_highlight_bg" type="color" default="#252525" label="MOD_BEARS_HIGHLIGHT_BG" description="MOD_BEARS_HIGHLIGHT_BG_DESC" />
 				<field name="bears_title_color" type="color" default="#252525" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
 				<field name="bears_price_color" type="color" default="#424242" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
+				<field name="bears_highlight_price_color" type="color" default="#ffffff" label="MOD_BEARS_HIGHLIGHT_PRICE_COLOR" description="MOD_BEARS_HIGHLIGHT_PRICE_COLOR_DESC" />
 				<field name="bears_pricesub_color" type="color" default="#5c5c5c" label="MOD_BEARS_PRICESUB_COLOR" description="MOD_BEARS_PRICESUB_COLOR_DESC" />
 				<field name="bears_features_color" type="color" default="#424242" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
 				<field name="bears_border_color" type="color" default="transparent" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />

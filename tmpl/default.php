@@ -47,9 +47,14 @@ $bears_header_bg      = $params->get('bears_header_bg', '#8e44ad');
 $bears_highlight_bg   = $params->get('bears_highlight_bg', '#9b59b6');
 $bears_title_color    = $params->get('bears_title_color', '#ffffff');
 $bears_price_color    = $params->get('bears_price_color', '#8e44ad');
+$bears_highlight_price_color = $params->get('bears_highlight_price_color', '#ffffff'); // New field for highlight price color
 $bears_pricesub_color = $params->get('bears_pricesub_color', '#95a5a6');
 $bears_features_color = $params->get('bears_features_color', '#7f8c8d');
 $bears_button_color   = $params->get('bears_button_color', '#8e44ad');
+$bears_border_color   = $params->get('bears_border_color', 'transparent');
+$bears_featured_border_color = $params->get('bears_featured_border_color', 'transparent');
+$bears_accent_color   = $params->get('bears_accent_color', '#333333');
+$bears_highlight_accent_color = $params->get('bears_highlight_accent_color', '#5c5c5c');
 
 // Font family settings
 $bears_title_font     = $params->get('bears_title_font', '');
@@ -111,11 +116,19 @@ $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header { background
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' header:after { border-color: ' . $bears_header_bg . ' transparent transparent transparent; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-title { color:' . $bears_title_color . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-price { color:' . $bears_price_color . '; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-price { color:' . $bears_highlight_price_color . '; }'; // Apply highlight price color
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-type { color:' . $bears_pricesub_color . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features { color:' . $bears_features_color . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn { background-color: ' . $bears_button_color . '; color: #ffffff; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover, .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover { background-color: ' . $bears_button_color . '; opacity: 0.9; }';
-$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured.plan { }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-features { color: ' . $bears_accent_color . '; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured .plan-features { color: ' . $bears_highlight_accent_color . '; }';
+
+// Add border color overrides if specified in admin
+// Always apply border color, using transparent as default if not specified
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan { border: 3px solid ' . $bears_border_color . '; }';
+$bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured { border: 3px solid ' . $bears_featured_border_color . ' !important; }';
+
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header { background-color: ' . $bears_highlight_bg . '; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .featured header:after { border-color: ' . $bears_highlight_bg . ' transparent transparent transparent; }';
 $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan-icon { font-size: 24px; margin: 10px; }';

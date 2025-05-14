@@ -5,18 +5,6 @@
  */
 .bears_pricing_tables {
   border: 3px solid #efefef;
-  }
-.bears_pricing_tables137 .featured.plan {
-  border: 3px solid #252525;
-  }
-
-.bears_pricing_tables-outer {
-  text-align: center;
-  }
-.bears_pricing_tables-container {
-  display: flex;
-  }
-.bears_pricing_tables {
   box-sizing: border-box;
   color: #ffffff;
   display: inline-block;
@@ -26,6 +14,20 @@
   padding: 10px;
   text-align: left;
   vertical-align: top;
+  }
+
+.bears_pricing_tables .featured.plan {
+  border: 3px solid #252525;
+  margin-top: -10px;
+  color: #ffffff;
+  z-index: 1;
+  }
+
+.bears_pricing_tables-outer {
+  text-align: center;
+  }
+.bears_pricing_tables-container {
+  display: flex;
   }
 .bears_pricing_tables .plan {
   margin: 0;
@@ -161,11 +163,6 @@
   }
 .bears_pricing_tables .plan-select a:hover {
   background-color: #156dab;
-  }
-.bears_pricing_tables .featured {
-  margin-top: -10px;
-  color: #ffffff;
-  z-index: 1;
   }
 .bears_pricing_tables .featured header {
   background-color: #222f3d;
