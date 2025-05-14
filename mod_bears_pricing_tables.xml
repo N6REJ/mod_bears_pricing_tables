@@ -57,20 +57,20 @@
 				<field name="bears_column_margin_x" type="textpx" default="20" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
 				<field name="bears_column_margin_y" type="textpx" default="10" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
 				<field name="bears_column_bg" type="color" default="" label="MOD_BEARS_COLUMN_BG" description="MOD_BEARS_COLUMN_BG_DESC" />
-				<field name="bears_highlight_bg" type="color" default="" label="MOD_BEARS_HIGHLIGHT_BG" description="MOD_BEARS_HIGHLIGHT_BG_DESC" />
+				<field name="bears_column_featured_bg" type="color" default="" label="MOD_BEARS_FEATURED_BG" description="MOD_BEARS_FEATURED_BG_DESC" />
 				<field name="bears_header_bg" type="color" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
-				<field name="bears_header_highlight_bg" type="color" default="" label="MOD_BEARS_HEADER_HIGHLIGHT_BG" description="MOD_BEARS_HEADER_HIGHLIGHT_BG_DESC" />
+				<field name="bears_header_featured_bg" type="color" default="" label="MOD_BEARS_HEADER_FEATURED_BG" description="MOD_BEARS_HEADER_FEATURED_BG_DESC" />
 				<field name="bears_title_color" type="color" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
 				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
 				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
 				<field name="bears_price_color" type="color" default="" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
-				<field name="bears_highlight_price_color" type="color" default="" label="MOD_BEARS_HIGHLIGHT_PRICE_COLOR" description="MOD_BEARS_HIGHLIGHT_PRICE_COLOR_DESC" />
+				<field name="bears_featured_price_color" type="color" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
 				<field name="bears_pricesub_color" type="color" default="" label="MOD_BEARS_PRICESUB_COLOR" description="MOD_BEARS_PRICESUB_COLOR_DESC" />
 				<field name="bears_features_color" type="color" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
 				<field name="bears_border_color" type="color" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
-				<field name="bears_highlight_border_color" type="color" default="" label="MOD_BEARS_HIGHLIGHT_BORDER_COLOR" description="MOD_BEARS_HIGHLIGHT_BORDER_COLOR_DESC" />
+				<field name="bears_featured_border_color" type="color" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
 				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
-				<field name="bears_highlight_accent_color" type="color" default="" label="MOD_BEARS_HIGHLIGHT_ACCENT_COLOR" description="MOD_BEARS_HIGHLIGHT_ACCENT_COLOR_DESC" />
+				<field name="bears_featured_accent_color" type="color" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />
 				<field name="bears_button_color" type="color" default="" label="MOD_BEARS_BUTTON_COLOR" description="MOD_BEARS_BUTTON_COLOR_DESC" />
 				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
 			</fieldset>
@@ -96,7 +96,7 @@
 				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
-				<field name="bears_highlight1" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
+				<field name="bears_column_featured1" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
@@ -125,7 +125,7 @@
 				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
-				<field name="bears_highlight2" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
+				<field name="bears_column_featured2" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
@@ -154,7 +154,7 @@
 				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
-				<field name="bears_highlight3" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
+				<field name="bears_column_featured3" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
@@ -183,7 +183,7 @@
 				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
-				<field name="bears_highlight4" type="radio" default="no" label="MOD_BEARS_HIGHLIGHT" description="MOD_BEARS_HIGHLIGHT_DESC"
+				<field name="bears_column_featured4" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>

@@ -14,13 +14,13 @@
   --bears-column-margin-x: 20px;
   --bears-column-bg: #ffffff;
   --bears-header-bg: #0C221D;
-  --bears-highlight-bg: #ffffff;
-  --bears-header-highlight-bg: #252525; /* Header background for highlighted/featured plans */
+  --bears-featured-bg: #ffffff;
+  --bears-featured-header-bg: #252525; /* Header background for featured plans */
   --bears-title-color: #ffffff;
   --bears-title-font-size: 24px;
   --bears-price-font-size: 3em;
   --bears-price-color: #ffffff;
-  --bears-highlight-price-color: #ffffff;
+  --bears-featured-price-color: #ffffff;
   --bears-pricesub-color: #ffffff;
   --bears-features-color: #7f8c8d;
   --bears-button-color: #125f94;
@@ -28,7 +28,7 @@
   --bears-border-color: #efefef;
   --bears-featured-border-color: #252525;
   --bears-accent-color: #333333;
-  --bears-highlight-accent-color: #5c5c5c;
+  --bears-featured-accent-color: #5c5c5c;
   --bears-border-radius: 5px;
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
@@ -251,7 +251,7 @@
 }
 
 .bears_pricing_tables .plan.featured .plan-price {
-  color: var(--bears-highlight-price-color);
+  color: var(--bears-featured-price-color);
 }
 .bears_pricing_tables .plan-type {
   display: block;
@@ -304,10 +304,10 @@
   transform: scale(1.05);
 }
 .bears_pricing_tables .plan.featured header {
-  background-color: var(--bears-header-highlight-bg, var(--bears-highlight-bg));
+  background-color: var(--bears-featured-header-bg, var(--bears-featured-bg));
 }
 .bears_pricing_tables .plan.featured header:after {
-  border-color: var(--bears-highlight-accent-color) transparent transparent transparent;
+  border-color: var(--bears-featured-accent-color) transparent transparent transparent;
 }
 .bears_pricing_tables .plan.featured .plan-select {
   padding: 30px 20px;
