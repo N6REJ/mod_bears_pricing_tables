@@ -46,6 +46,7 @@ class ModBearsPricingTablesHelper
         $bears_header_featured_bg = $params->get('bears_header_featured_bg');
         $bears_title_color = $params->get('bears_title_color');
         $bears_title_font_size = $params->get('bears_title_font_size');
+        $bears_subtitle_font_size = $params->get('bears_subtitle_font_size');
         $bears_price_font_size = $params->get('bears_price_font_size');
         $bears_features_font_size = $params->get('bears_features_font_size');
         $bears_price_color = $params->get('bears_price_color');
@@ -72,16 +73,7 @@ class ModBearsPricingTablesHelper
         $bears_featured = array();
         $bears_buttontext = array();
         $bears_buttonurl = array();
-        
-        // Font arrays
-        $bears_use_google_font = array();
-        $bears_google_font_url = array();
-        $bears_title_font = array();
-        $bears_subtitle_font = array();
-        $bears_price_font = array();
-        $bears_features_font = array();
-        $bears_button_font = array();
-        
+
         // Get parameters for each column
         for ($i = 1; $i <= 4; $i++) {
             $bears_title[$i] = $params->get('bears_title' . $i, '');
@@ -94,15 +86,6 @@ class ModBearsPricingTablesHelper
             $bears_featured[$i] = $params->get('bears_column_featured' . $i, 'no');
             $bears_buttontext[$i] = $params->get('bears_buttontext' . $i, '');
             $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
-            
-            // Get font parameters
-            $bears_use_google_font[$i] = $params->get('bears_use_google_font' . $i, 'no');
-            $bears_google_font_url[$i] = $params->get('bears_google_font_url' . $i, '');
-            $bears_title_font[$i] = $params->get('bears_title_font' . $i, '');
-            $bears_subtitle_font[$i] = $params->get('bears_subtitle_font' . $i, '');
-            $bears_price_font[$i] = $params->get('bears_price_font' . $i, '');
-            $bears_features_font[$i] = $params->get('bears_features_font' . $i, '');
-            $bears_button_font[$i] = $params->get('bears_button_font' . $i, '');
         }
         
         return array(
@@ -117,6 +100,7 @@ class ModBearsPricingTablesHelper
             'bears_header_featured_bg' => $bears_header_featured_bg,
             'bears_title_color' => $bears_title_color,
             'bears_title_font_size' => $bears_title_font_size,
+            'bears_subtitle_font_size' => $bears_subtitle_font_size,
             'bears_price_font_size' => $bears_price_font_size,
             'bears_features_font_size' => $bears_features_font_size,
             'bears_price_color' => $bears_price_color,
@@ -143,13 +127,6 @@ class ModBearsPricingTablesHelper
             'bears_featured' => $bears_featured,
             'bears_buttontext' => $bears_buttontext,
             'bears_buttonurl' => $bears_buttonurl,
-            'bears_use_google_font' => $bears_use_google_font,
-            'bears_google_font_url' => $bears_google_font_url,
-            'bears_title_font' => $bears_title_font,
-            'bears_subtitle_font' => $bears_subtitle_font,
-            'bears_price_font' => $bears_price_font,
-            'bears_features_font' => $bears_features_font,
-            'bears_button_font' => $bears_button_font
         );
     }
 
@@ -208,65 +185,5 @@ class ModBearsPricingTablesHelper
         
         // Return the template value
         return $template;
-    }
-    /**
-     * Load Google Fonts based on module parameters
-     *
-     * @param   object  $params  The module parameters
-     * @return  void
-     * @since   2025.5.10
-     */
-    public static function loadGoogleFonts($params)
-    {
-        $document = Factory::getDocument();
-        $loadedFonts = array();
-        
-        // Check each column for Google Fonts
-        for ($i = 1; $i <= 4; $i++) {
-            $useGoogleFont = $params->get('bears_use_google_font' . $i, 'no');
-            
-            if ($useGoogleFont === 'yes') {
-                // Get all font selections for this column
-                $titleFont = $params->get('bears_title_font' . $i, '');
-                $subtitleFont = $params->get('bears_subtitle_font' . $i, '');
-                $priceFont = $params->get('bears_price_font' . $i, '');
-                $featuresFont = $params->get('bears_features_font' . $i, '');
-                $buttonFont = $params->get('bears_button_font' . $i, '');
-                
-                // Add each font to the loadedFonts array to avoid duplicates
-                if (!empty($titleFont) && !in_array($titleFont, $loadedFonts)) {
-                    $loadedFonts[] = $titleFont;
-                }
-                
-                if (!empty($subtitleFont) && !in_array($subtitleFont, $loadedFonts)) {
-                    $loadedFonts[] = $subtitleFont;
-                }
-                
-                if (!empty($priceFont) && !in_array($priceFont, $loadedFonts)) {
-                    $loadedFonts[] = $priceFont;
-                }
-                
-                if (!empty($featuresFont) && !in_array($featuresFont, $loadedFonts)) {
-                    $loadedFonts[] = $featuresFont;
-                }
-                
-                if (!empty($buttonFont) && !in_array($buttonFont, $loadedFonts)) {
-                    $loadedFonts[] = $buttonFont;
-                }
-            } else {
-                // Check if a custom Google Font URL is provided
-                $googleFontUrl = $params->get('bears_google_font_url' . $i, '');
-                
-                if (!empty($googleFontUrl)) {
-                    $document->addStyleSheet($googleFontUrl);
-                }
-            }
-        }
-        
-        // Load all selected Google Fonts in a single request
-        if (!empty($loadedFonts)) {
-            $fontString = implode('|', array_map('urlencode', $loadedFonts));
-            $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $fontString . '&display=swap');
-        }
     }
 }
