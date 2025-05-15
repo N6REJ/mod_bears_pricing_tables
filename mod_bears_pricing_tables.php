@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  * 
- * @version     2025.05.15
+ * @version     2025.05.15.2
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -45,9 +45,6 @@ $params_array = ModBearsPricingTablesHelper::getParams($params);
 // Extract parameters
 $bears_num_columns = $params_array['bears_num_columns'];
 $bears_title = $params_array['bears_title'];
-$bears_icon_class = $params_array['bears_icon_class'];
-$bears_icon_color = $params_array['bears_icon_color'];
-$bears_icon_location = $params_array['bears_icon_location'];
 $bears_price = $params_array['bears_price'];
 $bears_subtitle = $params_array['bears_subtitle'];
 $bears_features = $params_array['bears_features'];

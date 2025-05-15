@@ -2,6 +2,7 @@
 
 ## What's Changed
 
+* Remove all icon functionality from the module (current)
 * Remove layout field from advanced fieldset in pricing tables module (c567955)
 * Merge remote-tracking branch 'origin/main' (a58457e)
 * Add dedicated fonts fieldset with Google Font integration (895fdf5)
@@ -16,4 +17,3 @@
 * Create red template variant and remove icon functionality (97f8727)
 * Update version to 2025.05.15.1, creation date to 2025 May 15, and copyright year to 2025 (25ae6cf)
 * Merge pull request #7 from N6REJ/icons (ac1008d)
-

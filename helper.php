@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.15
+ * @version     2025.05.15.2
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -69,9 +69,6 @@ class ModBearsPricingTablesHelper
         
         // Initialize arrays for column-specific parameters
         $bears_title = array();
-        $bears_icon_class = array();
-        $bears_icon_color = array();
-        $bears_icon_location = array();
         $bears_price = array();
         $bears_subtitle = array();
         $bears_features = array();
@@ -82,9 +79,6 @@ class ModBearsPricingTablesHelper
         // Get parameters for each column
         for ($i = 1; $i <= 4; $i++) {
             $bears_title[$i] = $params->get('bears_title' . $i, '');
-            $bears_icon_class[$i] = $params->get('bears_icon' . $i, '');
-            $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '#424242');
-            $bears_icon_location[$i] = $params->get('bears_icon_location' . $i, 'none');
             $bears_price[$i] = $params->get('bears_price' . $i, '');
             $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
             $bears_features[$i] = $params->get('bears_features' . $i, array());
@@ -128,9 +122,6 @@ class ModBearsPricingTablesHelper
             
             // Column-specific parameters
             'bears_title' => $bears_title,
-            'bears_icon_class' => $bears_icon_class,
-            'bears_icon_color' => $bears_icon_color,
-            'bears_icon_location' => $bears_icon_location,
             'bears_price' => $bears_price,
             'bears_subtitle' => $bears_subtitle,
             'bears_features' => $bears_features,
@@ -151,34 +142,124 @@ class ModBearsPricingTablesHelper
     {
         // Get the document
         $document = Factory::getDocument();
-        $app = Factory::getApplication();
-
+        
         // Get template selection with default fallback
         $template = $params->get('bears_template', 'default');
         
-        // Create CSS filename from template value
-        $cssFile = $template . '.css';
+        // Add the base CSS file
+        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css');
         
-        // Debug information
-        $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
+        // Add custom CSS variables
+        $css = self::generateCustomCSS($params);
+        if (!empty($css)) {
+            $document->addStyleDeclaration($css);
+        }
+    }
+    
+    /**
+     * Generate custom CSS based on module parameters
+     *
+     * @param   object  $params  The module parameters
+     * @return  string  The custom CSS
+     * @since   2025.5.10
+     */
+    public static function generateCustomCSS($params)
+    {
+        $css = '.bears_pricing_tables {';
         
-        // Add the CSS file to the document
-        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
-
-        // Load Google Font directly if enabled
-        $useGoogleFont = $params->get('bears_use_google_font', '0');
+        // Add custom CSS variables
+        if ($params->get('bears_column_bg')) {
+            $css .= '--bears-column-bg: ' . $params->get('bears_column_bg') . ';';
+        }
+        if ($params->get('bears_column_featured_bg')) {
+            $css .= '--bears-column-featured-bg: ' . $params->get('bears_column_featured_bg') . ';';
+        }
+        if ($params->get('bears_header_bg')) {
+            $css .= '--bears-header-bg: ' . $params->get('bears_header_bg') . ';';
+        }
+        if ($params->get('bears_header_featured_bg')) {
+            $css .= '--bears-header-featured-bg: ' . $params->get('bears_header_featured_bg') . ';';
+        }
+        if ($params->get('bears_title_color')) {
+            $css .= '--bears-title-color: ' . $params->get('bears_title_color') . ';';
+        }
+        if ($params->get('bears_price_color')) {
+            $css .= '--bears-price-color: ' . $params->get('bears_price_color') . ';';
+        }
+        if ($params->get('bears_featured_price_color')) {
+            $css .= '--bears-featured-price-color: ' . $params->get('bears_featured_price_color') . ';';
+        }
+        if ($params->get('bears_pricesub_color')) {
+            $css .= '--bears-pricesub-color: ' . $params->get('bears_pricesub_color') . ';';
+        }
+        if ($params->get('bears_features_color')) {
+            $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
+        }
+        if ($params->get('bears_border_color')) {
+            $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
+        }
+        if ($params->get('bears_border_style')) {
+            $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ';';
+        }
+        if ($params->get('bears_featured_border_color')) {
+            $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
+        }
+        if ($params->get('bears_featured_border_style')) {
+            $css .= '--bears-featured-border-style: ' . $params->get('bears_featured_border_style') . ';';
+        }
+        if ($params->get('bears_accent_color')) {
+            $css .= '--bears-accent-color: ' . $params->get('bears_accent_color') . ';';
+        }
+        if ($params->get('bears_featured_accent_color')) {
+            $css .= '--bears-featured-accent-color: ' . $params->get('bears_featured_accent_color') . ';';
+        }
+        if ($params->get('bears_button_color')) {
+            $css .= '--bears-button-color: ' . $params->get('bears_button_color') . ';';
+        }
+        if ($params->get('bears_button_hover_color')) {
+            $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
+        }
         
-        if ($useGoogleFont == '1') {
-            // Get font parameters
+        // Font sizes
+        if ($params->get('bears_title_font_size')) {
+            $css .= '--bears-title-font-size: ' . $params->get('bears_title_font_size') . 'px;';
+        }
+        if ($params->get('bears_subtitle_font_size')) {
+            $css .= '--bears-subtitle-font-size: ' . $params->get('bears_subtitle_font_size') . 'px;';
+        }
+        if ($params->get('bears_price_font_size')) {
+            $css .= '--bears-price-font-size: ' . $params->get('bears_price_font_size') . 'px;';
+        }
+        if ($params->get('bears_features_font_size')) {
+            $css .= '--bears-features-font-size: ' . $params->get('bears_features_font_size') . 'px;';
+        }
+        if ($params->get('bears_button_font_size')) {
+            $css .= '--bears-button-font-size: ' . $params->get('bears_button_font_size') . 'px;';
+        }
+        
+        // Margins
+        if ($params->get('bears_column_margin_x')) {
+            $css .= '--bears-column-margin-x: ' . $params->get('bears_column_margin_x') . 'px;';
+        }
+        if ($params->get('bears_column_margin_y')) {
+            $css .= '--bears-column-margin-y: ' . $params->get('bears_column_margin_y') . 'px;';
+        }
+        
+        $css .= '}';
+        
+        // Add Google Font if specified
+        if ($params->get('bears_use_google_font', '0') == '1' && $params->get('bears_google_font_family')) {
             $fontFamily = $params->get('bears_google_font_family', 'Crimson Text');
             $fontWeight = $params->get('bears_font_weight', '400');
             
-            // Format font family for URL (replace spaces with +)
-            $fontFamilyFormatted = str_replace(' ', '+', $fontFamily);
+            // Add Google Font import
+            $css = '@import url("https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . ':wght@' . $fontWeight . '&display=swap");' . "\n" . $css;
             
-            // Add Google Font to document
-            $document->addStyleSheet("https://fonts.googleapis.com/css?family={$fontFamilyFormatted}:{$fontWeight}&display=swap");
+            // Apply font family to the pricing tables
+            $css .= "\n" . '.bears_pricing_tables { font-family: "' . $fontFamily . '", sans-serif; font-weight: ' . $fontWeight . '; }';
         }
+        
+        return $css;
     }
     
     /**
