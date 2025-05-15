@@ -17,9 +17,12 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\WebAsset\WebAssetManager;
 
+// The $params variable is provided by Joomla when the module is loaded
+/** @var Joomla\Registry\Registry $params */
+/** @var stdClass $module */
+
 // Get the application instance
 $app = Factory::getApplication();
-
 // Load admin CSS only in backend
 if ($app->isClient('administrator')) {
     /** @var WebAssetManager $wa */
