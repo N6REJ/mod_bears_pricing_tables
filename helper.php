@@ -49,6 +49,7 @@ class ModBearsPricingTablesHelper
         $bears_subtitle_font_size = $params->get('bears_subtitle_font_size');
         $bears_price_font_size = $params->get('bears_price_font_size');
         $bears_features_font_size = $params->get('bears_features_font_size');
+        $bears_button_font_size = $params->get('bears_button_font_size');
         $bears_price_color = $params->get('bears_price_color');
         $bears_featured_price_color = $params->get('bears_featured_price_color');
         $bears_pricesub_color = $params->get('bears_pricesub_color');
@@ -61,6 +62,10 @@ class ModBearsPricingTablesHelper
         $bears_featured_accent_color = $params->get('bears_featured_accent_color');
         $bears_button_color = $params->get('bears_button_color');
         $bears_button_hover_color = $params->get('bears_button_hover_color');
+        
+        // Get font parameters
+        $bears_google_font_family = $params->get('bears_google_font_family', 'Crimson Text');
+        $bears_font_weight = $params->get('bears_font_weight', '400');
         
         // Initialize arrays for column-specific parameters
         $bears_title = array();
@@ -103,6 +108,7 @@ class ModBearsPricingTablesHelper
             'bears_subtitle_font_size' => $bears_subtitle_font_size,
             'bears_price_font_size' => $bears_price_font_size,
             'bears_features_font_size' => $bears_features_font_size,
+            'bears_button_font_size' => $bears_button_font_size,
             'bears_price_color' => $bears_price_color,
             'bears_featured_price_color' => $bears_featured_price_color,
             'bears_pricesub_color' => $bears_pricesub_color,
@@ -115,6 +121,10 @@ class ModBearsPricingTablesHelper
             'bears_featured_accent_color' => $bears_featured_accent_color,
             'bears_button_color' => $bears_button_color,
             'bears_button_hover_color' => $bears_button_hover_color,
+            
+            // Font parameters
+            'bears_google_font_family' => $bears_google_font_family,
+            'bears_font_weight' => $bears_font_weight,
             
             // Column-specific parameters
             'bears_title' => $bears_title,
@@ -137,27 +147,39 @@ class ModBearsPricingTablesHelper
      * @return  void
      * @since   2025.5.10
      */
-  public static function loadTemplateCSS($params)
-  {
-      // Get the document
-      $document = Factory::getDocument();
-      $app = Factory::getApplication();
+    public static function loadTemplateCSS($params)
+    {
+        // Get the document
+        $document = Factory::getDocument();
+        $app = Factory::getApplication();
 
-      // Get template selection with default fallback
-      $template = $params->get('bears_template', 'default');
-      
-      // Create CSS filename from template value
-      $cssFile = $template . '.css';
-      
-      // Debug information
-      $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
-      
-      // Add the CSS file to the document
-      $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
+        // Get template selection with default fallback
+        $template = $params->get('bears_template', 'default');
+        
+        // Create CSS filename from template value
+        $cssFile = $template . '.css';
+        
+        // Debug information
+        $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
+        
+        // Add the CSS file to the document
+        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
 
-      // Load Google Fonts if needed
-      self::loadGoogleFonts($params);
-  }
+        // Load Google Font directly if enabled
+        $useGoogleFont = $params->get('bears_use_google_font', '0');
+        
+        if ($useGoogleFont == '1') {
+            // Get font parameters
+            $fontFamily = $params->get('bears_google_font_family', 'Crimson Text');
+            $fontWeight = $params->get('bears_font_weight', '400');
+            
+            // Format font family for URL (replace spaces with +)
+            $fontFamilyFormatted = str_replace(' ', '+', $fontFamily);
+            
+            // Add Google Font to document
+            $document->addStyleSheet("https://fonts.googleapis.com/css?family={$fontFamilyFormatted}:{$fontWeight}&display=swap");
+        }
+    }
     
     /**
      * Get the appropriate template file based on template selection
@@ -186,4 +208,5 @@ class ModBearsPricingTablesHelper
         // Return the template value
         return $template;
     }
+    
 }
