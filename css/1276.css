@@ -50,12 +50,22 @@
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
   
+  /* Icon Settings */
+  --bears-icon-location: center-center; /* Default icon location */
+  
   /* Border Settings */
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
 }
 
+/* Icon positioning classes */
+.icon-top-left, .icon-top-center, .icon-top-right,
+.icon-middle-left, .icon-middle-center, .icon-middle-right,
+.icon-bottom-left, .icon-bottom-center, .icon-bottom-right,
+.icon-center-center {
+  display: none; /* Hide all icons by default */
+}
 /* Base container styles */
 .bears_pricing_tables-outer {
   width: 100%;
@@ -145,6 +155,32 @@
   overflow: visible; /* Ensure the :after element isn't clipped */
 }
 
+/* Flexbox rows for header */
+.bears_pricing_tables .header-top-row,
+.bears_pricing_tables .header-middle-row,
+.bears_pricing_tables .header-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bears_pricing_tables .header-top-row {
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .header-middle-row {
+  margin-bottom: 10px;
+}
+/* When center-center icon is present, add some opacity to the header content */
+.bears_pricing_tables .plan-icon.icon-center-center ~ .plan-title,
+.bears_pricing_tables .plan-icon.icon-center-center ~ .plan-cost,
+.bears_pricing_tables .header-top-row .icon-center-center ~ *,
+.bears_pricing_tables .header-middle-row .icon-center-center ~ *,
+.bears_pricing_tables .header-bottom-row .icon-center-center ~ * {
+  position: relative;
+  z-index: 1;
+}
 .bears_pricing_tables header:after {
   width: 0;
   height: 0;
@@ -173,6 +209,79 @@
 .bears_pricing_tables .plan.featured .plan-title {
   color: var(--bears-featured-title-color);
 }
+.bears_pricing_tables .plan-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+  font-size: 32px;
+  color: #424242;
+}
+
+/* Icon positioning styles */
+.bears_pricing_tables .icon-top-left {
+  margin-right: auto;
+}
+
+.bears_pricing_tables .icon-top-center {
+  margin: 0 auto;
+}
+
+.bears_pricing_tables .icon-top-right {
+  margin-left: auto;
+}
+
+.bears_pricing_tables .icon-middle-left {
+  margin-right: 10px;
+}
+
+.bears_pricing_tables .icon-middle-center {
+  margin: 0 auto;
+}
+
+.bears_pricing_tables .icon-middle-right {
+  margin-left: 10px;
+}
+
+.bears_pricing_tables .icon-bottom-left {
+  margin-right: auto;
+}
+
+.bears_pricing_tables .icon-bottom-center {
+  margin: 0 auto;
+}
+
+.bears_pricing_tables .icon-bottom-right {
+  margin-left: auto;
+}
+
+.bears_pricing_tables .icon-center-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 32px;
+  z-index: 2;
+}
+
+/* Show icons based on the icon-location class that will be added via JavaScript */
+.bears_pricing_tables [class*="icon-"].active-icon {
+  display: flex;
+}
+.bears_pricing_tables .plan.featured .plan-icon {
+  background-color: #191919;
+  color: #ffffff;
+  }
+.bears_pricing_tables .plan-icon i {
+  line-height: 1;
+  margin-right: 0;
+  opacity: 1;
+  }
 .bears_pricing_tables .plan-cost {
   margin: 8px 0 0;
   display: flex;
@@ -228,6 +337,10 @@
 }
 .bears_pricing_tables .plan-features li::before {
   display: none;
+  }
+.bears_pricing_tables .plan-features i {
+  margin-right: 8px;
+  opacity: 0.4;
   }
 .bears_pricing_tables .plan-select {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -326,6 +439,21 @@
     border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   }
   
+  /* Adjust flexbox rows for mobile */
+  .bears_pricing_tables .header-top-row,
+  .bears_pricing_tables .header-middle-row,
+  .bears_pricing_tables .header-bottom-row {
+    flex-direction: column;
+  }
+  
+  .bears_pricing_tables .icon-top-left,
+  .bears_pricing_tables .icon-top-right,
+  .bears_pricing_tables .icon-middle-left,
+  .bears_pricing_tables .icon-middle-right,
+  .bears_pricing_tables .icon-bottom-left,
+  .bears_pricing_tables .icon-bottom-right {
+    margin: 10px auto;
+  }
 }
 @media only screen and (max-width: 440px) {
   .bears_pricing_tables {

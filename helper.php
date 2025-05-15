@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.15.1
+ * @version     2025.05.15
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -69,6 +69,9 @@ class ModBearsPricingTablesHelper
         
         // Initialize arrays for column-specific parameters
         $bears_title = array();
+        $bears_icon_class = array();
+        $bears_icon_color = array();
+        $bears_icon_location = array();
         $bears_price = array();
         $bears_subtitle = array();
         $bears_features = array();
@@ -79,6 +82,9 @@ class ModBearsPricingTablesHelper
         // Get parameters for each column
         for ($i = 1; $i <= 4; $i++) {
             $bears_title[$i] = $params->get('bears_title' . $i, '');
+            $bears_icon_class[$i] = $params->get('bears_icon' . $i, '');
+            $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '#424242');
+            $bears_icon_location[$i] = $params->get('bears_icon_location' . $i, 'none');
             $bears_price[$i] = $params->get('bears_price' . $i, '');
             $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
             $bears_features[$i] = $params->get('bears_features' . $i, array());
@@ -122,6 +128,9 @@ class ModBearsPricingTablesHelper
             
             // Column-specific parameters
             'bears_title' => $bears_title,
+            'bears_icon_class' => $bears_icon_class,
+            'bears_icon_color' => $bears_icon_color,
+            'bears_icon_location' => $bears_icon_location,
             'bears_price' => $bears_price,
             'bears_subtitle' => $bears_subtitle,
             'bears_features' => $bears_features,
@@ -142,12 +151,16 @@ class ModBearsPricingTablesHelper
     {
         // Get the document
         $document = Factory::getDocument();
-        
+        $app = Factory::getApplication();
+
         // Get template selection with default fallback
         $template = $params->get('bears_template', 'default');
         
         // Create CSS filename from template value
         $cssFile = $template . '.css';
+        
+        // Debug information
+        $cssPath = dirname(__DIR__) . '/mod_bears_pricing_tables/css/' . $cssFile;
         
         // Add the CSS file to the document
         $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $cssFile);
@@ -180,64 +193,20 @@ class ModBearsPricingTablesHelper
         // Get template selection with default fallback
         $template = $params->get('bears_template', 'default');
         
+        // Get application
+        $app = Factory::getApplication();
+        
         // Check if the template file exists
         $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
 
         // If the template file doesn't exist, fall back to default.php
         if (!file_exists($templateFile)) {
-            Factory::getApplication()->enqueueMessage('Falling back to default.php', 'notice');
+            $app->enqueueMessage('Falling back to default.php', 'notice');
             return 'default';
         }
         
         // Return the template value
         return $template;
-    }
-    
-    /**
-     * Process features data
-     *
-     * @param   mixed  $features  Features data
-     * @return  array  Processed features
-     * @since   2025.5.10
-     */
-    public static function processFeatures($features)
-    {
-        $processedFeatures = [];
-        
-        if (is_object($features)) {
-            // Handle subform data structure
-            foreach ($features as $key => $item) {
-                if (is_object($item) && isset($item->bears_feature)) {
-                    $processedFeatures[] = $item->bears_feature;
-                }
-            }
-        } elseif (is_array($features)) {
-            // Handle array of features
-            foreach ($features as $item) {
-                if (is_object($item) && isset($item->bears_feature)) {
-                    $processedFeatures[] = $item->bears_feature;
-                } elseif (is_string($item)) {
-                    $processedFeatures[] = $item;
-                }
-            }
-        } elseif (is_string($features)) {
-            // Try to decode if it's a JSON string
-            $decoded = json_decode($features);
-            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-                foreach ($decoded as $item) {
-                    if (is_object($item) && isset($item->bears_feature)) {
-                        $processedFeatures[] = $item->bears_feature;
-                    } elseif (is_string($item)) {
-                        $processedFeatures[] = $item;
-                    }
-                }
-            } else {
-                // It's just a plain string
-                $processedFeatures[] = $features;
-            }
-        }
-        
-        return $processedFeatures;
     }
     
 }
