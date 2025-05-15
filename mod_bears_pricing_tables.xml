@@ -29,11 +29,11 @@
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<!-- Template selection dropdown -->
-				<field 
-					name="bears_template" 
-					type="list" 
+				<field
+					name="bears_template"
+					type="list"
 					default="1276"
-					label="MOD_BEARS_TEMPLATE_STYLE" 
+					label="MOD_BEARS_TEMPLATE_STYLE"
 					description="MOD_BEARS_TEMPLATE_STYLE_DESC">
 					<option value="1276">1 - Default ( Large Accent )</option> <!-- 1276 -->
 					<option value="red">2 - Red version of default ( Large Accent )</option> <!-- 1276 -->
@@ -207,7 +207,28 @@
 				<field name="bears_buttontext4" type="text" default="" label="MOD_BEARS_BUTTONTEXT" description="MOD_BEARS_BUTTONTEXT_DESC" />
 				<field name="bears_buttonurl4" type="text" default="" label="MOD_BEARS_BUTTONURL" description="MOD_BEARS_BUTTONURL_DESC" />
 			</fieldset>
-
+			<fieldset name="MOD_BEARS_FONTS" label="COM_MODULES_MOD_BEARS_FONTS_FIELDSET_LABEL">
+				<field	name="bears_google_font_family"
+						type="text"
+						default=""
+						label="MOD_BEARS_GOOGLE_FONT_FAMILY"
+						description="MOD_BEARS_GOOGLE_FONT_FAMILY_DESC"
+				/>
+				<field	name="bears_font_weight"
+						type="list"
+						default="400"
+						label="MOD_BEARS_FONT_WEIGHT"
+						description="MOD_BEARS_FONT_WEIGHT_DESC">
+					<option value="300">Light (300)</option>
+					<option value="400">Regular (400)</option>
+					<option value="500">Medium (500)</option>
+					<option value="600">Semi-Bold (600)</option>
+					<option value="700">Bold (700)</option>
+				</field>
+				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
+				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
+				<field name="bears_features_font_size" type="text" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
+			</fieldset>
 			<fieldset name="advanced">
 				<field
 						name="moduleclass_sfx"
