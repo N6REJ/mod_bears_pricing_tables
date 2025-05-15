@@ -2,7 +2,7 @@
 <?php
 /**
  * Bears Pricing Tables - Default Template
- * Version : 2025.5.10
+ * Version : 2025.5.15
  * Created by : N6REJ
  * Email : troy@hallhome.us
  * URL : www.hallhome.us
@@ -81,9 +81,6 @@ $bears_features   = array();
 $bears_buttontext = array();
 $bears_buttonurl  = array();
 $bears_featured  = array();
-$bears_icon      = array();
-$bears_icon_location = array();
-$bears_icon_color = array();
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -96,9 +93,6 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
         $bears_featured[$i]  = $params->get('bears_column_featured' . $i, 'no');
-        $bears_icon[$i]      = $params->get('bears_icon' . $i);
-        $bears_icon_location[$i] = $params->get('bears_icon_location' . $i);
-        $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
     }
 }
 
@@ -342,69 +336,15 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 					<div class="bears_pricing_tables">
 						<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $is_featured ? $bears_featured_border_style : $bears_border_style; ?>">
 							<header>
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-left'): ?>
-									<div class="plan-icon icon-top-left">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-center'): ?>
-									<div class="plan-icon icon-top-center">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'top-right'): ?>
-									<div class="plan-icon icon-top-right">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'middle-left'): ?>
-									<div class="plan-icon icon-middle-left">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
 								<h4 class="plan-title">
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'middle-right'): ?>
-									<div class="plan-icon icon-middle-right">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
 
 								<div class="plan-cost">
 									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
 									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
 								</div>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-left'): ?>
-									<div class="plan-icon icon-bottom-left">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-center'): ?>
-									<div class="plan-icon icon-bottom-center">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-right'): ?>
-									<div class="plan-icon icon-bottom-right">
-										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-									</div>
-                                <?php endif; ?>
 							</header>
-
-                            <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'center-center'): ?>
-								<div class="plan-icon icon-center-center">
-									<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-								</div>
-                            <?php endif; ?>
 
 							<ul class="plan-features dot">
                                 <?php
