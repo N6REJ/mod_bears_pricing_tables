@@ -17,9 +17,12 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\WebAsset\WebAssetManager;
 
+// The $params variable is provided by Joomla when the module is loaded
+/** @var Joomla\Registry\Registry $params */
+/** @var stdClass $module */
+
 // Get the application instance
 $app = Factory::getApplication();
-
 // Load admin CSS only in backend
 if ($app->isClient('administrator')) {
     /** @var WebAssetManager $wa */
@@ -53,13 +56,13 @@ $bears_buttontext = $params_array['bears_buttontext'];
 $bears_buttonurl = $params_array['bears_buttonurl'];
 
 // Extract font parameters
-$bears_use_google_font = $params_array['bears_use_google_font'];
-$bears_google_font_url = $params_array['bears_google_font_url'];
-$bears_title_font = $params_array['bears_title_font'];
-$bears_subtitle_font = $params_array['bears_subtitle_font'];
-$bears_price_font = $params_array['bears_price_font'];
-$bears_features_font = $params_array['bears_features_font'];
-$bears_button_font = $params_array['bears_button_font'];
+$bears_google_font_family = $params_array['bears_google_font_family'];
+$bears_font_weight = $params_array['bears_font_weight'];
+$bears_title_font_size = $params_array['bears_title_font_size'];
+$bears_subtitle_font_size = $params_array['bears_subtitle_font_size'];
+$bears_price_font_size = $params_array['bears_price_font_size'];
+$bears_features_font_size = $params_array['bears_features_font_size'];
+$bears_button_font_size = $params_array['bears_button_font_size'];
 
 // Get the template name to load
 $templateName = ModBearsPricingTablesHelper::getTemplateName($params);

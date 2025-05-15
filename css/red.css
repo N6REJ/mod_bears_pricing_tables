@@ -42,6 +42,7 @@
   --bears-featured-accent-color: #ef3340;
   
   /* Typography */
+  --bears-font-family: "Crimson Text", serif;
   --bears-title-font-size: 24px;
   --bears-price-font-size: 3em;
   --bears-features-font-size: 19.2px; /* Added features font size */
@@ -101,6 +102,7 @@
   position: relative; /* Added to establish positioning context */
   /* Add a minimum height to ensure consistent sizing */
   min-height: 100%;
+  font-family: var(--bears-font-family);
   font-size: 16px;
 }
 
