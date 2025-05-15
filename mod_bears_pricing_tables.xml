@@ -2,12 +2,12 @@
 <extension type="module" client="site" method="upgrade">
 	<name>Bears Pricing Tables</name>
 	<author>N6REJ</author>
-	<creationDate>2025 May 14</creationDate>
+	<creationDate>2025 May 15</creationDate>
 	<copyright>Copyright (C)2025 N6REJ</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.14.6</version>
+	<version>2025.05.15</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
