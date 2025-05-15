@@ -65,14 +65,13 @@ $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
 
 // Font family settings
-$bears_title_font     = $params->get('bears_title_font');
+$bears_google_font_family = $params->get('bears_google_font_family', '');
+$bears_font_weight = $params->get('bears_font_weight', '400');
 $bears_title_font_size = $params->get('bears_title_font_size');
-$bears_price_font     = $params->get('bears_price_font');
+$bears_subtitle_font_size = $params->get('bears_subtitle_font_size');
 $bears_price_font_size = $params->get('bears_price_font_size');
-$bears_subtitle_font  = $params->get('bears_subtitle_font');
-$bears_features_font  = $params->get('bears_features_font');
 $bears_features_font_size = $params->get('bears_features_font_size');
-$bears_button_font    = $params->get('bears_button_font');
+$bears_button_font_size = $params->get('bears_button_font_size');
 
 $column_ref      = array();
 $bears_title      = array();
@@ -85,11 +84,6 @@ $bears_featured  = array();
 $bears_icon      = array();
 $bears_icon_location = array();
 $bears_icon_color = array();
-$bears_title_font = array();
-$bears_price_font = array();
-$bears_subtitle_font = array();
-$bears_features_font = array();
-$bears_button_font = array();
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -105,11 +99,6 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_icon[$i]      = $params->get('bears_icon' . $i);
         $bears_icon_location[$i] = $params->get('bears_icon_location' . $i);
         $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
-        $bears_title_font[$i] = $params->get('bears_title_font' . $i, '');
-        $bears_price_font[$i] = $params->get('bears_price_font' . $i, '');
-        $bears_subtitle_font[$i] = $params->get('bears_subtitle_font' . $i, '');
-        $bears_features_font[$i] = $params->get('bears_features_font' . $i, '');
-        $bears_button_font[$i] = $params->get('bears_button_font' . $i, '');
     }
 }
 
@@ -137,6 +126,8 @@ $bears_css = '
 .bears_pricing_tables' . $bears_moduleid . ' .plan-title {
     color: var(--bears-title-color);
     font-size: var(--bears-title-font-size);
+    font-family: var(--bears-font-family, inherit);
+    font-weight: var(--bears-font-weight, normal);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-title {
     color: var(--bears-featured-title-color);
@@ -144,16 +135,23 @@ $bears_css = '
 .bears_pricing_tables' . $bears_moduleid . ' .plan-price {
     color: var(--bears-price-color);
     font-size: var(--bears-price-font-size);
+    font-family: var(--bears-font-family, inherit);
+    font-weight: var(--bears-font-weight, normal);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-features li {
     color: var(--bears-features-color);
     font-size: var(--bears-features-font-size);
+    font-family: var(--bears-font-family, inherit);
+    font-weight: var(--bears-font-weight, normal);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-price {
     color: var(--bears-featured-price-color);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-type {
     color: var(--bears-pricesub-color);
+    font-size: var(--bears-subtitle-font-size);
+    font-family: var(--bears-font-family, inherit);
+    font-weight: var(--bears-font-weight, normal);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-features li {
     color: var(--bears-features-color);
@@ -167,6 +165,9 @@ $bears_css = '
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn {
     background-color: var(--bears-button-color);
+    font-size: var(--bears-button-font-size);
+    font-family: var(--bears-font-family, inherit);
+    font-weight: var(--bears-font-weight, normal);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a:hover,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn:hover {
@@ -275,11 +276,25 @@ if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== ''
 if (!empty($bears_title_font_size)) {
     $css_overrides .= '--bears-title-font-size: ' . $bears_title_font_size . 'px; ';
 }
+if (!empty($bears_subtitle_font_size)) {
+    $css_overrides .= '--bears-subtitle-font-size: ' . $bears_subtitle_font_size . 'px; ';
+}
 if (!empty($bears_price_font_size)) {
     $css_overrides .= '--bears-price-font-size: ' . $bears_price_font_size . 'px; ';
 }
 if (!empty($bears_features_font_size)) {
     $css_overrides .= '--bears-features-font-size: ' . $bears_features_font_size . 'px; ';
+}
+if (!empty($bears_button_font_size)) {
+    $css_overrides .= '--bears-button-font-size: ' . $bears_button_font_size . 'px; ';
+}
+if (!empty($bears_google_font_family)) {
+    $css_overrides .= '--bears-font-family: \'' . $bears_google_font_family . '\', sans-serif; ';
+    $css_overrides .= '--bears-font-weight: ' . $bears_font_weight . '; ';
+    
+    // Load Google Font
+    $google_font_url = 'https://fonts.googleapis.com/css?family=' . str_replace(' ', '+', $bears_google_font_family) . ':' . $bears_font_weight;
+    $document->addStyleSheet($google_font_url);
 }
 
 // Add overrides if any exist
@@ -351,7 +366,7 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 									</div>
                                 <?php endif; ?>
 
-								<h4 class="plan-title" <?php echo !empty($bears_title_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_title_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
+								<h4 class="plan-title">
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
 
@@ -362,8 +377,8 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
                                 <?php endif; ?>
 
 								<div class="plan-cost">
-									<span class="plan-price" <?php echo !empty($bears_price_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_price_font[$cur_column]) . '\', sans-serif;"' : ''; ?>><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
-									<span class="plan-type" <?php echo !empty($bears_subtitle_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_subtitle_font[$cur_column]) . '\', sans-serif;"' : ''; ?>><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
+									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
+									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
 								</div>
 
                                 <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'bottom-left'): ?>
@@ -391,7 +406,7 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 								</div>
                             <?php endif; ?>
 
-							<ul class="plan-features dot" <?php echo !empty($bears_features_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_features_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
+							<ul class="plan-features dot">
                                 <?php
                                 if (!empty($bears_features[$cur_column])) {
                                     $features = $bears_features[$cur_column];
@@ -434,7 +449,7 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 							</ul>
 
 							<div class="plan-select">
-								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>" <?php echo !empty($bears_button_font[$cur_column]) ? 'style="font-family: \'' . htmlspecialchars($bears_button_font[$cur_column]) . '\', sans-serif;"' : ''; ?>>
+								<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
                                     <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
 								</a>
 							</div>
