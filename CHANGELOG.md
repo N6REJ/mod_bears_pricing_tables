@@ -1,10 +1,7 @@
-# 2025.05.15 (2025 May 15)
+# 2025.05.15.1 (2025 May 15)
 
 ## What's Changed
 
-* Add features font size option and improve border style handling (3329eb3)
-* Update features font size to use pixels instead of em units (839e2f5)
-* Update version to 2025.05.14.6, creation date to 2025 May 14, and copyright year to 2025 (88a1770)
 * Remove layout field from advanced fieldset in pricing tables module (c567955)
 * Merge remote-tracking branch 'origin/main' (a58457e)
 * Add dedicated fonts fieldset with Google Font integration (895fdf5)
@@ -14,4 +11,9 @@
 * Add type hints and documentation for module parameters (2108bb7)
 * Add red template variant with Google Font integration and font size options (94c223d)
 * Merge pull request #6 (e792a16)
+* Update version to 2025.05.15 for release (63f23cd)
+* Add icon positioning improvements and default center-center location (558424a)
+* Create red template variant and remove icon functionality (97f8727)
+* Update version to 2025.05.15.1, creation date to 2025 May 15, and copyright year to 2025 (25ae6cf)
+* Merge pull request #7 from N6REJ/icons (ac1008d)
 
