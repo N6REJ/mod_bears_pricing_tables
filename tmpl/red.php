@@ -401,13 +401,12 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
 									</div>
                                 <?php endif; ?>
+                                <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'center-center'): ?>
+									<div class="plan-icon icon-center-center">
+										<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
+									</div>
+                                <?php endif; ?>
 							</header>
-
-                            <?php if (!empty($bears_icon[$cur_column]) && $bears_icon_location[$cur_column] == 'center-center'): ?>
-								<div class="plan-icon icon-center-center">
-									<i class="<?php echo htmlspecialchars($bears_icon[$cur_column]); ?>"<?php echo !empty($bears_icon_color[$cur_column]) ? ' style="color: ' . htmlspecialchars($bears_icon_color[$cur_column]) . ';"' : ''; ?>></i>
-								</div>
-                            <?php endif; ?>
 
 							<ul class="plan-features dot">
                                 <?php

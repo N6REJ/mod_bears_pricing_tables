@@ -94,8 +94,7 @@
 				<field name="icon_group1" type="note" class="bears-icon-group" label="" description="" />
 				<field name="bears_icon1" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
 				<field name="bears_icon_color1" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
-				<field name="bears_icon_location1" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
-					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+				<field name="bears_icon_location1" type="list" default="center-center" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
 					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
 					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
 					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
@@ -123,8 +122,7 @@
 				<field name="icon_group2" type="note" class="bears-icon-group" label="" description="" />
 				<field name="bears_icon2" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
 				<field name="bears_icon_color2" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
-				<field name="bears_icon_location2" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
-					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+				<field name="bears_icon_location2" type="list" default="center-center" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
 					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
 					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
 					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
@@ -152,8 +150,7 @@
 				<field name="icon_group3" type="note" class="bears-icon-group" label="" description="" />
 				<field name="bears_icon3" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
 				<field name="bears_icon_color3" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
-				<field name="bears_icon_location3" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
-					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+				<field name="bears_icon_location3" type="list" default="center-center" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
 					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
 					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
 					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
@@ -181,8 +178,7 @@
 				<field name="icon_group4" type="note" class="bears-icon-group" label="" description="" />
 				<field name="bears_icon4" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" class="input-inline" />
 				<field name="bears_icon_color4" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" class="input-inline" />
-				<field name="bears_icon_location4" type="list" default="none" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
-					<option value="none">MOD_BEARS_ICON_LOCATION_NONE</option>
+				<field name="bears_icon_location4" type="list" default="center-center" label="MOD_BEARS_ICON_LOCATION" description="MOD_BEARS_ICON_LOCATION_DESC" class="input-inline">
 					<option value="top-left">MOD_BEARS_ICON_LOCATION_TOP_LEFT</option>
 					<option value="top-center">MOD_BEARS_ICON_LOCATION_TOP_CENTER</option>
 					<option value="top-right">MOD_BEARS_ICON_LOCATION_TOP_RIGHT</option>
