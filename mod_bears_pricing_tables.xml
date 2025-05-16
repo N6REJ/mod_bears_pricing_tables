@@ -32,7 +32,7 @@
 				<field
 					name="bears_template"
 					type="list"
-					default="1276"
+					default="white"
 					label="MOD_BEARS_TEMPLATE_STYLE"
 					description="MOD_BEARS_TEMPLATE_STYLE_DESC">
 					<option value="1276">1 - Default ( Large Accent - 1276)</option> <!-- 1276 -->

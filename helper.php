@@ -277,7 +277,7 @@ class ModBearsPricingTablesHelper
     public static function getTemplateName($params)
     {
         // Get template selection with default fallback
-        $template = $params->get('bears_template', 'default');
+        $template = $params->get('bears_template');
         
         // Get application
         $app = Factory::getApplication();
@@ -287,8 +287,8 @@ class ModBearsPricingTablesHelper
 
         // If the template file doesn't exist, fall back to default.php
         if (!file_exists($templateFile)) {
-            $app->enqueueMessage('Falling back to default.php', 'notice');
-            return 'default';
+            $app->enqueueMessage('Falling back to white.php', 'notice');
+            return 'white';
         }
         
         // Return the template value
