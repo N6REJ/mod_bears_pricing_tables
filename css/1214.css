@@ -19,6 +19,7 @@
   --bears-header-bg: #ffffff;
   --bears-featured-bg: #34495e;
   --bears-header-featured-bg: #34495e; /* Header background for featured plans */
+  --bears-button-bg-color: #222f3d;
   --bears-featured-button-bg: #222f3d; /* Button background for featured plans */
   
   /* Text Colors */
@@ -31,7 +32,6 @@
   
   /* Button Colors */
   --bears-button-color: #ffffff;
-  --bears-button-bg-color: #222f3d;
   --bears-button-hover-color: #46627f;
   
   /* Border Colors */
