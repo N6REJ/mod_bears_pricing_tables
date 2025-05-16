@@ -31,6 +31,7 @@
   
   /* Button Colors */
   --bears-button-color: #222f3d;
+  --bears-button-bg-color: #34495e;
   --bears-button-hover-color: #46627f;
   
   /* Border Colors */
@@ -44,10 +45,10 @@
   /* Typography */
   --bears-font-family: 'Raleway', Arial, sans-serif;
   --bears-title-font-size: 16px;
-  --bears-price-font-size: 2.4em;
-  --bears-features-font-size: 0.8em;
+  --bears-price-font-size: 2.4rem;
+  --bears-features-font-size: 0.8rem;
   --bears-subtitle-font-size: 0.8em;
-  --bears-button-font-size: 0.9em;
+  --bears-button-font-size: 1em;
   --bears-font-weight: 800;
   
   /* Effects */
@@ -63,15 +64,14 @@
 /* Base container styles */
 .bears_pricing_tables-outer {
   width: 100%;
-  max-width: 1000px;
-  margin: 40px 10px;
+  max-width: 100%;
+  margin: 20px 10px;
   text-align: center;
-  color: #000000;
   display: block; /* Ensure it's a block element */
   clear: both; /* Clear any floats */
   overflow: auto; /* Contain floated children */
   font-family: var(--bears-font-family);
-  font-size: 16px;
+  font-size: var(--bears-features-font-size)
 }
 
 .bears_pricing_tables-container {
@@ -99,7 +99,7 @@
   /* Add a minimum height to ensure consistent sizing */
   min-height: 100%;
   float: left; /* Added to match original design */
-  width: 25%; /* Default width */
+  width: 33%; /* Default width */
 }
 
 .bears_pricing_tables ul {
@@ -287,8 +287,8 @@
 }
 .bears_pricing_tables .plan-select a, 
 .bears_pricing_tables .plan-select a.btn {
-  background-color: var(--bears-button-color);
-  color: #ffffff;
+  background-color: var(--bears-featured-button-bg);
+  color: var(--bears-button-color);
   text-decoration: none;
   display: inline-block;
   border: none;

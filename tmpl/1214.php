@@ -55,6 +55,7 @@ $bears_price_color    = $params->get('bears_price_color');
 $bears_featured_price_color = $params->get('bears_featured_price_color');
 $bears_pricesub_color = $params->get('bears_pricesub_color');
 $bears_features_color = $params->get('bears_features_color');
+$bears_button_bg_color = $params->get('bears_button_bg_color');
 $bears_button_color   = $params->get('bears_button_color');
 $bears_button_hover_color = $params->get('bears_button_hover_color');
 $bears_border_color   = $params->get('bears_border_color');
@@ -116,11 +117,11 @@ $bears_css = '
     font-size: var(--bears-title-font-size);
     font-family: var(--bears-font-family, inherit);
     font-weight: var(--bears-font-weight, normal);
-    background-color: var(--bears-button-color);
+    background-color: var(--bears-accent-color);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-title {
     color: var(--bears-featured-title-color);
-    background-color: var(--bears-button-color);
+    background-color: var(--bears-featured-accent-color, var(--bears-accent-color));
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-price {
     color: var(--bears-price-color);
@@ -148,7 +149,8 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn {
-    background-color: var(--bears-button-color);
+    background-color: var(--bears-button-bg-color, var(--bears-button-color));
+    color: #ffffff;
     font-size: var(--bears-button-font-size);
     font-family: var(--bears-font-family, inherit);
     font-weight: var(--bears-font-weight, normal);
@@ -159,7 +161,7 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-select a.btn {
-    background-color: var(--bears-button-color);
+    background-color: var(--bears-button-bg-color, var(--bears-button-color));
 }
 ';
 
@@ -242,6 +244,9 @@ if ($bears_pricesub_color !== null && $bears_pricesub_color !== '') {
 }
 if ($bears_features_color !== null && $bears_features_color !== '') {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
+}
+if ($bears_button_bg_color !== null && $bears_button_bg_color !== '') {
+    $css_overrides .= '--bears-button-bg-color: ' . $bears_button_bg_color . '; ';
 }
 if ($bears_button_color !== null && $bears_button_color !== '') {
     $css_overrides .= '--bears-button-color: ' . $bears_button_color . '; ';

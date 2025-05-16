@@ -61,6 +61,7 @@ class ModBearsPricingTablesHelper
         $bears_accent_color = $params->get('bears_accent_color');
         $bears_featured_accent_color = $params->get('bears_featured_accent_color');
         $bears_button_color = $params->get('bears_button_color');
+        $bears_button_bg_color = $params->get('bears_button_bg_color');
         $bears_button_hover_color = $params->get('bears_button_hover_color');
         
         // Get font parameters
@@ -114,6 +115,7 @@ class ModBearsPricingTablesHelper
             'bears_accent_color' => $bears_accent_color,
             'bears_featured_accent_color' => $bears_featured_accent_color,
             'bears_button_color' => $bears_button_color,
+            'bears_button_bg_color' => $bears_button_bg_color,
             'bears_button_hover_color' => $bears_button_hover_color,
             
             // Font parameters
@@ -216,6 +218,9 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_button_color')) {
             $css .= '--bears-button-color: ' . $params->get('bears_button_color') . ';';
         }
+        if ($params->get('bears_button_bg_color')) {
+            $css .= '--bears-button-bg-color: ' . $params->get('bears_button_bg_color') . ';';
+        }
         if ($params->get('bears_button_hover_color')) {
             $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
         }
@@ -249,7 +254,7 @@ class ModBearsPricingTablesHelper
         
         // Add Google Font if specified
         if ($params->get('bears_use_google_font', '0') == '1' && $params->get('bears_google_font_family')) {
-            $fontFamily = $params->get('bears_google_font_family', 'Crimson Text');
+            $fontFamily = $params->get('bears_google_font_family', 'Raleway');
             $fontWeight = $params->get('bears_font_weight', '400');
             
             // Add Google Font import
