@@ -21,7 +21,7 @@
   --bears-featured-bg: #222222;
   --bears-header-featured-bg: #222222;
   --bears-button-bg-color: #333333;
-  --bears-featured-button-bg: #000000;
+  --bears-featured-button-bg: #ffffff;
   
   /* Text Colors */
   --bears-title-color: #333333;
@@ -34,6 +34,7 @@
   /* Button Colors */
   --bears-button-color: #ffffff;
   --bears-button-hover-color: #555555;
+  --bears-featured-button-color: #222222; /* New variable for featured button text color */
   
   /* Border Colors */
   --bears-border-color: #e0e0e0;
@@ -65,8 +66,8 @@
 /* Base container styles */
 .bears_pricing_tables-outer {
   width: 100%;
-  max-width: 1000px;
-  margin: 30px 10px;
+  max-width: 1200px; /* Increased from 1000px for more space */
+  margin: 30px auto; /* Changed to auto for horizontal centering */
   text-align: left;
   display: block;
   clear: both;
@@ -80,12 +81,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch; /* Changed from flex-start to stretch for equal height */
   margin: 0 auto;
   position: relative;
   overflow: visible;
   clear: both;
   padding: 10px 0 30px;
+  width: 100%; /* Ensure container takes full width */
 }
 
 /* Column styles */
@@ -98,8 +100,9 @@
   text-align: left;
   position: relative;
   min-height: 100%;
-  flex: 0 0 var(--bears-column-width);
+  flex: 1 1 var(--bears-column-width); /* Changed from flex: 0 0 to flex: 1 1 to allow growth */
   max-width: var(--bears-column-width);
+  min-width: 200px; /* Added min-width to prevent columns from becoming too narrow */
 }
 
 /* Column width settings based on number of columns */
@@ -117,6 +120,10 @@
 
 .bears_pricing_tables-container.columns-4 {
   --bears-column-width: 24%;
+}
+
+.bears_pricing_tables-container.columns-5 {
+  --bears-column-width: 19%;
 }
 
 .bears_pricing_tables ul {
@@ -139,6 +146,7 @@
   padding-top: 10px;
   display: flex;
   flex-direction: column;
+  width: 100%; /* Ensure plan takes full width of its container */
 }
 
 .bears_pricing_tables .plan.featured {
@@ -159,6 +167,7 @@
 .bears_pricing_tables header {
   color: var(--bears-title-color);
   background-color: var(--bears-header-bg);
+  width: 100%; /* Ensure header takes full width */
 }
 
 .bears_pricing_tables .plan.featured header {
@@ -229,6 +238,7 @@
   list-style: outside none none;
   font-size: var(--bears-features-font-size);
   flex: 1 0 auto; /* Allow features to grow and fill space */
+  width: 100%; /* Ensure features take full width */
 }
 
 .bears_pricing_tables .plan-features li {
@@ -256,6 +266,7 @@
   padding: 20px;
   text-align: center;
   margin-top: auto; /* Push to bottom of flex container */
+  width: 100%; /* Ensure select area takes full width */
 }
 
 .bears_pricing_tables .plan.featured .plan-select {
@@ -285,6 +296,14 @@
 .bears_pricing_tables .plan.featured .plan-select a, 
 .bears_pricing_tables .plan.featured .plan-select a.btn {
   background-color: var(--bears-featured-button-bg);
+  color: var(--bears-featured-button-color);
+}
+
+/* Hover state for featured buttons */
+.bears_pricing_tables .plan.featured .plan-select a:hover, 
+.bears_pricing_tables .plan.featured .plan-select a.btn:hover {
+  background-color: #f0f0f0 !important; /* Slightly darker white for hover */
+  color: #000000;
 }
 
 
@@ -297,7 +316,8 @@
   clear: both;
 }
 
-@media only screen and (max-width: 767px) {
+/* Improved responsive styles */
+@media only screen and (max-width: 992px) {
   .bears_pricing_tables-container {
     --bears-column-width: 49%;
   }
@@ -305,18 +325,39 @@
   .bears_pricing_tables-container.columns-1,
   .bears_pricing_tables-container.columns-2,
   .bears_pricing_tables-container.columns-3,
-  .bears_pricing_tables-container.columns-4 {
+  .bears_pricing_tables-container.columns-4,
+  .bears_pricing_tables-container.columns-5 {
     --bears-column-width: 49%;
   }
   
   .bears_pricing_tables {
     margin: 0.5%;
+    flex: 0 0 var(--bears-column-width);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .bears_pricing_tables-container {
+    --bears-column-width: 100%;
+  }
+  
+  .bears_pricing_tables-container.columns-1,
+  .bears_pricing_tables-container.columns-2,
+  .bears_pricing_tables-container.columns-3,
+  .bears_pricing_tables-container.columns-4,
+  .bears_pricing_tables-container.columns-5 {
+    --bears-column-width: 100%;
+  }
+  
+  .bears_pricing_tables {
+    margin: 0.5% 0;
+    flex: 0 0 var(--bears-column-width);
+    max-width: 100%;
   }
   
   .bears_pricing_tables-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     padding: 0 0 20px;
   }
@@ -339,23 +380,6 @@
   
   .bears_pricing_tables .plan.featured header {
     line-height: 70px;
-  }
-}
-
-@media only screen and (max-width: 440px) {
-  .bears_pricing_tables-container {
-    --bears-column-width: 100%;
-  }
-  
-  .bears_pricing_tables-container.columns-1,
-  .bears_pricing_tables-container.columns-2,
-  .bears_pricing_tables-container.columns-3,
-  .bears_pricing_tables-container.columns-4 {
-    --bears-column-width: 100%;
-  }
-  
-  .bears_pricing_tables {
-    margin: 0.5% 0;
   }
 }
 

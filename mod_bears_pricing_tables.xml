@@ -109,6 +109,7 @@
 					<option value="500">Medium (500)</option>
 					<option value="600">Semi-Bold (600)</option>
 					<option value="700">Bold (700)</option>
+					<option value="800">Extra Bold (800)</option>
 				</field>
 				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
 				<field name="bears_subtitle_font_size" type="text" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
@@ -150,7 +151,7 @@
 				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
-				<field name="bears_column_featured3" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
+				<field name="bears_column_featured3" type="radio" default="yes" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
 					<option value="no">JNO</option>
 					<option value="yes">JYES</option>
