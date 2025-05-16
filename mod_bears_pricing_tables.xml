@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.16.1</version>
+	<version>2025.05.16.2</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
@@ -109,6 +109,7 @@
 					<option value="500">Medium (500)</option>
 					<option value="600">Semi-Bold (600)</option>
 					<option value="700">Bold (700)</option>
+					<option value="800">Extra Bold (800)</option>
 				</field>
 				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
 				<field name="bears_subtitle_font_size" type="text" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
