@@ -14,4 +14,3 @@
 * Create red template variant with Google Font integration and responsive styling (4927776)
 * Merge remote-tracking branch 'origin/icons' into icons (b0d2713)
 * Merge pull request #8 (a0fd4a2)
-

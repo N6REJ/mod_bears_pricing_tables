@@ -35,18 +35,18 @@
 					default="1276"
 					label="MOD_BEARS_TEMPLATE_STYLE"
 					description="MOD_BEARS_TEMPLATE_STYLE_DESC">
-					<option value="1276">1 - Default ( Large Accent )</option> <!-- 1276 -->
-					<option value="red">2 - Red version of default ( Large Accent )</option> <!-- 1276 -->
-					<option value="white">3 - White ( simple Black and White )</option><!-- custom -->
-					<option value="1517">4 - Blue ( Rounded )</option><!-- 1517 -->
-					<option value="1299">5 - Dark ( Small Accent )</option><!-- 1299 -->
-					<option value="1404">6 - Purple ( Wedge Accent )</option><!-- 1404 -->
-					<option value="1265">7 - Orange</option> <!-- 1265 -->
-					<option value="1240">8 - Coins ( Blue )</option><!-- 1240 -->
-					<option value="1464">9 - Offset ( Accent offset )</option><!-- 1464 -->
-					<option value="1223">10 - Burgundy ( Coin Pricing )</option><!-- 1223 -->
-					<option value="1207">11 - Simple ( Blue on white )</option><!-- 1207 -->
-					<option value="1214">12 - Small ( Small Title )</option><!-- 1214 -->
+					<option value="1276">1 - Default ( Large Accent - 1276)</option> <!-- 1276 -->
+					<option value="red">2 - Red version of default ( Large Accent -red)</option> <!-- 1276 -->
+					<option value="white">3 - White ( simple Black and White -white)</option><!-- custom -->
+					<option value="1517">4 - Blue ( Rounded -1517)</option><!-- 1517 -->
+					<option value="1299">5 - Dark ( Small Accent -1299)</option><!-- 1299 -->
+					<option value="1404">6 - Purple ( Wedge Accent -1404)</option><!-- 1404 -->
+					<option value="1265">7 - Orange ( -1265</option> <!-- 1265 -->
+					<option value="1240">8 - Coins ( Blue -1240)</option><!-- 1240 -->
+					<option value="1464">9 - Offset ( Accent offset -1464)</option><!-- 1464 -->
+					<option value="1223">10 - Burgundy ( Coin Pricing -1223)</option><!-- 1223 -->
+					<option value="1207">11 - Simple ( Blue on white -1207)</option><!-- 1207 -->
+					<option value="1214">12 - Small ( Small Title -1214)</option><!-- 1214 -->
 				</field>
 				<field name="bears_num_columns" type="radio" default="3" label="MOD_BEARS_NUMCOLUMNS" description="MOD_BEARS_NUMCOLUMNS_DESC"
 					   class="btn-group">
