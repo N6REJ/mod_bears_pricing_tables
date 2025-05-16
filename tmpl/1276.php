@@ -317,6 +317,8 @@ if ($bears_num_columns == '1') {
     $column_width = '33.3%';
 } elseif ($bears_num_columns == '4') {
     $column_width = '25%';
+} elseif ($bears_num_columns == '5') {
+    $column_width = '20%';
 }
 
 $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: ' . $column_width . '; }');

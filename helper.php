@@ -78,7 +78,7 @@ class ModBearsPricingTablesHelper
         $bears_buttonurl = array();
 
         // Get parameters for each column
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $bears_title[$i] = $params->get('bears_title' . $i, '');
             $bears_price[$i] = $params->get('bears_price' . $i, '');
             $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
@@ -145,8 +145,8 @@ class ModBearsPricingTablesHelper
         // Get the document
         $document = Factory::getDocument();
         
-        // Get template selection with default fallback
-        $template = $params->get('bears_template', 'default');
+        // Get template name using the safe method
+        $template = self::getTemplateName($params);
         
         // Add the base CSS file
         $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css');
@@ -277,7 +277,7 @@ class ModBearsPricingTablesHelper
     public static function getTemplateName($params)
     {
         // Get template selection with default fallback
-        $template = $params->get('bears_template');
+        $template = $params->get('bears_template', 'default');
         
         // Get application
         $app = Factory::getApplication();
@@ -285,9 +285,11 @@ class ModBearsPricingTablesHelper
         // Check if the template file exists
         $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
 
-        // If the template file doesn't exist, fall back to default.php
+        // If the template file doesn't exist, fall back to white.php
         if (!file_exists($templateFile)) {
-            $app->enqueueMessage('Falling back to white.php', 'notice');
+            // Get application
+            $app = Factory::getApplication();
+            $app->enqueueMessage('Template "' . $template . '" not found, falling back to white.php', 'notice');
             return 'white';
         }
         

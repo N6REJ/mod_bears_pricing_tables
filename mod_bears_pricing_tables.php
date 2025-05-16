@@ -47,7 +47,6 @@ $bears_num_columns = $params_array['bears_num_columns'];
 $bears_title = $params_array['bears_title'];
 $bears_price = $params_array['bears_price'];
 $bears_subtitle = $params_array['bears_subtitle'];
-$bears_features = $params_array['bears_features'];
 $bears_featured = $params_array['bears_featured'];
 $bears_buttontext = $params_array['bears_buttontext'];
 $bears_buttonurl = $params_array['bears_buttonurl'];
@@ -64,5 +63,5 @@ $bears_button_font_size = $params_array['bears_button_font_size'];
 // Get the template name to load
 $templateName = ModBearsPricingTablesHelper::getTemplateName($params);
 
-// Load the layout
+// Load the layout - IMPORTANT: Use the template name from the helper
 require ModuleHelper::getLayoutPath('mod_bears_pricing_tables', $templateName);
