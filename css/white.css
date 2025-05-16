@@ -1,0 +1,407 @@
+/**
+ * Bears Pricing Tables - White CSS
+ * Version: 2025.5.15
+ * Created by: N6REJ
+ * Email: troy@hallhome.us
+ * URL: www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ */
+/* White Template - Black & White Theme */
+/* Default CSS Variables for Bears Pricing Tables */
+:root {
+  /* Layout Variables */
+  --bears-num-columns: 4;
+  --bears-column-margin-y: 0.5%;
+  --bears-column-margin-x: 0.5%;
+  --bears-column-width: 24%; /* Default to 4 columns */
+  
+  /* Background Colors */
+  --bears-column-bg: #ffffff;
+  --bears-header-bg: #f8f8f8;
+  --bears-featured-bg: #222222;
+  --bears-header-featured-bg: #222222;
+  --bears-button-bg-color: #333333;
+  --bears-featured-button-bg: #000000;
+  
+  /* Text Colors */
+  --bears-title-color: #333333;
+  --bears-featured-title-color: #ffffff;
+  --bears-price-color: #333333;
+  --bears-featured-price-color: #ffffff;
+  --bears-pricesub-color: #777777;
+  --bears-features-color: #555555;
+  
+  /* Button Colors */
+  --bears-button-color: #ffffff;
+  --bears-button-hover-color: #555555;
+  
+  /* Border Colors */
+  --bears-border-color: #e0e0e0;
+  --bears-featured-border-color: #000000;
+  
+  /* Accent Colors */
+  --bears-accent-color: #333333;
+  --bears-featured-accent-color: #ffffff;
+  
+  /* Typography */
+  --bears-font-family: 'Source Sans Pro', Arial, sans-serif;
+  --bears-title-font-size: 1.6em;
+  --bears-price-font-size: 2.8em;
+  --bears-features-font-size: 0.9em;
+  --bears-subtitle-font-size: 0.7em;
+  --bears-button-font-size: 0.75em;
+  --bears-font-weight: 800;
+  
+  /* Effects */
+  --bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --bears-transition-speed: 0.25s;
+  
+  /* Border Settings */
+  --bears-border-radius: 8px;
+  --bears-border-width: 1px;
+  --bears-border-style: solid;
+}
+
+/* Base container styles */
+.bears_pricing_tables-outer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px 10px;
+  text-align: left;
+  display: block;
+  clear: both;
+  overflow: auto;
+  font-family: var(--bears-font-family);
+  font-size: 16px;
+  color: #333333;
+}
+
+.bears_pricing_tables-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible;
+  clear: both;
+  padding: 10px 0 30px;
+}
+
+/* Column styles */
+.bears_pricing_tables {
+  box-sizing: border-box;
+  padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: left;
+  position: relative;
+  min-height: 100%;
+  flex: 0 0 var(--bears-column-width);
+  max-width: var(--bears-column-width);
+}
+
+/* Column width settings based on number of columns */
+.bears_pricing_tables-container.columns-1 {
+  --bears-column-width: 100%;
+}
+
+.bears_pricing_tables-container.columns-2 {
+  --bears-column-width: 49%;
+}
+
+.bears_pricing_tables-container.columns-3 {
+  --bears-column-width: 32.33%;
+}
+
+.bears_pricing_tables-container.columns-4 {
+  --bears-column-width: 24%;
+}
+
+.bears_pricing_tables ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bears_pricing_tables .plan {
+  margin: 0;
+  position: relative;
+  background-color: var(--bears-column-bg);
+  overflow: hidden;
+  border-radius: var(--bears-border-radius);
+  text-align: left;
+  border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+  box-shadow: var(--bears-box-shadow);
+  transition: all var(--bears-transition-speed) ease;
+  height: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bears_pricing_tables .plan.featured {
+  margin-top: -10px;
+  background-color: var(--bears-featured-bg);
+  color: #ffffff;
+  z-index: 1;
+  border: 2px solid var(--bears-featured-border-color);
+}
+
+.bears_pricing_tables * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all var(--bears-transition-speed) ease-out;
+  transition: all var(--bears-transition-speed) ease-out;
+}
+
+.bears_pricing_tables header {
+  color: var(--bears-title-color);
+  background-color: var(--bears-header-bg);
+}
+
+.bears_pricing_tables .plan.featured header {
+  background-color: var(--bears-header-featured-bg);
+  color: var(--bears-featured-title-color);
+}
+
+.bears_pricing_tables .plan-title {
+  line-height: 60px;
+  position: relative;
+  margin: 0;
+  padding: 0 20px;
+  font-size: var(--bears-title-font-size);
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--bears-title-color);
+}
+
+.bears_pricing_tables .plan-title:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 20px;
+  width: 30px;
+  height: 3px;
+  background-color: var(--bears-accent-color);
+}
+
+.bears_pricing_tables .plan.featured .plan-title {
+  color: var(--bears-featured-title-color);
+}
+
+.bears_pricing_tables .plan.featured .plan-title:after {
+  background-color: var(--bears-featured-accent-color);
+}
+
+.bears_pricing_tables .plan-cost {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.bears_pricing_tables .plan-price {
+  font-weight: 400;
+  font-size: var(--bears-price-font-size);
+  margin: 10px 0;
+  display: inline-block;
+  color: var(--bears-price-color);
+}
+
+.bears_pricing_tables .plan.featured .plan-price {
+  color: var(--bears-featured-price-color);
+}
+
+.bears_pricing_tables .plan-type {
+  opacity: 0.8;
+  font-size: var(--bears-subtitle-font-size);
+  text-transform: uppercase;
+  color: var(--bears-pricesub-color);
+}
+
+.bears_pricing_tables .plan.featured .plan-type {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bears_pricing_tables .plan-features {
+  padding: 0 0 20px;
+  margin: 0;
+  list-style: outside none none;
+  font-size: var(--bears-features-font-size);
+  flex: 1 0 auto; /* Allow features to grow and fill space */
+}
+
+.bears_pricing_tables .plan-features li {
+  padding: 8px 20px;
+  color: var(--bears-features-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bears_pricing_tables .plan.featured .plan-features li {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bears_pricing_tables .plan-features i {
+  margin-right: 8px;
+  color: #333333;
+}
+
+.bears_pricing_tables .plan.featured .plan-features i {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bears_pricing_tables .plan-select {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-top: auto; /* Push to bottom of flex container */
+}
+
+.bears_pricing_tables .plan.featured .plan-select {
+  padding: 30px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bears_pricing_tables .plan-select a, 
+.bears_pricing_tables .plan-select a.btn {
+  background-color: var(--bears-button-bg-color);
+  color: var(--bears-button-color);
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: var(--bears-button-font-size);
+  font-weight: 600;
+  border-radius: var(--bears-border-radius);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  display: inline-block;
+}
+
+.bears_pricing_tables .plan-select a:hover, 
+.bears_pricing_tables .plan-select a.btn:hover {
+  background-color: var(--bears-button-hover-color) !important;
+}
+
+.bears_pricing_tables .plan.featured .plan-select a, 
+.bears_pricing_tables .plan.featured .plan-select a.btn {
+  background-color: var(--bears-featured-button-bg);
+}
+
+
+/* Add padding to the bottom of the container to account for the featured scaling */
+.bears_pricing_tables-container::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 30px;
+  clear: both;
+}
+
+@media only screen and (max-width: 767px) {
+  .bears_pricing_tables-container {
+    --bears-column-width: 49%;
+  }
+  
+  .bears_pricing_tables-container.columns-1,
+  .bears_pricing_tables-container.columns-2,
+  .bears_pricing_tables-container.columns-3,
+  .bears_pricing_tables-container.columns-4 {
+    --bears-column-width: 49%;
+  }
+  
+  .bears_pricing_tables {
+    margin: 0.5%;
+  }
+  
+  .bears_pricing_tables-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 0 20px;
+  }
+  
+  .bears_pricing_tables .plan-title,
+  .bears_pricing_tables .plan-select a {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  
+  .bears_pricing_tables .plan-select,
+  .bears_pricing_tables .plan.featured .plan-select {
+    padding: 20px;
+  }
+  
+  .bears_pricing_tables .plan.featured {
+    margin-top: 0;
+    height: 100%;
+  }
+  
+  .bears_pricing_tables .plan.featured header {
+    line-height: 70px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .bears_pricing_tables-container {
+    --bears-column-width: 100%;
+  }
+  
+  .bears_pricing_tables-container.columns-1,
+  .bears_pricing_tables-container.columns-2,
+  .bears_pricing_tables-container.columns-3,
+  .bears_pricing_tables-container.columns-4 {
+    --bears-column-width: 100%;
+  }
+  
+  .bears_pricing_tables {
+    margin: 0.5% 0;
+  }
+}
+
+/* Border style classes */
+/* Regular plan border styles */
+.bears_pricing_tables .plan.border-shadow {
+  border: none !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bears_pricing_tables .plan.border-solid {
+  border: 1px solid var(--bears-border-color) !important;
+  box-shadow: none !important;
+}
+
+.bears_pricing_tables .plan.border-both {
+  border: 1px solid var(--bears-border-color) !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bears_pricing_tables .plan.border-none {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Featured plan border styles */
+.bears_pricing_tables .plan.featured.border-shadow {
+  border: none !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+  overflow: visible;
+}
+
+.bears_pricing_tables .plan.featured.border-solid {
+  border: 2px solid var(--bears-featured-border-color) !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+
+.bears_pricing_tables .plan.featured.border-both {
+  border: 2px solid var(--bears-featured-border-color) !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+  overflow: visible;
+}
+
+.bears_pricing_tables .plan.featured.border-none {
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
