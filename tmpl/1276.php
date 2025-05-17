@@ -26,7 +26,7 @@ $bears_title_color = $params->get('bears_title_color');
 $bears_featured_title_color = $params->get('bears_featured_title_color');
 $bears_price_color    = $params->get('bears_price_color');
 $bears_featured_price_color = $params->get('bears_featured_price_color');
-$bears_pricesub_color = $params->get('bears_pricesub_color');
+$bears_price_subtitle_color = $params->get('bears_price_subtitle_color');
 $bears_features_color = $params->get('bears_features_color');
 $bears_button_text_color   = $params->get('bears_button_text_color');
 $bears_button_hover_color = $params->get('bears_button_hover_color');
@@ -92,7 +92,7 @@ $bears_css = '
     --bears-featured-title-color: #333333;
     --bears-price-color: #333333;
     --bears-featured-price-color: #333333;
-    --bears-pricesub-color: #666666;
+    --bears-price_subtitle-color: #666666;
     --bears-features-color: #333333;
     --bears-button-color: #ffffff;
     --bears-button-hover-color: #ffffff;
@@ -151,7 +151,7 @@ $bears_css = '
 }
 
 .bears_pricing_tables' . $bears_moduleid . ' .plan-type {
-    color: var(--bears-pricesub-color);
+    color: var(--bears-price_subtitle-color);
     font-size: var(--bears-subtitle-font-size);
     font-family: var(--bears-font-family);
     font-weight: var(--bears-font-weight);
@@ -293,8 +293,8 @@ if ($bears_price_color !== null && $bears_price_color !== '') {
 if ($bears_featured_price_color !== null && $bears_featured_price_color !== '') {
     $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-if ($bears_pricesub_color !== null && $bears_pricesub_color !== '') {
-    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
+if ($bears_price_subtitle_color !== null && $bears_price_subtitle_color !== '') {
+    $css_overrides .= '--bears-price_subtitle-color: ' . $bears_price_subtitle_color . '; ';
 }
 if ($bears_features_color !== null && $bears_features_color !== '') {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
@@ -328,6 +328,9 @@ if (!empty($bears_features_font_size)) {
 }
 if (!empty($bears_button_font_size)) {
     $css_overrides .= '--bears-button-font-size: ' . $bears_button_font_size . 'px; ';
+}
+if (!empty($bears_icon_font_size)) {
+    $css_overrides .= '--bears-icon-font-size: ' . $bears_icon_font_size . 'px; ';
 }
 if (!empty($bears_google_font_family)) {
     $css_overrides .= '--bears-font-family: \'' . $bears_google_font_family . '\', sans-serif; ';
@@ -387,12 +390,15 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 						<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $is_featured ? $bears_featured_border_style : $bears_border_style; ?>">
 							<header>
 								<div class="plan-header-wrapper">
+									<h4 class="plan-title">
+                                        <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+									</h4>
                                     <?php
                                     // Display icon if set
                                     if (!empty($bears_icon[$cur_column])) {
                                         $icon_position = !empty($bears_icon_position[$cur_column]) ? $bears_icon_position[$cur_column] : 'top-center';
                                         ?>
-	                                    <div class="plan-icon position-<?php echo $icon_position; ?>">
+										<div class="plan-icon position-<?php echo $icon_position; ?>">
                                             <?php
                                             // Check if the icon value already contains the full HTML tag
                                             if (strpos($bears_icon[$cur_column], '<i class') === 0) {
@@ -401,13 +407,8 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
                                                 echo '<i class="' . htmlspecialchars($bears_icon[$cur_column]) . '"></i>';
                                             }
                                             ?>
-	                                    </div>
+										</div>
                                     <?php } ?>
-
-									<h4 class="plan-title">
-                                        <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
-									</h4>
-
 									<div class="plan-cost">
 										<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
 										<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>

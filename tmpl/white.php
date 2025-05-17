@@ -43,7 +43,7 @@ $bears_title_color = $params->get('bears_title_color', '');
 $bears_featured_title_color = $params->get('bears_featured_title_color', '');
 $bears_price_color = $params->get('bears_price_color', '');
 $bears_featured_price_color = $params->get('bears_featured_price_color', '');
-$bears_pricesub_color = $params->get('bears_pricesub_color', '');
+$bears_price_subtitle_color = $params->get('bears_price_subtitle_color', '');
 $bears_features_color = $params->get('bears_features_color', '');
 $bears_border_color = $params->get('bears_border_color', '');
 $bears_featured_border_color = $params->get('bears_featured_border_color', '');
@@ -70,6 +70,8 @@ $bears_features = [];
 $bears_buttontext = [];
 $bears_buttonurl = [];
 $bears_featured = [];
+$bears_icon = [];
+$bears_icon_position = [];
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -81,6 +83,8 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i);
         $bears_featured[$i] = $params->get('bears_column_featured' . $i, 'no');
+        $bears_icon[$i] = $params->get('bears_icon' . $i, '');
+        $bears_icon_position[$i] = $params->get('bears_icon_position' . $i, 'top-center');
     }
 }
 
@@ -135,8 +139,8 @@ if (!empty($bears_price_color)) {
 if (!empty($bears_featured_price_color)) {
     $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-if (!empty($bears_pricesub_color)) {
-    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
+if (!empty($bears_price_subtitle_color)) {
+    $css_overrides .= '--bears-price_subtitle-color: ' . $bears_price_subtitle_color . '; ';
 }
 if (!empty($bears_features_color)) {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
@@ -173,7 +177,63 @@ if (!empty($bears_column_margin_y)) {
 
 // Add overrides if any exist
 if (!empty($css_overrides)) {
-    $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }');
+    $bears_css = '.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }';
+    
+    // Add icon positioning CSS
+    $bears_css .= '
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-left {
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-center {
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-right {
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-right {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-right {
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-center {
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-left {
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-left {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    ';
+    
+    $document->addStyleDeclaration($bears_css);
 }
 
 // First load the main CSS file
@@ -194,7 +254,22 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
 							<h4 class="plan-title">
                                 <?php echo htmlspecialchars($bears_title[$i] ?? ''); ?>
 							</h4>
-
+                            <?php
+                            // Display icon if set
+                            if (!empty($bears_icon[$i])) {
+                                $icon_position = !empty($bears_icon_position[$i]) ? $bears_icon_position[$i] : 'top-center';
+                                ?>
+								<div class="plan-icon position-<?php echo $icon_position; ?>">
+                                    <?php
+                                    // Check if the icon value already contains the full HTML tag
+                                    if (strpos($bears_icon[$i], '<i class') === 0) {
+                                        echo $bears_icon[$i];
+                                    } else {
+                                        echo '<i class="' . htmlspecialchars($bears_icon[$i]) . '"></i>';
+                                    }
+                                    ?>
+								</div>
+                            <?php } ?>
 							<div class="plan-cost">
 								<span class="plan-price"><?php echo htmlspecialchars($bears_price[$i] ?? ''); ?></span>
 								<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$i] ?? ''); ?></span>

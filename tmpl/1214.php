@@ -53,7 +53,7 @@ $bears_title_color    = $params->get('bears_title_color');
 $bears_featured_title_color = $params->get('bears_featured_title_color');
 $bears_price_color    = $params->get('bears_price_color');
 $bears_featured_price_color = $params->get('bears_featured_price_color');
-$bears_pricesub_color = $params->get('bears_pricesub_color');
+$bears_price_subtitle_color = $params->get('bears_price_subtitle_color');
 $bears_features_color = $params->get('bears_features_color');
 $bears_button_color = $params->get('bears_button_color');
 $bears_button_text_color   = $params->get('bears_button_text_color');
@@ -142,7 +142,7 @@ $bears_css = '
     color: var(--bears-featured-title-color);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-type {
-    color: var(--bears-pricesub-color);
+    color: var(--bears-price_subtitle-color);
     font-size: var(--bears-subtitle-font-size);
     font-family: var(--bears-font-family, inherit);
     font-weight: var(--bears-font-weight, normal);
@@ -239,8 +239,8 @@ if ($bears_price_color !== null && $bears_price_color !== '') {
 if ($bears_featured_price_color !== null && $bears_featured_price_color !== '') {
     $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-if ($bears_pricesub_color !== null && $bears_pricesub_color !== '') {
-    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
+if ($bears_price_subtitle_color !== null && $bears_price_subtitle_color !== '') {
+    $css_overrides .= '--bears-price_subtitle-color: ' . $bears_price_subtitle_color . '; ';
 }
 if ($bears_features_color !== null && $bears_features_color !== '') {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
@@ -281,6 +281,9 @@ if (!empty($bears_features_font_size)) {
 if (!empty($bears_button_font_size)) {
     $css_overrides .= '--bears-button-font-size: ' . $bears_button_font_size . 'px; ';
 }
+if (!empty($bears_button_font_size)) {
+    $css_overrides .= '--bears-button-font-size: ' . $bears_button_font_size . 'px; ';
+}
 if (!empty($bears_google_font_family)) {
     $css_overrides .= '--bears-font-family: \'' . $bears_google_font_family . '\', sans-serif; ';
     $css_overrides .= '--bears-font-weight: ' . $bears_font_weight . '; ';
@@ -289,6 +292,60 @@ if (!empty($bears_google_font_family)) {
 // Add overrides if any exist
 if (!empty($css_overrides)) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }';
+    
+    // Add icon positioning CSS
+    $bears_css .= '
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-left {
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-center {
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-right {
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-right {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-right {
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-center {
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-left {
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-left {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    ';
 }
 
 // First load the main CSS file
@@ -314,7 +371,22 @@ $document->addStyleDeclaration($bears_css);
 							<h3 class="plan-title">
                                 <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 							</h3>
-
+                            <?php
+                            // Display icon if set and position is not 'none'
+                            if (!empty($bears_icon[$cur_column]) && (!empty($bears_icon_position[$cur_column]) && $bears_icon_position[$cur_column] !== 'none')) {
+                                $icon_position = !empty($bears_icon_position[$cur_column]) ? $bears_icon_position[$cur_column] : 'top-center';
+                                ?>
+								<div class="plan-icon position-<?php echo $icon_position; ?>">
+                                    <?php
+                                    // Check if the icon value already contains the full HTML tag
+                                    if (strpos($bears_icon[$cur_column], '<i class') === 0) {
+                                        echo $bears_icon[$cur_column];
+                                    } else {
+                                        echo '<i class="' . htmlspecialchars($bears_icon[$cur_column]) . '"></i>';
+                                    }
+                                    ?>
+								</div>
+                            <?php } ?>
 							<div class="plan-cost">
 								<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
 								<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
