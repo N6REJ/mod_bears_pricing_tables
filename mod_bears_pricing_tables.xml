@@ -91,8 +91,8 @@
 				<field name="bears_button_text_color" type="color" default="" label="MOD_BEARS_BUTTON_TEXT_COLOR" description="MOD_BEARS_BUTTON_TEXT_COLOR_DESC" />
 				<field name="bears_button_color" type="color" default="" label="MOD_BEARS_BUTTON_COLOR" description="MOD_BEARS_BUTTON_COLOR_DESC" />
 				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
-				<field name="bears_icon_font_color" type="color" default="" label="MOD_BEARS_ICON_FONT_COLOR" description="MOD_BEARS_ICON_FONT_COLOR_DESC" />
-				<field name="bears_featured_icon_font_color" type="color" default="" label="MOD_BEARS_FEATURED_ICON_FONT_COLOR" description="MOD_BEARS_FEATURED_ICON_FONT_COLOR_DESC" />
+				<field name="bears_icon_class_color" type="color" default="" label="MOD_BEARS_ICON_CLASS_COLOR" description="MOD_BEARS_ICON_CLASS_COLOR_DESC" />
+				<field name="bears_featured_icon_font_color" type="color" default="" label="MOD_BEARS_FEATURED_ICON_CLASS_COLOR" description="MOD_BEARS_FEATURED_ICON_CLASS_COLOR_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_FONTS" label="COM_MODULES_MOD_BEARS_FONTS_FIELDSET_LABEL">
@@ -121,14 +121,14 @@
 				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
 				<field name="bears_features_font_size" type="text" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
 				<field name="bears_button_font_size" type="text" default="" label="MOD_BEARS_BUTTON_FONT_SIZE" description="MOD_BEARS_BUTTON_FONT_SIZE_DESC" />
-				<field name="bears_icon_font_size" type="text" default="36px" label="MOD_BEARS_ICON_FONT_SIZE" description="MOD_BEARS_ICON_FONT_SIZE_DESC" />
+				<field name="bears_icon_class_size" type="text" default="36px" label="MOD_BEARS_ICON_CLASS_SIZE" description="MOD_BEARS_ICON_CLASS_SIZE_DESC" />
 			</fieldset>
 
 			<fieldset name="column1">
 				<field name="bears_title1" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
 				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
-				<field name="bears_icon1" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
+				<field name="bears_icon1" type="text" filter="raw" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
 				<field name="bears_icon_position1" type="list" default="none" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
 					<option value="none">None</option>
 					<option value="top-left">Top Left</option>
@@ -155,7 +155,7 @@
 				<field name="bears_title2" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
 				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
-				<field name="bears_icon2" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
+				<field name="bears_icon2" type="text" filter="raw" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
 				<field name="bears_icon_position2" type="list" default="none" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
 					<option value="none">None</option>
 					<option value="top-left">Top Left</option>
@@ -182,7 +182,7 @@
 				<field name="bears_title3" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
 				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
-				<field name="bears_icon3" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
+				<field name="bears_icon3" type="text" filter="raw" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
 				<field name="bears_icon_position3" type="list" default="none" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
 					<option value="none">None</option>
 					<option value="top-left">Top Left</option>
@@ -209,7 +209,7 @@
 				<field name="bears_title4" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
 				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
-				<field name="bears_icon4" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
+				<field name="bears_icon4" type="text" filter="raw" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
 				<field name="bears_icon_position4" type="list" default="none" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
 					<option value="none">None</option>
 					<option value="top-left">Top Left</option>
@@ -236,7 +236,7 @@
 				<field name="bears_title5" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
 				<field name="bears_price5" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle5" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
-				<field name="bears_icon5" type="text" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
+				<field name="bears_icon5" type="text" filter="raw" default="" label="MOD_BEARS_ICON" description="MOD_BEARS_ICON_DESC" />
 				<field name="bears_icon_position5" type="list" default="none" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
 					<option value="none">None</option>
 					<option value="top-left">Top Left</option>

@@ -63,7 +63,7 @@ $bears_border_style   = $params->get('bears_border_style', 'shadow');
 $bears_featured_border_style = $params->get('bears_featured_border_style', 'shadow');
 $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
-$bears_icon_color = $params->get('bears_icon_color');
+$bears_icon_class_color = $params->get('bears_icon_color');
 
 // Font family settings
 $bears_google_font_family = $params->get('bears_google_font_family', '');

@@ -80,7 +80,9 @@ $bears_price      = array();
 $bears_features   = array();
 $bears_buttontext = array();
 $bears_buttonurl  = array();
-$bears_featured  = array();
+$bears_featured   = array();
+$bears_icon       = array();
+$bears_icon_position = array();
 
 $max_columns = 15;
 for ($i = 1; $i <= $max_columns; $i++) {
@@ -341,7 +343,23 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 								<h4 class="plan-title">
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
-
+                                <?php
+                                // Display icon if it exists and position is not 'none'
+                                if (!empty($bears_icon[$cur_column]) && 
+                                   (!empty($bears_icon_position[$cur_column]) && $bears_icon_position[$cur_column] !== 'none')) {
+                                    $icon_position = !empty($bears_icon_position[$cur_column]) ? $bears_icon_position[$cur_column] : 'top-center';
+                                    ?>
+									<div class="plan-icon position-<?php echo $icon_position; ?>">
+                                        <?php
+                                        // Check if the icon value already contains the full HTML tag
+                                        if (strpos($bears_icon[$cur_column], '<i class') === 0) {
+                                            echo $bears_icon[$cur_column];
+                                        } else {
+                                            echo '<i class="' . htmlspecialchars($bears_icon[$cur_column]) . '"></i>';
+                                        }
+                                        ?>
+									</div>
+                                <?php } ?>
 								<div class="plan-cost">
 									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
 									<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
