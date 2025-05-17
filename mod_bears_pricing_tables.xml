@@ -85,8 +85,8 @@
 				</field>
 				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
 				<field name="bears_featured_accent_color" type="color" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />
+				<field name="bears_button_text_color" type="color" default="" label="MOD_BEARS_BUTTON_TEXT_COLOR" description="MOD_BEARS_BUTTON_TEXT_COLOR_DESC" />
 				<field name="bears_button_color" type="color" default="" label="MOD_BEARS_BUTTON_COLOR" description="MOD_BEARS_BUTTON_COLOR_DESC" />
-				<field name="bears_button_bg_color" type="color" default="" label="MOD_BEARS_BUTTON_BG_COLOR" description="MOD_BEARS_BUTTON_BG_COLOR_DESC" />
 				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
 			</fieldset>
 
@@ -116,6 +116,7 @@
 				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
 				<field name="bears_features_font_size" type="text" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
 				<field name="bears_button_font_size" type="text" default="" label="MOD_BEARS_BUTTON_FONT_SIZE" description="MOD_BEARS_BUTTON_FONT_SIZE_DESC" />
+				<field name="bears_icon_font_size" type="text" default="36px" label="MOD_BEARS_ICON_FONT_SIZE" description="MOD_BEARS_ICON_FONT_SIZE_DESC" />
 			</fieldset>
 
 			<fieldset name="column1">
