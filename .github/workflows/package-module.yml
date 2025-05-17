@@ -359,6 +359,60 @@ jobs:
           zip -r mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip mod_bears_pricing_tables
           echo "Created ZIP archive: mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip"
       
+      # Generate or update the update.xml file for Joomla update server
+      - name: Update the update.xml file
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          # Create update.xml if it doesn't exist
+          if [ ! -f "update.xml" ]; then
+            echo "Creating new update.xml file"
+            cat > update.xml << EOF
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<update>
+		<name>Bears Pricing Tables</name>
+		<description>Pricing Tables module by Bear</description>
+		<element>mod_bears_pricing_tables</element>
+		<type>module</type>
+		<version>${{ steps.set_version.outputs.version }}</version>
+		<client>site</client>
+		<infourl title="Bears Pricing Tables">https://github.com/N6REJ/mod_bears_pricing_tables</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/N6REJ/mod_bears_pricing_tables/releases/download/${{ steps.set_version.outputs.version }}/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip</downloadurl>
+		</downloads>
+		<targetplatform name="joomla" version="((4\\.4)|(5\\.(0|1|2|3|4|5|6|7|8|9)))" />
+		<php_minimum>8.1</php_minimum>
+	</update>
+</updates>
+EOF
+          else
+            echo "Updating existing update.xml file"
+            # Update version in update.xml
+            sed -i "s|<version>.*</version>|<version>${{ steps.set_version.outputs.version }}</version>|g" update.xml
+            # Update download URL in update.xml
+            sed -i "s|<downloadurl type=\"full\" format=\"zip\">.*</downloadurl>|<downloadurl type=\"full\" format=\"zip\">https://github.com/N6REJ/mod_bears_pricing_tables/releases/download/${{ steps.set_version.outputs.version }}/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip</downloadurl>|g" update.xml
+          fi
+          
+          echo "Updated update.xml content:"
+          cat update.xml
+      
+      # Commit the update.xml changes
+      - name: Commit update.xml changes
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Check if there are changes to commit
+          if git diff --exit-code; then
+            echo "No changes to commit in update.xml"
+          else
+            git add update.xml
+            git commit -m "Update update.xml for version ${{ steps.set_version.outputs.version }}"
+            git push origin main
+            echo "Changes to update.xml committed and pushed to main branch"
+          fi
+      
       - name: Create GitHub Release
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
         id: create_release

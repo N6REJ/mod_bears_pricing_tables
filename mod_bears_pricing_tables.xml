@@ -9,6 +9,9 @@
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.05.16.2</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
+	<updateservers>
+		<server type="extension" priority="1" name="Bears Pricing Tables Updates">https://raw.githubusercontent.com/N6REJ/mod_bears_pricing_tables/main/update.xml</server>
+	</updateservers>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
 		<filename>mod_bears_pricing_tables.xml</filename>
