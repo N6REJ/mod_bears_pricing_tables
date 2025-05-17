@@ -295,6 +295,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/151
                                         // Handle subform data structure
                                         foreach ($features as $key => $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
+                                                // Using Font Awesome icons that are already included in Joomla
                                                 echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
                                             }
                                         }
@@ -302,6 +303,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/151
                                         // Handle array of features
                                         foreach ($features as $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
+                                                // Using Font Awesome icons that are already included in Joomla
                                                 echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
                                             } elseif (is_string($item)) {
                                                 echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item) . '</li>';
@@ -331,6 +333,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/151
                                                         $feature = substr($feature, 3);
                                                     }
                                                     
+                                                    // Using Font Awesome icons that are already included in Joomla
                                                     echo '<li><i class="fa ' . ($is_no ? 'fa-times' : 'fa-check') . '"></i> ' . htmlspecialchars($feature) . '</li>';
                                                 }
                                             }

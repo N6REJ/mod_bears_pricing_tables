@@ -12,6 +12,8 @@
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
  */
 
+// Note: Font Awesome is not explicitly loaded here as it's already included in Joomla
+
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
@@ -52,6 +54,7 @@ $bears_featured_accent_color = $params->get('bears_featured_accent_color', '');
 $bears_button_text_color = $params->get('bears_button_text_color', '');
 $bears_button_color = $params->get('bears_button_color', '');
 $bears_button_hover_color = $params->get('bears_button_hover_color', '');
+$bears_icon_color = $params->get('bears_icon_color', '');
 
 // Get font settings (Google Fonts are loaded by helper.php)
 $bears_google_font_family = $params->get('bears_google_font_family', '');
@@ -255,8 +258,10 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                 <?php echo htmlspecialchars($bears_title[$i] ?? ''); ?>
 							</h4>
                             <?php
-                            // Display icon if set
-                            if (!empty($bears_icon[$i])) {
+                            // Display icon if set and has valid position and color
+                            if (!empty($bears_icon[$i]) && 
+                               (!empty($bears_icon_position[$i]) && $bears_icon_position[$i] !== 'none') && 
+                               (!empty($bears_icon_color) && $bears_icon_color !== 'transparent')) {
                                 $icon_position = !empty($bears_icon_position[$i]) ? $bears_icon_position[$i] : 'top-center';
                                 ?>
 								<div class="plan-icon position-<?php echo $icon_position; ?>">
@@ -286,7 +291,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                     // Handle subform data structure
                                     foreach ($features as $key => $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                         }
                                     }
                                 } elseif (is_array($features)) {
@@ -295,7 +300,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                         if (is_object($item) && isset($item->bears_feature)) {
                                             echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
                                         } elseif (is_string($item)) {
-                                            echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item) . '</li>';
                                         }
                                     }
                                 } elseif (is_string($features)) {
@@ -304,9 +309,9 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                     if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
                                         foreach ($decoded as $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
-                                                echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
+                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                             } elseif (is_string($item)) {
-                                                echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item) . '</li>';
+                                                echo '<li>' . htmlspecialchars($item) . '</li>';
                                             }
                                         }
                                     } else {
@@ -322,7 +327,7 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                                     $feature = substr($feature, 3);
                                                 }
 
-                                                echo '<li><i class="fa ' . ($is_no ? 'fa-times' : 'fa-check') . '"></i> ' . htmlspecialchars($feature) . '</li>';
+                                                echo '<li>' . htmlspecialchars($feature) . '</li>';
                                             }
                                         }
                                     }

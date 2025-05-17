@@ -429,3 +429,60 @@
   box-shadow: none !important;
   overflow: visible;
 }
+
+/* Icon positioning */
+.bears_pricing_tables .plan-icon {
+  display: flex;
+  position: relative;
+}
+
+.bears_pricing_tables .plan-icon.position-top-left {
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-top-center {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-top-right {
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-center-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-right {
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-center {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-left {
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-center-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bears_pricing_tables .plan-icon.position-center-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

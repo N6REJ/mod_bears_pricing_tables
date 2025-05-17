@@ -63,6 +63,7 @@ $bears_border_style   = $params->get('bears_border_style', 'shadow');
 $bears_featured_border_style = $params->get('bears_featured_border_style', 'shadow');
 $bears_accent_color   = $params->get('bears_accent_color');
 $bears_featured_accent_color = $params->get('bears_featured_accent_color');
+$bears_icon_color = $params->get('bears_icon_color');
 
 // Font family settings
 $bears_google_font_family = $params->get('bears_google_font_family', '');
@@ -350,7 +351,10 @@ if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== ''
     $bears_css .= ' .bears_pricing_tables' . $bears_moduleid . ' .plan.featured header:after { border-color: ' . $bears_featured_accent_color . ' transparent transparent transparent; }';
 }
 
-// Put styling in header
+// First load the main CSS file
+$document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/red.css');
+
+// Then add the module-specific CSS
 $document->addStyleDeclaration($bears_css);
 
 /* Columns */
@@ -386,11 +390,13 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
                                     <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 								</h4>
                                 <?php
-                                // Display icon if set
-                                if (!empty($bears_icon[$cur_column])) {
+                                // Display icon if it exists, position is not 'none', and color is not blank/transparent
+                                if (!empty($bears_icon[$cur_column]) && 
+                                   (!empty($bears_icon_position[$cur_column]) && $bears_icon_position[$cur_column] !== 'none') && 
+                                   (!empty($bears_icon_color) && $bears_icon_color !== 'transparent')) {
                                     $icon_position = !empty($bears_icon_position[$cur_column]) ? $bears_icon_position[$cur_column] : 'top-center';
                                     ?>
-									<div class="plan-icon position-<?php echo $icon_position; ?>">
+                                    <div class="plan-icon position-<?php echo $icon_position; ?>">
                                         <?php
                                         // Check if the icon value already contains the full HTML tag
                                         if (strpos($bears_icon[$cur_column], '<i class') === 0) {
@@ -399,7 +405,7 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
                                             echo '<i class="' . htmlspecialchars($bears_icon[$cur_column]) . '"></i>';
                                         }
                                         ?>
-									</div>
+                                    </div>
                                 <?php } ?>
 								<div class="plan-cost">
 									<span class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>

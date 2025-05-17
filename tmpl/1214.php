@@ -292,60 +292,6 @@ if (!empty($bears_google_font_family)) {
 // Add overrides if any exist
 if (!empty($css_overrides)) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }';
-    
-    // Add icon positioning CSS
-    $bears_css .= '
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-left {
-            justify-content: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-center {
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-top-right {
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-right {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-right {
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-center {
-            justify-content: center;
-            margin-top: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-bottom-left {
-            justify-content: flex-start;
-            margin-top: 10px;
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-left {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .bears_pricing_tables' . $bears_moduleid . ' .plan-icon.position-center-center {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-    ';
 }
 
 // First load the main CSS file
@@ -372,8 +318,10 @@ $document->addStyleDeclaration($bears_css);
                                 <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 							</h3>
                             <?php
-                            // Display icon if set and position is not 'none'
-                            if (!empty($bears_icon[$cur_column]) && (!empty($bears_icon_position[$cur_column]) && $bears_icon_position[$cur_column] !== 'none')) {
+                            // Display icon if set, position is not 'none', and color is not blank/transparent
+                            if (!empty($bears_icon[$cur_column]) && 
+                               (!empty($bears_icon_position[$cur_column]) && $bears_icon_position[$cur_column] !== 'none') && 
+                               (!empty($bears_icon_color) && $bears_icon_color !== 'transparent')) {
                                 $icon_position = !empty($bears_icon_position[$cur_column]) ? $bears_icon_position[$cur_column] : 'top-center';
                                 ?>
 								<div class="plan-icon position-<?php echo $icon_position; ?>">

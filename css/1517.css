@@ -51,6 +51,7 @@
   --bears-subtitle-font-size: 0.7em;
   --bears-button-font-size: 0.95em;
   --bears-font-weight: 800;
+  --bears-icon-size: 48px;
   
   /* Effects */
   --bears-box-shadow: none;
@@ -377,6 +378,64 @@
 /* Clearfix */
 .clear {
   clear: both;
+}
+
+/* Icon positioning */
+.bears_pricing_tables .plan-icon {
+  display: flex;
+  position: relative;
+  padding: 0 20px;
+}
+
+.bears_pricing_tables .plan-icon.position-top-left {
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-top-center {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-top-right {
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-center-right {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-right {
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-center {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-bottom-left {
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.bears_pricing_tables .plan-icon.position-center-left {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bears_pricing_tables .plan-icon.position-center-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Border style classes */
