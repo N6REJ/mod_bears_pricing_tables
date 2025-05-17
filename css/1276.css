@@ -57,6 +57,11 @@
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
+  
+  /* Icon Settings */
+  --bears-icon-size: 36px;
+  --bears-icon-color: #191919;
+  --bears-featured-icon-color: #222f3d;
 }
 
 /* Base container styles */
@@ -372,10 +377,20 @@
   clear: both;
 }
 
-/* Icon positioning */
+/* Icon base styling */
 .bears_pricing_tables .plan-icon {
   display: flex;
+  align-items: center;
   position: relative;
+}
+
+.bears_pricing_tables .plan-icon i {
+  font-size: var(--bears-icon-size);
+  color: var(--bears-icon-color);
+}
+
+.bears_pricing_tables .plan.featured .plan-icon i {
+  color: var(--bears-featured-icon-color);
 }
 
 .bears_pricing_tables .plan-icon.position-top-left {

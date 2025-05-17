@@ -92,7 +92,7 @@
 				<field name="bears_button_color" type="color" default="" label="MOD_BEARS_BUTTON_COLOR" description="MOD_BEARS_BUTTON_COLOR_DESC" />
 				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
 				<field name="bears_icon_class_color" type="color" default="" label="MOD_BEARS_ICON_CLASS_COLOR" description="MOD_BEARS_ICON_CLASS_COLOR_DESC" />
-				<field name="bears_featured_icon_font_color" type="color" default="" label="MOD_BEARS_FEATURED_ICON_CLASS_COLOR" description="MOD_BEARS_FEATURED_ICON_CLASS_COLOR_DESC" />
+				<field name="bears_featured_icon_font_color" type="color" default="" label="MOD_BEARS_ICON_CLASS_COLOR" description="MOD_BEARS_FEATURED_ICON_CLASS_COLOR_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_FONTS" label="COM_MODULES_MOD_BEARS_FONTS_FIELDSET_LABEL">
