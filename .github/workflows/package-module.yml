@@ -383,6 +383,47 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+      # Update the Joomla update server XML file after release is created
+      - name: Update Joomla update server XML
+        if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
+        run: |
+          # Define the updates.xml file path
+          UPDATES_XML="updates.xml"
+          
+          if [ -f "$UPDATES_XML" ]; then
+            echo "Found updates.xml file at: $UPDATES_XML"
+            
+            # Make a backup of the original file
+            cp "$UPDATES_XML" "${UPDATES_XML}.bak"
+            
+            # Create the download URL for the new release
+            DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ steps.set_version.outputs.version }}/mod_bears_pricing_tables_${{ steps.set_version.outputs.version }}.zip"
+            
+            # Update the version and download URL in the updates.xml file
+            sed -i "s|<version>.*</version>|<version>${{ steps.set_version.outputs.version }}</version>|g" "$UPDATES_XML"
+            sed -i "s|<downloadurl type=\"full\" format=\"zip\">.*</downloadurl>|<downloadurl type=\"full\" format=\"zip\">$DOWNLOAD_URL</downloadurl>|g" "$UPDATES_XML"
+            
+            echo "Updated updates.xml file with new version and download URL"
+            echo "Updated XML content:"
+            cat "$UPDATES_XML"
+            
+            # Commit and push the updated updates.xml file
+            git config --global user.name "GitHub Actions"
+            git config --global user.email "actions@github.com"
+            
+            # Check if there are changes to commit
+            if git diff --exit-code; then
+              echo "No changes to commit in updates.xml"
+            else
+              git add "$UPDATES_XML"
+              git commit -m "Update updates.xml for version ${{ steps.set_version.outputs.version }}"
+              git push origin main
+              echo "Changes to updates.xml committed and pushed to main branch"
+            fi
+          else
+            echo "::warning::updates.xml file not found in repository"
+          fi
+      
       # Upload artifact for easy access from GitHub Actions
       - name: Upload to GitHub Artifacts
         if: steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true'
