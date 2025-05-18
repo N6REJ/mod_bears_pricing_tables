@@ -63,6 +63,7 @@ class ModBearsPricingTablesHelper
         $bears_button_color = $params->get('bears_button_color');
         $bears_button_bg_color = $params->get('bears_button_bg_color');
         $bears_button_hover_color = $params->get('bears_button_hover_color');
+        $bears_icon_color = $params->get('bears_icon_color');
         
         // Get font parameters
         $bears_google_font_family = $params->get('bears_google_font_family', 'Crimson Text');
@@ -76,6 +77,8 @@ class ModBearsPricingTablesHelper
         $bears_featured = array();
         $bears_buttontext = array();
         $bears_buttonurl = array();
+        $bears_icon_class = array();
+        $bears_icon_size = array();
 
         // Get parameters for each column
         for ($i = 1; $i <= 5; $i++) {
@@ -86,6 +89,8 @@ class ModBearsPricingTablesHelper
             $bears_featured[$i] = $params->get('bears_column_featured' . $i, 'no');
             $bears_buttontext[$i] = $params->get('bears_buttontext' . $i, '');
             $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
+            $bears_icon_class[$i] = $params->get('bears_icon_class' . $i, '');
+            $bears_icon_size[$i] = $params->get('bears_icon_size' . $i, '');
         }
         
         return array(
@@ -117,6 +122,7 @@ class ModBearsPricingTablesHelper
             'bears_button_color' => $bears_button_color,
             'bears_button_bg_color' => $bears_button_bg_color,
             'bears_button_hover_color' => $bears_button_hover_color,
+            'bears_icon_color' => $bears_icon_color,
             
             // Font parameters
             'bears_google_font_family' => $bears_google_font_family,
@@ -130,6 +136,8 @@ class ModBearsPricingTablesHelper
             'bears_featured' => $bears_featured,
             'bears_buttontext' => $bears_buttontext,
             'bears_buttonurl' => $bears_buttonurl,
+            'bears_icon_class' => $bears_icon_class,
+            'bears_icon_size' => $bears_icon_size,
         );
     }
 
@@ -224,6 +232,9 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_button_hover_color')) {
             $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
         }
+        if ($params->get('bears_icon_color')) {
+            $css .= '--bears-icon-color: ' . $params->get('bears_icon_color') . ';';
+        }
         
         // Font sizes
         if ($params->get('bears_title_font_size')) {
@@ -262,6 +273,14 @@ class ModBearsPricingTablesHelper
             
             // Apply font family to the pricing tables
             $css .= "\n" . '.bears_pricing_tables { font-family: "' . $fontFamily . '", sans-serif; font-weight: ' . $fontWeight . '; }';
+        }
+        
+        // Add column-specific icon sizes if specified
+        for ($i = 1; $i <= 5; $i++) {
+            $iconSize = $params->get('bears_icon_size' . $i);
+            if (!empty($iconSize)) {
+                $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' .bears-icon { font-size: ' . $iconSize . '; }';
+            }
         }
         
         return $css;
