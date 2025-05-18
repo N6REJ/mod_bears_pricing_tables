@@ -60,7 +60,7 @@ class ModBearsPricingTablesHelper
         $bears_featured_border_style = $params->get('bears_featured_border_style');
         $bears_accent_color = $params->get('bears_accent_color');
         $bears_featured_accent_color = $params->get('bears_featured_accent_color');
-        $bears_button_color = $params->get('bears_button_color');
+        $bears_button_text_color = $params->get('bears_button_text_color');
         $bears_button_bg_color = $params->get('bears_button_bg_color');
         $bears_button_hover_color = $params->get('bears_button_hover_color');
         $bears_icon_color = $params->get('bears_icon_color');
@@ -119,7 +119,7 @@ class ModBearsPricingTablesHelper
             'bears_featured_border_style' => $bears_featured_border_style,
             'bears_accent_color' => $bears_accent_color,
             'bears_featured_accent_color' => $bears_featured_accent_color,
-            'bears_button_color' => $bears_button_color,
+            'bears_button_text_color' => $bears_button_text_color,
             'bears_button_bg_color' => $bears_button_bg_color,
             'bears_button_hover_color' => $bears_button_hover_color,
             'bears_icon_color' => $bears_icon_color,
@@ -223,8 +223,8 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_featured_accent_color')) {
             $css .= '--bears-featured-accent-color: ' . $params->get('bears_featured_accent_color') . ';';
         }
-        if ($params->get('bears_button_color')) {
-            $css .= '--bears-button-color: ' . $params->get('bears_button_color') . ';';
+        if ($params->get('bears_button_text_color')) {
+            $css .= '--bears-button-color: ' . $params->get('bears_button_text_color') . ';';
         }
         if ($params->get('bears_button_bg_color')) {
             $css .= '--bears-button-bg-color: ' . $params->get('bears_button_bg_color') . ';';
