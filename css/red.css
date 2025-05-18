@@ -168,7 +168,6 @@
 }
 .bears_pricing_tables .plan-title {
   top: 0;
-  margin-bottom: 12px;
   font-size: var(--bears-title-font-size);
   font-weight: 700;
   text-transform: uppercase;
