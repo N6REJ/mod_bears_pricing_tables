@@ -1,6 +1,6 @@
-/* Icon positioning classes for Bears Pricing Tables
- * These classes use flexbox to position icons in different locations
- * within the pricing table header elements
+/* Icon styling for Bears Pricing Tables
+ * These classes define positioning and styling for icons in different locations
+ * within the pricing table elements
  */
 
 /* CSS Variable Definitions (for IDE support)
@@ -18,178 +18,257 @@
 }
 
 /* Base icon styling */
-[class^="icon-"] i,
-[class^="icon-"] .fa,
-[class^="icon-"] .fas,
-[class^="icon-"] .far,
-[class^="icon-"] .fab {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
-  font-size: var(--bears-icon-size, 24px);
+.bears_pricing_tables [class^="bears-column-"] i,
+.bears_pricing_tables [class^="bears-column-"] .fa,
+.bears_pricing_tables [class^="bears-column-"] .fas,
+.bears_pricing_tables [class^="bears-column-"] .far,
+.bears_pricing_tables [class^="bears-column-"] .fab {
   color: var(--bears-icon-color, inherit);
+  font-size: var(--bears-icon-size, 24px);
+  display: inline-block;
 }
 
 /* Column-specific icon colors */
-.bears-column-1 i,
-.bears-column-1 .fa,
-.bears-column-1 .fas,
-.bears-column-1 .far,
-.bears-column-1 .fab {
+.bears_pricing_tables .bears-column-1 i,
+.bears_pricing_tables .bears-column-1 .fa,
+.bears_pricing_tables .bears-column-1 .fas,
+.bears_pricing_tables .bears-column-1 .far,
+.bears_pricing_tables .bears-column-1 .fab {
   color: var(--bears-icon-color-1, var(--bears-icon-color, inherit));
 }
 
-.bears-column-2 i,
-.bears-column-2 .fa,
-.bears-column-2 .fas,
-.bears-column-2 .far,
-.bears-column-2 .fab {
+.bears_pricing_tables .bears-column-2 i,
+.bears_pricing_tables .bears-column-2 .fa,
+.bears_pricing_tables .bears-column-2 .fas,
+.bears_pricing_tables .bears-column-2 .far,
+.bears_pricing_tables .bears-column-2 .fab {
   color: var(--bears-icon-color-2, var(--bears-icon-color, inherit));
 }
 
-.bears-column-3 i,
-.bears-column-3 .fa,
-.bears-column-3 .fas,
-.bears-column-3 .far,
-.bears-column-3 .fab {
+.bears_pricing_tables .bears-column-3 i,
+.bears_pricing_tables .bears-column-3 .fa,
+.bears_pricing_tables .bears-column-3 .fas,
+.bears_pricing_tables .bears-column-3 .far,
+.bears_pricing_tables .bears-column-3 .fab {
   color: var(--bears-icon-color-3, var(--bears-icon-color, inherit));
 }
 
-.bears-column-4 i,
-.bears-column-4 .fa,
-.bears-column-4 .fas,
-.bears-column-4 .far,
-.bears-column-4 .fab {
+.bears_pricing_tables .bears-column-4 i,
+.bears_pricing_tables .bears-column-4 .fa,
+.bears_pricing_tables .bears-column-4 .fas,
+.bears_pricing_tables .bears-column-4 .far,
+.bears_pricing_tables .bears-column-4 .fab {
   color: var(--bears-icon-color-4, var(--bears-icon-color, inherit));
 }
 
-.bears-column-5 i,
-.bears-column-5 .fa,
-.bears-column-5 .fas,
-.bears-column-5 .far,
-.bears-column-5 .fab {
+.bears_pricing_tables .bears-column-5 i,
+.bears_pricing_tables .bears-column-5 .fa,
+.bears_pricing_tables .bears-column-5 .fas,
+.bears_pricing_tables .bears-column-5 .far,
+.bears_pricing_tables .bears-column-5 .fab {
   color: var(--bears-icon-color-5, var(--bears-icon-color, inherit));
 }
 
-/* Top row positioning */
-.icon-top-left {
-  align-self: flex-start;
-  justify-self: flex-start;
-  margin-right: auto;
-  display: flex;
+/* Top row icon containers - more aggressive styling */
+.bears_pricing_tables [class*="icon-top-"],
+.bears_pricing_tables .plan header [class*="icon-top-"],
+.bears_pricing_tables .plan header div[class*="icon-top-"] {
+  display: block !important;
+  width: 100% !important;
+  clear: both !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid transparent !important; /* Adds space even if margins collapse */
+  position: relative !important;
+  /* Removed text-align: center to allow individual alignment */
 }
 
-.icon-top-center {
-  align-self: flex-start;
-  justify-self: center;
-  margin: 5px auto;
-  display: flex;
-  justify-content: center;
+/* Bottom row icon containers - more aggressive styling */
+.bears_pricing_tables [class*="icon-bottom-"],
+.bears_pricing_tables .plan header [class*="icon-bottom-"],
+.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+  display: block !important;
+  width: 100% !important;
+  clear: both !important;
+  margin-top: 10px !important;
+  border-top: 1px solid transparent !important; /* Adds space even if margins collapse */
+  position: relative !important;
+  /* Removed text-align: center to allow individual alignment */
 }
 
-.icon-top-right {
-  align-self: flex-start;
-  justify-self: flex-end;
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
+/* Icon positioning classes - with stronger specificity */
+.bears_pricing_tables .icon-top-left,
+.bears_pricing_tables .plan header .icon-top-left,
+.bears_pricing_tables .plan header div.icon-top-left { 
+  text-align: left !important;
+  padding-left: 5px !important;
 }
 
-/* Center positioning */
-.icon-center-left {
-  align-self: center;
-  justify-self: flex-start;
-  margin-right: auto;
-  display: flex;
+.bears_pricing_tables .icon-top-center,
+.bears_pricing_tables .plan header .icon-top-center,
+.bears_pricing_tables .plan header div.icon-top-center { 
+  text-align: center !important;
 }
 
-.icon-center-center {
-  align-self: center;
-  justify-self: center;
-  margin: 0 auto 10px auto;
-  display: flex;
-  justify-content: center;
+.bears_pricing_tables .icon-top-right,
+.bears_pricing_tables .plan header .icon-top-right,
+.bears_pricing_tables .plan header div.icon-top-right { 
+  text-align: right !important;
+  padding-right: 5px !important;
 }
 
-.icon-center-right {
-  align-self: center;
-  justify-self: flex-end;
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
+/* Center row icon containers - place on their own row */
+.bears_pricing_tables [class*="icon-center-"],
+.bears_pricing_tables .plan header [class*="icon-center-"],
+.bears_pricing_tables .plan header div[class*="icon-center-"] {
+  display: block !important;
+  width: 100% !important;
+  clear: both !important;
+  margin: 10px 0 !important;
+  border-top: 1px solid transparent !important;
+  border-bottom: 1px solid transparent !important;
+  position: relative !important;
+  /* Removed text-align: center to allow individual alignment */
 }
 
-/* Bottom row positioning */
-.icon-bottom-left {
-  align-self: flex-end;
-  justify-self: flex-start;
-  margin-right: auto;
-  display: flex;
+/* Icon positioning classes - with stronger specificity */
+.bears_pricing_tables .icon-center-left,
+.bears_pricing_tables .plan header .icon-center-left,
+.bears_pricing_tables .plan header div.icon-center-left { 
+  position: relative !important;
+  text-align: center !important;
+  padding-left: 0 !important;
 }
 
-.icon-bottom-center {
-  align-self: flex-end;
-  justify-self: center;
-  margin: 5px auto;
-  display: flex;
-  justify-content: center;
+.bears_pricing_tables .icon-center-left i,
+.bears_pricing_tables .plan header .icon-center-left i,
+.bears_pricing_tables .plan header div.icon-center-left i,
+.bears_pricing_tables .icon-center-left .fa,
+.bears_pricing_tables .plan header .icon-center-left .fa,
+.bears_pricing_tables .plan header div.icon-center-left .fa,
+.bears_pricing_tables .icon-center-left .fas,
+.bears_pricing_tables .plan header .icon-center-left .fas,
+.bears_pricing_tables .plan header div.icon-center-left .fas,
+.bears_pricing_tables .icon-center-left .far,
+.bears_pricing_tables .plan header .icon-center-left .far,
+.bears_pricing_tables .plan header div.icon-center-left .far,
+.bears_pricing_tables .icon-center-left .fab,
+.bears_pricing_tables .plan header .icon-center-left .fab,
+.bears_pricing_tables .plan header div.icon-center-left .fab { 
+  position: absolute !important;
+  left: 5px !important;
 }
 
-.icon-bottom-right {
-  align-self: flex-end;
-  justify-self: flex-end;
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
+.bears_pricing_tables .icon-center-center,
+.bears_pricing_tables .plan header .icon-center-center,
+.bears_pricing_tables .plan header div.icon-center-center { 
+  text-align: center !important;
+}
+
+.bears_pricing_tables .icon-center-right,
+.bears_pricing_tables .plan header .icon-center-right,
+.bears_pricing_tables .plan header div.icon-center-right { 
+  position: relative !important;
+  text-align: center !important;
+  padding-right: 0 !important;
+}
+
+.bears_pricing_tables .icon-center-right i,
+.bears_pricing_tables .plan header .icon-center-right i,
+.bears_pricing_tables .plan header div.icon-center-right i,
+.bears_pricing_tables .icon-center-right .fa,
+.bears_pricing_tables .plan header .icon-center-right .fa,
+.bears_pricing_tables .plan header div.icon-center-right .fa,
+.bears_pricing_tables .icon-center-right .fas,
+.bears_pricing_tables .plan header .icon-center-right .fas,
+.bears_pricing_tables .plan header div.icon-center-right .fas,
+.bears_pricing_tables .icon-center-right .far,
+.bears_pricing_tables .plan header .icon-center-right .far,
+.bears_pricing_tables .plan header div.icon-center-right .far,
+.bears_pricing_tables .icon-center-right .fab,
+.bears_pricing_tables .plan header .icon-center-right .fab,
+.bears_pricing_tables .plan header div.icon-center-right .fab { 
+  position: absolute !important;
+  right: 5px !important;
+}
+
+.bears_pricing_tables .icon-bottom-left,
+.bears_pricing_tables .plan header .icon-bottom-left,
+.bears_pricing_tables .plan header div.icon-bottom-left { 
+  text-align: left !important;
+  padding-left: 5px !important;
+}
+
+.bears_pricing_tables .icon-bottom-center,
+.bears_pricing_tables .plan header .icon-bottom-center,
+.bears_pricing_tables .plan header div.icon-bottom-center { 
+  text-align: center !important;
+}
+
+.bears_pricing_tables .icon-bottom-right,
+.bears_pricing_tables .plan header .icon-bottom-right,
+.bears_pricing_tables .plan header div.icon-bottom-right { 
+  text-align: right !important;
+  padding-right: 5px !important;
 }
 
 /* Price area positioning */
-.icon-price {
+.bears_pricing_tables .icon-price {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.icon-price-left {
+.bears_pricing_tables .icon-price-left { 
   margin-right: 10px;
-  display: flex;
-  align-items: center;
 }
 
-.icon-price-right {
+.bears_pricing_tables .icon-price-right { 
   margin-left: 10px;
-  display: flex;
-  align-items: center;
 }
 
-/* Make header a flex container to support icon positioning */
+/* Make header container to support icon positioning */
 .bears_pricing_tables .plan header {
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
-/* Title area should also be flex to support icon positioning */
+/* Base styling for plan title */
 .bears_pricing_tables .plan-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  transition: padding 0.3s ease;
 }
+
+/* Debug styles - uncomment to see the icon containers */
+/*
+.bears_pricing_tables [class*="icon-top-"],
+.bears_pricing_tables .plan header [class*="icon-top-"],
+.bears_pricing_tables .plan header div[class*="icon-top-"] {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.bears_pricing_tables [class*="icon-bottom-"],
+.bears_pricing_tables .plan header [class*="icon-bottom-"],
+.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+  background-color: rgba(0, 0, 255, 0.1) !important;
+}
+*/
 
 /* Responsive adjustments */
 @media only screen and (max-width: 767px) {
-  [class^="icon-"] i,
-  [class^="icon-"] .fa,
-  [class^="icon-"] .fas,
-  [class^="icon-"] .far,
-  [class^="icon-"] .fab {
+  .bears_pricing_tables [class^="bears-column-"] i,
+  .bears_pricing_tables [class^="bears-column-"] .fa,
+  .bears_pricing_tables [class^="bears-column-"] .fas,
+  .bears_pricing_tables [class^="bears-column-"] .far,
+  .bears_pricing_tables [class^="bears-column-"] .fab {
     font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
   }
   
-  .icon-price-left, .icon-price-right {
+  .bears_pricing_tables .icon-price-left, 
+  .bears_pricing_tables .icon-price-right {
     margin: 0 5px; /* Less margin on mobile */
   }
 }

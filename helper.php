@@ -214,11 +214,25 @@ class ModBearsPricingTablesHelper
             }
         }
         
-        // If FontAwesome is not loaded, add it from Joomla's media directory
+        // If FontAwesome is not loaded, try multiple approaches
         if (!$fontAwesomeLoaded) {
-            // Load from Joomla 4 media directory
-            $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
-            $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/solid.min.css');
+            // First try: Load from Joomla's media directory
+            if (file_exists(JPATH_ROOT . '/media/vendor/fontawesome-free/css/fontawesome.min.css')) {
+                $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
+                $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/solid.min.css');
+            } 
+            // Second try: Load from CDN as a fallback
+            else {
+                $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', 
+                    array('integrity' => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==', 
+                          'crossorigin' => 'anonymous', 
+                          'referrerpolicy' => 'no-referrer'));
+            }
+            
+            // Add a debug message to help troubleshoot
+            $document->addScriptDeclaration("console.log('Bears Pricing Tables: FontAwesome loaded from " . 
+                (file_exists(JPATH_ROOT . '/media/vendor/fontawesome-free/css/fontawesome.min.css') ? 
+                "Joomla media directory" : "CDN") . "');");
         }
     }
     

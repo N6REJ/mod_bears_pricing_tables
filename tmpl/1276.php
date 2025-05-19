@@ -72,6 +72,7 @@ $bears_price_font_size    = $params->get('bears_price_font_size');
 $bears_features_font_size = $params->get('bears_features_font_size');
 $bears_button_font_size   = $params->get('bears_button_font_size');
 
+// Initialize arrays to store column data
 $column_ref       = array();
 $bears_title      = array();
 $bears_subtitle   = array();
@@ -80,11 +81,13 @@ $bears_features   = array();
 $bears_buttontext = array();
 $bears_buttonurl  = array();
 $bears_featured   = array();
+$columnnr         = 0;
 
+// Get data for up to 5 columns
 $max_columns = 5;
 for ($i = 1; $i <= $max_columns; $i++) {
     if ($params->get('bears_title' . $i)) {
-        $column_ref[]         = $i;
+        $column_ref[$columnnr] = $i;
         $bears_title[$i]      = $params->get('bears_title' . $i);
         $bears_subtitle[$i]   = $params->get('bears_subtitle' . $i);
         $bears_price[$i]      = $params->get('bears_price' . $i);
@@ -92,6 +95,7 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
         $bears_featured[$i]   = $params->get('bears_column_featured' . $i, 'no');
+        $columnnr++;
     }
 }
 
@@ -288,28 +292,16 @@ for ($i = 1; $i <= 5; $i++) {
     }
 }
 
-// Add icon-specific CSS
+// Load external CSS file for icons instead of inline CSS
+$document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
+
+// Add module-specific CSS variables for icons
 $bears_css .= '
-/* Icon styling */
-.bears_pricing_tables' . $bears_moduleid . ' [class^="bears-column-"] i {
-    color: var(--bears-icon-color, inherit);
-    font-size: var(--bears-icon-size, 24px);
-    display: inline-block;
-    margin: 10px 0;
-}
+.bears_pricing_tables' . $bears_moduleid . ' {
+    --bears-module-id: ' . $bears_moduleid . ';
+}';
 
-/* Icon positioning classes */
-.bears_pricing_tables' . $bears_moduleid . ' .icon-top-left i { float: left; margin-left: 15px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-top-center i { display: block; margin: 0 auto 10px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-top-right i { float: right; margin-right: 15px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-center-center { display: block; text-align: center; margin-bottom: 10px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-price-left i { margin-right: 10px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-price-right i { margin-left: 10px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-left i { float: left; margin-left: 15px; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-center i { display: block; margin: 10px auto 0; }
-.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-right i { float: right; margin-right: 15px; }
-';
-
+// Add column-specific icon variables
 for ($i = 1; $i <= 5; $i++) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' i {
     color: var(--bears-icon-color-' . $i . ', var(--bears-icon-color, inherit));
@@ -350,146 +342,137 @@ if ($bears_num_columns == '1') {
 }
 
 $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: ' . $column_width . '; }');
-$document->addStyleSheet(JURI::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
+
+// FontAwesome styles are now in the external CSS file
+$document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
+
+// Add FontAwesome with a unique ID to prevent conflicts
+$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', 
+    array(
+        'integrity' => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==', 
+        'crossorigin' => 'anonymous', 
+        'referrerpolicy' => 'no-referrer'
+    )
+);
 ?>
 
-<div class = "bears_pricing_tables<?php
-echo $bears_moduleid; ?> bears_pricing_tables-outer">
-	<div class = "bears_pricing_tables-container">
+<div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
+	<div class="bears_pricing_tables-container">
         <?php
-        $columnnr = 0;
-        for (
-            $i = 1;
-            $i <= $bears_num_columns;
-            $i++
-        ) {
-            if (isset($column_ref[$columnnr])) {
-                $cur_column = $column_ref[$columnnr];
-                if (!empty($cur_column)) {
-                    // Check if this column is marked as featured
-                    $is_featured = isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes';
-                    ?>
-					<div class = "bears_pricing_tables">
-						<div class = "plan<?php
-                        echo $is_featured ? ' featured' : ''; ?> border-<?php
-                        echo $is_featured ? $bears_featured_border_style : $bears_border_style; ?>">
-							<header>
-                                <?php
-                                // Add column-specific class for icon styling
-                                $columnClass = 'bears-column-' . $cur_column;
-                                
-                                // Handle top positioned icons
-                                if (!empty($iconClass[$cur_column])) {
-                                    if (strpos($iconPosition[$cur_column], 'top-') === 0) { ?>
-                                        <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
-                                        </div>
-                                    <?php } ?>
-                                <?php } ?>
-                                
-                                <h3 class="plan-title">
-                                    <?php
-                                    // Handle center-center positioned icon (special case inside title)
-                                    if (!empty($iconClass[$cur_column])) {
-                                        if ($iconPosition[$cur_column] === 'center-center') { ?>
-                                            <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
-                                            </div>
-                                        <?php } ?>
-                                    <?php } ?>
-                                    
-                                    <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
-                                </h3>
-                                
-                                <div class="icon-price">
-                                    <?php
-                                    // Handle price-left positioned icon (special case)
-                                    if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { ?>
-                                        <div class="<?php echo $columnClass; ?> icon-price-left">
-                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
-                                        </div>
-                                    <?php } ?>
-                                    
-                                    <div class="plan-cost">
-                                        <h1 class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
-                                        <h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
-                                    </div>
-                                    
-                                    <?php
-                                    // Handle price-right positioned icon (special case)
-                                    if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { ?>
-                                        <div class="<?php echo $columnClass; ?> icon-price-right">
-                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
-                                        </div>
-                                    <?php } ?>
+        // Loop through the number of columns to display
+        for ($i = 0; $i < $bears_num_columns; $i++) {
+            // Skip if this column index doesn't exist in our reference array
+            if (!isset($column_ref[$i])) {
+                continue;
+            }
+            
+            // Get the actual column number from our reference array
+            $cur_column = $column_ref[$i];
+            
+            // Check if this column is marked as featured
+            $is_featured = isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes';
+            
+            // Determine border style based on featured status
+            $border_style = $is_featured ? $bears_featured_border_style : $bears_border_style;
+            
+            // Add column-specific class for styling
+            $columnClass = 'bears-column-' . $cur_column;
+            ?>
+            <div class="bears_pricing_tables">
+                <div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $border_style; ?> <?php echo $columnClass; ?>">
+                    <header>
+                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'top-') === 0) { ?>
+                            <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                            </div>
+                        <?php } ?>
+                        
+                        <h3 class="plan-title">
+                            <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+                        </h3>
+                        
+                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'center-') === 0) { ?>
+                            <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                            </div>
+                        <?php } ?>
+                        
+                        <div class="icon-price">
+                            <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { ?>
+                                <div class="<?php echo $columnClass; ?> icon-price-left">
+                                    <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
                                 </div>
-                                
-                                <?php
-                                // Handle bottom positioned icons
-                                if (!empty($iconClass[$cur_column])) {
-                                    if (strpos($iconPosition[$cur_column], 'bottom-') === 0) { ?>
-                                        <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
-                                        </div>
-                                    <?php } ?>
-                                <?php } ?>
-							</header>
+                            <?php } ?>
+                            
+                            <div class="plan-cost">
+                                <h1 class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
+                                <h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
+                            </div>
+                            
+                            <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { ?>
+                                <div class="<?php echo $columnClass; ?> icon-price-right">
+                                    <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        
+                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'bottom-') === 0) { ?>
+                            <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                            </div>
+                        <?php } ?>
+                    </header>
 
-							<ul class = "plan-features dot">
-                                <?php
-                                if (!empty($bears_features[$cur_column])) {
-                                    $features = $bears_features[$cur_column];
+                    <ul class="plan-features dot">
+                        <?php
+                        if (!empty($bears_features[$cur_column])) {
+                            $features = $bears_features[$cur_column];
 
-                                    // Process features based on their structure
-                                    if (is_object($features)) {
-                                        // Handle subform data structure
-                                        foreach ($features as $key => $item) {
-                                            if (is_object($item) && isset($item->bears_feature)) {
-                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
-                                            }
-                                        }
-                                    } elseif (is_array($features)) {
-                                        // Handle array of features
-                                        foreach ($features as $item) {
-                                            if (is_object($item) && isset($item->bears_feature)) {
-                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
-                                            } elseif (is_string($item)) {
-                                                echo '<li>' . htmlspecialchars($item) . '</li>';
-                                            }
-                                        }
-                                    } elseif (is_string($features)) {
-                                        // Try to decode if it's a JSON string
-                                        $decoded = json_decode($features);
-                                        if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-                                            foreach ($decoded as $item) {
-                                                if (is_object($item) && isset($item->bears_feature)) {
-                                                    echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
-                                                } elseif (is_string($item)) {
-                                                    echo '<li>' . htmlspecialchars($item) . '</li>';
-                                                }
-                                            }
-                                        } else {
-                                            // It's just a plain string
-                                            echo '<li>' . htmlspecialchars($features) . '</li>';
-                                        }
+                            // Process features based on their structure
+                            if (is_object($features)) {
+                                // Handle subform data structure
+                                foreach ($features as $key => $item) {
+                                    if (is_object($item) && isset($item->bears_feature)) {
+                                        echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                     }
                                 }
-                                ?>
-							</ul>
+                            } elseif (is_array($features)) {
+                                // Handle array of features
+                                foreach ($features as $item) {
+                                    if (is_object($item) && isset($item->bears_feature)) {
+                                        echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                    } elseif (is_string($item)) {
+                                        echo '<li>' . htmlspecialchars($item) . '</li>';
+                                    }
+                                }
+                            } elseif (is_string($features)) {
+                                // Try to decode if it's a JSON string
+                                $decoded = json_decode($features);
+                                if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                                    foreach ($decoded as $item) {
+                                        if (is_object($item) && isset($item->bears_feature)) {
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                        } elseif (is_string($item)) {
+                                            echo '<li>' . htmlspecialchars($item) . '</li>';
+                                        }
+                                    }
+                                } else {
+                                    // It's just a plain string
+                                    echo '<li>' . htmlspecialchars($features) . '</li>';
+                                }
+                            }
+                        }
+                        ?>
+                    </ul>
 
-							<div class = "plan-select">
-								<a class = "btn" href = "<?php
-                                echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
-                                    <?php
-                                    echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
-								</a>
-							</div>
-						</div>
-					</div>
-                    <?php
-                }
-                $columnnr++;
-            }
+                    <div class="plan-select">
+                        <a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                            <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
         ?>
 	</div>
