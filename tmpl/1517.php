@@ -53,7 +53,7 @@ $bears_title_color    = $params->get('bears_title_color');
 $bears_featured_title_color = $params->get('bears_featured_title_color');
 $bears_price_color    = $params->get('bears_price_color');
 $bears_featured_price_color = $params->get('bears_featured_price_color');
-$bears_pricesub_color = $params->get('bears_pricesub_color');
+$bears_subtitle_color = $params->get('bears_subtitle_color');
 $bears_features_color = $params->get('bears_features_color');
 $bears_button_bg_color = $params->get('bears_button_bg_color');
 $bears_button_text_color   = $params->get('bears_button_text_color');
@@ -132,8 +132,8 @@ if ($bears_price_color !== null && $bears_price_color !== '') {
 if ($bears_featured_price_color !== null && $bears_featured_price_color !== '') {
     $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-if ($bears_pricesub_color !== null && $bears_pricesub_color !== '') {
-    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
+if ($bears_subtitle_color !== null && $bears_subtitle_color !== '') {
+    $css_overrides .= '--bears-subtitle-color: ' . $bears_subtitle_color . '; ';
 }
 if ($bears_features_color !== null && $bears_features_color !== '') {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';

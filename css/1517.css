@@ -28,7 +28,7 @@
   --bears-featured-title-color: #ffffff;
   --bears-price-color: #ffffff;
   --bears-featured-price-color: #ffffff;
-  --bears-pricesub-color: rgba(255, 255, 255, 0.8);
+  --bears-subtitle-color: rgba(255, 255, 255, 0.8);
   --bears-features-color: #ffffff;
   
   /* Button Colors */
@@ -224,7 +224,7 @@
   opacity: 0.8;
   font-size: var(--bears-subtitle-font-size);
   text-transform: uppercase;
-  color: var(--bears-pricesub-color);
+  color: var(--bears-subtitle-color);
 }
 .bears_pricing_tables .plan-features {
   padding: 0 0 20px;
