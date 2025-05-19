@@ -106,6 +106,7 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-features {
     color: var(--bears-accent-color);
+    background-color: var(--bears-features-bg-color);
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-features {
     color: var(--bears-featured-accent-color);
@@ -221,6 +222,9 @@ if ($bears_accent_color !== null && $bears_accent_color !== '') {
 }
 if ($bears_featured_accent_color !== null && $bears_featured_accent_color !== '') {
     $css_overrides .= '--bears-featured-accent-color: ' . $bears_featured_accent_color . '; ';
+}
+if (!empty($bears_features_bg_color)) {
+    $css_overrides .= '--bears-features-bg-color: ' . $bears_features_bg_color . '; ';
 }
 if (!empty($bears_title_font_size)) {
     $css_overrides .= '--bears-title-font-size: ' . $bears_title_font_size . 'px; ';
