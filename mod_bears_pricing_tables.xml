@@ -141,15 +141,15 @@
 				<field name="bears_icon_class1" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
 				<field name="bears_icon_size1" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
 				<field name="bears_icon_position1" type="list" default="center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
-					<option value="flex-start">Top Left</option>
-					<option value="center">Top Center</option>
-					<option value="flex-end">Top Right</option>
-					<option value="flex-start">Center Left</option>
-					<option value="center">Center Center</option>
-					<option value="flex-end">Center Right</option>
-					<option value="flex-start">Bottom Left</option>
-					<option value="center">Bottom Center</option>
-					<option value="flex-end">Bottom Right</option>
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
 				</field>
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured1" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
@@ -168,15 +168,15 @@
 				<field name="bears_icon_class2" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
 				<field name="bears_icon_size2" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
 				<field name="bears_icon_position2" type="list" default="center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
-					<option value="flex-start">Top Left</option>
-					<option value="center">Top Center</option>
-					<option value="flex-end">Top Right</option>
-					<option value="flex-start">Center Left</option>
-					<option value="center">Center Center</option>
-					<option value="flex-end">Center Right</option>
-					<option value="flex-start">Bottom Left</option>
-					<option value="center">Bottom Center</option>
-					<option value="flex-end">Bottom Right</option>
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
 				</field>
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured2" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
@@ -195,15 +195,15 @@
 				<field name="bears_icon_class3" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
 				<field name="bears_icon_size3" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
 				<field name="bears_icon_position3" type="list" default="center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
-					<option value="flex-start">Top Left</option>
-					<option value="center">Top Center</option>
-					<option value="flex-end">Top Right</option>
-					<option value="flex-start">Center Left</option>
-					<option value="center">Center Center</option>
-					<option value="flex-end">Center Right</option>
-					<option value="flex-start">Bottom Left</option>
-					<option value="center">Bottom Center</option>
-					<option value="flex-end">Bottom Right</option>
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
 				</field>
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured3" type="radio" default="yes" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
@@ -222,15 +222,15 @@
 				<field name="bears_icon_class4" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
 				<field name="bears_icon_size4" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
 				<field name="bears_icon_position4" type="list" default="center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
-					<option value="flex-start">Top Left</option>
-					<option value="center">Top Center</option>
-					<option value="flex-end">Top Right</option>
-					<option value="flex-start">Center Left</option>
-					<option value="center">Center Center</option>
-					<option value="flex-end">Center Right</option>
-					<option value="flex-start">Bottom Left</option>
-					<option value="center">Bottom Center</option>
-					<option value="flex-end">Bottom Right</option>
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
 				</field>
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured4" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
@@ -249,15 +249,15 @@
 				<field name="bears_icon_class5" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
 				<field name="bears_icon_size5" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
 				<field name="bears_icon_position5" type="list" default="center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
-					<option value="flex-start">Top Left</option>
-					<option value="center">Top Center</option>
-					<option value="flex-end">Top Right</option>
-					<option value="flex-start">Center Left</option>
-					<option value="center">Center Center</option>
-					<option value="flex-end">Center Right</option>
-					<option value="flex-start">Bottom Left</option>
-					<option value="center">Bottom Center</option>
-					<option value="flex-end">Bottom Right</option>
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
 				</field>
 				<field name="bears_features5" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured5" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"

@@ -18,6 +18,8 @@ use Joomla\CMS\Router\Router;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\CMSApplication;
+use Joomla\CMS\Document\HtmlDocument;
+use Joomla\CMS\Version;
 
 /**
  * Helper class for Bears Pricing Tables module
@@ -63,7 +65,7 @@ class ModBearsPricingTablesHelper
         $bears_button_text_color = $params->get('bears_button_text_color');
         $bears_button_bg_color = $params->get('bears_button_bg_color');
         $bears_button_hover_color = $params->get('bears_button_hover_color');
-        $bears_icon_color = $params->get('bears_icon_color');
+        $bears_global_icon_color = $params->get('bears_icon_color');
         
         // Get font parameters
         $bears_google_font_family = $params->get('bears_google_font_family', 'Crimson Text');
@@ -79,6 +81,8 @@ class ModBearsPricingTablesHelper
         $bears_buttonurl = array();
         $bears_icon_class = array();
         $bears_icon_size = array();
+        $bears_icon_position = array();
+        $bears_icon_color = array();
 
         // Get parameters for each column
         for ($i = 1; $i <= 5; $i++) {
@@ -91,6 +95,8 @@ class ModBearsPricingTablesHelper
             $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
             $bears_icon_class[$i] = $params->get('bears_icon_class' . $i, '');
             $bears_icon_size[$i] = $params->get('bears_icon_size' . $i, '');
+            $bears_icon_position[$i] = $params->get('bears_icon_position' . $i, 'top-center');
+            $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
         }
         
         return array(
@@ -122,8 +128,8 @@ class ModBearsPricingTablesHelper
             'bears_button_text_color' => $bears_button_text_color,
             'bears_button_bg_color' => $bears_button_bg_color,
             'bears_button_hover_color' => $bears_button_hover_color,
-            'bears_icon_color' => $bears_icon_color,
-            
+            'bears_icon_color' => $bears_global_icon_color,
+
             // Font parameters
             'bears_google_font_family' => $bears_google_font_family,
             'bears_font_weight' => $bears_font_weight,
@@ -138,6 +144,8 @@ class ModBearsPricingTablesHelper
             'bears_buttonurl' => $bears_buttonurl,
             'bears_icon_class' => $bears_icon_class,
             'bears_icon_size' => $bears_icon_size,
+            'bears_icon_position' => $bears_icon_position,
+            'bears_icon_color' => $bears_icon_color,
         );
     }
 
@@ -159,10 +167,58 @@ class ModBearsPricingTablesHelper
         // Add the base CSS file
         $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css');
         
+        // Add icons CSS file
+        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/icons.css');
+        
+        // Check if FontAwesome is needed and load it if not already loaded
+        self::loadFontAwesome();
+        
         // Add custom CSS variables
         $css = self::generateCustomCSS($params);
         if (!empty($css)) {
             $document->addStyleDeclaration($css);
+        }
+    }
+    
+    /**
+     * Load FontAwesome if it's not already loaded by the template
+     *
+     * @return  void
+     * @since   2025.5.18
+     */
+    public static function loadFontAwesome()
+    {
+        // Get the document
+        $document = Factory::getDocument();
+        
+        // Get the WebAsset Manager
+        $wa = $document->getWebAssetManager();
+        
+        // Check if FontAwesome is already available as a WebAsset
+        if ($wa->assetExists('style', 'fontawesome')) {
+            // Use Joomla's built-in FontAwesome
+            $wa->useStyle('fontawesome');
+            return;
+        }
+        
+        // Check if FontAwesome is already loaded by looking for it in the document head
+        $headData = $document->getHeadData();
+        $styleSheets = $headData['styleSheets'];
+        $fontAwesomeLoaded = false;
+        
+        // Check if any of the loaded stylesheets contain 'font-awesome' in their URL
+        foreach ($styleSheets as $url => $attributes) {
+            if (stripos($url, 'font-awesome') !== false) {
+                $fontAwesomeLoaded = true;
+                break;
+            }
+        }
+        
+        // If FontAwesome is not loaded, add it from Joomla's media directory
+        if (!$fontAwesomeLoaded) {
+            // Load from Joomla 4 media directory
+            $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
+            $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/solid.min.css');
         }
     }
     
@@ -236,6 +292,14 @@ class ModBearsPricingTablesHelper
             $css .= '--bears-icon-color: ' . $params->get('bears_icon_color') . ';';
         }
         
+        // Column-specific icon colors
+        for ($i = 1; $i <= 5; $i++) {
+            $iconColor = $params->get('bears_icon_color' . $i);
+            if (!empty($iconColor)) {
+                $css .= '--bears-icon-color-' . $i . ': ' . $iconColor . ';';
+            }
+        }
+        
         // Font sizes
         if ($params->get('bears_title_font_size')) {
             $css .= '--bears-title-font-size: ' . $params->get('bears_title_font_size') . 'px;';
@@ -279,7 +343,11 @@ class ModBearsPricingTablesHelper
         for ($i = 1; $i <= 5; $i++) {
             $iconSize = $params->get('bears_icon_size' . $i);
             if (!empty($iconSize)) {
-                $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' .bears-icon { font-size: ' . $iconSize . '; }';
+                $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' i, ' .
+                       '.bears_pricing_tables .bears-column-' . $i . ' .fa, ' .
+                       '.bears_pricing_tables .bears-column-' . $i . ' .fas, ' .
+                       '.bears_pricing_tables .bears-column-' . $i . ' .far, ' .
+                       '.bears_pricing_tables .bears-column-' . $i . ' .fab { font-size: ' . $iconSize . '; }';
             }
         }
         
@@ -315,5 +383,55 @@ class ModBearsPricingTablesHelper
         // Return the template value
         return $template;
     }
+
+    /**
+     * Method to generate CSS for the module - DEPRECATED, use generateCustomCSS instead
+     * Kept for backward compatibility
+     *
+     * @param   \Joomla\Registry\Registry  $params  Module parameters
+     * @return  string                     CSS code
+     * @since   2025.5.18
+     * @deprecated
+     */
+    public static function getCSS($params)
+    {
+        return self::generateCustomCSS($params);
+    }
     
+    /**
+     * Process icon positions to split into horizontal and vertical components
+     *
+     * @param   array   $iconPositions  Array of icon positions
+     * @return  array   Array containing horizontal and vertical position arrays
+     * @since   2025.5.18
+     */
+    public static function processIconPositions($iconPositions)
+    {
+        $iconHorz = array();
+        $iconVert = array();
+        
+        foreach ($iconPositions as $i => $position) {
+            if (!empty($position)) {
+                // Handle special cases like 'price-left' and 'price-right'
+                if ($position === 'price-left' || $position === 'price-right') {
+                    $iconVert[$i] = 'price';
+                    $iconHorz[$i] = str_replace('price-', '', $position);
+                } else {
+                    $positionParts = explode('-', $position);
+                    // First part is vertical (top, center, bottom)
+                    $iconVert[$i] = isset($positionParts[0]) ? $positionParts[0] : 'center';
+                    // Second part is horizontal (left, center, right)
+                    $iconHorz[$i] = isset($positionParts[1]) ? $positionParts[1] : 'center';
+                }
+            } else {
+                $iconVert[$i] = 'center';
+                $iconHorz[$i] = 'center';
+            }
+        }
+        
+        return array(
+            'horizontal' => $iconHorz,
+            'vertical' => $iconVert
+        );
+    }
 }

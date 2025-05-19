@@ -1,0 +1,195 @@
+/* Icon positioning classes for Bears Pricing Tables
+ * These classes use flexbox to position icons in different locations
+ * within the pricing table header elements
+ */
+
+/* CSS Variable Definitions (for IDE support)
+ * These variables are actually set dynamically by PHP in the module
+ * but we define them here with defaults for IDE support
+ */
+:root {
+  --bears-icon-color: inherit;
+  --bears-icon-color-1: inherit;
+  --bears-icon-color-2: inherit;
+  --bears-icon-color-3: inherit;
+  --bears-icon-color-4: inherit;
+  --bears-icon-color-5: inherit;
+  --bears-icon-size: 24px;
+}
+
+/* Base icon styling */
+[class^="icon-"] i,
+[class^="icon-"] .fa,
+[class^="icon-"] .fas,
+[class^="icon-"] .far,
+[class^="icon-"] .fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  font-size: var(--bears-icon-size, 24px);
+  color: var(--bears-icon-color, inherit);
+}
+
+/* Column-specific icon colors */
+.bears-column-1 i,
+.bears-column-1 .fa,
+.bears-column-1 .fas,
+.bears-column-1 .far,
+.bears-column-1 .fab {
+  color: var(--bears-icon-color-1, var(--bears-icon-color, inherit));
+}
+
+.bears-column-2 i,
+.bears-column-2 .fa,
+.bears-column-2 .fas,
+.bears-column-2 .far,
+.bears-column-2 .fab {
+  color: var(--bears-icon-color-2, var(--bears-icon-color, inherit));
+}
+
+.bears-column-3 i,
+.bears-column-3 .fa,
+.bears-column-3 .fas,
+.bears-column-3 .far,
+.bears-column-3 .fab {
+  color: var(--bears-icon-color-3, var(--bears-icon-color, inherit));
+}
+
+.bears-column-4 i,
+.bears-column-4 .fa,
+.bears-column-4 .fas,
+.bears-column-4 .far,
+.bears-column-4 .fab {
+  color: var(--bears-icon-color-4, var(--bears-icon-color, inherit));
+}
+
+.bears-column-5 i,
+.bears-column-5 .fa,
+.bears-column-5 .fas,
+.bears-column-5 .far,
+.bears-column-5 .fab {
+  color: var(--bears-icon-color-5, var(--bears-icon-color, inherit));
+}
+
+/* Top row positioning */
+.icon-top-left {
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin-right: auto;
+  display: flex;
+}
+
+.icon-top-center {
+  align-self: flex-start;
+  justify-self: center;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-top-right {
+  align-self: flex-start;
+  justify-self: flex-end;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Center positioning */
+.icon-center-left {
+  align-self: center;
+  justify-self: flex-start;
+  margin-right: auto;
+  display: flex;
+}
+
+.icon-center-center {
+  align-self: center;
+  justify-self: center;
+  margin: 0 auto 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-center-right {
+  align-self: center;
+  justify-self: flex-end;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Bottom row positioning */
+.icon-bottom-left {
+  align-self: flex-end;
+  justify-self: flex-start;
+  margin-right: auto;
+  display: flex;
+}
+
+.icon-bottom-center {
+  align-self: flex-end;
+  justify-self: center;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-bottom-right {
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Price area positioning */
+.icon-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-price-left {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-price-right {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Make header a flex container to support icon positioning */
+.bears_pricing_tables .plan header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Title area should also be flex to support icon positioning */
+.bears_pricing_tables .plan-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 767px) {
+  [class^="icon-"] i,
+  [class^="icon-"] .fa,
+  [class^="icon-"] .fas,
+  [class^="icon-"] .far,
+  [class^="icon-"] .fab {
+    font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
+  }
+  
+  .icon-price-left, .icon-price-right {
+    margin: 0 5px; /* Less margin on mobile */
+  }
+}

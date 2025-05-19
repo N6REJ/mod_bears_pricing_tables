@@ -96,25 +96,37 @@ for ($i = 1; $i <= $max_columns; $i++) {
 }
 
 // Icon variables for each column
-$iconClass1 = $params->get('bears_icon_class1');
-$iconSize1 = $params->get('bears_icon_size1');
-$iconPosition1 = $params->get('bears_icon_position1');
+$iconClass = [];
+$iconSize = [];
+$iconPosition = [];
+$iconColor = [];
 
-$iconClass2 = $params->get('bears_icon_class2');
-$iconSize2 = $params->get('bears_icon_size2');
-$iconPosition2 = $params->get('bears_icon_position2');
+for ($i = 1; $i <= 5; $i++) {
+    $iconClass[$i] = $params->get('bears_icon_class' . $i);
+    $iconSize[$i] = $params->get('bears_icon_size' . $i);
+    $iconPosition[$i] = $params->get('bears_icon_position' . $i, 'top-center');
+    $iconColor[$i] = $params->get('bears_icon_color' . $i);
+}
 
-$iconClass3 = $params->get('bears_icon_class3');
-$iconSize3 = $params->get('bears_icon_size3');
-$iconPosition3 = $params->get('bears_icon_position3');
-
-$iconClass4 = $params->get('bears_icon_class4');
-$iconSize4 = $params->get('bears_icon_size4');
-$iconPosition4 = $params->get('bears_icon_position4');
-
-$iconClass5 = $params->get('bears_icon_class5');
-$iconSize5 = $params->get('bears_icon_size5');
-$iconPosition5 = $params->get('bears_icon_position5');
+// Helper function to format icon class correctly for FontAwesome 5/6
+function formatIconClass($iconClass) {
+    if (empty($iconClass)) {
+        return '';
+    }
+    
+    // If class already has fa/fas/far/fab prefix with space, return as is
+    if (preg_match('/^(fa|fas|far|fab|fa-solid|fa-regular|fa-brands)\s+/', $iconClass)) {
+        return $iconClass;
+    }
+    
+    // If class starts with fa- but doesn't have a prefix, add fas
+    if (strpos($iconClass, 'fa-') === 0) {
+        return 'fas ' . $iconClass;
+    }
+    
+    // Default case: add fa- prefix and fas class
+    return 'fas fa-' . $iconClass;
+}
 
 // Get document
 $document = Factory::getDocument();
@@ -189,47 +201,6 @@ $bears_css = '
 }
 ';
 
-// Add CSS classes for border styles
-$bears_css .= '
-/* Border styles for regular plans */
-body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured).border-shadow { 
-    border: none !important; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured).border-solid { 
-    border: 3px solid var(--bears-border-color) !important; 
-    box-shadow: none !important; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured).border-both { 
-    border: 3px solid var(--bears-border-color) !important; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan:not(.featured).border-none { 
-    border: none !important; 
-    box-shadow: none !important; 
-}
-
-/* Border styles for featured plans */
-body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured.border-shadow { 
-    border: none !important; 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; 
-    overflow: hidden; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured.border-solid { 
-    border: 3px solid var(--bears-featured-border-color) !important; 
-    box-shadow: none !important; 
-    overflow: hidden; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured.border-both { 
-    border: 3px solid var(--bears-featured-border-color) !important; 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important; 
-    overflow: hidden; 
-}
-body .bears_pricing_tables' . $bears_moduleid . ' .plan.featured.border-none { 
-    border: none !important; 
-    box-shadow: none !important; 
-    overflow: hidden; 
-}';
 
 // Override CSS variables with parameter values if they are set
 $css_overrides = '';
@@ -307,21 +278,44 @@ if (!empty($bears_google_font_family)) {
     $css_overrides .= '--bears-font-weight: ' . $bears_font_weight . '; ';
 }
 
-// CSS overrides for icon colors
-if (!empty($iconColor1)) {
-    $css_overrides .= '--bears-icon-color-1: ' . $iconColor1 . '; ';
+// CSS overrides for icon colors and sizes
+for ($i = 1; $i <= 5; $i++) {
+    if (!empty($iconColor[$i])) {
+        $css_overrides .= '--bears-icon-color-' . $i . ': ' . $iconColor[$i] . '; ';
+    }
+    if (!empty($iconSize[$i])) {
+        $css_overrides .= '--bears-icon-size-' . $i . ': ' . $iconSize[$i] . 'px; ';
+    }
 }
-if (!empty($iconColor2)) {
-	$css_overrides .= '--bears-icon-color-2: ' . $iconColor2 . '; ';
+
+// Add icon-specific CSS
+$bears_css .= '
+/* Icon styling */
+.bears_pricing_tables' . $bears_moduleid . ' [class^="bears-column-"] i {
+    color: var(--bears-icon-color, inherit);
+    font-size: var(--bears-icon-size, 24px);
+    display: inline-block;
+    margin: 10px 0;
 }
-if (!empty($iconColor3)) {
-	$css_overrides .= '--bears-icon-color-3: ' . $iconColor3 . '; ';
+
+/* Icon positioning classes */
+.bears_pricing_tables' . $bears_moduleid . ' .icon-top-left i { float: left; margin-left: 15px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-top-center i { display: block; margin: 0 auto 10px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-top-right i { float: right; margin-right: 15px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-center-center { display: block; text-align: center; margin-bottom: 10px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-price-left i { margin-right: 10px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-price-right i { margin-left: 10px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-left i { float: left; margin-left: 15px; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-center i { display: block; margin: 10px auto 0; }
+.bears_pricing_tables' . $bears_moduleid . ' .icon-bottom-right i { float: right; margin-right: 15px; }
+';
+
+for ($i = 1; $i <= 5; $i++) {
+    $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' i {
+    color: var(--bears-icon-color-' . $i . ', var(--bears-icon-color, inherit));
+    font-size: var(--bears-icon-size-' . $i . ', var(--bears-icon-size, 24px));
 }
-if (!empty($iconColor4)) {
-	$css_overrides .= '--bears-icon-color-4: ' . $iconColor4 . '; '; 
-} 
-if (!empty($iconColor5)) { 	
-	$css_overrides .= '--bears-icon-color-5: ' . $iconColor5 . '; '; 
+';
 }
 
 
@@ -356,6 +350,7 @@ if ($bears_num_columns == '1') {
 }
 
 $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: ' . $column_width . '; }');
+$document->addStyleSheet(JURI::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
 ?>
 
 <div class = "bears_pricing_tables<?php
@@ -363,7 +358,11 @@ echo $bears_moduleid; ?> bears_pricing_tables-outer">
 	<div class = "bears_pricing_tables-container">
         <?php
         $columnnr = 0;
-        for ($i = 1; $i <= $bears_num_columns; $i++) {
+        for (
+            $i = 1;
+            $i <= $bears_num_columns;
+            $i++
+        ) {
             if (isset($column_ref[$columnnr])) {
                 $cur_column = $column_ref[$columnnr];
                 if (!empty($cur_column)) {
@@ -375,17 +374,65 @@ echo $bears_moduleid; ?> bears_pricing_tables-outer">
                         echo $is_featured ? ' featured' : ''; ?> border-<?php
                         echo $is_featured ? $bears_featured_border_style : $bears_border_style; ?>">
 							<header>
-								<h4 class = "plan-title">
+                                <?php
+                                // Add column-specific class for icon styling
+                                $columnClass = 'bears-column-' . $cur_column;
+                                
+                                // Handle top positioned icons
+                                if (!empty($iconClass[$cur_column])) {
+                                    if (strpos($iconPosition[$cur_column], 'top-') === 0) { ?>
+                                        <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
+                                
+                                <h3 class="plan-title">
                                     <?php
-                                    echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
-								</h4>
-
-								<div class = "plan-cost">
-									<span class = "plan-price"><?php
-                                        echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></span>
-									<span class = "plan-type"><?php
-                                        echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></span>
-								</div>
+                                    // Handle center-center positioned icon (special case inside title)
+                                    if (!empty($iconClass[$cur_column])) {
+                                        if ($iconPosition[$cur_column] === 'center-center') { ?>
+                                            <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    
+                                    <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+                                </h3>
+                                
+                                <div class="icon-price">
+                                    <?php
+                                    // Handle price-left positioned icon (special case)
+                                    if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { ?>
+                                        <div class="<?php echo $columnClass; ?> icon-price-left">
+                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                        </div>
+                                    <?php } ?>
+                                    
+                                    <div class="plan-cost">
+                                        <h1 class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
+                                        <h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
+                                    </div>
+                                    
+                                    <?php
+                                    // Handle price-right positioned icon (special case)
+                                    if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { ?>
+                                        <div class="<?php echo $columnClass; ?> icon-price-right">
+                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                
+                                <?php
+                                // Handle bottom positioned icons
+                                if (!empty($iconClass[$cur_column])) {
+                                    if (strpos($iconPosition[$cur_column], 'bottom-') === 0) { ?>
+                                        <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
+                                            <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
 							</header>
 
 							<ul class = "plan-features dot">
