@@ -16,6 +16,7 @@
   
   /* Background Colors */
   --bears-column-bg: #e6e6e6;
+  --bears-column-featured-bg: #e6e6e6;
   --bears-header-bg: #191919;
   --bears-featured-bg: #e6e6e6;
   --bears-header-featured-bg: #222f3d; /* Header background for featured plans */

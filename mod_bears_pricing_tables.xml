@@ -67,7 +67,6 @@
 				<field name="bears_featured_price_color" type="color" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
 				<field name="bears_pricesub_color" type="color" default="" label="MOD_BEARS_PRICESUB_COLOR" description="MOD_BEARS_PRICESUB_COLOR_DESC" />
 				<field name="bears_features_color" type="color" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
-				<field name="bears_features_bg_color" type="color" default="" label="MOD_BEARS_FEATURES_BG_COLOR" description="MOD_BEARS_FEATURES_BG_COLOR_DESC" />
 				<field name="bears_border_color" type="color" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
 				<field name="bears_border_style" type="radio" default="shadow" label="MOD_BEARS_BORDER_STYLE" description="MOD_BEARS_BORDER_STYLE_DESC"
 					   class="btn-group">

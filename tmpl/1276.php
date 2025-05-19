@@ -178,11 +178,11 @@ if (!empty($bears_column_margin_y) && !empty($bears_column_margin_x)) {
 if ($bears_column_bg !== null && $bears_column_bg !== '') {
     $css_overrides .= '--bears-column-bg: ' . $bears_column_bg . '; ';
 }
+if ($bears_column_featured_bg !== null && $bears_column_featured_bg !== '') {
+    $css_overrides .= '--bears-column-featured-bg: ' . $bears_column_featured_bg . '; ';
+}
 if ($bears_header_bg !== null && $bears_header_bg !== '') {
     $css_overrides .= '--bears-header-bg: ' . $bears_header_bg . '; ';
-}
-if ($bears_featured_bg !== null && $bears_featured_bg !== '') {
-    $css_overrides .= '--bears-featured-bg: ' . $bears_featured_bg . '; ';
 }
 if ($bears_header_featured_bg !== null && $bears_header_featured_bg !== '') {
     $css_overrides .= '--bears-header-featured-bg: ' . $bears_header_featured_bg . '; ';
