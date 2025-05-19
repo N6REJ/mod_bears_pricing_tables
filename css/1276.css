@@ -34,10 +34,6 @@
   --bears-button-bg-color: #191919;
   --bears-button-hover-color: #666666;
   
-  /* Border Colors */
-  --bears-border-color: #efefef;
-  --bears-featured-border-color: #222f3d;
-  
   /* Accent Colors */
   --bears-accent-color: #191919;
   --bears-featured-accent-color: #222f3d;
@@ -51,8 +47,9 @@
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
   
-  
   /* Border Settings */
+  --bears-border-color: #efefef;
+  --bears-featured-border-color: #222f3d;
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
