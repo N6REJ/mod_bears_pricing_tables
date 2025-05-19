@@ -82,7 +82,7 @@
 				<field name="bears_title_color" type="rgba" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
 				<field name="bears_price_color" type="rgba" default="" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
 				<field name="bears_featured_price_color" type="rgba" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
-				<field name="bears_pricesub_color" type="rgba" default="" label="MOD_BEARS_PRICESUB_COLOR" description="MOD_BEARS_PRICESUB_COLOR_DESC" />
+				<field name="bears_subtitle_color" type="rgba" default="" label="MOD_BEARS_SUBTITLE_COLOR" description="MOD_BEARS_SUBTITLE_COLOR_DESC" />
 				<field name="bears_features_color" type="rgba" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
 				<field name="bears_icon_color" type="rgba" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
 				<field name="bears_border_color" type="rgba" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />

@@ -43,7 +43,7 @@ $bears_title_color = $params->get('bears_title_color', '');
 $bears_featured_title_color = $params->get('bears_featured_title_color', '');
 $bears_price_color = $params->get('bears_price_color', '');
 $bears_featured_price_color = $params->get('bears_featured_price_color', '');
-$bears_pricesub_color = $params->get('bears_pricesub_color', '');
+$bears_subtitle_color = $params->get('bears_subtitle_color', '');
 $bears_features_color = $params->get('bears_features_color', '');
 $bears_border_color = $params->get('bears_border_color', '');
 $bears_featured_border_color = $params->get('bears_featured_border_color', '');
@@ -135,8 +135,8 @@ if (!empty($bears_price_color)) {
 if (!empty($bears_featured_price_color)) {
     $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
 }
-if (!empty($bears_pricesub_color)) {
-    $css_overrides .= '--bears-pricesub-color: ' . $bears_pricesub_color . '; ';
+if (!empty($bears_subtitle_color)) {
+    $css_overrides .= '--bears-subtitle-color: ' . $bears_subtitle_color . '; ';
 }
 if (!empty($bears_features_color)) {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';

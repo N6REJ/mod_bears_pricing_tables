@@ -52,7 +52,7 @@ class ModBearsPricingTablesHelper
         $bears_button_font_size = $params->get('bears_button_font_size');
         $bears_price_color = $params->get('bears_price_color');
         $bears_featured_price_color = $params->get('bears_featured_price_color');
-        $bears_pricesub_color = $params->get('bears_pricesub_color');
+        $bears_subtitle_color = $params->get('bears_subtitle_color');
         $bears_features_color = $params->get('bears_features_color');
         $bears_border_color = $params->get('bears_border_color');
         $bears_border_style = $params->get('bears_border_style');
@@ -106,7 +106,7 @@ class ModBearsPricingTablesHelper
             'bears_button_font_size' => $bears_button_font_size,
             'bears_price_color' => $bears_price_color,
             'bears_featured_price_color' => $bears_featured_price_color,
-            'bears_pricesub_color' => $bears_pricesub_color,
+            'bears_subtitle_color' => $bears_subtitle_color,
             'bears_features_color' => $bears_features_color,
             'bears_border_color' => $bears_border_color,
             'bears_border_style' => $bears_border_style,
@@ -191,8 +191,8 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_featured_price_color')) {
             $css .= '--bears-featured-price-color: ' . $params->get('bears_featured_price_color') . ';';
         }
-        if ($params->get('bears_pricesub_color')) {
-            $css .= '--bears-pricesub-color: ' . $params->get('bears_pricesub_color') . ';';
+        if ($params->get('bears_subtitle_color')) {
+            $css .= '--bears-subtitle-color: ' . $params->get('bears_subtitle_color') . ';';
         }
         if ($params->get('bears_features_color')) {
             $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
