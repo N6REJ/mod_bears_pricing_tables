@@ -378,7 +378,7 @@ class ModBearsPricingTablesHelper
     public static function getTemplateName($params)
     {
         // Get template selection with default fallback
-        $template = $params->get('bears_template', 'default');
+        $template = $params->get('bears_template', '1276');
         
         // Get application
         $app = Factory::getApplication();
@@ -447,5 +447,31 @@ class ModBearsPricingTablesHelper
             'horizontal' => $iconHorz,
             'vertical' => $iconVert
         );
+    }
+
+    /**
+     * Helper function to format icon class correctly for FontAwesome 5/6
+     *
+     * @param   string  $iconClass  The icon class to format
+     * @return  string  Properly formatted icon class
+     * @since   2025.5.20
+     */
+    public static function formatIconClass($iconClass) {
+        if (empty($iconClass)) {
+            return '';
+        }
+
+        // If class already has fa/fas/far/fab prefix with space, return as is
+        if (preg_match('/^(fa|fas|far|fab|fa-solid|fa-regular|fa-brands)\s+/', $iconClass)) {
+            return $iconClass;
+        }
+
+        // If class starts with fa- but doesn't have a prefix, add fas
+        if (strpos($iconClass, 'fa-') === 0) {
+            return 'fas ' . $iconClass;
+        }
+
+        // Default case: add fa- prefix and fas class
+        return 'fas fa-' . $iconClass;
     }
 }

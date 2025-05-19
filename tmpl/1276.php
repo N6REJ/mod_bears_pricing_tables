@@ -113,26 +113,6 @@ for ($i = 1; $i <= 5; $i++) {
     $iconColor[$i] = $params->get('bears_icon_color' . $i);
 }
 
-// Helper function to format icon class correctly for FontAwesome 5/6
-function formatIconClass($iconClass) {
-    if (empty($iconClass)) {
-        return '';
-    }
-
-    // If class already has fa/fas/far/fab prefix with space, return as is
-    if (preg_match('/^(fa|fas|far|fab|fa-solid|fa-regular|fa-brands)\s+/', $iconClass)) {
-        return $iconClass;
-    }
-
-    // If class starts with fa- but doesn't have a prefix, add fas
-    if (strpos($iconClass, 'fa-') === 0) {
-        return 'fas ' . $iconClass;
-    }
-
-    // Default case: add fa- prefix and fas class
-    return 'fas fa-' . $iconClass;
-}
-
 // Get document
 $document = Factory::getDocument();
 
@@ -415,7 +395,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                     <header>
                         <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'top-') === 0) { ?>
                             <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                               <i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
                             </div>
                         <?php } ?>
 
@@ -425,14 +405,14 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 
                         <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'center-') === 0) { ?>
                             <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                               <i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
                             </div>
                         <?php } ?>
 
                         <div class="icon-price">
                             <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { ?>
                                 <div class="<?php echo $columnClass; ?> icon-price-left">
-                                    <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                   <i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
                                 </div>
                             <?php } ?>
 
@@ -443,14 +423,14 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 
                             <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { ?>
                                 <div class="<?php echo $columnClass; ?> icon-price-right">
-                                    <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                                   <i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
                                 </div>
                             <?php } ?>
                         </div>
 
                         <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'bottom-') === 0) { ?>
                             <div class="<?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-                                <i class="<?php echo htmlspecialchars(formatIconClass($iconClass[$cur_column])); ?>"></i>
+                               <i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
                             </div>
                         <?php } ?>
                     </header>
