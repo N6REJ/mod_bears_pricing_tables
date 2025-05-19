@@ -94,7 +94,7 @@ for ($i = 1; $i <= $max_columns; $i++) {
         $bears_features[$i]   = $params->get('bears_features' . $i);
         $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
         $bears_buttonurl[$i]  = $params->get('bears_buttonurl' . $i);
-        $bears_featured[$i]   = $params->get('bears_column_featured' . $i, 'no');
+        $bears_featured[$i]   = $params->get('bears_column_featured' . $i);
         $columnnr++;
     }
 }
@@ -108,7 +108,7 @@ $iconColor = [];
 for ($i = 1; $i <= 5; $i++) {
     $iconClass[$i] = $params->get('bears_icon_class' . $i);
     $iconSize[$i] = $params->get('bears_icon_size' . $i);
-    $iconPosition[$i] = $params->get('bears_icon_position' . $i, 'top-center');
+    $iconPosition[$i] = $params->get('bears_icon_position' . $i);
     $iconColor[$i] = $params->get('bears_icon_color' . $i);
 }
 
@@ -304,8 +304,8 @@ $bears_css .= '
 // Add column-specific icon variables
 for ($i = 1; $i <= 5; $i++) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' i {
-    color: var(--bears-icon-color-' . $i . ', var(--bears-icon-color, inherit));
-    font-size: var(--bears-icon-size-' . $i . ', var(--bears-icon-size, 24px));
+    color: var(--bears-icon-color-' . $i . ', var(--bears-icon-color));
+    font-size: var(--bears-icon-size-' . $i . ', var(--bears-icon-size));
 }
 ';
 }
@@ -343,17 +343,7 @@ if ($bears_num_columns == '1') {
 
 $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: ' . $column_width . '; }');
 
-// FontAwesome styles are now in the external CSS file
 $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
-
-// Add FontAwesome with a unique ID to prevent conflicts
-$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', 
-    array(
-        'integrity' => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==', 
-        'crossorigin' => 'anonymous', 
-        'referrerpolicy' => 'no-referrer'
-    )
-);
 ?>
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
