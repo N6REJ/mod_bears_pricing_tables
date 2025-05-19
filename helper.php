@@ -31,15 +31,20 @@ class ModBearsPricingTablesHelper
     /**
      * Get module parameters for the template
      *
-     * @param   object  $params  The module parameters
+     * @param   object  $params     The module parameters
+     * @param   bool    $useDefaults  Whether to use default values or not (defaults rely on CSS variables)
      * @return  array   Array of parameters for the template
      * @since   2025.5.10
      */
-    public static function getParams($params)
+    public static function getParams($params, $useDefaults = false)
     {
-        // Get global parameters
-        $bears_template = $params->get('bears_template', 'default');
+        // Get template (always provide default) - this is essential for module operation
+        $bears_template = $params->get('bears_template', '1276');
+        
+        // Get number columns with default value
         $bears_num_columns = (int) $params->get('bears_num_columns', 3);
+        
+        // CSS-variable backed parameters - use null to allow CSS variables as defaults
         $bears_column_margin_x = $params->get('bears_column_margin_x');
         $bears_column_margin_y = $params->get('bears_column_margin_y');
         $bears_column_bg = $params->get('bears_column_bg');
@@ -47,6 +52,7 @@ class ModBearsPricingTablesHelper
         $bears_header_bg = $params->get('bears_header_bg');
         $bears_header_featured_bg = $params->get('bears_header_featured_bg');
         $bears_title_color = $params->get('bears_title_color');
+        $bears_featured_title_color = $params->get('bears_featured_title_color');
         $bears_title_font_size = $params->get('bears_title_font_size');
         $bears_subtitle_font_size = $params->get('bears_subtitle_font_size');
         $bears_price_font_size = $params->get('bears_price_font_size');
@@ -57,9 +63,7 @@ class ModBearsPricingTablesHelper
         $bears_subtitle_color = $params->get('bears_subtitle_color');
         $bears_features_color = $params->get('bears_features_color');
         $bears_border_color = $params->get('bears_border_color');
-        $bears_border_style = $params->get('bears_border_style');
         $bears_featured_border_color = $params->get('bears_featured_border_color');
-        $bears_featured_border_style = $params->get('bears_featured_border_style');
         $bears_accent_color = $params->get('bears_accent_color');
         $bears_featured_accent_color = $params->get('bears_featured_accent_color');
         $bears_button_text_color = $params->get('bears_button_text_color');
@@ -67,9 +71,14 @@ class ModBearsPricingTablesHelper
         $bears_button_hover_color = $params->get('bears_button_hover_color');
         $bears_global_icon_color = $params->get('bears_icon_color');
         
-        // Get font parameters
-        $bears_google_font_family = $params->get('bears_google_font_family', 'Crimson Text');
-        $bears_font_weight = $params->get('bears_font_weight', '400');
+        // Parameters with explicit defaults that might vary by template
+        $bears_border_style = $params->get('bears_border_style');
+        $bears_featured_border_style = $params->get('bears_featured_border_style');
+        
+        // Font parameters with proper defaults
+        $bears_google_font_family = $params->get('bears_google_font_family');
+        $bears_font_weight = $params->get('bears_font_weight');
+        $bears_use_google_font = $params->get('bears_use_google_font');
         
         // Initialize arrays for column-specific parameters
         $bears_title = array();
@@ -83,10 +92,16 @@ class ModBearsPricingTablesHelper
         $bears_icon_size = array();
         $bears_icon_position = array();
         $bears_icon_color = array();
+        
+        // Initialize column reference array and counter
+        $column_ref = array();
+        $columnnr = 0;
+        $max_columns = 5;
 
         // Get parameters for each column
-        for ($i = 1; $i <= 5; $i++) {
-            $bears_title[$i] = $params->get('bears_title' . $i, '');
+        for ($i = 1; $i <= $max_columns; $i++) {
+            $title = $params->get('bears_title' . $i, '');
+            $bears_title[$i] = $title;
             $bears_price[$i] = $params->get('bears_price' . $i, '');
             $bears_subtitle[$i] = $params->get('bears_subtitle' . $i, '');
             $bears_features[$i] = $params->get('bears_features' . $i, array());
@@ -95,8 +110,14 @@ class ModBearsPricingTablesHelper
             $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i, '');
             $bears_icon_class[$i] = $params->get('bears_icon_class' . $i, '');
             $bears_icon_size[$i] = $params->get('bears_icon_size' . $i, '');
-            $bears_icon_position[$i] = $params->get('bears_icon_position' . $i, 'top-center');
+            $bears_icon_position[$i] = $params->get('bears_icon_position' . $i);
             $bears_icon_color[$i] = $params->get('bears_icon_color' . $i, '');
+            
+            // Build the column reference array based on which columns have titles
+            if (!empty($title)) {
+                $column_ref[$columnnr] = $i;
+                $columnnr++;
+            }
         }
         
         return array(
@@ -110,6 +131,7 @@ class ModBearsPricingTablesHelper
             'bears_header_bg' => $bears_header_bg,
             'bears_header_featured_bg' => $bears_header_featured_bg,
             'bears_title_color' => $bears_title_color,
+            'bears_featured_title_color' => $bears_featured_title_color,
             'bears_title_font_size' => $bears_title_font_size,
             'bears_subtitle_font_size' => $bears_subtitle_font_size,
             'bears_price_font_size' => $bears_price_font_size,
@@ -129,6 +151,7 @@ class ModBearsPricingTablesHelper
             'bears_button_bg_color' => $bears_button_bg_color,
             'bears_button_hover_color' => $bears_button_hover_color,
             'bears_icon_color' => $bears_global_icon_color,
+            'bears_use_google_font' => $bears_use_google_font,
 
             // Font parameters
             'bears_google_font_family' => $bears_google_font_family,
@@ -142,10 +165,16 @@ class ModBearsPricingTablesHelper
             'bears_featured' => $bears_featured,
             'bears_buttontext' => $bears_buttontext,
             'bears_buttonurl' => $bears_buttonurl,
-            'bears_icon_class' => $bears_icon_class,
-            'bears_icon_size' => $bears_icon_size,
-            'bears_icon_position' => $bears_icon_position,
-            'bears_icon_color' => $bears_icon_color,
+            
+            // Icon parameters
+            'iconClass' => $bears_icon_class,
+            'iconSize' => $bears_icon_size,
+            'iconPosition' => $bears_icon_position,
+            'iconColor' => $bears_icon_color,
+            
+            // Column reference array for template use
+            'column_ref' => $column_ref,
+            'columnnr' => $columnnr,
         );
     }
 
@@ -240,10 +269,11 @@ class ModBearsPricingTablesHelper
      * Generate custom CSS based on module parameters
      *
      * @param   object  $params  The module parameters
+     * @param   int     $moduleId  The module ID for instance-specific CSS
      * @return  string  The custom CSS
      * @since   2025.5.10
      */
-    public static function generateCustomCSS($params)
+    public static function generateCustomCSS($params, $moduleId = 0)
     {
         $css = '.bears_pricing_tables {';
         
@@ -363,6 +393,26 @@ class ModBearsPricingTablesHelper
                        '.bears_pricing_tables .bears-column-' . $i . ' .far, ' .
                        '.bears_pricing_tables .bears-column-' . $i . ' .fab { font-size: ' . $iconSize . '; }';
             }
+        }
+        
+        // If moduleId is provided, generate module-specific CSS
+        if ($moduleId > 0) {
+            // Calculate column width based on number of columns
+            $bears_num_columns = (int) $params->get('bears_num_columns', 3);
+            $column_width = '33.3%'; // Default to 3 columns
+            if ($bears_num_columns == 1) {
+                $column_width = '100%';
+            } elseif ($bears_num_columns == 2) {
+                $column_width = '50%';
+            } elseif ($bears_num_columns == 3) {
+                $column_width = '33.3%';
+            } elseif ($bears_num_columns == 4) {
+                $column_width = '25%';
+            } elseif ($bears_num_columns == 5) {
+                $column_width = '20%';
+            }
+            
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables { width: ' . $column_width . '; }';
         }
         
         return $css;
