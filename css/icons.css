@@ -10,48 +10,33 @@
 :root {
 	--bears-icon-color: white;
 	--bears-icon-size: 24px;
+	--bears-transition-speed: 0.3s;
+	--bears-featured-title-color: inherit;
 	}
 
-/* Icon styles */
+/* Base icon styles */
 .bears_pricing_tables .plan-icon {
+	display: inline-block;
 	color: var(--bears-icon-color);
 	font-size: var(--bears-icon-size);
-	display: inline-block;
+	transition: color var(--bears-transition-speed);
 	}
 
-/* Base icon styling */
-.bears_pricing_tables .plan.featured [class^="bears-column-"] .plan-icon,
-.bears_pricing_tables [class^="bears-column-"] .plan-icon {
-	color: var(--bears-icon-color);
-	font-size: var(--bears-icon-size);
-	display: inline-block;
+.bears_pricing_tables .plan.featured .plan-icon {
+	color: var(--bears-featured-title-color);
 	}
 
-/* Top row icon containers - more aggressive styling */
+/* Top position icons */
 .bears_pricing_tables [class*="icon-top-"],
 .bears_pricing_tables .plan header [class*="icon-top-"],
 .bears_pricing_tables .plan header div[class*="icon-top-"] {
 	display: block !important;
 	width: 100% !important;
-	clear: both !important;
+	text-align: center !important;
 	margin-bottom: 10px !important;
-	border-bottom: 1px solid transparent !important; /* Adds space even if margins collapse */
 	position: relative !important;
 	}
 
-/* Bottom row icon containers - more aggressive styling */
-.bears_pricing_tables [class*="icon-bottom-"],
-.bears_pricing_tables .plan header [class*="icon-bottom-"],
-.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
-	display: block !important;
-	width: 100% !important;
-	clear: both !important;
-	margin-top: 10px !important;
-	border-top: 1px solid transparent !important; /* Adds space even if margins collapse */
-	position: relative !important;
-	}
-
-/* Icon positioning classes - with stronger specificity */
 .bears_pricing_tables .icon-top-left,
 .bears_pricing_tables .plan header .icon-top-left,
 .bears_pricing_tables .plan header div.icon-top-left {
@@ -72,45 +57,22 @@
 	padding-right: 5px !important;
 	}
 
-/* Center row icon containers - place on their own row */
+/* Center position icons */
 .bears_pricing_tables [class*="icon-center-"],
 .bears_pricing_tables .plan header [class*="icon-center-"],
 .bears_pricing_tables .plan header div[class*="icon-center-"] {
 	display: block !important;
 	width: 100% !important;
-	clear: both !important;
+	text-align: center !important;
 	margin: 10px 0 !important;
-	border-top: 1px solid transparent !important;
-	border-bottom: 1px solid transparent !important;
 	position: relative !important;
 	}
 
-/* Icon positioning classes - with stronger specificity */
 .bears_pricing_tables .icon-center-left,
 .bears_pricing_tables .plan header .icon-center-left,
 .bears_pricing_tables .plan header div.icon-center-left {
-	position: relative !important;
-	text-align: center !important;
-	padding-left: 0 !important;
-	}
-
-.bears_pricing_tables .icon-center-left i,
-.bears_pricing_tables .plan header .icon-center-left i,
-.bears_pricing_tables .plan header div.icon-center-left i,
-.bears_pricing_tables .icon-center-left .fa,
-.bears_pricing_tables .plan header .icon-center-left .fa,
-.bears_pricing_tables .plan header div.icon-center-left .fa,
-.bears_pricing_tables .icon-center-left .fas,
-.bears_pricing_tables .plan header .icon-center-left .fas,
-.bears_pricing_tables .plan header div.icon-center-left .fas,
-.bears_pricing_tables .icon-center-left .far,
-.bears_pricing_tables .plan header .icon-center-left .far,
-.bears_pricing_tables .plan header div.icon-center-left .far,
-.bears_pricing_tables .icon-center-left .fab,
-.bears_pricing_tables .plan header .icon-center-left .fab,
-.bears_pricing_tables .plan header div.icon-center-left .fab {
-	position: absolute !important;
-	left: 5px !important;
+	text-align: left !important;
+	padding-left: 5px !important;
 	}
 
 .bears_pricing_tables .icon-center-center,
@@ -122,28 +84,19 @@
 .bears_pricing_tables .icon-center-right,
 .bears_pricing_tables .plan header .icon-center-right,
 .bears_pricing_tables .plan header div.icon-center-right {
-	position: relative !important;
-	text-align: center !important;
-	padding-right: 0 !important;
+	text-align: right !important;
+	padding-right: 5px !important;
 	}
 
-.bears_pricing_tables .icon-center-right i,
-.bears_pricing_tables .plan header .icon-center-right i,
-.bears_pricing_tables .plan header div.icon-center-right i,
-.bears_pricing_tables .icon-center-right .fa,
-.bears_pricing_tables .plan header .icon-center-right .fa,
-.bears_pricing_tables .plan header div.icon-center-right .fa,
-.bears_pricing_tables .icon-center-right .fas,
-.bears_pricing_tables .plan header .icon-center-right .fas,
-.bears_pricing_tables .plan header div.icon-center-right .fas,
-.bears_pricing_tables .icon-center-right .far,
-.bears_pricing_tables .plan header .icon-center-right .far,
-.bears_pricing_tables .plan header div.icon-center-right .far,
-.bears_pricing_tables .icon-center-right .fab,
-.bears_pricing_tables .plan header .icon-center-right .fab,
-.bears_pricing_tables .plan header div.icon-center-right .fab {
-	position: absolute !important;
-	right: 5px !important;
+/* Bottom position icons */
+.bears_pricing_tables [class*="icon-bottom-"],
+.bears_pricing_tables .plan header [class*="icon-bottom-"],
+.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+	display: block !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-top: 10px !important;
+	position: relative !important;
 	}
 
 .bears_pricing_tables .icon-bottom-left,
@@ -166,7 +119,7 @@
 	padding-right: 5px !important;
 	}
 
-/* Price area positioning */
+/* Price position icons */
 .bears_pricing_tables .price {
 	display: flex;
 	align-items: center;
@@ -174,11 +127,13 @@
 	}
 
 .bears_pricing_tables .price-left {
-	margin-right: 10px;
+	float: left !important;
+	margin-right: 10px !important;
 	}
 
 .bears_pricing_tables .price-right {
-	margin-left: 10px;
+	float: right !important;
+	margin-left: 10px !important;
 	}
 
 /* Make header container to support icon positioning */
@@ -199,11 +154,7 @@
 
 /* Responsive adjustments */
 @media only screen and (max-width: 767px) {
-	.bears_pricing_tables [class^="bears-column-"] i,
-	.bears_pricing_tables [class^="bears-column-"] .fa,
-	.bears_pricing_tables [class^="bears-column-"] .fas,
-	.bears_pricing_tables [class^="bears-column-"] .far,
-	.bears_pricing_tables [class^="bears-column-"] .fab {
+	.bears_pricing_tables .plan-icon {
 		font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
 		}
 	
