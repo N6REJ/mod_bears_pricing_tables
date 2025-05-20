@@ -373,7 +373,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                         echo '<!-- Debug: iconSize for column ' . $cur_column . ': ' . ($iconSize[$cur_column] ?? 'not set') . ' -->';
                         echo '<!-- Debug: is_featured: ' . ($is_featured ? 'yes' : 'no') . ' -->';
 
-                        if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && strpos($iconPosition[$cur_column], 'top-') === 0) { 
+                        if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'top-')) {
                         ?>
 							<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
 								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
@@ -384,7 +384,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                             <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 						</h3>
 
-                        <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && strpos($iconPosition[$cur_column], 'center-') === 0) { 
+                        <?php if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'center-')) {
                         ?>
 							<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
 								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
@@ -392,7 +392,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                         <?php } ?>
 
 						<div class="price">
-                            <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { 
+                            <?php if (!empty($iconClass[$cur_column])  && $iconPosition[$cur_column] === 'price-left') { 
                             ?>
 								<div class="plan-icon price-left <?php echo $columnClass; ?>">
 									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
@@ -404,7 +404,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 								<h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
 							</div>
 
-                            <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { 
+                            <?php if (!empty($iconClass[$cur_column])  && $iconPosition[$cur_column] === 'price-right') { 
                             ?>
 								<div class="plan-icon price-right <?php echo $columnClass; ?>">
 									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
@@ -412,7 +412,7 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                             <?php } ?>
 						</div>
 
-                        <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && strpos($iconPosition[$cur_column], 'bottom-') === 0) { 
+                        <?php if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'bottom-')) {
                         ?>
 							<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
 								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>

@@ -410,12 +410,29 @@ class ModBearsPricingTablesHelper
         // Add column-specific icon sizes if specified
         for ($i = 1; $i <= 5; $i++) {
             $iconSize = $params->get('bears_icon_size' . $i);
+            $iconClass = $params->get('bears_icon_class' . $i);
+            
             if (!empty($iconSize)) {
-                $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' i, ' .
-                    '.bears_pricing_tables .bears-column-' . $i . ' .fa, ' .
-                    '.bears_pricing_tables .bears-column-' . $i . ' .fas, ' .
-                    '.bears_pricing_tables .bears-column-' . $i . ' .far, ' .
-                    '.bears_pricing_tables .bears-column-' . $i . ' .fab { font-size: ' . $iconSize . '; }';
+                // Add 'px' to the size if it doesn't already have a unit
+                if (!preg_match('/[a-z%]$/i', $iconSize)) {
+                    $iconSize .= 'px';
+                }
+                
+                if (!empty($iconClass)) {
+                    // Extract the base class (fa, fas, far, fab) and the specific icon name
+                    $classes = explode(' ', trim($iconClass));
+                    $baseClass = $classes[0]; // e.g., 'fas'
+                    
+                    // Apply the size to the specific icon within this column
+                    $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' i.' . $baseClass . ' { font-size: ' . $iconSize . '; }';
+                } else {
+                    // Fallback: if icon size is specified but no specific class, apply to all icons in the column
+                    $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' i, ' .
+                        '.bears_pricing_tables .bears-column-' . $i . ' .fa, ' .
+                        '.bears_pricing_tables .bears-column-' . $i . ' .fas, ' .
+                        '.bears_pricing_tables .bears-column-' . $i . ' .far, ' .
+                        '.bears_pricing_tables .bears-column-' . $i . ' .fab { font-size: ' . $iconSize . '; }';
+                }
             }
         }
 
