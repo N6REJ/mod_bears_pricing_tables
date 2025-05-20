@@ -195,11 +195,20 @@ class ModBearsPricingTablesHelper
         // Get template name using the safe method
         $template = self::getTemplateName($params);
 
-        // Add the base CSS file
-        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css');
-
-        // Add icons CSS file
-        $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/icons.css');
+        // Define the path to the CSS file
+        $cssPath = Uri::root(true) . '/modules/mod_bears_pricing_tables/css/' . $template . '.css';
+        
+        // Make sure we have access to the JPATH_ROOT constant
+        defined('JPATH_ROOT') or define('JPATH_ROOT', dirname(dirname(dirname(__FILE__))));
+        
+        // Check if the file exists using a more reliable method
+        if (is_readable(JPATH_ROOT . '/modules/mod_bears_pricing_tables/css/' . $template . '.css')) {
+            // Add the stylesheet directly
+            $document->addStyleSheet($cssPath);
+        } else {
+            // Log an error if the CSS file can't be found
+            Factory::getApplication()->enqueueMessage('Template CSS file not found: ' . $template . '.css', 'error');
+        }
 
         // Check if FontAwesome is needed and load it if not already loaded
         self::loadFontAwesome();
@@ -212,7 +221,7 @@ class ModBearsPricingTablesHelper
     }
 
     /**
-     * Load FontAwesome if it's not already loaded by the template
+     * Load FontAwesome if it's not already loaded
      *
      * @return  void
      * @since   2025.5.18
@@ -222,54 +231,53 @@ class ModBearsPricingTablesHelper
         // Get the document
         $document = Factory::getDocument();
 
-        // Get the WebAsset Manager
-        $wa = $document->getWebAssetManager();
+        // Make sure we have access to the JPATH_ROOT constant
+        defined('JPATH_ROOT') or define('JPATH_ROOT', dirname(dirname(dirname(__FILE__))));
 
-        // Check if FontAwesome is already available as a WebAsset
-        if ($wa->assetExists('style', 'fontawesome')) {
-            // Use Joomla's built-in FontAwesome
-            $wa->useStyle('fontawesome');
-
-            return;
+        // Load our module's icons CSS directly, similar to how we load template CSS
+        $iconsPath = Uri::root(true) . '/modules/mod_bears_pricing_tables/css/icons.css';
+        
+        // Check if the file exists using a more reliable method
+        if (is_readable(JPATH_ROOT . '/modules/mod_bears_pricing_tables/css/icons.css')) {
+            // Add the stylesheet directly
+            $document->addStyleSheet($iconsPath);
+        } else {
+            // Log an error if the CSS file can't be found
+            Factory::getApplication()->enqueueMessage('Icons CSS file not found: icons.css', 'error');
         }
 
-        // Check if FontAwesome is already loaded by looking for it in the document head
-        $headData          = $document->getHeadData();
-        $styleSheets       = $headData['styleSheets'];
+        // Check if FontAwesome is already loaded in the document head
+        $headData = $document->getHeadData();
+        $styleSheets = $headData['styleSheets'];
         $fontAwesomeLoaded = false;
+        $hasAllComponents = false;
 
-        // Check if any of the loaded stylesheets contain 'font-awesome' in their URL
+        // Check for FontAwesome in loaded stylesheets
         foreach ($styleSheets as $url => $attributes) {
-            if (stripos($url, 'font-awesome') !== false) {
+            if (stripos($url, 'font-awesome') !== false || stripos($url, 'fontawesome') !== false) {
                 $fontAwesomeLoaded = true;
+                
+                // Check if it's the "all.min.css" which contains all components
+                if (stripos($url, 'all.min.css') !== false) {
+                    $hasAllComponents = true;
+                }
+                
                 break;
             }
         }
 
-        // If FontAwesome is not loaded, try multiple approaches
-        if (!$fontAwesomeLoaded) {
-            // First try: Load from Joomla's media directory
-            if (file_exists(JPATH_ROOT . '/media/vendor/fontawesome-free/css/fontawesome.min.css')) {
-                $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/fontawesome.min.css');
-                $document->addStyleSheet(Uri::root(true) . '/media/vendor/fontawesome-free/css/solid.min.css');
-            } // Second try: Load from CDN as a fallback
-            else {
-                $document->addStyleSheet(
-                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-                    array(
-                        'integrity'      => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==',
-                        'crossorigin'    => 'anonymous',
-                        'referrerpolicy' => 'no-referrer'
-                    )
-                );
-            }
-
-            // Add a debug message to help troubleshoot
-            $document->addScriptDeclaration(
-                "console.log('Bears Pricing Tables: FontAwesome loaded from " .
-                (file_exists(JPATH_ROOT . '/media/vendor/fontawesome-free/css/fontawesome.min.css') ?
-                    'Joomla media directory' : 'CDN') . "');"
+        // If FontAwesome is not loaded or doesn't have all components, load the complete version
+        if (!$fontAwesomeLoaded || !$hasAllComponents) {
+            // Always load the complete Font Awesome from CDN to ensure all icons work
+            $document->addStyleSheet(
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                ['integrity' => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==',
+                 'crossorigin' => 'anonymous',
+                 'referrerpolicy' => 'no-referrer']
             );
+            
+            // Add debug message
+            $document->addScriptDeclaration("console.log('Bears Pricing Tables: Loading complete FontAwesome from CDN');");
         }
     }
 
@@ -349,14 +357,30 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_box_shadow')) {
             $css .= '--bears-box-shadow: ' . $params->get('bears_box_shadow') . ';';
         }
+        
+        // Add 'px' to size-related fields if they don't already have a unit
         if ($params->get('bears_border_radius')) {
-            $css .= '--bears-border-radius: ' . $params->get('bears_border_radius') . 'px;';
+            $borderRadius = $params->get('bears_border_radius');
+            if (!preg_match('/[a-z%]$/i', $borderRadius)) {
+                $borderRadius .= 'px';
+            }
+            $css .= '--bears-border-radius: ' . $borderRadius . ';';
         }
+        
         if ($params->get('bears_border_width')) {
-            $css .= '--bears-border-width: ' . $params->get('bears_border_width') . 'px;';
+            $borderWidth = $params->get('bears_border_width');
+            if (!preg_match('/[a-z%]$/i', $borderWidth)) {
+                $borderWidth .= 'px';
+            }
+            $css .= '--bears-border-width: ' . $borderWidth . ';';
         }
+        
         if ($params->get('bears_transition_speed')) {
-            $css .= '--bears-transition-speed: ' . $params->get('bears_transition_speed') . 's;';
+            $transitionSpeed = $params->get('bears_transition_speed');
+            if (!preg_match('/[a-z]$/i', $transitionSpeed)) {
+                $transitionSpeed .= 's';
+            }
+            $css .= '--bears-transition-speed: ' . $transitionSpeed . ';';
         }
 
         // Column-specific icon colors
@@ -365,32 +389,64 @@ class ModBearsPricingTablesHelper
             if (!empty($iconColor)) {
                 $css .= '--bears-icon-color-' . $i . ': ' . $iconColor . ';';
             }
-            
         }
 
-        // Font sizes
+        // Font sizes - add 'px' if not already present
         if ($params->get('bears_title_font_size')) {
-            $css .= '--bears-title-font-size: ' . $params->get('bears_title_font_size') . 'px;';
+            $titleFontSize = $params->get('bears_title_font_size');
+            if (!preg_match('/[a-z%]$/i', $titleFontSize)) {
+                $titleFontSize .= 'px';
+            }
+            $css .= '--bears-title-font-size: ' . $titleFontSize . ';';
         }
+        
         if ($params->get('bears_subtitle_font_size')) {
-            $css .= '--bears-subtitle-font-size: ' . $params->get('bears_subtitle_font_size') . 'px;';
+            $subtitleFontSize = $params->get('bears_subtitle_font_size');
+            if (!preg_match('/[a-z%]$/i', $subtitleFontSize)) {
+                $subtitleFontSize .= 'px';
+            }
+            $css .= '--bears-subtitle-font-size: ' . $subtitleFontSize . ';';
         }
+        
         if ($params->get('bears_price_font_size')) {
-            $css .= '--bears-price-font-size: ' . $params->get('bears_price_font_size') . 'px;';
+            $priceFontSize = $params->get('bears_price_font_size');
+            if (!preg_match('/[a-z%]$/i', $priceFontSize)) {
+                $priceFontSize .= 'px';
+            }
+            $css .= '--bears-price-font-size: ' . $priceFontSize . ';';
         }
+        
         if ($params->get('bears_features_font_size')) {
-            $css .= '--bears-features-font-size: ' . $params->get('bears_features_font_size') . 'px;';
+            $featuresFontSize = $params->get('bears_features_font_size');
+            if (!preg_match('/[a-z%]$/i', $featuresFontSize)) {
+                $featuresFontSize .= 'px';
+            }
+            $css .= '--bears-features-font-size: ' . $featuresFontSize . ';';
         }
+        
         if ($params->get('bears_button_font_size')) {
-            $css .= '--bears-button-font-size: ' . $params->get('bears_button_font_size') . 'px;';
+            $buttonFontSize = $params->get('bears_button_font_size');
+            if (!preg_match('/[a-z%]$/i', $buttonFontSize)) {
+                $buttonFontSize .= 'px';
+            }
+            $css .= '--bears-button-font-size: ' . $buttonFontSize . ';';
         }
 
-        // Margins
+        // Margins - add 'px' if not already present
         if ($params->get('bears_column_margin_x')) {
-            $css .= '--bears-column-margin-x: ' . $params->get('bears_column_margin_x') . 'px;';
+            $columnMarginX = $params->get('bears_column_margin_x');
+            if (!preg_match('/[a-z%]$/i', $columnMarginX)) {
+                $columnMarginX .= 'px';
+            }
+            $css .= '--bears-column-margin-x: ' . $columnMarginX . ';';
         }
+        
         if ($params->get('bears_column_margin_y')) {
-            $css .= '--bears-column-margin-y: ' . $params->get('bears_column_margin_y') . 'px;';
+            $columnMarginY = $params->get('bears_column_margin_y');
+            if (!preg_match('/[a-z%]$/i', $columnMarginY)) {
+                $columnMarginY .= 'px';
+            }
+            $css .= '--bears-column-margin-y: ' . $columnMarginY . ';';
         }
 
         $css .= '}';

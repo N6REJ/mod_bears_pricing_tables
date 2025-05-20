@@ -276,8 +276,7 @@ for ($i = 1; $i <= 5; $i++) {
 ';
 }
 
-// Load external CSS file for icons instead of inline CSS
-$document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
+// Icon styles are now included in the main CSS
 
 
 // Add overrides if any exist
@@ -332,8 +331,6 @@ $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' .be
 
 // Make sure tables are responsive on mobile
 $document->addStyleDeclaration('@media (max-width: 768px) { .bears_pricing_tables' . $bears_moduleid . ' .bears_pricing_tables { width: 100%; } }');
-
-$document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
 ?>
 
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
