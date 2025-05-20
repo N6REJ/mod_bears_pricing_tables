@@ -24,7 +24,7 @@
 .bears_pricing_tables [class^="bears-column-"] .far,
 .bears_pricing_tables [class^="bears-column-"] .fab {
   color: var(--bears-icon-color, inherit);
-  font-size: var(--bears-icon-size, 24px);
+  font-size: var(--bears-icon-size);
   display: inline-block;
 }
 
@@ -79,7 +79,6 @@
   margin-bottom: 10px !important;
   border-bottom: 1px solid transparent !important; /* Adds space even if margins collapse */
   position: relative !important;
-  /* Removed text-align: center to allow individual alignment */
 }
 
 /* Bottom row icon containers - more aggressive styling */
@@ -92,7 +91,6 @@
   margin-top: 10px !important;
   border-top: 1px solid transparent !important; /* Adds space even if margins collapse */
   position: relative !important;
-  /* Removed text-align: center to allow individual alignment */
 }
 
 /* Icon positioning classes - with stronger specificity */
@@ -127,7 +125,6 @@
   border-top: 1px solid transparent !important;
   border-bottom: 1px solid transparent !important;
   position: relative !important;
-  /* Removed text-align: center to allow individual alignment */
 }
 
 /* Icon positioning classes - with stronger specificity */
