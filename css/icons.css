@@ -8,133 +8,91 @@
  * but we define them here with defaults for IDE support
  */
 :root {
-  --bears-icon-color: inherit;
-  --bears-icon-color-1: inherit;
-  --bears-icon-color-2: inherit;
-  --bears-icon-color-3: inherit;
-  --bears-icon-color-4: inherit;
-  --bears-icon-color-5: inherit;
-  --bears-icon-size: 24px;
-}
+	--bears-icon-color: white;
+	--bears-icon-size: 24px;
+	}
+
+/* Icon styles */
+.bears_pricing_tables .plan-icon {
+	color: var(--bears-icon-color);
+	font-size: var(--bears-icon-size);
+	display: inline-block;
+	}
 
 /* Base icon styling */
-.bears_pricing_tables [class^="bears-column-"] i,
-.bears_pricing_tables [class^="bears-column-"] .fa,
-.bears_pricing_tables [class^="bears-column-"] .fas,
-.bears_pricing_tables [class^="bears-column-"] .far,
-.bears_pricing_tables [class^="bears-column-"] .fab {
-  color: var(--bears-icon-color, inherit);
-  font-size: var(--bears-icon-size);
-  display: inline-block;
-}
-
-/* Column-specific icon colors */
-.bears_pricing_tables .bears-column-1 i,
-.bears_pricing_tables .bears-column-1 .fa,
-.bears_pricing_tables .bears-column-1 .fas,
-.bears_pricing_tables .bears-column-1 .far,
-.bears_pricing_tables .bears-column-1 .fab {
-  color: var(--bears-icon-color-1, var(--bears-icon-color, inherit));
-}
-
-.bears_pricing_tables .bears-column-2 i,
-.bears_pricing_tables .bears-column-2 .fa,
-.bears_pricing_tables .bears-column-2 .fas,
-.bears_pricing_tables .bears-column-2 .far,
-.bears_pricing_tables .bears-column-2 .fab {
-  color: var(--bears-icon-color-2, var(--bears-icon-color, inherit));
-}
-
-.bears_pricing_tables .bears-column-3 i,
-.bears_pricing_tables .bears-column-3 .fa,
-.bears_pricing_tables .bears-column-3 .fas,
-.bears_pricing_tables .bears-column-3 .far,
-.bears_pricing_tables .bears-column-3 .fab {
-  color: var(--bears-icon-color-3, var(--bears-icon-color, inherit));
-}
-
-.bears_pricing_tables .bears-column-4 i,
-.bears_pricing_tables .bears-column-4 .fa,
-.bears_pricing_tables .bears-column-4 .fas,
-.bears_pricing_tables .bears-column-4 .far,
-.bears_pricing_tables .bears-column-4 .fab {
-  color: var(--bears-icon-color-4, var(--bears-icon-color, inherit));
-}
-
-.bears_pricing_tables .bears-column-5 i,
-.bears_pricing_tables .bears-column-5 .fa,
-.bears_pricing_tables .bears-column-5 .fas,
-.bears_pricing_tables .bears-column-5 .far,
-.bears_pricing_tables .bears-column-5 .fab {
-  color: var(--bears-icon-color-5, var(--bears-icon-color, inherit));
-}
+.bears_pricing_tables .plan.featured [class^="bears-column-"] .plan-icon,
+.bears_pricing_tables [class^="bears-column-"] .plan-icon {
+	color: var(--bears-icon-color);
+	font-size: var(--bears-icon-size);
+	display: inline-block;
+	}
 
 /* Top row icon containers - more aggressive styling */
 .bears_pricing_tables [class*="icon-top-"],
 .bears_pricing_tables .plan header [class*="icon-top-"],
 .bears_pricing_tables .plan header div[class*="icon-top-"] {
-  display: block !important;
-  width: 100% !important;
-  clear: both !important;
-  margin-bottom: 10px !important;
-  border-bottom: 1px solid transparent !important; /* Adds space even if margins collapse */
-  position: relative !important;
-}
+	display: block !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid transparent !important; /* Adds space even if margins collapse */
+	position: relative !important;
+	}
 
 /* Bottom row icon containers - more aggressive styling */
 .bears_pricing_tables [class*="icon-bottom-"],
 .bears_pricing_tables .plan header [class*="icon-bottom-"],
 .bears_pricing_tables .plan header div[class*="icon-bottom-"] {
-  display: block !important;
-  width: 100% !important;
-  clear: both !important;
-  margin-top: 10px !important;
-  border-top: 1px solid transparent !important; /* Adds space even if margins collapse */
-  position: relative !important;
-}
+	display: block !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-top: 10px !important;
+	border-top: 1px solid transparent !important; /* Adds space even if margins collapse */
+	position: relative !important;
+	}
 
 /* Icon positioning classes - with stronger specificity */
 .bears_pricing_tables .icon-top-left,
 .bears_pricing_tables .plan header .icon-top-left,
-.bears_pricing_tables .plan header div.icon-top-left { 
-  text-align: left !important;
-  padding-left: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-top-left {
+	text-align: left !important;
+	padding-left: 5px !important;
+	}
 
 .bears_pricing_tables .icon-top-center,
 .bears_pricing_tables .plan header .icon-top-center,
-.bears_pricing_tables .plan header div.icon-top-center { 
-  text-align: center !important;
-}
+.bears_pricing_tables .plan header div.icon-top-center {
+	text-align: center !important;
+	}
 
 .bears_pricing_tables .icon-top-right,
 .bears_pricing_tables .plan header .icon-top-right,
-.bears_pricing_tables .plan header div.icon-top-right { 
-  text-align: right !important;
-  padding-right: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-top-right {
+	text-align: right !important;
+	padding-right: 5px !important;
+	}
 
 /* Center row icon containers - place on their own row */
 .bears_pricing_tables [class*="icon-center-"],
 .bears_pricing_tables .plan header [class*="icon-center-"],
 .bears_pricing_tables .plan header div[class*="icon-center-"] {
-  display: block !important;
-  width: 100% !important;
-  clear: both !important;
-  margin: 10px 0 !important;
-  border-top: 1px solid transparent !important;
-  border-bottom: 1px solid transparent !important;
-  position: relative !important;
-}
+	display: block !important;
+	width: 100% !important;
+	clear: both !important;
+	margin: 10px 0 !important;
+	border-top: 1px solid transparent !important;
+	border-bottom: 1px solid transparent !important;
+	position: relative !important;
+	}
 
 /* Icon positioning classes - with stronger specificity */
 .bears_pricing_tables .icon-center-left,
 .bears_pricing_tables .plan header .icon-center-left,
-.bears_pricing_tables .plan header div.icon-center-left { 
-  position: relative !important;
-  text-align: center !important;
-  padding-left: 0 !important;
-}
+.bears_pricing_tables .plan header div.icon-center-left {
+	position: relative !important;
+	text-align: center !important;
+	padding-left: 0 !important;
+	}
 
 .bears_pricing_tables .icon-center-left i,
 .bears_pricing_tables .plan header .icon-center-left i,
@@ -150,24 +108,24 @@
 .bears_pricing_tables .plan header div.icon-center-left .far,
 .bears_pricing_tables .icon-center-left .fab,
 .bears_pricing_tables .plan header .icon-center-left .fab,
-.bears_pricing_tables .plan header div.icon-center-left .fab { 
-  position: absolute !important;
-  left: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-center-left .fab {
+	position: absolute !important;
+	left: 5px !important;
+	}
 
 .bears_pricing_tables .icon-center-center,
 .bears_pricing_tables .plan header .icon-center-center,
-.bears_pricing_tables .plan header div.icon-center-center { 
-  text-align: center !important;
-}
+.bears_pricing_tables .plan header div.icon-center-center {
+	text-align: center !important;
+	}
 
 .bears_pricing_tables .icon-center-right,
 .bears_pricing_tables .plan header .icon-center-right,
-.bears_pricing_tables .plan header div.icon-center-right { 
-  position: relative !important;
-  text-align: center !important;
-  padding-right: 0 !important;
-}
+.bears_pricing_tables .plan header div.icon-center-right {
+	position: relative !important;
+	text-align: center !important;
+	padding-right: 0 !important;
+	}
 
 .bears_pricing_tables .icon-center-right i,
 .bears_pricing_tables .plan header .icon-center-right i,
@@ -183,89 +141,74 @@
 .bears_pricing_tables .plan header div.icon-center-right .far,
 .bears_pricing_tables .icon-center-right .fab,
 .bears_pricing_tables .plan header .icon-center-right .fab,
-.bears_pricing_tables .plan header div.icon-center-right .fab { 
-  position: absolute !important;
-  right: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-center-right .fab {
+	position: absolute !important;
+	right: 5px !important;
+	}
 
 .bears_pricing_tables .icon-bottom-left,
 .bears_pricing_tables .plan header .icon-bottom-left,
-.bears_pricing_tables .plan header div.icon-bottom-left { 
-  text-align: left !important;
-  padding-left: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-bottom-left {
+	text-align: left !important;
+	padding-left: 5px !important;
+	}
 
 .bears_pricing_tables .icon-bottom-center,
 .bears_pricing_tables .plan header .icon-bottom-center,
-.bears_pricing_tables .plan header div.icon-bottom-center { 
-  text-align: center !important;
-}
+.bears_pricing_tables .plan header div.icon-bottom-center {
+	text-align: center !important;
+	}
 
 .bears_pricing_tables .icon-bottom-right,
 .bears_pricing_tables .plan header .icon-bottom-right,
-.bears_pricing_tables .plan header div.icon-bottom-right { 
-  text-align: right !important;
-  padding-right: 5px !important;
-}
+.bears_pricing_tables .plan header div.icon-bottom-right {
+	text-align: right !important;
+	padding-right: 5px !important;
+	}
 
 /* Price area positioning */
-.bears_pricing_tables .icon-price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.bears_pricing_tables .price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
 
-.bears_pricing_tables .icon-price-left { 
-  margin-right: 10px;
-}
+.bears_pricing_tables .price-left {
+	margin-right: 10px;
+	}
 
-.bears_pricing_tables .icon-price-right { 
-  margin-left: 10px;
-}
+.bears_pricing_tables .price-right {
+	margin-left: 10px;
+	}
 
 /* Make header container to support icon positioning */
 .bears_pricing_tables .plan header {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	}
 
 /* Base styling for plan title */
 .bears_pricing_tables .plan-title {
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  transition: padding 0.3s ease;
-}
-
-/* Debug styles - uncomment to see the icon containers */
-/*
-.bears_pricing_tables [class*="icon-top-"],
-.bears_pricing_tables .plan header [class*="icon-top-"],
-.bears_pricing_tables .plan header div[class*="icon-top-"] {
-  background-color: rgba(255, 0, 0, 0.1) !important;
-}
-
-.bears_pricing_tables [class*="icon-bottom-"],
-.bears_pricing_tables .plan header [class*="icon-bottom-"],
-.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
-  background-color: rgba(0, 0, 255, 0.1) !important;
-}
-*/
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	transition: padding 0.3s ease;
+	}
 
 /* Responsive adjustments */
 @media only screen and (max-width: 767px) {
-  .bears_pricing_tables [class^="bears-column-"] i,
-  .bears_pricing_tables [class^="bears-column-"] .fa,
-  .bears_pricing_tables [class^="bears-column-"] .fas,
-  .bears_pricing_tables [class^="bears-column-"] .far,
-  .bears_pricing_tables [class^="bears-column-"] .fab {
-    font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
-  }
-  
-  .bears_pricing_tables .icon-price-left, 
-  .bears_pricing_tables .icon-price-right {
-    margin: 0 5px; /* Less margin on mobile */
-  }
-}
+	.bears_pricing_tables [class^="bears-column-"] i,
+	.bears_pricing_tables [class^="bears-column-"] .fa,
+	.bears_pricing_tables [class^="bears-column-"] .fas,
+	.bears_pricing_tables [class^="bears-column-"] .far,
+	.bears_pricing_tables [class^="bears-column-"] .fab {
+		font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
+		}
+	
+	.bears_pricing_tables .price-left,
+	.bears_pricing_tables .price-right {
+		margin: 0 5px; /* Less margin on mobile */
+		}
+	}

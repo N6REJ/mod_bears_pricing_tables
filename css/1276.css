@@ -54,6 +54,10 @@
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
+  
+  /* Icon settings */
+  --bears-icon-color: #fff;
+  --bears-icon-size: 24px;
 }
 
 /* Base container styles */

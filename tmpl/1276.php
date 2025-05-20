@@ -264,12 +264,14 @@ $bears_css .= '
 ';
 for ($i = 1; $i <= 5; $i++) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' .plan:not(.featured) i {
-    color: var(--bears-icon-color-' . $i . ', inherit);
-    font-size: var(--bears-icon-size-' . $i . ', inherit);
+    /* First try column-specific color, then global icon color, then title color */
+    color: var(--bears-icon-color-' . $i . ', var(--bears-icon-color, var(--bears-title-color)));
+    font-size: var(--bears-icon-size-' . $i . ', var(--bears-icon-size));
 }
 .bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' .plan.featured i {
-    color: var(--bears-featured-icon-color-' . $i . ', var(--bears-icon-color-' . $i . ', inherit));
-    font-size: var(--bears-icon-size-' . $i . ', inherit);
+    /* First try column-specific color, then featured title color */
+    color: var(--bears-icon-color-' . $i . ', var(--bears-featured-title-color));
+    font-size: var(--bears-icon-size-' . $i . ', var(--bears-icon-size));
 }
 ';
 }
@@ -281,6 +283,24 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 // Add overrides if any exist
 if (!empty($css_overrides)) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }';
+    
+    // Add icon-specific CSS variables if they exist in the parameters
+    for ($i = 1; $i <= 5; $i++) {
+        if (!empty($iconColor[$i])) {
+            $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' { --bears-icon-color-' . $i . ': ' . $iconColor[$i] . '; }';
+        }
+        if (!empty($iconSize[$i])) {
+            $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' { --bears-icon-size-' . $i . ': ' . $iconSize[$i] . 'px; }';
+        }
+    }
+    
+    // Add global icon variables if they exist
+    if (!empty($bears_icon_color)) {
+        $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { --bears-icon-color: ' . $bears_icon_color . '; }';
+    }
+    if (!empty($bears_icon_size)) {
+        $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' { --bears-icon-size: ' . $bears_icon_size . 'px; }';
+    }
 }
 
 // Add accent triangle if accent colors are specified
@@ -337,19 +357,27 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 
             // Add column-specific class for styling
             $columnClass = 'bears-column-' . $cur_column;
+            
+            // We'll let CSS variables handle icon colors through the stylesheet
+            // This simplifies the code and makes it more maintainable
+            $icon_color_attr = '';
             ?>
 			<div class="bears_pricing_tables">
 				<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $border_style; ?> <?php echo $columnClass; ?>">
 					<header>
-                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'top-') === 0) { 
-                            // Determine which color to use based on featured status
-                            $icon_color = $is_featured && !empty($featuredIconColor[$cur_column]) ? 
-                                        $featuredIconColor[$cur_column] : 
-                                        $iconColor[$cur_column];
+                        <?php
+                        // Debug information for icon settings
+                        echo '<!-- Debug: iconPosition for column ' . $cur_column . ': ' . ($iconPosition[$cur_column] ?? 'not set') . ' -->';
+                        echo '<!-- Debug: iconClass for column ' . $cur_column . ': ' . ($iconClass[$cur_column] ?? 'not set') . ' -->';
+                        echo '<!-- Debug: iconColor for column ' . $cur_column . ': ' . ($iconColor[$cur_column] ?? 'not set') . ' -->';
+                        echo '<!-- Debug: featuredIconColor for column ' . $cur_column . ': ' . ($featuredIconColor[$cur_column] ?? 'not set') . ' -->';
+                        echo '<!-- Debug: iconSize for column ' . $cur_column . ': ' . ($iconSize[$cur_column] ?? 'not set') . ' -->';
+                        echo '<!-- Debug: is_featured: ' . ($is_featured ? 'yes' : 'no') . ' -->';
+
+                        if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && strpos($iconPosition[$cur_column], 'top-') === 0) {
                         ?>
 							<div class="plan-icon <?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"
-                                   <?php echo !empty($icon_color) ? 'style="color: ' . htmlspecialchars($icon_color) . ';"' : ''; ?>></i>
+								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"<?php echo $icon_color_attr; ?>></i>
 							</div>
                         <?php } ?>
 
@@ -357,28 +385,18 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
                             <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 						</h3>
 
-                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'center-') === 0) { 
-                            // Determine which color to use based on featured status
-                            $icon_color = $is_featured && !empty($featuredIconColor[$cur_column]) ? 
-                                        $featuredIconColor[$cur_column] : 
-                                        $iconColor[$cur_column];
+                        <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && strpos($iconPosition[$cur_column], 'center-') === 0) {
                         ?>
 							<div class="plan-icon <?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"
-                                   <?php echo !empty($icon_color) ? 'style="color: ' . htmlspecialchars($icon_color) . ';"' : ''; ?>></i>
+								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"<?php echo $icon_color_attr; ?>></i>
 							</div>
                         <?php } ?>
 
-						<div class="icon-price">
-                            <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') { 
-                                // Determine which color to use based on featured status
-                                $icon_color = $is_featured && !empty($featuredIconColor[$cur_column]) ? 
-                                            $featuredIconColor[$cur_column] : 
-                                            $iconColor[$cur_column];
+						<div class="price">
+                            <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && $iconPosition[$cur_column] === 'price-left') {
                             ?>
-								<div class="plan-icon <?php echo $columnClass; ?> icon-price-left">
-									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"
-                                       <?php echo !empty($icon_color) ? 'style="color: ' . htmlspecialchars($icon_color) . ';"' : ''; ?>></i>
+								<div class="plan-icon <?php echo $columnClass; ?> price-left">
+									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"<?php echo $icon_color_attr; ?>></i>
 								</div>
                             <?php } ?>
 
@@ -387,30 +405,25 @@ $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/ico
 								<h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
 							</div>
 
-                            <?php if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') { 
-                                // Determine which color to use based on featured status
-                                $icon_color = $is_featured && !empty($featuredIconColor[$cur_column]) ? 
-                                            $featuredIconColor[$cur_column] : 
-                                            $iconColor[$cur_column];
+                            <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column]) && $iconPosition[$cur_column] === 'price-right') {
                             ?>
-								<div class="plan-icon <?php echo $columnClass; ?> icon-price-right">
-									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"
-                                       <?php echo !empty($icon_color) ? 'style="color: ' . htmlspecialchars($icon_color) . ';"' : ''; ?>></i>
+								<div class="plan-icon <?php echo $columnClass; ?> price-right">
+									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"<?php echo $icon_color_attr; ?>></i>
 								</div>
                             <?php } ?>
 						</div>
 
-                        <?php if (!empty($iconClass[$cur_column]) && strpos($iconPosition[$cur_column], 'bottom-') === 0) { 
-                            // Determine which color to use based on featured status
-                            $icon_color = $is_featured && !empty($featuredIconColor[$cur_column]) ? 
-                                        $featuredIconColor[$cur_column] : 
-                                        $iconColor[$cur_column];
+                        <?php if (!empty($iconClass[$cur_column]) && !empty($iconPosition[$cur_column])) {
+                            // Check if this is a bottom position icon
+                            if (strpos($iconPosition[$cur_column], 'bottom-') === 0) {
                         ?>
 							<div class="plan-icon <?php echo $columnClass; ?> icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?>">
-								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"
-                                   <?php echo !empty($icon_color) ? 'style="color: ' . htmlspecialchars($icon_color) . ';"' : ''; ?>></i>
+								<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"<?php echo $icon_color_attr; ?>></i>
 							</div>
-                        <?php } ?>
+                        <?php 
+                            }
+                        } 
+                        ?>
 					</header>
 
 					<ul class="plan-features dot">

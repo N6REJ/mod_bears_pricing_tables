@@ -71,7 +71,6 @@ class ModBearsPricingTablesHelper
         $bears_button_text_color     = $params->get('bears_button_text_color');
         $bears_button_bg_color       = $params->get('bears_button_bg_color');
         $bears_button_hover_color    = $params->get('bears_button_hover_color');
-        $bears_global_icon_color     = $params->get('bears_icon_color');
 
         // Parameters with explicit defaults that might vary by template
         $bears_border_style          = $params->get('bears_border_style');
@@ -94,7 +93,6 @@ class ModBearsPricingTablesHelper
         $bears_icon_size           = array();
         $bears_icon_position       = array();
         $bears_icon_color          = array();
-        $bears_featured_icon_color = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -115,7 +113,6 @@ class ModBearsPricingTablesHelper
             $bears_icon_size[$i]           = $params->get('bears_icon_size' . $i, '');
             $bears_icon_position[$i]       = $params->get('bears_icon_position' . $i);
             $bears_icon_color[$i]          = $params->get('bears_icon_color' . $i, '');
-            $bears_featured_icon_color[$i] = $params->get('bears_featured_icon_color' . $i, '');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -155,7 +152,6 @@ class ModBearsPricingTablesHelper
             'bears_button_text_color'     => $bears_button_text_color,
             'bears_button_bg_color'       => $bears_button_bg_color,
             'bears_button_hover_color'    => $bears_button_hover_color,
-            'bears_icon_color'            => $bears_global_icon_color,
             'bears_use_google_font'       => $bears_use_google_font,
 
             // Font parameters
@@ -176,7 +172,6 @@ class ModBearsPricingTablesHelper
             'iconSize'                    => $bears_icon_size,
             'iconPosition'                => $bears_icon_position,
             'iconColor'                   => $bears_icon_color,
-            'featuredIconColor'           => $bears_featured_icon_color,
 
             // Column reference array for template use
             'column_ref'                  => $column_ref,
@@ -349,8 +344,19 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_button_hover_color')) {
             $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
         }
-        if ($params->get('bears_icon_color')) {
-            $css .= '--bears-icon-color: ' . $params->get('bears_icon_color') . ';';
+        
+        // Additional CSS variables
+        if ($params->get('bears_box_shadow')) {
+            $css .= '--bears-box-shadow: ' . $params->get('bears_box_shadow') . ';';
+        }
+        if ($params->get('bears_border_radius')) {
+            $css .= '--bears-border-radius: ' . $params->get('bears_border_radius') . 'px;';
+        }
+        if ($params->get('bears_border_width')) {
+            $css .= '--bears-border-width: ' . $params->get('bears_border_width') . 'px;';
+        }
+        if ($params->get('bears_transition_speed')) {
+            $css .= '--bears-transition-speed: ' . $params->get('bears_transition_speed') . 's;';
         }
 
         // Column-specific icon colors
@@ -360,10 +366,6 @@ class ModBearsPricingTablesHelper
                 $css .= '--bears-icon-color-' . $i . ': ' . $iconColor . ';';
             }
             
-            $featuredIconColor = $params->get('bears_featured_icon_color' . $i);
-            if (!empty($featuredIconColor)) {
-                $css .= '--bears-featured-icon-color-' . $i . ': ' . $featuredIconColor . ';';
-            }
         }
 
         // Font sizes
