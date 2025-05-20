@@ -271,12 +271,6 @@ for ($i = 1; $i <= 5; $i++) {
 // Load external CSS file for icons instead of inline CSS
 $document->addStyleSheet(Uri::root() . 'modules/mod_bears_pricing_tables/css/icons.css');
 
-// Add module-specific CSS variables for icons
-$bears_css .= '
-.bears_pricing_tables' . $bears_moduleid . ' {
-    --bears-module-id: ' . $bears_moduleid . ';
-}';
-
 // Add column-specific icon variables
 for ($i = 1; $i <= 5; $i++) {
     $bears_css .= '.bears_pricing_tables' . $bears_moduleid . ' .bears-column-' . $i . ' i {
@@ -285,7 +279,6 @@ for ($i = 1; $i <= 5; $i++) {
 }
 ';
 }
-
 
 // Add overrides if any exist
 if (!empty($css_overrides)) {
