@@ -142,7 +142,7 @@ if ($bears_button_bg_color !== null && $bears_button_bg_color !== '') {
     $css_overrides .= '--bears-button-bg-color: ' . $bears_button_bg_color . '; ';
 }
 if ($bears_button_text_color !== null && $bears_button_text_color !== '') {
-    $css_overrides .= '--bears-button-color: ' . $bears_button_text_color . '; ';
+    $css_overrides .= '--bears-button-text-color: ' . $bears_button_text_color . '; ';
 }
 if ($bears_button_hover_color !== null && $bears_button_hover_color !== '') {
     $css_overrides .= '--bears-button-hover-color: ' . $bears_button_hover_color . '; ';

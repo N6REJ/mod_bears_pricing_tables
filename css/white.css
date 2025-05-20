@@ -32,7 +32,7 @@
   --bears-features-color: #555555;
   
   /* Button Colors */
-  --bears-button-color: #ffffff;
+  --bears-button-text-color: #ffffff;
   --bears-button-hover-color: #555555;
   --bears-featured-button-color: #222222; /* New variable for featured button text color */
   
@@ -277,7 +277,7 @@
 .bears_pricing_tables .plan-select a, 
 .bears_pricing_tables .plan-select a.btn {
   background-color: var(--bears-button-bg-color);
-  color: var(--bears-button-color);
+  color: var(--bears-button-text-color);
   text-decoration: none;
   padding: 12px 20px;
   font-size: var(--bears-button-font-size);

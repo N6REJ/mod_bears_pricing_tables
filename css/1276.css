@@ -31,7 +31,7 @@
   --bears-features-color: #000000;
   
   /* Button Colors */
-  --bears-button-color: #191919;
+  --bears-button-text-color: #191919;
   --bears-button-bg-color: #191919;
   --bears-button-hover-color: #666666;
   
@@ -254,7 +254,7 @@
   text-align: center;
   }
 .bears_pricing_tables .plan-select a, .bears_pricing_tables .plan-select a.btn {
-  background-color: var(--bears-button-color);
+  background-color: var(--bears-button-text-color);
   color: #ffffff;
   text-decoration: none;
   display: inline-block;
@@ -266,7 +266,7 @@
   transition: all var(--bears-transition-speed) ease;
 }
 .bears_pricing_tables .plan-select a:hover, .bears_pricing_tables .plan-select a.btn:hover {
-  background-color: var(--bears-button-hover-color, var(--bears-button-color));
+  background-color: var(--bears-button-hover-color, var(--bears-button-text-color));
   opacity: 0.9;
   transform: scale(1.05);
 }

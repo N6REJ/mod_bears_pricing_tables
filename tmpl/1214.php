@@ -149,7 +149,7 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn {
-    background-color: var(--bears-button-bg-color, var(--bears-button-color));
+    background-color: var(--bears-button-bg-color, var(--bears-button-text-color));
     color: #ffffff;
     font-size: var(--bears-button-font-size);
     font-family: var(--bears-font-family, inherit);
@@ -161,7 +161,7 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan.featured .plan-select a.btn {
-    background-color: var(--bears-button-bg-color, var(--bears-button-color));
+    background-color: var(--bears-button-bg-color, var(--bears-button-text-color));
 }
 ';
 
@@ -249,7 +249,7 @@ if ($bears_button_bg_color !== null && $bears_button_bg_color !== '') {
     $css_overrides .= '--bears-button-bg-color: ' . $bears_button_bg_color . '; ';
 }
 if ($bears_button_text_color !== null && $bears_button_text_color !== '') {
-    $css_overrides .= '--bears-button-color: ' . $bears_button_text_color . '; ';
+    $css_overrides .= '--bears-button-text-color: ' . $bears_button_text_color . '; ';
 }
 if ($bears_button_hover_color !== null && $bears_button_hover_color !== '') {
     $css_overrides .= '--bears-button-hover-color: ' . $bears_button_hover_color . '; ';

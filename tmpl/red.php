@@ -158,7 +158,7 @@ $bears_css = '
 }
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a,
 .bears_pricing_tables' . $bears_moduleid . ' .plan-select a.btn {
-    background-color: var(--bears-button-color);
+    background-color: var(--bears-button-text-color);
     font-size: var(--bears-button-font-size);
     font-family: var(--bears-font-family, inherit);
     font-weight: var(--bears-font-weight, normal);
@@ -250,7 +250,7 @@ if ($bears_features_color !== null && $bears_features_color !== '') {
     $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
 }
 if ($bears_button_text_color !== null && $bears_button_text_color !== '') {
-    $css_overrides .= '--bears-button-color: ' . $bears_button_text_color . '; ';
+    $css_overrides .= '--bears-button-text-color: ' . $bears_button_text_color . '; ';
 }
 if ($bears_button_hover_color !== null && $bears_button_hover_color !== '') {
     $css_overrides .= '--bears-button-hover-color: ' . $bears_button_hover_color . '; ';

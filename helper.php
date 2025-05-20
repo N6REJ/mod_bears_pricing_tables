@@ -338,7 +338,7 @@ class ModBearsPricingTablesHelper
             $css .= '--bears-featured-accent-color: ' . $params->get('bears_featured_accent_color') . ';';
         }
         if ($params->get('bears_button_text_color')) {
-            $css .= '--bears-button-color: ' . $params->get('bears_button_text_color') . ';';
+            $css .= '--bears-button-text-color: ' . $params->get('bears_button_text_color') . ';';
         }
         if ($params->get('bears_button_bg_color')) {
             $css .= '--bears-button-bg-color: ' . $params->get('bears_button_bg_color') . ';';
