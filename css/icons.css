@@ -7,12 +7,6 @@
  * These variables are actually set dynamically by PHP in the module
  * but we define them here with defaults for IDE support
  */
-:root {
-	--bears-icon-color: white;
-	--bears-icon-size: 24px;
-	--bears-transition-speed: 0.3s;
-	--bears-featured-title-color: inherit;
-	}
 
 /* Base icon styles */
 .bears_pricing_tables .plan-icon {

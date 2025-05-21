@@ -42,7 +42,7 @@ if (!isset($params)) {
 require_once dirname(__DIR__) . '/helper.php';
 
 // Make sure we have a valid module ID
-$bears_moduleid = isset($module->id) ? $module->id : mt_rand(1000, 9999);
+$bears_moduleid = $module->id;
 
 $baseurl = Uri::base(); // Updated from JURI::base()
 
@@ -57,7 +57,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 
 // IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
-
+<div class="template-red">
 <div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
 	<div class="bears_pricing_tables-container">
         <?php
@@ -187,4 +187,5 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
         ?>
 	</div>
 	<div class = "clear"></div>
+</div>
 </div>
