@@ -197,7 +197,7 @@ class ModBearsPricingTablesHelper
         $wa = $document->getWebAssetManager();
 
         // First, handle FontAwesome loading (but not icons.css yet)
-        self::loadFontAwesomeOnly();
+        self::loadFontAwesome(false);  // Load FontAwesome only
 
         // Next, load the template CSS file
         $template = self::getTemplateName($params);
@@ -239,6 +239,7 @@ class ModBearsPricingTablesHelper
      *
      * @return  void
      * @since   2025.5.10
+     * @deprecated  Use loadModuleCSS instead
      */
     public static function loadTemplateCSS($params, $moduleId = 0)
     {
@@ -247,48 +248,50 @@ class ModBearsPricingTablesHelper
     }
 
     /**
-     * Load only FontAwesome (not icons.css)
+     * Load FontAwesome with optional icons.css loading
      *
+     * @param   bool  $includeIcons  Whether to include the module's icons.css file
+     * 
      * @return  void
      * @since   2025.5.18
      */
-    public static function loadFontAwesomeOnly()
+    public static function loadFontAwesome($includeIcons = true)
     {
         // Get the document
         $document = Factory::getDocument();
 
         // Directly add FontAwesome without lazy loading
         $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
+
+        // Include icons.css if requested
+        if ($includeIcons) {
+            // Get the WebAsset Manager
+            $wa = $document->getWebAssetManager();
+
+            // Register and use the icons CSS file
+            $iconsAssetId = 'mod_bears_pricing_tables.icons';
+            $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
+
+            // Register the asset if it doesn't exist yet
+            if (!$wa->assetExists('style', $iconsAssetId)) {
+                $wa->registerStyle($iconsAssetId, $iconsCssPath);
+            }
+
+            // Use the asset
+            $wa->useStyle($iconsAssetId);
+        }
     }
 
     /**
-     * Load FontAwesome and icons.css
-     *
+     * Load only FontAwesome (not icons.css)
+     * 
      * @return  void
      * @since   2025.5.18
+     * @deprecated  Use loadFontAwesome(false) instead
      */
-    public static function loadFontAwesome()
+    public static function loadFontAwesomeOnly()
     {
-        // Load FontAwesome
-        self::loadFontAwesomeOnly();
-
-        // Get the document
-        $document = Factory::getDocument();
-
-        // Get the WebAsset Manager
-        $wa = $document->getWebAssetManager();
-
-        // Register and use the icons CSS file
-        $iconsAssetId = 'mod_bears_pricing_tables.icons';
-        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
-
-        // Register the asset if it doesn't exist yet
-        if (!$wa->assetExists('style', $iconsAssetId)) {
-            $wa->registerStyle($iconsAssetId, $iconsCssPath);
-        }
-
-        // Use the asset
-        $wa->useStyle($iconsAssetId);
+        self::loadFontAwesome(false);
     }
 
    /**
