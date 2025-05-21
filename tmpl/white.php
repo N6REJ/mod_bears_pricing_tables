@@ -12,215 +12,179 @@
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+// no direct access
+defined('_JEXEC') or die('Restricted access');
 
+// Update for Joomla 5: Use namespaced classes
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Registry\Registry;
 
-// Get document
+// Make sure $app is defined
+$app = Factory::getApplication();
+
+// Make sure $document is defined
 $document = Factory::getDocument();
 
-// Add module ID for unique styling
-$bears_moduleid = $module->id;
+// Make sure $module is defined
+if (!isset($module)) {
+    $module = $app->input->get('module');
+}
 
-// Get number of columns
-$bears_num_columns = $params->get('bears_num_columns', 4);
-
-// Get border styles
-$bears_border_style = $params->get('bears_border_style', 'shadow');
-$bears_featured_border_style = $params->get('bears_featured_border_style', 'shadow');
-
-// Get column margins
-$bears_column_margin_x = $params->get('bears_column_margin_x', '10');
-$bears_column_margin_y = $params->get('bears_column_margin_y', '10');
-
-// Get colors
-$bears_column_bg = $params->get('bears_column_bg', '');
-$bears_header_bg = $params->get('bears_header_bg', '');
-$bears_featured_bg = $params->get('bears_featured_bg', '');
-$bears_header_featured_bg = $params->get('bears_header_featured_bg', '');
-$bears_title_color = $params->get('bears_title_color', '');
-$bears_featured_title_color = $params->get('bears_featured_title_color', '');
-$bears_price_color = $params->get('bears_price_color', '');
-$bears_featured_price_color = $params->get('bears_featured_price_color', '');
-$bears_subtitle_color = $params->get('bears_subtitle_color', '');
-$bears_features_color = $params->get('bears_features_color', '');
-$bears_border_color = $params->get('bears_border_color', '');
-$bears_featured_border_color = $params->get('bears_featured_border_color', '');
-$bears_accent_color = $params->get('bears_accent_color', '');
-$bears_featured_accent_color = $params->get('bears_featured_accent_color', '');
-$bears_button_text_color = $params->get('bears_button_text_color', '');
-$bears_button_bg_color = $params->get('bears_button_bg_color', '');
-$bears_button_hover_color = $params->get('bears_button_hover_color', '');
-
-// Get font settings (Google Fonts are loaded by helper.php)
-$bears_google_font_family = $params->get('bears_google_font_family', '');
-$bears_font_weight = $params->get('bears_font_weight', '400');
-$bears_title_font_size = $params->get('bears_title_font_size', '');
-$bears_subtitle_font_size = $params->get('bears_subtitle_font_size', '');
-$bears_price_font_size = $params->get('bears_price_font_size', '');
-$bears_features_font_size = $params->get('bears_features_font_size', '');
-$bears_button_font_size = $params->get('bears_button_font_size', '');
-
-// Prepare column data
-$bears_title = [];
-$bears_subtitle = [];
-$bears_price = [];
-$bears_features = [];
-$bears_buttontext = [];
-$bears_buttonurl = [];
-$bears_featured = [];
-
-$max_columns = 15;
-for ($i = 1; $i <= $max_columns; $i++) {
-    if ($params->get('bears_title' . $i)) {
-        $bears_title[$i] = $params->get('bears_title' . $i);
-        $bears_subtitle[$i] = $params->get('bears_subtitle' . $i);
-        $bears_price[$i] = $params->get('bears_price' . $i);
-        $bears_features[$i] = $params->get('bears_features' . $i);
-        $bears_buttontext[$i] = $params->get('bears_buttontext' . $i);
-        $bears_buttonurl[$i] = $params->get('bears_buttonurl' . $i);
-        $bears_featured[$i] = $params->get('bears_column_featured' . $i, 'no');
+// Make sure $params is defined
+if (!isset($params)) {
+    if (isset($module->params)) {
+        $params = new Registry($module->params);
+    } else {
+        $params = new Registry();
     }
 }
 
-// Build CSS overrides
-$css_overrides = '';
+// Include the helper file
+require_once dirname(__DIR__) . '/helper.php';
 
-// Add font family if specified (Google Fonts are loaded by helper.php)
-if (!empty($bears_google_font_family)) {
-    $css_overrides .= '--bears-font-family: "' . $bears_google_font_family . '", Arial, sans-serif; ';
-    $css_overrides .= '--bears-font-weight: ' . $bears_font_weight . '; ';
-}
+// Make sure we have a valid module ID
+$bears_moduleid = $module->id;
 
-// Add font sizes if specified
-if (!empty($bears_title_font_size)) {
-    $css_overrides .= '--bears-title-font-size: ' . $bears_title_font_size . 'px; ';
-}
-if (!empty($bears_subtitle_font_size)) {
-    $css_overrides .= '--bears-subtitle-font-size: ' . $bears_subtitle_font_size . 'px; ';
-}
-if (!empty($bears_price_font_size)) {
-    $css_overrides .= '--bears-price-font-size: ' . $bears_price_font_size . 'px; ';
-}
-if (!empty($bears_features_font_size)) {
-    $css_overrides .= '--bears-features-font-size: ' . $bears_features_font_size . 'px; ';
-}
-if (!empty($bears_button_font_size)) {
-    $css_overrides .= '--bears-button-font-size: ' . $bears_button_font_size . 'px; ';
-}
+$baseurl = Uri::base(); // Updated from JURI::base()
 
-// Add colors if specified
-if (!empty($bears_column_bg)) {
-    $css_overrides .= '--bears-column-bg: ' . $bears_column_bg . '; ';
-}
-if (!empty($bears_header_bg)) {
-    $css_overrides .= '--bears-header-bg: ' . $bears_header_bg . '; ';
-}
-if (!empty($bears_featured_bg)) {
-    $css_overrides .= '--bears-featured-bg: ' . $bears_featured_bg . '; ';
-}
-if (!empty($bears_header_featured_bg)) {
-    $css_overrides .= '--bears-header-featured-bg: ' . $bears_header_featured_bg . '; ';
-}
-if (!empty($bears_title_color)) {
-    $css_overrides .= '--bears-title-color: ' . $bears_title_color . '; ';
-}
-if (!empty($bears_featured_title_color)) {
-    $css_overrides .= '--bears-featured-title-color: ' . $bears_featured_title_color . '; ';
-}
-if (!empty($bears_price_color)) {
-    $css_overrides .= '--bears-price-color: ' . $bears_price_color . '; ';
-}
-if (!empty($bears_featured_price_color)) {
-    $css_overrides .= '--bears-featured-price-color: ' . $bears_featured_price_color . '; ';
-}
-if (!empty($bears_subtitle_color)) {
-    $css_overrides .= '--bears-subtitle-color: ' . $bears_subtitle_color . '; ';
-}
-if (!empty($bears_features_color)) {
-    $css_overrides .= '--bears-features-color: ' . $bears_features_color . '; ';
-}
-if (!empty($bears_border_color)) {
-    $css_overrides .= '--bears-border-color: ' . $bears_border_color . '; ';
-}
-if (!empty($bears_featured_border_color)) {
-    $css_overrides .= '--bears-featured-border-color: ' . $bears_featured_border_color . '; ';
-}
-if (!empty($bears_accent_color)) {
-    $css_overrides .= '--bears-accent-color: ' . $bears_accent_color . '; ';
-}
-if (!empty($bears_featured_accent_color)) {
-    $css_overrides .= '--bears-featured-accent-color: ' . $bears_featured_accent_color . '; ';
-}
-if (!empty($bears_button_text_color)) {
-    $css_overrides .= '--bears-button-text-color: ' . $bears_button_text_color . '; ';
-}
-if (!empty($bears_button_bg_color)) {
-    $css_overrides .= '--bears-button-bg-color: ' . $bears_button_bg_color . '; ';
-}
-if (!empty($bears_button_hover_color)) {
-    $css_overrides .= '--bears-button-hover-color: ' . $bears_button_hover_color . '; ';
-}
+// Get processed parameters
+$data = ModBearsPricingTablesHelper::getParams($params);
 
-// Add margins if specified
-if (!empty($bears_column_margin_x)) {
-    $css_overrides .= '--bears-column-margin-x: ' . $bears_column_margin_x . 'px; ';
-}
-if (!empty($bears_column_margin_y)) {
-    $css_overrides .= '--bears-column-margin-y: ' . $bears_column_margin_y . 'px; ';
-}
+// Extract variables from the data array for easier access in the template
+extract($data);
 
-// Add overrides if any exist
-if (!empty($css_overrides)) {
-    $document->addStyleDeclaration('.bears_pricing_tables' . $bears_moduleid . ' { ' . $css_overrides . ' }');
-}
+// Load module CSS with moduleId to ensure proper specificity
+ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 
-// First load the main CSS file
-$document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/white.css');
+// IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
+<div class = "template-white">
+	<div class = "bears_pricing_tables<?php
+    echo $bears_moduleid; ?> bears_pricing_tables-outer">
+		<div class = "bears_pricing_tables-container">
+            <?php
+            // Loop through the number of columns to display
+            for ($i = 0; $i < $bears_num_columns; $i++) {
+                // Skip if this column index doesn't exist in our reference array
+                if (!isset($column_ref[$i])) {
+                    continue;
+                }
 
-<div class="bears_pricing_tables-outer bears_pricing_tables<?php echo $bears_moduleid; ?>">
-	<div class="bears_pricing_tables-container columns-<?php echo $bears_num_columns; ?>">
-        <?php
-        for ($i = 1; $i <= $max_columns; $i++) {
-            if (isset($bears_title[$i]) && !empty($bears_title[$i])) {
+                // Get the actual column number from our reference array
+                $cur_column = $column_ref[$i];
+
                 // Check if this column is marked as featured
-                $is_featured = isset($bears_featured[$i]) && $bears_featured[$i] == 'yes';
-                ?>
-				<div class="bears_pricing_tables">
-					<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $is_featured ? $bears_featured_border_style : $bears_border_style; ?>">
-						<header>
-							<h4 class="plan-title">
-                                <?php echo htmlspecialchars($bears_title[$i] ?? ''); ?>
-							</h4>
+                $is_featured = isset($bears_featured[$cur_column]) && $bears_featured[$cur_column] == 'yes';
 
-							<div class="plan-cost">
-								<span class="plan-price"><?php echo htmlspecialchars($bears_price[$i] ?? ''); ?></span>
-								<span class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$i] ?? ''); ?></span>
+                // Determine border style based on featured status
+                $border_style = $is_featured ? $bears_featured_border_style : $bears_border_style;
+
+                // Add column-specific class for styling
+                $columnClass = 'bears-column-' . $cur_column;
+                ?>
+				<div class = "bears_pricing_tables">
+					<div class = "plan<?php
+                    echo $is_featured ? ' featured' : ''; ?> border-<?php
+                    echo $border_style; ?> <?php
+                    echo $columnClass; ?>">
+						<header>
+                            <?php
+                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'top-')) {
+                                ?>
+								<div class = "plan-icon icon-<?php
+                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
+                                echo $columnClass; ?>">
+									<i class = "<?php
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+								</div>
+                                <?php
+                            } ?>
+
+							<h3 class = "plan-title">
+                                <?php
+                                echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+							</h3>
+
+                            <?php
+                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'center-')) {
+                                ?>
+								<div class = "plan-icon icon-<?php
+                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
+                                echo $columnClass; ?>">
+									<i class = "<?php
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+								</div>
+                                <?php
+                            } ?>
+
+							<div class = "price">
+                                <?php
+                                if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') {
+                                    ?>
+									<div class = "plan-icon price-left <?php
+                                    echo $columnClass; ?>">
+										<i class = "<?php
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+									</div>
+                                    <?php
+                                } ?>
+
+								<div class = "plan-cost">
+									<h1 class = "plan-price"><?php
+                                        echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
+									<h4 class = "plan-type"><?php
+                                        echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
+								</div>
+
+                                <?php
+                                if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') {
+                                    ?>
+									<div class = "plan-icon price-right <?php
+                                    echo $columnClass; ?>">
+										<i class = "<?php
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+									</div>
+                                    <?php
+                                } ?>
 							</div>
+
+                            <?php
+                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'bottom-')) {
+                                ?>
+								<div class = "plan-icon icon-<?php
+                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
+                                echo $columnClass; ?>">
+									<i class = "<?php
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+								</div>
+                                <?php
+                            }
+                            ?>
 						</header>
 
-						<ul class="plan-features">
+						<ul class = "plan-features dot">
                             <?php
-                            if (!empty($bears_features[$i])) {
-                                $features = $bears_features[$i];
+                            if (!empty($bears_features[$cur_column])) {
+                                $features = $bears_features[$cur_column];
 
                                 // Process features based on their structure
                                 if (is_object($features)) {
                                     // Handle subform data structure
                                     foreach ($features as $key => $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                         }
                                     }
                                 } elseif (is_array($features)) {
                                     // Handle array of features
                                     foreach ($features as $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                         } elseif (is_string($item)) {
-                                            echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item) . '</li>';
                                         }
                                     }
                                 } elseif (is_string($features)) {
@@ -229,43 +193,33 @@ $document->addStyleSheet(Uri::base() . 'modules/mod_bears_pricing_tables/css/whi
                                     if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
                                         foreach ($decoded as $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
-                                                echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item->bears_feature) . '</li>';
+                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                             } elseif (is_string($item)) {
-                                                echo '<li><i class="fa fa-check"></i> ' . htmlspecialchars($item) . '</li>';
+                                                echo '<li>' . htmlspecialchars($item) . '</li>';
                                             }
                                         }
                                     } else {
-                                        // It's just a plain string, split by line breaks
-                                        $feature_items = explode("\n", $features);
-                                        foreach ($feature_items as $feature) {
-                                            $feature = trim($feature);
-                                            if ($feature !== '') {
-                                                // Check if feature starts with "no:" to mark as unavailable
-                                                $is_no = false;
-                                                if (strpos($feature, 'no:') === 0) {
-                                                    $is_no = true;
-                                                    $feature = substr($feature, 3);
-                                                }
-
-                                                echo '<li><i class="fa ' . ($is_no ? 'fa-times' : 'fa-check') . '"></i> ' . htmlspecialchars($feature) . '</li>';
-                                            }
-                                        }
+                                        // It's just a plain string
+                                        echo '<li>' . htmlspecialchars($features) . '</li>';
                                     }
                                 }
                             }
                             ?>
 						</ul>
 
-						<div class="plan-select">
-							<a href="<?php echo htmlspecialchars($bears_buttonurl[$i] ?? '#'); ?>">
-                                <?php echo htmlspecialchars($bears_buttontext[$i] ?? ''); ?>
+						<div class = "plan-select">
+							<a class = "btn" href = "<?php
+                            echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                                <?php
+                                echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
 							</a>
 						</div>
 					</div>
 				</div>
                 <?php
             }
-        }
-        ?>
+            ?>
+		</div>
+		<div class = "clear"></div>
 	</div>
 </div>

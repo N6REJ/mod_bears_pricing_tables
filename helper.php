@@ -196,33 +196,21 @@ class ModBearsPricingTablesHelper
         // Get the WebAsset Manager
         $wa = $document->getWebAssetManager();
 
-        // First, handle FontAwesome loading (but not icons.css yet)
+// First, handle FontAwesome loading (but not icons.css yet)
         self::loadFontAwesome(false);  // Load FontAwesome only
 
-        // Next, load the template CSS file
+// Next, load the template CSS file
         $template = self::getTemplateName($params);
         $templateAssetId = 'mod_bears_pricing_tables.' . $template;
         $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
 
-        // Register the asset if it doesn't exist yet
+// Register the asset if it doesn't exist yet
         if (!$wa->assetExists('style', $templateAssetId)) {
             $wa->registerStyle($templateAssetId, $templateCssPath);
         }
 
-        // Use the asset
+// Use the asset
         $wa->useStyle($templateAssetId);
-
-        // Now load icons.css AFTER the template CSS
-        $iconsAssetId = 'mod_bears_pricing_tables.icons';
-        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
-
-        // Register the asset if it doesn't exist yet
-        if (!$wa->assetExists('style', $iconsAssetId)) {
-            $wa->registerStyle($iconsAssetId, $iconsCssPath);
-        }
-
-        // Use the asset
-        $wa->useStyle($iconsAssetId);
 
         // Add custom CSS variables as module-specific CSS
         $css = self::generateCustomCSS($params, $moduleId);
