@@ -8,7 +8,7 @@
  */
 /* White Template - Black & White Theme */
 /* Default CSS Variables for Bears Pricing Tables */
-:root {
+.template-white .bears_pricing_tables {
   /* Layout Variables */
   --bears-num-columns: 4;
   --bears-column-margin-y: 0.5%;
