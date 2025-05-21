@@ -363,13 +363,6 @@ $document->addStyleDeclaration('@media (max-width: 768px) { .bears_pricing_table
 				<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $border_style; ?> <?php echo $columnClass; ?>">
 					<header>
                         <?php
-                        // Debug information for icon settings
-                        echo '<!-- Debug: iconPosition for column ' . $cur_column . ': ' . ($iconPosition[$cur_column] ?? 'not set') . ' -->';
-                        echo '<!-- Debug: iconClass for column ' . $cur_column . ': ' . ($iconClass[$cur_column] ?? 'not set') . ' -->';
-                        echo '<!-- Debug: iconColor for column ' . $cur_column . ': ' . ($iconColor[$cur_column] ?? 'not set') . ' -->';
-                        echo '<!-- Debug: iconSize for column ' . $cur_column . ': ' . ($iconSize[$cur_column] ?? 'not set') . ' -->';
-                        echo '<!-- Debug: is_featured: ' . ($is_featured ? 'yes' : 'no') . ' -->';
-
                         if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'top-')) {
                         ?>
 							<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">

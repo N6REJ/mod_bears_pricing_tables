@@ -180,38 +180,48 @@ class ModBearsPricingTablesHelper
     }
 
     /**
-     * Load the appropriate CSS file based on template selection
+     * Load all module CSS files in the correct order
      *
      * @param   object  $params  The module parameters
      *
      * @return  void
-     * @since   2025.5.10
+     * @since   2025.5.20
      */
-    public static function loadTemplateCSS($params)
+    public static function loadModuleCSS($params)
     {
         // Get the document
         $document = Factory::getDocument();
 
-        // Get template name using the safe method
-        $template = self::getTemplateName($params);
+        // Get the WebAsset Manager
+        $wa = $document->getWebAssetManager();
 
-        // Define the path to the CSS file
-        $cssPath = Uri::root(true) . '/modules/mod_bears_pricing_tables/css/' . $template . '.css';
-        
-        // Make sure we have access to the JPATH_ROOT constant
-        defined('JPATH_ROOT') or define('JPATH_ROOT', dirname(dirname(dirname(__FILE__))));
-        
-        // Check if the file exists using a more reliable method
-        if (is_readable(JPATH_ROOT . '/modules/mod_bears_pricing_tables/css/' . $template . '.css')) {
-            // Add the stylesheet directly
-            $document->addStyleSheet($cssPath);
-        } else {
-            // Log an error if the CSS file can't be found
-            Factory::getApplication()->enqueueMessage('Template CSS file not found: ' . $template . '.css', 'error');
+        // First, handle FontAwesome loading (but not icons.css yet)
+        self::loadFontAwesomeOnly();
+
+        // Next, load the template CSS file
+        $template = self::getTemplateName($params);
+        $templateAssetId = 'mod_bears_pricing_tables.' . $template;
+        $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
+
+        // Register the asset if it doesn't exist yet
+        if (!$wa->assetExists('style', $templateAssetId)) {
+            $wa->registerStyle($templateAssetId, $templateCssPath);
         }
 
-        // Check if FontAwesome is needed and load it if not already loaded
-        self::loadFontAwesome();
+        // Use the asset
+        $wa->useStyle($templateAssetId);
+
+        // Now load icons.css AFTER the template CSS
+        $iconsAssetId = 'mod_bears_pricing_tables.icons';
+        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
+
+        // Register the asset if it doesn't exist yet
+        if (!$wa->assetExists('style', $iconsAssetId)) {
+            $wa->registerStyle($iconsAssetId, $iconsCssPath);
+        }
+
+        // Use the asset
+        $wa->useStyle($iconsAssetId);
 
         // Add custom CSS variables
         $css = self::generateCustomCSS($params);
@@ -221,64 +231,62 @@ class ModBearsPricingTablesHelper
     }
 
     /**
-     * Load FontAwesome if it's not already loaded
+     * Load the appropriate CSS file based on template selection
+     *
+     * @param   object  $params  The module parameters
+     *
+     * @return  void
+     * @since   2025.5.10
+     */
+    public static function loadTemplateCSS($params)
+    {
+        // Use the new combined loading function
+        self::loadModuleCSS($params);
+    }
+
+    /**
+     * Load only FontAwesome (not icons.css)
+     *
+     * @return  void
+     * @since   2025.5.18
+     */
+    public static function loadFontAwesomeOnly()
+    {
+        // Get the document
+        $document = Factory::getDocument();
+
+        // Directly add FontAwesome without lazy loading
+        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
+    }
+
+    /**
+     * Load FontAwesome and icons.css
      *
      * @return  void
      * @since   2025.5.18
      */
     public static function loadFontAwesome()
     {
+        // Load FontAwesome
+        self::loadFontAwesomeOnly();
+
         // Get the document
         $document = Factory::getDocument();
 
-        // Make sure we have access to the JPATH_ROOT constant
-        defined('JPATH_ROOT') or define('JPATH_ROOT', dirname(dirname(dirname(__FILE__))));
+        // Get the WebAsset Manager
+        $wa = $document->getWebAssetManager();
 
-        // Load our module's icons CSS directly, similar to how we load template CSS
-        $iconsPath = Uri::root(true) . '/modules/mod_bears_pricing_tables/css/icons.css';
-        
-        // Check if the file exists using a more reliable method
-        if (is_readable(JPATH_ROOT . '/modules/mod_bears_pricing_tables/css/icons.css')) {
-            // Add the stylesheet directly
-            $document->addStyleSheet($iconsPath);
-        } else {
-            // Log an error if the CSS file can't be found
-            Factory::getApplication()->enqueueMessage('Icons CSS file not found: icons.css', 'error');
+        // Register and use the icons CSS file
+        $iconsAssetId = 'mod_bears_pricing_tables.icons';
+        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
+
+        // Register the asset if it doesn't exist yet
+        if (!$wa->assetExists('style', $iconsAssetId)) {
+            $wa->registerStyle($iconsAssetId, $iconsCssPath);
         }
 
-        // Check if FontAwesome is already loaded in the document head
-        $headData = $document->getHeadData();
-        $styleSheets = $headData['styleSheets'];
-        $fontAwesomeLoaded = false;
-        $hasAllComponents = false;
-
-        // Check for FontAwesome in loaded stylesheets
-        foreach ($styleSheets as $url => $attributes) {
-            if (stripos($url, 'font-awesome') !== false || stripos($url, 'fontawesome') !== false) {
-                $fontAwesomeLoaded = true;
-                
-                // Check if it's the "all.min.css" which contains all components
-                if (stripos($url, 'all.min.css') !== false) {
-                    $hasAllComponents = true;
-                }
-                
-                break;
-            }
-        }
-
-        // If FontAwesome is not loaded or doesn't have all components, load the complete version
-        if (!$fontAwesomeLoaded || !$hasAllComponents) {
-            // Always load the complete Font Awesome from CDN to ensure all icons work
-            $document->addStyleSheet(
-                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-                ['integrity' => 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==',
-                 'crossorigin' => 'anonymous',
-                 'referrerpolicy' => 'no-referrer']
-            );
-            
-            // Add debug message
-            $document->addScriptDeclaration("console.log('Bears Pricing Tables: Loading complete FontAwesome from CDN');");
-        }
+        // Use the asset
+        $wa->useStyle($iconsAssetId);
     }
 
     /**
@@ -352,12 +360,12 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_button_hover_color')) {
             $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
         }
-        
+
         // Additional CSS variables
         if ($params->get('bears_box_shadow')) {
             $css .= '--bears-box-shadow: ' . $params->get('bears_box_shadow') . ';';
         }
-        
+
         // Add 'px' to size-related fields if they don't already have a unit
         if ($params->get('bears_border_radius')) {
             $borderRadius = $params->get('bears_border_radius');
@@ -366,7 +374,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-border-radius: ' . $borderRadius . ';';
         }
-        
+
         if ($params->get('bears_border_width')) {
             $borderWidth = $params->get('bears_border_width');
             if (!preg_match('/[a-z%]$/i', $borderWidth)) {
@@ -374,7 +382,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-border-width: ' . $borderWidth . ';';
         }
-        
+
         if ($params->get('bears_transition_speed')) {
             $transitionSpeed = $params->get('bears_transition_speed');
             if (!preg_match('/[a-z]$/i', $transitionSpeed)) {
@@ -399,7 +407,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-title-font-size: ' . $titleFontSize . ';';
         }
-        
+
         if ($params->get('bears_subtitle_font_size')) {
             $subtitleFontSize = $params->get('bears_subtitle_font_size');
             if (!preg_match('/[a-z%]$/i', $subtitleFontSize)) {
@@ -407,7 +415,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-subtitle-font-size: ' . $subtitleFontSize . ';';
         }
-        
+
         if ($params->get('bears_price_font_size')) {
             $priceFontSize = $params->get('bears_price_font_size');
             if (!preg_match('/[a-z%]$/i', $priceFontSize)) {
@@ -415,7 +423,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-price-font-size: ' . $priceFontSize . ';';
         }
-        
+
         if ($params->get('bears_features_font_size')) {
             $featuresFontSize = $params->get('bears_features_font_size');
             if (!preg_match('/[a-z%]$/i', $featuresFontSize)) {
@@ -423,7 +431,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-features-font-size: ' . $featuresFontSize . ';';
         }
-        
+
         if ($params->get('bears_button_font_size')) {
             $buttonFontSize = $params->get('bears_button_font_size');
             if (!preg_match('/[a-z%]$/i', $buttonFontSize)) {
@@ -440,7 +448,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-column-margin-x: ' . $columnMarginX . ';';
         }
-        
+
         if ($params->get('bears_column_margin_y')) {
             $columnMarginY = $params->get('bears_column_margin_y');
             if (!preg_match('/[a-z%]$/i', $columnMarginY)) {
@@ -467,18 +475,18 @@ class ModBearsPricingTablesHelper
         for ($i = 1; $i <= 5; $i++) {
             $iconSize = $params->get('bears_icon_size' . $i);
             $iconClass = $params->get('bears_icon_class' . $i);
-            
+
             if (!empty($iconSize)) {
                 // Add 'px' to the size if it doesn't already have a unit
                 if (!preg_match('/[a-z%]$/i', $iconSize)) {
                     $iconSize .= 'px';
                 }
-                
+
                 if (!empty($iconClass)) {
                     // Extract the base class (fa, fas, far, fab) and the specific icon name
                     $classes = explode(' ', trim($iconClass));
                     $baseClass = $classes[0]; // e.g., 'fas'
-                    
+
                     // Apply the size to the specific icon within this column
                     $css .= "\n" . '.bears_pricing_tables .bears-column-' . $i . ' i.' . $baseClass . ' { font-size: ' . $iconSize . '; }';
                 } else {

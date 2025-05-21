@@ -21,9 +21,13 @@ use Joomla\CMS\WebAsset\WebAssetManager;
 /** @var Joomla\Registry\Registry $params */
 /** @var stdClass $module */
 
+// Include helper file
+require_once __DIR__ . '/helper.php';
+
 // Get the application instance
 $app = Factory::getApplication();
-// Load admin CSS only in backend
+
+// Load admin CSS only in backend (will be loaded after other CSS for proper overrides)
 if ($app->isClient('administrator')) {
     /** @var WebAssetManager $wa */
     $wa = $app->getDocument()->getWebAssetManager();
@@ -33,11 +37,8 @@ if ($app->isClient('administrator')) {
     );
 }
 
-// Include helper file
-require_once __DIR__ . '/helper.php';
-
-// Load the appropriate CSS file based on template selection
-ModBearsPricingTablesHelper::loadTemplateCSS($params);
+// Load all module CSS with proper ordering
+ModBearsPricingTablesHelper::loadModuleCSS($params);
 
 // Get all parameters from helper
 $params_array = ModBearsPricingTablesHelper::getParams($params);
