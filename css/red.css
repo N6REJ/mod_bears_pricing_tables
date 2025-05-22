@@ -15,11 +15,11 @@
   --bears-column-margin-x: 10px;
   
   /* Background Colors */
-  --bears-column-bg: #f5f5f5;
-  --bears-column-featured-bg: #ffffff;
-  --bears-header-bg: #f5f5f5;
-  --bears-header-featured-bg: #252525; /* Header background for featured plans */
-  --bears-featured-button-bg: #ef3340; /* Button background for featured plans */
+  --bears-column-background: #f5f5f5;
+  --bears-column-featured-background: #ffffff;
+  --bears-header-background: #f5f5f5;
+  --bears-header-featured-background: #252525; /* Header background for featured plans */
+  --bears-featured-button-background: #ef3340; /* Button background for featured plans */
   
   /* Text Colors */
   --bears-title-color: #ef3340;
@@ -31,7 +31,7 @@
   
   /* Button Colors */
   --bears-button-text-color: #ef3340;
-  --bears-button-bg-color: #ef3340;
+  --bears-button-background-color: #ef3340;
   --bears-button-hover-color: #ef3340;
   
   /* Border Colors */
@@ -44,9 +44,12 @@
   
   /* Typography */
   --bears-font-family: "Crimson Text", serif;
-  --bears-title-font-size: 24px;
-  --bears-price-font-size: 3em;
-  --bears-features-font-size: 19.2px; /* Added features font size */
+  --bears-title-font-size: 1.6em; /* h3 */
+  --bears-price-font-size: 2.8em; /* h1 */
+  --bears-features-font-size: 1em;
+  --bears-subtitle-font-size: 1.2em; /* h4 */
+  --bears-button-font-size: 1em;
+  --bears-font-weight: 500;
   
   /* Effects */
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
@@ -113,7 +116,7 @@
 .template-red .bears_pricing_tables .plan {
   margin: 0;
   position: relative;
-  background-color: var(--bears-column-bg);
+  background-color: var(--bears-column-background);
   overflow: hidden;
   border-radius: var(--bears-border-radius);
   text-align: center;
@@ -150,7 +153,7 @@
   }
 .template-red .bears_pricing_tables header {
   position: relative;
-  background-color: var(--bears-header-bg);
+  background-color: var(--bears-header-background);
   color: var(--bears-title-color);
   padding: 20px 30px;
   margin-bottom: 40px;
@@ -220,12 +223,13 @@
   display: block;
   color: var(--bears-subtitle-color);
   line-height: 1.2em;
+  font-size: var(--bears-subtitle-font-size);
 }
 .template-red .bears_pricing_tables .plan-features {
   padding: 0;
   margin: 0;
   list-style: outside none none;
-  font-size: 0.8em;
+font-size: var(--bears-features-font-size);
   text-align: center;
   flex: 1; /* Added flex grow */
   width: 100%; /* Added explicit width */
@@ -285,10 +289,10 @@
 /* Featured plan button styling */
 .template-red .bears_pricing_tables .plan.featured .plan-select a, 
 .template-red .bears_pricing_tables .plan.featured .plan-select a.btn {
-  background-color: var(--bears-featured-button-bg);
+  background-color: var(--bears-featured-button-background);
 }
 .template-red .bears_pricing_tables .plan.featured header {
-  background-color: var(--bears-header-featured-bg);
+  background-color: var(--bears-header-featured-background);
   margin: 0 -1px 40px -1px;
   width: calc(100% + 2px);
   box-sizing: border-box;

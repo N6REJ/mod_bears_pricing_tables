@@ -75,22 +75,22 @@
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">
-				<field name="bears_column_bg" type="color" default="" label="MOD_BEARS_COLUMN_BG" description="MOD_BEARS_COLUMN_BG_DESC" />
-				<field name="bears_column_featured_bg" type="color" default="" label="MOD_BEARS_FEATURED_BG" description="MOD_BEARS_FEATURED_BG_DESC" />
-				<field name="bears_header_bg" type="color" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
-				<field name="bears_header_featured_bg" type="color" default="" label="MOD_BEARS_HEADER_FEATURED_BG" description="MOD_BEARS_HEADER_FEATURED_BG_DESC" />
+				<field name="bears_column_background" type="color" default="" label="MOD_BEARS_COLUMN_BACKGROUND" description="MOD_BEARS_COLUMN_BACKGROUND_DESC" />
+				<field name="bears_column_featured_background" type="color" default="" label="MOD_BEARS_FEATURED_BACKGROUND" description="MOD_BEARS_FEATURED_BACKGROUND_DESC" />
+				<field name="bears_header_background" type="color" default="" label="MOD_BEARS_HEADER_BACKGROUND" description="MOD_BEARS_HEADER_BACKGROUND_DESC" />
+				<field name="bears_header_featured_background" type="color" default="" label="MOD_BEARS_HEADER_FEATURED_BACKGROUND" description="MOD_BEARS_HEADER_FEATURED_BACKGROUND_DESC" />
 				<field name="bears_title_color" type="color" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
 				<field name="bears_price_color" type="color" default="" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
 				<field name="bears_featured_price_color" type="color" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
 				<field name="bears_subtitle_color" type="color" default="" label="MOD_BEARS_SUBTITLE_COLOR" description="MOD_BEARS_SUBTITLE_COLOR_DESC" />
 				<field name="bears_features_color" type="color" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
-				<field name="bears_features_bg_color" type="color" default="" label="MOD_BEARS_FEATURES_BG_COLOR" description="MOD_BEARS_FEATURES_BG_COLOR_DESC" />
+				<field name="bears_features_background_color" type="color" default="" label="MOD_BEARS_FEATURES_BACKGROUND_COLOR" description="MOD_BEARS_FEATURES_BACKGROUND_COLOR_DESC" />
 				<field name="bears_border_color" type="color" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
 				<field name="bears_featured_border_color" type="color" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
 				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
 				<field name="bears_featured_accent_color" type="color" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />
 				<field name="bears_button_text_color" type="color" default="" label="MOD_BEARS_BUTTON_TEXT_COLOR" description="MOD_BEARS_BUTTON_TEXT_COLOR_DESC" />
-				<field name="bears_button_bg_color" type="color" default="" label="MOD_BEARS_BUTTON_BG_COLOR" description="MOD_BEARS_BUTTON_BG_COLOR_DESC" />
+				<field name="bears_button_background_color" type="color" default="" label="MOD_BEARS_BUTTON_BACKGROUND_COLOR" description="MOD_BEARS_BUTTON_BACKGROUND_COLOR_DESC" />
 				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
 			</fieldset>
 
