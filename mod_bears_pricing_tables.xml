@@ -2,12 +2,12 @@
 <extension type="module" client="site" method="upgrade">
 	<name>Bears Pricing Tables</name>
 	<author>N6REJ</author>
-	<creationDate>2025 May 17</creationDate>
+	<creationDate>2025 May 22</creationDate>
 	<copyright>Copyright (C)2025 N6REJ</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.17</version>
+	<version>2025.05.22</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
@@ -75,23 +75,23 @@
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">
-				<field name="bears_column_bg" type="rgba" default="" label="MOD_BEARS_COLUMN_BG" description="MOD_BEARS_COLUMN_BG_DESC" />
-				<field name="bears_column_featured_bg" type="rgba" default="" label="MOD_BEARS_FEATURED_BG" description="MOD_BEARS_FEATURED_BG_DESC" />
-				<field name="bears_header_bg" type="rgba" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
-				<field name="bears_header_featured_bg" type="rgba" default="" label="MOD_BEARS_HEADER_FEATURED_BG" description="MOD_BEARS_HEADER_FEATURED_BG_DESC" />
-				<field name="bears_title_color" type="rgba" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
-				<field name="bears_price_color" type="rgba" default="" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
-				<field name="bears_featured_price_color" type="rgba" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
-				<field name="bears_subtitle_color" type="rgba" default="" label="MOD_BEARS_SUBTITLE_COLOR" description="MOD_BEARS_SUBTITLE_COLOR_DESC" />
-				<field name="bears_features_color" type="rgba" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
-				<field name="bears_icon_color" type="rgba" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
-				<field name="bears_border_color" type="rgba" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
-				<field name="bears_featured_border_color" type="rgba" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
-				<field name="bears_accent_color" type="rgba" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
-				<field name="bears_featured_accent_color" type="rgba" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />
-				<field name="bears_button_text_color" type="rgba" default="" label="MOD_BEARS_BUTTON_TEXT_COLOR" description="MOD_BEARS_BUTTON_TEXT_COLOR_DESC" />
-				<field name="bears_button_bg_color" type="rgba" default="" label="MOD_BEARS_BUTTON_BG_COLOR" description="MOD_BEARS_BUTTON_BG_COLOR_DESC" />
-				<field name="bears_button_hover_color" type="rgba" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
+				<field name="bears_column_bg" type="color" default="" label="MOD_BEARS_COLUMN_BG" description="MOD_BEARS_COLUMN_BG_DESC" />
+				<field name="bears_column_featured_bg" type="color" default="" label="MOD_BEARS_FEATURED_BG" description="MOD_BEARS_FEATURED_BG_DESC" />
+				<field name="bears_header_bg" type="color" default="" label="MOD_BEARS_HEADER_BG" description="MOD_BEARS_HEADER_BG_DESC" />
+				<field name="bears_header_featured_bg" type="color" default="" label="MOD_BEARS_HEADER_FEATURED_BG" description="MOD_BEARS_HEADER_FEATURED_BG_DESC" />
+				<field name="bears_title_color" type="color" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
+				<field name="bears_price_color" type="color" default="" label="MOD_BEARS_PRICE_COLOR" description="MOD_BEARS_PRICE_COLOR_DESC" />
+				<field name="bears_featured_price_color" type="color" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
+				<field name="bears_subtitle_color" type="color" default="" label="MOD_BEARS_SUBTITLE_COLOR" description="MOD_BEARS_SUBTITLE_COLOR_DESC" />
+				<field name="bears_features_color" type="color" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
+				<field name="bears_features_bg_color" type="color" default="" label="MOD_BEARS_FEATURES_BG_COLOR" description="MOD_BEARS_FEATURES_BG_COLOR_DESC" />
+				<field name="bears_border_color" type="color" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
+				<field name="bears_featured_border_color" type="color" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
+				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
+				<field name="bears_featured_accent_color" type="color" default="" label="MOD_BEARS_FEATURED_ACCENT_COLOR" description="MOD_BEARS_FEATURED_ACCENT_COLOR_DESC" />
+				<field name="bears_button_text_color" type="color" default="" label="MOD_BEARS_BUTTON_TEXT_COLOR" description="MOD_BEARS_BUTTON_TEXT_COLOR_DESC" />
+				<field name="bears_button_bg_color" type="color" default="" label="MOD_BEARS_BUTTON_BG_COLOR" description="MOD_BEARS_BUTTON_BG_COLOR_DESC" />
+				<field name="bears_button_hover_color" type="color" default="" label="MOD_BEARS_BUTTON_HOVER_COLOR" description="MOD_BEARS_BUTTON_HOVER_COLOR_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_FONTS" label="COM_MODULES_MOD_BEARS_FONTS_FIELDSET_LABEL">
@@ -116,11 +116,11 @@
 					<option value="700">Bold (700)</option>
 					<option value="800">Extra Bold (800)</option>
 				</field>
-				<field name="bears_title_font_size" type="text" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
-				<field name="bears_subtitle_font_size" type="text" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
-				<field name="bears_price_font_size" type="text" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
-				<field name="bears_features_font_size" type="text" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
-				<field name="bears_button_font_size" type="text" default="" label="MOD_BEARS_BUTTON_FONT_SIZE" description="MOD_BEARS_BUTTON_FONT_SIZE_DESC" />
+				<field name="bears_title_font_size" type="textpx" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
+				<field name="bears_subtitle_font_size" type="textpx" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
+				<field name="bears_price_font_size" type="textpx" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
+				<field name="bears_features_font_size" type="textpx" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
+				<field name="bears_button_font_size" type="textpx" default="" label="MOD_BEARS_BUTTON_FONT_SIZE" description="MOD_BEARS_BUTTON_FONT_SIZE_DESC" />
 			</fieldset>
 
 			<fieldset name="column1">
@@ -128,7 +128,19 @@
 				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_icon_class1" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
-				<field name="bears_icon_size1" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_color1" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
+				<field name="bears_icon_size1" type="textpx" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_position1" type="list" default="top-center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
+				</field>
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured1" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
@@ -144,7 +156,19 @@
 				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_icon_class2" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
-				<field name="bears_icon_size2" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_color2" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
+				<field name="bears_icon_size2" type="textpx" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_position2" type="list" default="top-center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
+				</field>
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured2" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
@@ -160,7 +184,19 @@
 				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_icon_class3" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
-				<field name="bears_icon_size3" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_color3" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
+				<field name="bears_icon_size3" type="textpx" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_position3" type="list" default="top-center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
+				</field>
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured3" type="radio" default="yes" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
@@ -176,7 +212,19 @@
 				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_icon_class4" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
-				<field name="bears_icon_size4" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_color4" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
+				<field name="bears_icon_size4" type="textpx" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_position4" type="list" default="top-center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
+				</field>
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured4" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
@@ -192,7 +240,19 @@
 				<field name="bears_price5" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
 				<field name="bears_subtitle5" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_icon_class5" type="text" default="" label="MOD_BEARS_ICON_CLASS" description="MOD_BEARS_ICON_CLASS_DESC" />
-				<field name="bears_icon_size5" type="text" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_color5" type="color" default="" label="MOD_BEARS_ICON_COLOR" description="MOD_BEARS_ICON_COLOR_DESC" />
+				<field name="bears_icon_size5" type="textpx" default="" label="MOD_BEARS_ICON_SIZE" description="MOD_BEARS_ICON_SIZE_DESC" />
+				<field name="bears_icon_position5" type="list" default="top-center" label="MOD_BEARS_ICON_POSITION" description="MOD_BEARS_ICON_POSITION_DESC">
+					<option value="top-left">Top Left</option>
+					<option value="top-center">Top Center</option>
+					<option value="top-right">Top Right</option>
+					<option value="price-left">Center Left</option>
+					<option value="center-center">Center Center</option>
+					<option value="price-right">Center Right</option>
+					<option value="bottom-left">Bottom Left</option>
+					<option value="bottom-center">Bottom Center</option>
+					<option value="bottom-right">Bottom Right</option>
+				</field>
 				<field name="bears_features5" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured5" type="radio" default="no" label="MOD_BEARS_FEATURED" description="MOD_BEARS_FEATURED_DESC"
 					   class="btn-group btn-group-yesno">
