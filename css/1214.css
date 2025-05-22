@@ -1,42 +1,42 @@
 /**
- * Bears Pricing Tables - Default CSS
+ * Bears Pricing Tables - 1214 Template
  * Version: 2025.5.15
  * Created by: N6REJ
  * Email: troy@hallhome.us
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ * Based on: https://www.littlesnippets.net/snip1214
  */
-/* 1214 Template */
 /* Default CSS Variables for Bears Pricing Tables */
 .template-1214 .bears_pricing_tables {
   /* Layout Variables */
   --bears-num-columns: 3;
-  --bears-column-margin-y: 10px;
-  --bears-column-margin-x: 0px;
+  --bears-column-margin-y: 0;
+  --bears-column-margin-x: 0;
   
   /* Background Colors */
   --bears-column-bg: #ffffff;
-  --bears-header-bg: #ffffff;
+  --bears-column-featured-bg: #34495e;
   --bears-featured-bg: #34495e;
-  --bears-header-featured-bg: #34495e; /* Header background for featured plans */
+  --bears-header-bg: #ffffff;
+  --bears-header-featured-bg: #34495e;
+  --bears-features-bg-color: transparent;
   --bears-button-bg-color: #222f3d;
-  --bears-featured-button-bg: #222f3d; /* Button background for featured plans */
+  --bears-featured-button-bg: #222f3d;
   
   /* Text Colors */
   --bears-title-color: #ffffff;
-  --bears-featured-title-color: #ffffff; /* Title color for featured plans */
+  --bears-featured-title-color: #ffffff;
   --bears-price-color: #34495e;
   --bears-featured-price-color: #ffffff;
   --bears-subtitle-color: #666666;
   --bears-features-color: #000000;
-  
-  /* Button Colors */
+  --bears-features-featured-color: #ffffff;
   --bears-button-text-color: #ffffff;
-  --bears-button-hover-color: #46627f;
   
   /* Border Colors */
   --bears-border-color: rgba(0, 0, 0, 0.1);
-  --bears-featured-border-color: #34495e;
+  --bears-featured-border-color: transparent;
   
   /* Accent Colors */
   --bears-accent-color: #222f3d;
@@ -60,7 +60,7 @@
   --bears-border-width: 1px;
   --bears-border-style: solid;
   
-  /* Icon settings - adding to match 1276 structure */
+  /* Icon settings */
   --bears-icon-color: #27ae60;
   --bears-icon-size: 16px;
 }
@@ -68,27 +68,27 @@
 /* Base container styles */
 .template-1214 .bears_pricing_tables-outer {
   width: 100%;
-  max-width: 100%;
-  margin: 20px 10px;
+  max-width: 1000px;
+  margin: 40px 10px;
   text-align: center;
-  display: block; /* Ensure it's a block element */
-  clear: both; /* Clear any floats */
-  overflow: auto; /* Contain floated children */
+  display: block;
+  clear: both;
+  overflow: auto;
   font-family: var(--bears-font-family);
   font-size: var(--bears-features-font-size);
+  color: #000000;
 }
 
 .template-1214 .bears_pricing_tables-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch; /* Changed to stretch to ensure equal heights */
+  align-items: stretch;
   margin: 0 auto;
-  position: relative; /* Added to establish positioning context */
-  overflow: visible; /* Allow content to be visible outside the container */
-  clear: both; /* Clear any floats */
-  /* Add padding to account for the featured scaling */
-  padding: 30px 10px 50px; /* Increased top and bottom padding to accommodate title badges and featured plans */
+  position: relative;
+  overflow: visible;
+  clear: both;
+  padding: 30px 10px 50px;
 }
 
 /* Column styles */
@@ -99,11 +99,10 @@
   flex-direction: column;
   margin: 0;
   text-align: center;
-  position: relative; /* Added to establish positioning context */
-  /* Add a minimum height to ensure consistent sizing */
+  position: relative;
   min-height: 100%;
-  float: left; /* Added to match original design */
-  width: 33%; /* Default width */
+  float: left;
+  width: 33.3%;
 }
 
 .template-1214 .bears_pricing_tables ul {
@@ -116,15 +115,16 @@
   margin: 0;
   position: relative;
   background-color: var(--bears-column-bg);
-  overflow: visible; /* Changed to visible to allow title to overflow */
+  overflow: visible;
   border-radius: var(--bears-border-radius);
   text-align: center;
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: var(--bears-box-shadow);
   transition: all var(--bears-transition-speed) ease;
-  height: 100%; /* Ensure all plans have the same height */
+  height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .template-1214 .bears_pricing_tables .plan.featured {
@@ -134,7 +134,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   z-index: 1;
   border: none;
-  height: calc(100% + 20px); /* Compensate for the negative margin */
+  height: calc(100% + 20px);
 }
 
 .template-1214 .bears_pricing_tables * {
@@ -148,11 +148,30 @@
 }
 
 .template-1214 .bears_pricing_tables header {
-  /* Adding to match 1276 structure */
   position: relative;
   color: var(--bears-title-color);
   width: 100%;
+  background-color: transparent;
 }
+
+/* Flexbox rows for header */
+.template-1214 .bears_pricing_tables .header-top-row,
+.template-1214 .bears_pricing_tables .header-middle-row,
+.template-1214 .bears_pricing_tables .header-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.template-1214 .bears_pricing_tables .header-top-row {
+  margin-bottom: 10px;
+}
+
+.template-1214 .bears_pricing_tables .header-middle-row {
+  margin-bottom: 10px;
+}
+
 .template-1214 .bears_pricing_tables .plan-title {
   position: absolute;
   top: 0;
@@ -166,7 +185,7 @@
   color: var(--bears-title-color);
   text-transform: uppercase;
   font-size: var(--bears-title-font-size);
-  z-index: 2; /* Ensure the title appears above other elements */
+  z-index: 2;
   white-space: nowrap;
   font-family: var(--bears-font-family, inherit);
 }
@@ -174,7 +193,6 @@
 .template-1214 .bears_pricing_tables .plan.featured .plan-title {
   color: var(--bears-featured-title-color);
   background-color: var(--bears-accent-color);
-  /* Same positioning as non-featured */
   position: absolute;
   top: 0;
   left: 50%;
@@ -242,6 +260,23 @@
 .template-1214 .bears_pricing_tables .plan.featured .plan-type {
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* Ensure correct styling for the icons */
+.template-1214 .bears_pricing_tables .plan-icon {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.template-1214 .bears_pricing_tables .plan-icon i {
+  margin-right: 8px;
+  opacity: 0.8;
+  color: var(--bears-icon-color);
+  font-size: var(--bears-icon-size);
+}
+
+.template-1214 .bears_pricing_tables .plan.featured .plan-icon i {
+  color: var(--bears-featured-accent-color);
+}
 /* Style for alternating rows in feature list */
 .template-1214 .bears_pricing_tables .plan-features li:nth-child(even) {
   background: rgba(0, 0, 0, 0.08);
@@ -302,7 +337,7 @@
 
 .template-1214 .bears_pricing_tables .plan-select a, 
 .template-1214 .bears_pricing_tables .plan-select a.btn {
-  background-color: var(--bears-featured-button-bg);
+  background-color: var(--bears-button-bg-color);
   color: var(--bears-button-text-color);
   text-decoration: none;
   display: inline-block;
@@ -319,14 +354,16 @@
 
 .template-1214 .bears_pricing_tables .plan-select a:hover, 
 .template-1214 .bears_pricing_tables .plan-select a.btn:hover {
-  background-color: var(--bears-button-hover-color);
+  background-color: var(--bears-button-bg-color);
   transform: translateY(50%) scale(1.05);
+  opacity: 0.9;
 }
 
 /* Featured plan button styling */
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a, 
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a.btn {
-  background-color: var(--bears-button-text-color);
+  background-color: var(--bears-featured-button-bg);
+  color: var(--bears-button-text-color);
 }
 /* Column width settings */
 .template-1214 .bears_pricing_tables-container[data-columns="1"] .bears_pricing_tables {
@@ -355,11 +392,11 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .bears_pricing_tables {
+  .template-1214 .bears_pricing_tables {
     width: 50% !important;
   }
   
-  .bears_pricing_tables-container {
+  .template-1214 .bears_pricing_tables-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -367,8 +404,8 @@
     padding: 20px 0 20px; /* Maintain top padding on mobile */
   }
   
-  .bears_pricing_tables .plan-title,
-  .bears_pricing_tables .plan-select a {
+  .template-1214 .bears_pricing_tables .plan-title,
+  .template-1214 .bears_pricing_tables .plan-select a {
     -webkit-transform: translateX(-50%) translateY(0);
     -moz-transform: translateX(-50%) translateY(0);
     -o-transform: translateX(-50%) translateY(0);
@@ -376,40 +413,47 @@
     transform: translateX(-50%) translateY(0);
   }
   
-  .bears_pricing_tables .plan-cost,
-  .bears_pricing_tables .plan.featured .plan-cost {
+  .template-1214 .bears_pricing_tables .plan-cost,
+  .template-1214 .bears_pricing_tables .plan.featured .plan-cost {
     padding: 20px 10px 20px;
   }
   
-  .bears_pricing_tables .plan-select,
-  .bears_pricing_tables .plan.featured .plan-select {
+  .template-1214 .bears_pricing_tables .plan-select,
+  .template-1214 .bears_pricing_tables .plan.featured .plan-select {
     padding: 10px 10px 10px;
   }
   
-  .bears_pricing_tables .plan.featured {
+  .template-1214 .bears_pricing_tables .plan.featured {
     margin-top: 0;
     height: 100%; /* Reset height on mobile */
     border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   }
   
   /* Adjust checkmark positioning on mobile */
-  .bears_pricing_tables .plan-features li {
+  .template-1214 .bears_pricing_tables .plan-features li {
     padding-left: 20px; /* Slightly less padding on mobile */
   }
   
-  .bears_pricing_tables .plan-features li::before {
+  .template-1214 .bears_pricing_tables .plan-features li::before {
     left: 5px;
+  }
+  
+  /* Adjust flexbox rows for mobile */
+  .template-1214 .bears_pricing_tables .header-top-row,
+  .template-1214 .bears_pricing_tables .header-middle-row,
+  .template-1214 .bears_pricing_tables .header-bottom-row {
+    flex-direction: column;
   }
 }
 @media only screen and (max-width: 440px) {
-  .bears_pricing_tables {
+  .template-1214 .bears_pricing_tables {
     width: 100% !important;
-    }
-  .bears_pricing_tables .plan {
+  }
+  .template-1214 .bears_pricing_tables .plan {
     margin: 0 auto 20px;
     max-width: 320px;
-    }
   }
+}
 
 /* Clearfix */
 .clear {
@@ -418,47 +462,68 @@
 
 /* Border style classes */
 /* Regular plan border styles */
-.bears_pricing_tables .plan.border-shadow {
+.template-1214 .bears_pricing_tables .plan.border-shadow {
   border: none !important;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
 }
 
-.bears_pricing_tables .plan.border-solid {
+.template-1214 .bears_pricing_tables .plan.border-solid {
   border: 3px solid var(--bears-border-color) !important;
   box-shadow: none !important;
 }
 
-.bears_pricing_tables .plan.border-both {
+.template-1214 .bears_pricing_tables .plan.border-both {
   border: 3px solid var(--bears-border-color) !important;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
 }
 
-.bears_pricing_tables .plan.border-none {
+.template-1214 .bears_pricing_tables .plan.border-none {
   border: none !important;
   box-shadow: none !important;
 }
 
 /* Featured plan border styles */
-.bears_pricing_tables .plan.featured.border-shadow {
+.template-1214 .bears_pricing_tables .plan.featured.border-shadow {
   border: none !important;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
   overflow: visible;
 }
 
-.bears_pricing_tables .plan.featured.border-solid {
+.template-1214 .bears_pricing_tables .plan.featured.border-solid {
   border: 3px solid var(--bears-featured-border-color) !important;
   box-shadow: none !important;
   overflow: visible;
 }
 
-.bears_pricing_tables .plan.featured.border-both {
+.template-1214 .bears_pricing_tables .plan.featured.border-both {
   border: 3px solid var(--bears-featured-border-color) !important;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
   overflow: visible;
 }
 
-.bears_pricing_tables .plan.featured.border-none {
+.template-1214 .bears_pricing_tables .plan.featured.border-none {
   border: none !important;
   box-shadow: none !important;
   overflow: visible;
+}
+
+/* Use not(.featured) pattern for clearer border styling */
+.template-1214 .bears_pricing_tables .plan:not(.featured).border-shadow {
+  border: none !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.template-1214 .bears_pricing_tables .plan:not(.featured).border-solid {
+  border: 3px solid var(--bears-border-color) !important;
+  box-shadow: none !important;
+}
+
+.template-1214 .bears_pricing_tables .plan:not(.featured).border-both {
+  border: 3px solid var(--bears-border-color) !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.template-1214 .bears_pricing_tables .plan:not(.featured).border-none {
+  border: none !important;
+  box-shadow: none !important;
 }

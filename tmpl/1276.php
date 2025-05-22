@@ -58,8 +58,9 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 // IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
 <div class="template-1276">
-	<div class="bears_pricing_tables<?php echo $bears_moduleid; ?> bears_pricing_tables-outer">
-		<div class="bears_pricing_tables-container">
+    <div class="bears_pricing_tables-outer bears_pricing_tables-<?php echo $bears_moduleid; ?>">
+        <!-- Add data-columns attribute for CSS targeting -->
+        <div class="bears_pricing_tables-container" data-columns="<?php echo $bears_num_columns; ?>">
             <?php
             // Loop through the number of columns to display
             for ($i = 0; $i < $bears_num_columns; $i++) {
@@ -95,13 +96,6 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 							</h3>
 
-                            <?php if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'center-')) {
-                                ?>
-								<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
-									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
-								</div>
-                            <?php } ?>
-
 							<div class="price">
                                 <?php if (!empty($iconClass[$cur_column])  && $iconPosition[$cur_column] === 'price-left') {
                                     ?>
@@ -133,7 +127,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             ?>
 						</header>
 
-						<ul class="plan-features dot">
+						<ul class="plan-features">
                             <?php
                             if (!empty($bears_features[$cur_column])) {
                                 $features = $bears_features[$cur_column];

@@ -29,28 +29,31 @@
   --bears-featured-price-color: #fff;
   --bears-subtitle-color: #fff;
   --bears-features-color: #000000;
+  --bears-button-text-color: #ffffff;
   
   /* Button Colors */
-  --bears-button-text-color: #191919;
   --bears-button-bg-color: #191919;
   --bears-button-hover-color: #666666;
+  
+  /* Border Colors */
+  --bears-border-color: #efefef;
+  --bears-featured-border-color: #222f3d;
   
   /* Accent Colors */
   --bears-accent-color: #191919;
   --bears-featured-accent-color: #222f3d;
   
   /* Typography */
+  --bears-font-family: "Crimson Text", serif;
   --bears-title-font-size: 24px;
   --bears-price-font-size: 3em;
-  --bears-features-font-size: 14px; /* Added features font size */
+  --bears-features-font-size: 14px;
   
   /* Effects */
   --bears-box-shadow: rgba(110, 110, 110, 0.15) 0px 5px 15px 0px;
   --bears-transition-speed: 0.3s;
   
   /* Border Settings */
-  --bears-border-color: #efefef;
-  --bears-featured-border-color: #222f3d;
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
@@ -58,7 +61,8 @@
   /* Icon settings */
   --bears-icon-color: red;
   --bears-icon-size: 24px;
-  }
+}
+
 /* Base container styles */
 .template-1276 .bears_pricing_tables-outer {
   width: 100%;
@@ -67,20 +71,24 @@
   color: #495057;
   display: block; /* Ensure it's a block element */
   clear: both; /* Clear any floats */
-  overflow: auto; /* Contain floated children */
+  overflow: hidden; /* Changed from auto to hidden to prevent overflow issues */
 }
 
 .template-1276 .bears_pricing_tables-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; /* Ensure columns align at the top */
+  flex-flow: row wrap; /* Changed to a more flexible approach */
+  justify-content: space-between; /* Space between columns */
+  align-items: stretch; /* Ensure all columns stretch to equal height */
   margin: 0 auto;
-  position: relative; /* Added to establish positioning context */
+  position: relative; /* Establish positioning context */
   overflow: visible; /* Allow content to be visible outside the container */
   clear: both; /* Clear any floats */
   /* Add padding to account for the featured scaling */
   padding: 10px 10px 30px; /* Top, sides, bottom padding */
+  width: 100%; /* Explicitly set width to 100% */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  /* Ensure minimum width to prevent unwanted wrapping */
+  min-width: 100%;
 }
 
 /* Column styles */
@@ -91,9 +99,12 @@
   flex-direction: column;
   margin: 0;
   text-align: center;
-  position: relative; /* Added to establish positioning context */
-  /* Add a minimum height to ensure consistent sizing */
-  min-height: 100%;
+  position: relative; /* Establish positioning context */
+  height: auto; /* Allow natural height */
+  font-family: var(--bears-font-family);
+  font-size: 16px;
+  flex: 1 1 0%; /* Changed from flex: 1 to flex: 1 1 0% for better space distribution */
+  min-width: 0; /* Prevent flex items from overflowing */
 }
 
 .template-1276 .bears_pricing_tables ul {
@@ -114,6 +125,9 @@
   transition: all var(--bears-transition-speed) ease;
   font-size: .8em;
   height: 100%; /* Ensure all plans have the same height */
+  display: flex; /* Use flex for internal layout */
+  flex-direction: column;
+  width: 100%; /* Ensure plan takes full width of its container */
 }
 
 .template-1276 .bears_pricing_tables .plan.featured {
@@ -146,25 +160,19 @@
   text-align: center;
   border-radius: var(--bears-border-radius) var(--bears-border-radius) 0 0;
   overflow: visible; /* Ensure the :after element isn't clipped */
+  width: 100%; /* Ensure header takes full width */
 }
 
-/* Flexbox rows for header */
+/* Flexbox rows for header - simplified and more robust */
 .template-1276 .bears_pricing_tables .header-top-row,
 .template-1276 .bears_pricing_tables .header-middle-row,
 .template-1276 .bears_pricing_tables .header-bottom-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.template-1276 .bears_pricing_tables .header-top-row {
-  margin-bottom: 10px;
-}
-
-.template-1276 .bears_pricing_tables .header-middle-row {
-  margin-bottom: 10px;
-}
 .template-1276 .bears_pricing_tables header:after {
   width: 0;
   height: 0;
@@ -184,6 +192,7 @@
 .template-1276 .bears_pricing_tables .plan-title {
   top: 0;
   font-size: var(--bears-title-font-size);
+  font-weight: 700;
   text-transform: uppercase;
   flex: 1;
 }
@@ -221,7 +230,9 @@
   list-style: outside none none;
   font-size: 0.8em;
   text-align: center;
-  }
+  flex: 1; /* Allow feature list to expand */
+  width: 100%; /* Ensure features take full width */
+}
 .template-1276 .bears_pricing_tables .plan-features li {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -255,10 +266,11 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  }
+  width: 100%; /* Ensure button container takes full width */
+}
 .template-1276 .bears_pricing_tables .plan-select a, .template-1276 .bears_pricing_tables .plan-select a.btn {
-  background-color: var(--bears-button-text-color);
-  color: #ffffff;
+  background-color: var(--bears-button-bg-color);
+  color: var(--bears-button-text-color);
   text-decoration: none;
   display: inline-block;
   border: none;
@@ -269,13 +281,13 @@
   transition: all var(--bears-transition-speed) ease;
 }
 .template-1276 .bears_pricing_tables .plan-select a:hover, .template-1276 .bears_pricing_tables .plan-select a.btn:hover {
-  background-color: var(--bears-button-hover-color, var(--bears-button-text-color));
+  background-color: var(--bears-button-hover-color, var(--bears-button-bg-color));
   opacity: 0.9;
   transform: scale(1.05);
 }
 
 /* Featured plan button styling */
-.template-1276 .bears_pricing_tables .plan.featured .plan-select a, 
+.template-1276 .bears_pricing_tables .plan.featured .plan-select a,
 .template-1276 .bears_pricing_tables .plan.featured .plan-select a.btn {
   background-color: var(--bears-featured-button-bg);
 }
@@ -293,21 +305,25 @@
 .template-1276 .bears_pricing_tables .plan.featured .plan-select {
   padding: 30px 20px;
   }
-/* Column width settings */
+/* Column width settings - Using improved flex approach */
 .template-1276 .bears_pricing_tables-container[data-columns="1"] .bears_pricing_tables {
-  width: 100%;
+  flex: 1 1 100%;
 }
 
 .template-1276 .bears_pricing_tables-container[data-columns="2"] .bears_pricing_tables {
-  width: 50%;
+  flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2);
 }
 
 .template-1276 .bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables {
-  width: 33.3%;
+  flex: 1 1 calc(33.333% - var(--bears-column-margin-x) * 2);
 }
 
 .template-1276 .bears_pricing_tables-container[data-columns="4"] .bears_pricing_tables {
-  width: 25%;
+  flex: 1 1 calc(25% - var(--bears-column-margin-x) * 2);
+}
+
+.template-1276 .bears_pricing_tables-container[data-columns="5"] .bears_pricing_tables {
+  flex: 1 1 calc(20% - var(--bears-column-margin-x) * 2);
 }
 
 /* Add padding to the bottom of the container to account for the featured scaling */
@@ -319,32 +335,46 @@
   clear: both;
 }
 
-@media only screen and (max-width: 767px) {
-  .template-1276 .bears_pricing_tables {
-    width: 100% !important;
+/* Add a mid-size breakpoint for better transitions */
+@media only screen and (max-width: 991px) {
+  .template-1276 .bears_pricing_tables-container[data-columns="4"] .bears_pricing_tables,
+  .template-1276 .bears_pricing_tables-container[data-columns="5"] .bears_pricing_tables {
+    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2);
   }
+  
+  /* Adjust header triangle size for smaller screens */
+  .template-1276 .bears_pricing_tables header:after {
+    border-width: 24px 120px 0 120px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
   .template-1276 .bears_pricing_tables-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 0 20px; /* Reduce padding on mobile */
   }
   
+  .template-1276 .bears_pricing_tables {
+    width: 100% !important;
+    flex: 0 0 100%; /* Changed to 0 0 100% to ensure full width */
+    margin-bottom: 20px;
+    padding: 10px 0; /* Reduced horizontal padding on mobile */
+  }
+  
   .template-1276 .bears_pricing_tables .plan-title,
   .template-1276 .bears_pricing_tables .plan-select a {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -o-transform: translateY(0);
-    -ms-transform: translateY(0);
     transform: translateY(0);
   }
+  
   .template-1276 .bears_pricing_tables .plan-select,
   .template-1276 .bears_pricing_tables .featured .plan-select {
     padding: 20px;
   }
+  
   .template-1276 .bears_pricing_tables .plan.featured {
     transform: none;
-    margin: 0 auto 20px; /* Reset margins on mobile */
+    margin: 0 auto 20px;
     border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   }
   
@@ -354,16 +384,28 @@
   .template-1276 .bears_pricing_tables .header-bottom-row {
     flex-direction: column;
   }
+  
+  /* Adjust header triangle size for mobile */
+  .template-1276 .bears_pricing_tables header:after {
+    border-width: 24px 100px 0 100px;
+  }
 }
+
 @media only screen and (max-width: 440px) {
   .template-1276 .bears_pricing_tables {
     width: 100% !important;
-    }
+    padding: 10px 0; /* Consistent padding */
+  }
   .template-1276 .bears_pricing_tables .plan {
     margin: 0 auto 20px;
-    max-width: 320px;
-    }
+    max-width: 100%; /* Changed from 320px to 100% to fill the container */
   }
+  
+  /* Make the header triangle smaller on very small screens */
+  .template-1276 .bears_pricing_tables header:after {
+    border-width: 20px 80px 0 80px;
+  }
+}
 
 /* Clearfix */
 .clear {
@@ -371,45 +413,48 @@
 }
 
 /* Border style classes */
+/* Regular plan border styles */
+.template-1276 .bears_pricing_tables .plan:not(.featured).border-shadow {
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.template-1276 .bears_pricing_tables .plan:not(.featured).border-solid {
+  border: 3px solid var(--bears-border-color);
+  box-shadow: none;
+}
+
+.template-1276 .bears_pricing_tables .plan:not(.featured).border-both {
+  border: 3px solid var(--bears-border-color);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.template-1276 .bears_pricing_tables .plan:not(.featured).border-none {
+  border: none;
+  box-shadow: none;
+}
+
 /* Featured plan border styles */
 .template-1276 .bears_pricing_tables .plan.featured.border-shadow {
-  border: none !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
 .template-1276 .bears_pricing_tables .plan.featured.border-solid {
-  border: 3px solid var(--bears-featured-border-color) !important;
-  box-shadow: none !important;
+  border: 3px solid var(--bears-featured-border-color);
+  box-shadow: none;
   overflow: hidden;
 }
 
 .template-1276 .bears_pricing_tables .plan.featured.border-both {
-  border: 3px solid var(--bears-featured-border-color) !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+  border: 3px solid var(--bears-featured-border-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
 .template-1276 .bears_pricing_tables .plan.featured.border-none {
-  border: none !important;
-  box-shadow: none !important;
+  border: none;
+  box-shadow: none;
   overflow: hidden;
 }
-
-/* Border styles for regular plans */
-.template-1276 .bears_pricing_tables .plan:not(.featured).border-shadow {
-  border: none !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
-  }
-.template-1276 .bears_pricing_tables .plan:not(.featured).border-solid {
-  border: 3px solid var(--bears-border-color) !important;
-  box-shadow: none !important;
-  }
-.template-1276 .bears_pricing_tables .plan:not(.featured).border-both {
-  border: 3px solid var(--bears-border-color) !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
-  }
-.template-1276 .bears_pricing_tables .plan:not(.featured).border-none {
-  border: none !important;
-  box-shadow: none !important;
-  }
