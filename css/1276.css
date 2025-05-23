@@ -271,7 +271,7 @@ font-size: var(--bears-features-font-size);
   }
 .template-1276 .bears_pricing_tables .plan-select a, .template-1276 .bears_pricing_tables .plan-select a.btn {
   background-color: var(--bears-button-background-color);
-  color: #ffffff;
+  color: var(--bears-button-text-color);
   text-decoration: none;
   display: inline-block;
   border: none;

@@ -28,7 +28,7 @@
   --bears-featured-title-color: #ffffff;
   --bears-price-color: #34495e;
   --bears-featured-price-color: #ffffff;
-  --bears-subtitle-color: #666666;
+  --bears-subtitle-color: rgba(255,255,255, 0.6);
   --bears-features-color: #000000;
   --bears-featured-features-color: var(--bears-features-color);
   --bears-button-text-color: #ffffff;
@@ -73,7 +73,6 @@
   clear: both;
   overflow: visible;
   font-family: var(--bears-font-family);
-  font-size: 16px;
   }
 
 .template-1214 .bears_pricing_tables-container {
@@ -228,7 +227,7 @@
   }
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-type {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--bears-subtitle-color);
   }
 
 /* Features list styling */
@@ -251,7 +250,7 @@
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-features li {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
-  color: var(--bears-features-featured-color);
+  color: var(--bears-featured-features-color);
   }
 
 /* Alternating row styling */

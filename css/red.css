@@ -72,7 +72,6 @@
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  color: #495057;
   display: block; /* Ensure it's a block element */
   clear: both; /* Clear any floats */
   overflow: hidden; /* Changed from auto to hidden to prevent overflow issues */
@@ -272,7 +271,7 @@
   }
 .template-red .bears_pricing_tables .plan-select a, .template-red .bears_pricing_tables .plan-select a.btn {
   background-color: var(--bears-button-background-color);
-  color: #ffffff;
+  color: var(--bears-button-text-color);
   text-decoration: none;
   display: inline-block;
   border: none;
