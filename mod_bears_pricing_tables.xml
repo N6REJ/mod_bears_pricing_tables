@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.23.1</version>
+	<version>2025.05.23.2</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
@@ -76,7 +76,7 @@
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">
 				<field name="bears_column_background" type="color" default="" label="MOD_BEARS_COLUMN_BACKGROUND" description="MOD_BEARS_COLUMN_BACKGROUND_DESC" />
-				<field name="bears_column_featured_background" type="color" default="" label="MOD_BEARS_FEATURED_BACKGROUND" description="MOD_BEARS_FEATURED_BACKGROUND_DESC" />
+				<field name="bears_column_featured_background" type="color" default="" label="MOD_BEARS_COLUMN_FEATURED_BACKGROUND" description="MOD_BEARS_COLUMN_FEATURED_BACKGROUND_DESC" />
 				<field name="bears_header_background" type="color" default="" label="MOD_BEARS_HEADER_BACKGROUND" description="MOD_BEARS_HEADER_BACKGROUND_DESC" />
 				<field name="bears_header_featured_background" type="color" default="" label="MOD_BEARS_HEADER_FEATURED_BACKGROUND" description="MOD_BEARS_HEADER_FEATURED_BACKGROUND_DESC" />
 				<field name="bears_title_color" type="color" default="" label="MOD_BEARS_TITLE_COLOR" description="MOD_BEARS_TITLE_COLOR_DESC" />
@@ -84,7 +84,6 @@
 				<field name="bears_featured_price_color" type="color" default="" label="MOD_BEARS_FEATURED_PRICE_COLOR" description="MOD_BEARS_FEATURED_PRICE_COLOR_DESC" />
 				<field name="bears_subtitle_color" type="color" default="" label="MOD_BEARS_SUBTITLE_COLOR" description="MOD_BEARS_SUBTITLE_COLOR_DESC" />
 				<field name="bears_features_color" type="color" default="" label="MOD_BEARS_FEATURES_COLOR" description="MOD_BEARS_FEATURES_COLOR_DESC" />
-				<field name="bears_features_background_color" type="color" default="" label="MOD_BEARS_FEATURES_BACKGROUND_COLOR" description="MOD_BEARS_FEATURES_BACKGROUND_COLOR_DESC" />
 				<field name="bears_border_color" type="color" default="" label="MOD_BEARS_BORDER_COLOR" description="MOD_BEARS_BORDER_COLOR_DESC" />
 				<field name="bears_featured_border_color" type="color" default="" label="MOD_BEARS_FEATURED_BORDER_COLOR" description="MOD_BEARS_FEATURED_BORDER_COLOR_DESC" />
 				<field name="bears_accent_color" type="color" default="" label="MOD_BEARS_ACCENT_COLOR" description="MOD_BEARS_ACCENT_COLOR_DESC" />
