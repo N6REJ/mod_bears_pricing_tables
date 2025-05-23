@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.22
+ * @version     2025.05.23
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -48,11 +48,11 @@ class ModBearsPricingTablesHelper
         // CSS-variable backed parameters - use null to allow CSS variables as defaults
         $bears_column_margin_x       = $params->get('bears_column_margin_x');
         $bears_column_margin_y       = $params->get('bears_column_margin_y');
-        $bears_column_bg             = $params->get('bears_column_bg');
-        $bears_column_featured_bg    = $params->get('bears_column_featured_bg');
-        $bears_header_bg             = $params->get('bears_header_bg');
-        $bears_header_featured_bg    = $params->get('bears_header_featured_bg');
-        $bears_features_bg_color     = $params->get('bears_features_bg_color');
+        $bears_column_background             = $params->get('bears_column_background');
+        $bears_column_featured_background    = $params->get('bears_column_featured_background');
+        $bears_header_background             = $params->get('bears_header_background');
+        $bears_header_featured_background    = $params->get('bears_header_featured_background');
+        $bears_features_background_color     = $params->get('bears_features_background_color');
         $bears_title_color           = $params->get('bears_title_color');
         $bears_featured_title_color  = $params->get('bears_featured_title_color');
         $bears_title_font_size       = $params->get('bears_title_font_size');
@@ -69,7 +69,7 @@ class ModBearsPricingTablesHelper
         $bears_accent_color          = $params->get('bears_accent_color');
         $bears_featured_accent_color = $params->get('bears_featured_accent_color');
         $bears_button_text_color     = $params->get('bears_button_text_color');
-        $bears_button_bg_color       = $params->get('bears_button_bg_color');
+        $bears_button_background_color       = $params->get('bears_button_background_color');
         $bears_button_hover_color    = $params->get('bears_button_hover_color');
 
         // Parameters with explicit defaults that might vary by template
@@ -127,11 +127,11 @@ class ModBearsPricingTablesHelper
             'bears_num_columns'           => $bears_num_columns,
             'bears_column_margin_x'       => $bears_column_margin_x,
             'bears_column_margin_y'       => $bears_column_margin_y,
-            'bears_column_bg'             => $bears_column_bg,
-            'bears_column_featured_bg'    => $bears_column_featured_bg,
-            'bears_header_bg'             => $bears_header_bg,
-            'bears_header_featured_bg'    => $bears_header_featured_bg,
-            'bears_features_bg_color'     => $bears_features_bg_color,
+            'bears_column_background'             => $bears_column_background,
+            'bears_column_featured_background'    => $bears_column_featured_background,
+            'bears_header_background'             => $bears_header_background,
+            'bears_header_featured_background'    => $bears_header_featured_background,
+            'bears_features_background_color'     => $bears_features_background_color,
             'bears_title_color'           => $bears_title_color,
             'bears_featured_title_color'  => $bears_featured_title_color,
             'bears_title_font_size'       => $bears_title_font_size,
@@ -150,7 +150,7 @@ class ModBearsPricingTablesHelper
             'bears_accent_color'          => $bears_accent_color,
             'bears_featured_accent_color' => $bears_featured_accent_color,
             'bears_button_text_color'     => $bears_button_text_color,
-            'bears_button_bg_color'       => $bears_button_bg_color,
+            'bears_button_background_color'       => $bears_button_background_color,
             'bears_button_hover_color'    => $bears_button_hover_color,
             'bears_use_google_font'       => $bears_use_google_font,
 
@@ -302,20 +302,20 @@ public static function generateCustomCSS($params, $moduleId = 0)
     $css = '.bears_pricing_tables' . $moduleId . ' {';
 
     // Add custom CSS variables
-    if ($params->get('bears_column_bg')) {
-        $css .= '--bears-column-bg: ' . $params->get('bears_column_bg') . ';';
+    if ($params->get('bears_column_background')) {
+        $css .= '--bears-column-background: ' . $params->get('bears_column_background') . ';';
     }
-    if ($params->get('bears_column_featured_bg')) {
-        $css .= '--bears-column-featured-bg: ' . $params->get('bears_column_featured_bg') . ';';
+    if ($params->get('bears_column_featured_background')) {
+        $css .= '--bears-column-featured-background: ' . $params->get('bears_column_featured_background') . ';';
     }
-    if ($params->get('bears_header_bg')) {
-        $css .= '--bears-header-bg: ' . $params->get('bears_header_bg') . ';';
+    if ($params->get('bears_header_background')) {
+        $css .= '--bears-header-background: ' . $params->get('bears_header_background') . ';';
     }
-    if ($params->get('bears_header_featured_bg')) {
-        $css .= '--bears-header-featured-bg: ' . $params->get('bears_header_featured_bg') . ';';
+    if ($params->get('bears_header_featured_background')) {
+        $css .= '--bears-header-featured-background: ' . $params->get('bears_header_featured_background') . ';';
     }
-    if ($params->get('bears_features_bg_color')) {
-        $css .= '--bears-features-bg-color: ' . $params->get('bears_features_bg_color') . ';';
+    if ($params->get('bears_features_background_color')) {
+        $css .= '--bears-features-background-color: ' . $params->get('bears_features_background_color') . ';';
     }
     if ($params->get('bears_title_color')) {
         $css .= '--bears-title-color: ' . $params->get('bears_title_color') . ';';
@@ -353,8 +353,8 @@ public static function generateCustomCSS($params, $moduleId = 0)
     if ($params->get('bears_button_text_color')) {
         $css .= '--bears-button-text-color: ' . $params->get('bears_button_text_color') . ';';
     }
-    if ($params->get('bears_button_bg_color')) {
-        $css .= '--bears-button-bg-color: ' . $params->get('bears_button_bg_color') . ';';
+    if ($params->get('bears_button_background_color')) {
+        $css .= '--bears-button-background-color: ' . $params->get('bears_button_background_color') . ';';
     }
     if ($params->get('bears_button_hover_color')) {
         $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
@@ -477,16 +477,16 @@ public static function generateCustomCSS($params, $moduleId = 0)
         padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
     }
     .bears_pricing_tables' . $moduleId . ' .plan {
-        background-color: var(--bears-column-bg);
+        background-color: var(--bears-column-background);
     }
     .bears_pricing_tables' . $moduleId . ' header {
-        background-color: var(--bears-header-bg);
+        background-color: var(--bears-header-background);
     }
     .bears_pricing_tables' . $moduleId . ' .plan.featured {
-        background-color: var(--bears-column-featured-bg);
+        background-color: var(--bears-column-featured-background);
     }
     .bears_pricing_tables' . $moduleId . ' .plan.featured header {
-        background-color: var(--bears-header-featured-bg);
+        background-color: var(--bears-header-featured-background);
     }
     .bears_pricing_tables' . $moduleId . ' .plan-title {
         color: var(--bears-title-color);
@@ -512,7 +512,7 @@ public static function generateCustomCSS($params, $moduleId = 0)
     }
     .bears_pricing_tables' . $moduleId . ' .plan-features {
         color: var(--bears-accent-color);
-        background-color: var(--bears-features-bg-color);
+        background-color: var(--bears-features-background-color);
     }
     .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features {
         color: var(--bears-featured-accent-color);
@@ -520,7 +520,7 @@ public static function generateCustomCSS($params, $moduleId = 0)
     .bears_pricing_tables' . $moduleId . ' .plan-select a,
     .bears_pricing_tables' . $moduleId . ' .plan-select a.btn {
         color: var(--bears-button-text-color);
-        background-color: var(--bears-button-bg-color);
+        background-color: var(--bears-button-background-color);
         font-size: var(--bears-button-font-size);
     }
     .bears_pricing_tables' . $moduleId . ' .plan-select a:hover,
@@ -623,26 +623,13 @@ public static function generateCustomCSS($params, $moduleId = 0)
         $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-size: ' . $iconSize . '; }';
     }
 
-    // Calculate column width based on number of columns
+    // Get template name for column width CSS
+    $template = self::getTemplateName($params);
     $bears_num_columns = (int)$params->get('bears_num_columns', 3);
-    $column_width      = '33.3%'; // Default to 3 columns
-    if ($bears_num_columns == 1) {
-        $column_width = '100%';
-    } elseif ($bears_num_columns == 2) {
-        $column_width = '50%';
-    } elseif ($bears_num_columns == 3) {
-        $column_width = '33.3%';
-    } elseif ($bears_num_columns == 4) {
-        $column_width = '25%';
-    } elseif ($bears_num_columns == 5) {
-        $column_width = '20%';
-    }
-
-    // Add the column width CSS with moduleId for specificity
-    $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables { width: ' . $column_width . '; }';
-
-    // Add responsive styles with moduleId for specificity
-    $css .= "\n" . '@media (max-width: 768px) { .bears_pricing_tables' . $moduleId . ' .bears_pricing_tables { width: 100%; } }';
+    
+    // Explicitly add the column width CSS
+    $columnWidthCSS = self::getColumnWidthCSS($moduleId, $template, $bears_num_columns);
+    $css .= "\n\n" . $columnWidthCSS;
 
     // Add accent triangle if accent colors are specified
     if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
@@ -766,5 +753,78 @@ public static function generateCustomCSS($params, $moduleId = 0)
 
         // Default case: add fa- prefix and fas class
         return 'fas fa-' . $iconClass;
+    }
+
+    /**
+     * Generate CSS for column widths based on number of columns
+     * 
+     * @param   int     $moduleId   The module ID for specificity
+     * @param   string  $template   The template name
+     * @param   int     $numColumns The number of columns
+     * 
+     * @return  string  The column width CSS
+     * @since   2025.5.22
+     */
+    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
+    {
+        // Start the CSS block
+        $css = "/* Column width settings for module {$moduleId} */\n";
+        
+        // Define width percentages based on column count
+        $widths = [
+            1 => '100%',
+            2 => 'calc(50% - var(--bears-column-margin-x) * 2)',
+            3 => 'calc(33.333% - var(--bears-column-margin-x) * 2)',
+            4 => 'calc(25% - var(--bears-column-margin-x) * 2)',
+            5 => 'calc(20% - var(--bears-column-margin-x) * 2)',
+        ];
+        
+        // Generate CSS for each column count (1-5)
+        foreach ($widths as $cols => $width) {
+            // Module-specific selector (primary approach)
+            $css .= ".bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
+            $css .= "  flex: 1 1 {$width};\n";
+            $css .= "}\n\n";
+            
+            // Template-specific selectors for older templates that might not have the moduleId class
+            $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
+            foreach ($templates as $tmpl) {
+                $css .= ".{$tmpl} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
+                $css .= "  flex: 1 1 {$width};\n";
+                $css .= "}\n\n";
+            }
+        }
+        
+        // Add tablet-specific responsive styles (2 columns)
+        $css .= "@media (max-width: 992px) and (min-width: 769px) {\n";
+        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
+        $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
+        $css .= "  }\n";
+        
+        // Add for template-specific classes too
+        $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
+        foreach ($templates as $tmpl) {
+            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
+            $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
+            $css .= "  }\n";
+        }
+        $css .= "}\n\n";
+        
+        // Add mobile-specific responsive styles (1 column)
+        $css .= "@media (max-width: 768px) {\n";
+        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables,\n";
+        
+        // Add template-specific selectors with proper comma separation
+        foreach ($templates as $index => $tmpl) {
+            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables" . 
+                    ($index < count($templates) - 1 ? ",\n" : " {\n");
+        }
+        $css .= "    flex: 1 1 100% !important;\n";
+        $css .= "    margin-left: var(--bears-column-margin-x);\n";
+        $css .= "    margin-right: var(--bears-column-margin-x);\n";
+        $css .= "  }\n";
+        $css .= "}\n";
+        
+        return $css;
     }
 }

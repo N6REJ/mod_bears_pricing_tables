@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables - Default Template
+ * Bears Pricing Tables - Red Template
  * Version : 2025.5.15
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Update for Joomla 5: Use namespaced classes
-use Joomla\CMS\Application\CMSApplication;
-use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\Registry\Registry;
+use Joomla\CMS\HTML\HTMLHelper;
 
 // Make sure $app is defined
 $app = Factory::getApplication();
@@ -57,10 +57,10 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 
 // IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
-<div class = "template-red">
-	<div class = "bears_pricing_tables<?php
-    echo $bears_moduleid; ?> bears_pricing_tables-outer">
-		<div class = "bears_pricing_tables-container">
+<div class="template-red">
+	<div class="bears_pricing_tables-outer bears_pricing_tables-<?php echo $bears_moduleid; ?>">
+		<!-- Add data-columns attribute for CSS targeting -->
+		<div class="bears_pricing_tables-container" data-columns="<?php echo $bears_num_columns; ?>">
             <?php
             // Loop through the number of columns to display
             for ($i = 0; $i < $bears_num_columns; $i++) {
@@ -81,87 +81,53 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                 // Add column-specific class for styling
                 $columnClass = 'bears-column-' . $cur_column;
                 ?>
-				<div class = "bears_pricing_tables">
-					<div class = "plan<?php
-                    echo $is_featured ? ' featured' : ''; ?> border-<?php
-                    echo $border_style; ?> <?php
-                    echo $columnClass; ?>">
+				<div class="bears_pricing_tables">
+					<div class="plan<?php echo $is_featured ? ' featured' : ''; ?> border-<?php echo $border_style; ?> <?php echo $columnClass; ?>">
 						<header>
                             <?php
-                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'top-')) {
+                            if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'top-')) {
                                 ?>
-								<div class = "plan-icon icon-<?php
-                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
-                                echo $columnClass; ?>">
-									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+								<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
+									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
 								</div>
-                            <?php
-                            } ?>
+                            <?php } ?>
 
-							<h3 class = "plan-title">
-                                <?php
-                                echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
+							<h3 class="plan-title">
+                                <?php echo htmlspecialchars($bears_title[$cur_column] ?? ''); ?>
 							</h3>
 
-                            <?php
-                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'center-')) {
-                                ?>
-								<div class = "plan-icon icon-<?php
-                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
-                                echo $columnClass; ?>">
-									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
-								</div>
-                            <?php
-                            } ?>
-
-							<div class = "price">
-                                <?php
-                                if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-left') {
+							<div class="price">
+                                <?php if (!empty($iconClass[$cur_column])  && $iconPosition[$cur_column] === 'price-left') {
                                     ?>
-									<div class = "plan-icon price-left <?php
-                                    echo $columnClass; ?>">
-										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+									<div class="plan-icon price-left <?php echo $columnClass; ?>">
+										<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
 									</div>
-                                <?php
-                                } ?>
+                                <?php } ?>
 
-								<div class = "plan-cost">
-									<h1 class = "plan-price"><?php
-                                        echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
-									<h4 class = "plan-type"><?php
-                                        echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
+								<div class="plan-cost">
+									<h1 class="plan-price"><?php echo htmlspecialchars($bears_price[$cur_column] ?? ''); ?></h1>
+									<h4 class="plan-type"><?php echo htmlspecialchars($bears_subtitle[$cur_column] ?? ''); ?></h4>
 								</div>
 
-                                <?php
-                                if (!empty($iconClass[$cur_column]) && $iconPosition[$cur_column] === 'price-right') {
+                                <?php if (!empty($iconClass[$cur_column])  && $iconPosition[$cur_column] === 'price-right') {
                                     ?>
-									<div class = "plan-icon price-right <?php
-                                    echo $columnClass; ?>">
-										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+									<div class="plan-icon price-right <?php echo $columnClass; ?>">
+										<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
 									</div>
-                                <?php
-                                } ?>
+                                <?php } ?>
 							</div>
 
-                            <?php
-                            if (!empty($iconClass[$cur_column]) && str_starts_with($iconPosition[$cur_column], 'bottom-')) {
+                            <?php if (!empty($iconClass[$cur_column])  && str_starts_with($iconPosition[$cur_column], 'bottom-')) {
                                 ?>
-								<div class = "plan-icon icon-<?php
-                                echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php
-                                echo $columnClass; ?>">
-									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
+								<div class="plan-icon icon-<?php echo htmlspecialchars($iconPosition[$cur_column]); ?> <?php echo $columnClass; ?>">
+									<i class="<?php echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($iconClass[$cur_column])); ?>"></i>
 								</div>
                                 <?php
                             }
                             ?>
 						</header>
 
-						<ul class = "plan-features dot">
+						<ul class="plan-features">
                             <?php
                             if (!empty($bears_features[$cur_column])) {
                                 $features = $bears_features[$cur_column];
@@ -203,11 +169,9 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             ?>
 						</ul>
 
-						<div class = "plan-select">
-							<a class = "btn" href = "<?php
-                            echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
-                                <?php
-                                echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
+						<div class="plan-select">
+							<a class="btn" href="<?php echo htmlspecialchars($bears_buttonurl[$cur_column] ?? '#'); ?>">
+                                <?php echo htmlspecialchars($bears_buttontext[$cur_column] ?? ''); ?>
 							</a>
 						</div>
 					</div>
