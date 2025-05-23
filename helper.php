@@ -623,26 +623,13 @@ public static function generateCustomCSS($params, $moduleId = 0)
         $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-size: ' . $iconSize . '; }';
     }
 
-    // Calculate column width based on number of columns
+    // Get template name for column width CSS
+    $template = self::getTemplateName($params);
     $bears_num_columns = (int)$params->get('bears_num_columns', 3);
-    $column_width      = '33.3%'; // Default to 3 columns
-    if ($bears_num_columns == 1) {
-        $column_width = '100%';
-    } elseif ($bears_num_columns == 2) {
-        $column_width = '50%';
-    } elseif ($bears_num_columns == 3) {
-        $column_width = '33.3%';
-    } elseif ($bears_num_columns == 4) {
-        $column_width = '25%';
-    } elseif ($bears_num_columns == 5) {
-        $column_width = '20%';
-    }
-
-    // Add the column width CSS with moduleId for specificity
-    $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables { width: ' . $column_width . '; }';
-
-    // Add responsive styles with moduleId for specificity
-    $css .= "\n" . '@media (max-width: 768px) { .bears_pricing_tables' . $moduleId . ' .bears_pricing_tables { width: 100%; } }';
+    
+    // Explicitly add the column width CSS
+    $columnWidthCSS = self::getColumnWidthCSS($moduleId, $template, $bears_num_columns);
+    $css .= "\n\n" . $columnWidthCSS;
 
     // Add accent triangle if accent colors are specified
     if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
@@ -766,5 +753,78 @@ public static function generateCustomCSS($params, $moduleId = 0)
 
         // Default case: add fa- prefix and fas class
         return 'fas fa-' . $iconClass;
+    }
+
+    /**
+     * Generate CSS for column widths based on number of columns
+     * 
+     * @param   int     $moduleId   The module ID for specificity
+     * @param   string  $template   The template name
+     * @param   int     $numColumns The number of columns
+     * 
+     * @return  string  The column width CSS
+     * @since   2025.5.22
+     */
+    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
+    {
+        // Start the CSS block
+        $css = "/* Column width settings for module {$moduleId} */\n";
+        
+        // Define width percentages based on column count
+        $widths = [
+            1 => '100%',
+            2 => 'calc(50% - var(--bears-column-margin-x) * 2)',
+            3 => 'calc(33.333% - var(--bears-column-margin-x) * 2)',
+            4 => 'calc(25% - var(--bears-column-margin-x) * 2)',
+            5 => 'calc(20% - var(--bears-column-margin-x) * 2)',
+        ];
+        
+        // Generate CSS for each column count (1-5)
+        foreach ($widths as $cols => $width) {
+            // Module-specific selector (primary approach)
+            $css .= ".bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
+            $css .= "  flex: 1 1 {$width};\n";
+            $css .= "}\n\n";
+            
+            // Template-specific selectors for older templates that might not have the moduleId class
+            $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
+            foreach ($templates as $tmpl) {
+                $css .= ".{$tmpl} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
+                $css .= "  flex: 1 1 {$width};\n";
+                $css .= "}\n\n";
+            }
+        }
+        
+        // Add tablet-specific responsive styles (2 columns)
+        $css .= "@media (max-width: 992px) and (min-width: 769px) {\n";
+        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
+        $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
+        $css .= "  }\n";
+        
+        // Add for template-specific classes too
+        $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
+        foreach ($templates as $tmpl) {
+            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
+            $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
+            $css .= "  }\n";
+        }
+        $css .= "}\n\n";
+        
+        // Add mobile-specific responsive styles (1 column)
+        $css .= "@media (max-width: 768px) {\n";
+        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables,\n";
+        
+        // Add template-specific selectors with proper comma separation
+        foreach ($templates as $index => $tmpl) {
+            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables" . 
+                    ($index < count($templates) - 1 ? ",\n" : " {\n");
+        }
+        $css .= "    flex: 1 1 100% !important;\n";
+        $css .= "    margin-left: var(--bears-column-margin-x);\n";
+        $css .= "    margin-right: var(--bears-column-margin-x);\n";
+        $css .= "  }\n";
+        $css .= "}\n";
+        
+        return $css;
     }
 }

@@ -61,7 +61,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 <div class = "template-1517">
 	<div class = "bears_pricing_tables<?php
     echo $bears_moduleid; ?> bears_pricing_tables-outer">
-		<div class = "bears_pricing_tables-container">
+		<div class = "bears_pricing_tables-container" data-columns="<?php echo $bears_num_columns; ?>">
             <?php
             // Loop through the number of columns to display
             for ($i = 0; $i < $bears_num_columns; $i++) {
