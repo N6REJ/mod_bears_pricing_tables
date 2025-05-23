@@ -1,16 +1,7 @@
-# 2025.05.22 (2025 May 22)
+# 2025.05.23 (2025 May 23)
 
 ## What's Changed
 
-* Add Extra Bold font weight option and improve pricing table responsiveness (7399fbb)
-* Merge remote-tracking branch 'origin/main' (cac9b39)
-* Add update server support for automatic Joomla extension updates (a9d0f3b)
-* Merge pull request #12 from N6REJ/update-server (1e8c493)
-* Fix download URL format in update server configuration (419460b)
-* Simplify GitHub workflow by removing update.xml generation (0a7124d)
-* Update update server URL and move section to end of file (212f6ca)
-* Add update server support for automatic Joomla extension updates (69ed385)
-* Update version to 2025.05.17, creation date to 2025 May 17, and copyright year to 2025 (d615fea)
 * Update updates.xml for version 2025.05.17 (96a6a8e)
 * Remove margin-bottom from plan-title for improved spacing consistency (6313c90)
 * Add icon support to pricing tables with customizable size and color (035440a)
@@ -45,4 +36,15 @@
 * Add icon color variable support and improve CSS formatting consistency (0ce554e)
 * Update version to 2025.05.22, creation date to 2025 May 22, and copyright year to 2025 (bb90def)
 * Merge pull request #13 from N6REJ/icons (f0e0d5f)
+* Update version to 2025.05.22 for release (60269a1)
+* Update updates.xml for version 2025.05.22 (99a0107)
+* Standardize CSS variable naming and improve template styling consistency (104c4fc)
+* Improve responsive layout and fix overflow issues in pricing tables template (af3c27d)
+* Update version to 2025.05.23, creation date to 2025 May 23, and copyright year to 2025 (46886a0)
+* Improve responsive layout with data-columns attribute and centralized column width CSS (8cdb034)
+* Merge remote-tracking branch 'origin/layout' into layout (e59820a)
+* Update version to 2025.05.23, creation date to 2025 May 23, and copyright year to 2025 (3b6401b)
+* Improve CSS variable consistency and template structure for red pricing tables theme (c042499)
+* Merge remote-tracking branch 'origin/layout' into layout (28f92c9)
+* Merge pull request #14 from N6REJ/layout (03810c3)
 
