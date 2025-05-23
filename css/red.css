@@ -133,7 +133,7 @@
 
 .template-red .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-  color: #ffffff;
+  background-color: var(--bears-column-featured-background);
   z-index: 100;
   transform: scale(1.05);
   transform-origin: top center; /* Make the scaling start from the top */
