@@ -28,6 +28,7 @@
   --bears-featured-price-color: #fff;
   --bears-subtitle-color: #fff;
   --bears-features-color: #000000;
+  --bears-featured-features-color: var(--bears-features-color);
   --bears-button-text-color: #ffffff;
   
   /* Button Colors */
@@ -71,7 +72,6 @@
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  color: #495057;
   display: block; /* Ensure it's a block element */
   clear: both; /* Clear any floats */
   overflow: hidden; /* Changed from auto to hidden to prevent overflow issues */
@@ -134,7 +134,7 @@
 .template-1276 .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   background-color: var(--bears-column-featured-background);
-  color: #ffffff;
+  color: var(--bears-featured-features-color);
   z-index: 100;
   transform: scale(1.05);
   transform-origin: top center; /* Make the scaling start from the top */

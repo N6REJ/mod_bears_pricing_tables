@@ -29,6 +29,7 @@
   --bears-featured-price-color: #ffffff;
   --bears-subtitle-color: #777777;
   --bears-features-color: #555555;
+  --bears-featured-features-color: var(--bears-features-color);
   
   /* Button Colors */
   --bears-button-text-color: #fff;
@@ -135,6 +136,7 @@
 .template-white .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   background-color: var(--bears-column-featured-background);
+  color: var(--bears-featured-features-color);
   z-index: 100;
   transform: scale(1.05);
   transform-origin: top center;

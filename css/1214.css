@@ -30,7 +30,7 @@
   --bears-featured-price-color: #ffffff;
   --bears-subtitle-color: #666666;
   --bears-features-color: #000000;
-  --bears-features-featured-color: #ffffff;
+  --bears-featured-features-color: var(--bears-features-color);
   --bears-button-text-color: #ffffff;
   
   /* Border Colors */
@@ -131,7 +131,7 @@
   margin-top: 0;
   margin-bottom: 0;
   background-color: var(--bears-column-featured-background);
-  color: #ffffff;
+  color: var(--bears-featured-features-color);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   z-index: 10;
   border: none;

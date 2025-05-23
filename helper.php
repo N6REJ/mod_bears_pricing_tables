@@ -63,6 +63,7 @@ class ModBearsPricingTablesHelper
         $bears_featured_price_color  = $params->get('bears_featured_price_color');
         $bears_subtitle_color        = $params->get('bears_subtitle_color');
         $bears_features_color        = $params->get('bears_features_color');
+        $bears_featured_features_color = $params->get('bears_featured_features_color');
         $bears_border_color          = $params->get('bears_border_color');
         $bears_featured_border_color = $params->get('bears_featured_border_color');
         $bears_accent_color          = $params->get('bears_accent_color');
@@ -141,6 +142,7 @@ class ModBearsPricingTablesHelper
             'bears_featured_price_color'  => $bears_featured_price_color,
             'bears_subtitle_color'        => $bears_subtitle_color,
             'bears_features_color'        => $bears_features_color,
+            'bears_featured_features_color' => $bears_featured_features_color,
             'bears_border_color'          => $bears_border_color,
             'bears_border_style'          => $bears_border_style,
             'bears_featured_border_color' => $bears_featured_border_color,
@@ -327,6 +329,9 @@ public static function generateCustomCSS($params, $moduleId = 0)
     if ($params->get('bears_features_color')) {
         $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
     }
+    if ($params->get('bears_featured_features_color')) {
+        $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
+    }
     if ($params->get('bears_border_color')) {
         $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
     }
@@ -504,6 +509,9 @@ public static function generateCustomCSS($params, $moduleId = 0)
     .bears_pricing_tables' . $moduleId . ' .plan-features li {
         color: var(--bears-features-color);
         font-size: var(--bears-features-font-size);
+    }
+    .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features li {
+        color: var(--bears-featured-features-color);
     }
     .bears_pricing_tables' . $moduleId . ' .plan-features {
         color: var(--bears-accent-color);
