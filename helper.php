@@ -179,108 +179,50 @@ class ModBearsPricingTablesHelper
         );
     }
 
-    /**
-     * Load the appropriate CSS file based on template selection
-     *
-     * @param   object  $params    The module parameters
-     * @param   int     $moduleId  The module ID for increased CSS specificity
-     *
-     * @return  void
-     * @since       2025.5.10
-     * @deprecated  Use loadModuleCSS instead
-     */
-    public static function loadTemplateCSS($params, $moduleId = 0)
-    {
-        // Use the new combined loading function
-        self::loadModuleCSS($params, $moduleId);
-    }
 
     /**
      * Load all module CSS files in the correct order
      *
      * @param   object  $params    The module parameters
-     * @param   int     $moduleId  The module ID for increased CSS specificity
+     * @param   int     $moduleId  The module ID for increased CSS specificity (required)
      *
      * @return  void
      * @since   2025.5.20
+     * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function loadModuleCSS($params, $moduleId = 0)
+    public static function loadModuleCSS($params, $moduleId)
     {
+        // Ensure we have a valid module ID
+        if (empty($moduleId)) {
+            throw new \InvalidArgumentException('Module ID is required for CSS specificity');
+        }
+
         // Get the document
         $document = Factory::getDocument();
 
-        // Get the WebAsset Manager
-        $wa = $document->getWebAssetManager();
+        // 1. First, load FontAwesome directly
+        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
 
-        // 1. First, load FontAwesome
-        self::loadFontAwesome(false);  // Load FontAwesome only, not the icons.css
-
-        // 2. Next, load icons.css with base styles (but we'll override the variables with our own)
-        $iconsAssetId = 'mod_bears_pricing_tables.icons';
+        // 2. Next, load icons.css with base styles
         $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $iconsCssPath, ['version' => 'auto']);
+        
+        // 3. Load the generic column-widths.css before any template-specific CSS
+        $columnCssPath = 'modules/mod_bears_pricing_tables/css/column-widths.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $columnCssPath, ['version' => 'auto']);
 
-        // Register the asset if it doesn't exist yet
-        if (!$wa->assetExists('style', $iconsAssetId)) {
-            $wa->registerStyle($iconsAssetId, $iconsCssPath);
-        }
-
-        // Use the asset
-        $wa->useStyle($iconsAssetId);
-
-        // 3. Next, load the template CSS file (template-specific defaults)
-        $template        = self::getTemplateName($params);
-        $templateAssetId = 'mod_bears_pricing_tables.' . $template;
+        // 4. Next, load the template CSS file (template-specific defaults)
+        $template = self::getTemplateName($params);
         $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $templateCssPath, ['version' => 'auto']);
 
-        // Register the asset if it doesn't exist yet
-        if (!$wa->assetExists('style', $templateAssetId)) {
-            $wa->registerStyle($templateAssetId, $templateCssPath);
-        }
-
-        // Use the asset
-        $wa->useStyle($templateAssetId);
-
-        // 4. Finally, add our custom CSS variables with high specificity to override everything
+        // 5. Finally, add our custom CSS variables with high specificity to override everything
         $css = self::generateCustomCSS($params, $moduleId);
         if (!empty($css)) {
             $document->addStyleDeclaration($css);
         }
     }
 
-    /**
-     * Load FontAwesome with optional icons.css loading
-     *
-     * @param   bool  $includeIcons  Whether to include the module's icons.css file
-     *
-     * @return  void
-     * @since   2025.5.18
-     */
-    public static function loadFontAwesome($includeIcons = true)
-    {
-        // Get the document
-        $document = Factory::getDocument();
-
-        // Directly add FontAwesome without lazy loading
-        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
-
-        // Include icons.css if requested
-        if ($includeIcons) {
-            // Get the WebAsset Manager
-            $wa = $document->getWebAssetManager();
-
-            // Register and use the icons CSS file
-            $iconsAssetId = 'mod_bears_pricing_tables.icons';
-            $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
-
-            // Register the asset if it doesn't exist yet
-            if (!$wa->assetExists('style', $iconsAssetId)) {
-                $wa->registerStyle($iconsAssetId, $iconsCssPath);
-            }
-
-            // Use the asset
-            $wa->useStyle($iconsAssetId);
-        }
-    }
 
     /**
      * Get the appropriate template file based on template selection
@@ -318,16 +260,17 @@ class ModBearsPricingTablesHelper
      * Generate custom CSS based on module parameters
      *
      * @param   object  $params    The module parameters
-     * @param   int     $moduleId  The module ID for instance-specific CSS
+     * @param   int     $moduleId  The module ID for instance-specific CSS (required)
      *
      * @return  string  The custom CSS
      * @since   2025.5.10
+     * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function generateCustomCSS($params, $moduleId = 0)
+    public static function generateCustomCSS($params, $moduleId)
     {
         // Ensure we have a valid module ID for specificity
         if (empty($moduleId)) {
-            $moduleId = mt_rand(1000, 9999);
+            throw new \InvalidArgumentException('Module ID is required for CSS specificity');
         }
 
         // Start with a module-specific CSS variable container with high specificity
@@ -658,13 +601,9 @@ class ModBearsPricingTablesHelper
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-size: ' . $iconSize . '; }';
         }
 
-        // Get template name for column width CSS
-        $template          = self::getTemplateName($params);
+        // Module-specific column count attribute
         $bears_num_columns = (int)$params->get('bears_num_columns', 3);
-
-        // Explicitly add the column width CSS
-        $columnWidthCSS = self::getColumnWidthCSS($moduleId, $template, $bears_num_columns);
-        $css            .= "\n\n" . $columnWidthCSS;
+        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables-container { data-columns: "' . $bears_num_columns . '"; }';
 
         // Add accent triangle if accent colors are specified
         if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
@@ -688,133 +627,29 @@ class ModBearsPricingTablesHelper
      *
      * @return  string  The column width CSS
      * @since   2025.5.22
+     * @deprecated  Use column-widths.css file instead
      */
     public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
     {
-        // Start the CSS block
-        $css = "/* Column width settings for module {$moduleId} */\n";
-
-        // Define width percentages based on column count
-        $widths = [
-            1 => '100%',
-            2 => 'calc(50% - var(--bears-column-margin-x) * 2)',
-            3 => 'calc(33.333% - var(--bears-column-margin-x) * 2)',
-            4 => 'calc(25% - var(--bears-column-margin-x) * 2)',
-            5 => 'calc(20% - var(--bears-column-margin-x) * 2)',
-        ];
-
-        // Generate CSS for each column count (1-5)
-        foreach ($widths as $cols => $width) {
-            // Module-specific selector (primary approach)
-            $css .= ".bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
-            $css .= "  flex: 1 1 {$width};\n";
-            $css .= "}\n\n";
-
-            // Template-specific selectors for older templates that might not have the moduleId class
-            $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
-            foreach ($templates as $tmpl) {
-                $css .= ".{$tmpl} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
-                $css .= "  flex: 1 1 {$width};\n";
-                $css .= "}\n\n";
-            }
-        }
-
-        // Add tablet-specific responsive styles (2 columns)
-        $css .= "@media (max-width: 992px) and (min-width: 769px) {\n";
-        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
-        $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
-        $css .= "  }\n";
-
-        // Add for template-specific classes too
-        $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
-        foreach ($templates as $tmpl) {
-            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
-            $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
-            $css .= "  }\n";
-        }
-        $css .= "}\n\n";
-
-        // Add mobile-specific responsive styles (1 column)
-        $css .= "@media (max-width: 768px) {\n";
-        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables,\n";
-
-        // Add template-specific selectors with proper comma separation
-        foreach ($templates as $index => $tmpl) {
-            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables" .
-                ($index < count($templates) - 1 ? ",\n" : " {\n");
-        }
-        $css .= "    flex: 1 1 100% !important;\n";
-        $css .= "    margin-left: var(--bears-column-margin-x);\n";
-        $css .= "    margin-right: var(--bears-column-margin-x);\n";
-        $css .= "  }\n";
-        $css .= "}\n";
-
-        return $css;
+        // This method is deprecated as we now use a dedicated CSS file
+        // Return empty string as we're now using column-widths.css
+        return '';
     }
 
     /**
-     * Load only FontAwesome (not icons.css)
+     * Load only FontAwesome CSS
      *
      * @return  void
-     * @since       2025.5.18
-     * @deprecated  Use loadFontAwesome(false) instead
+     * @since   2025.5.18
+     * @deprecated  Will be removed in a future version
      */
     public static function loadFontAwesomeOnly()
     {
-        self::loadFontAwesome(false);
-    }
-
-    /**
-     * Method to generate CSS for the module - DEPRECATED, use generateCustomCSS instead
-     * Kept for backward compatibility
-     *
-     * @param   \Joomla\Registry\Registry  $params  Module parameters
-     *
-     * @return  string                     CSS code
-     * @since   2025.5.18
-     * @deprecated
-     */
-    public static function getCSS($params)
-    {
-        return self::generateCustomCSS($params);
-    }
-
-    /**
-     * Process icon positions to split into horizontal and vertical components
-     *
-     * @param   array  $iconPositions  Array of icon positions
-     *
-     * @return  array   Array containing horizontal and vertical position arrays
-     * @since   2025.5.18
-     */
-    public static function processIconPositions($iconPositions)
-    {
-        $iconHorz = array();
-        $iconVert = array();
-
-        foreach ($iconPositions as $i => $position) {
-            if (!empty($position)) {
-                // Handle special cases like 'price-left' and 'price-right'
-                if ($position === 'price-left' || $position === 'price-right') {
-                    $iconVert[$i] = 'price';
-                    $iconHorz[$i] = str_replace('price-', '', $position);
-                } else {
-                    $positionParts = explode('-', $position);
-                    // First part is vertical (top, center, bottom)
-                    $iconVert[$i] = isset($positionParts[0]) ? $positionParts[0] : 'center';
-                    // Second part is horizontal (left, center, right)
-                    $iconHorz[$i] = isset($positionParts[1]) ? $positionParts[1] : 'center';
-                }
-            } else {
-                $iconVert[$i] = 'center';
-                $iconHorz[$i] = 'center';
-            }
-        }
-
-        return array(
-            'horizontal' => $iconHorz,
-            'vertical'   => $iconVert
-        );
+        // Get the document
+        $document = Factory::getDocument();
+        
+        // Directly add FontAwesome
+        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
     }
 
     /**

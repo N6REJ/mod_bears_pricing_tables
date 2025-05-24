@@ -38,7 +38,9 @@ if ($app->isClient('administrator')) {
 }
 
 // Load all module CSS with proper ordering
-ModBearsPricingTablesHelper::loadModuleCSS($params);
+// Make sure module ID is available - Joomla always provides module->id
+$moduleId = $module->id;
+ModBearsPricingTablesHelper::loadModuleCSS($params, $moduleId);
 
 // Get all parameters from helper
 $params_array = ModBearsPricingTablesHelper::getParams($params);
