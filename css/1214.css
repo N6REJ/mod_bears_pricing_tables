@@ -30,7 +30,7 @@
   --bears-featured-price-color: #ffffff;
   --bears-subtitle-color: rgba(255,255,255, 0.6);
   --bears-features-color: #000000;
-  --bears-featured-features-color: var(--bears-features-color);
+  --bears-featured-features-color: #fff;
   --bears-button-text-color: #ffffff;
   
   /* Border Colors */
@@ -100,7 +100,6 @@
   text-align: center;
   position: relative;
   height: auto;
-  font-family: var(--bears-font-family);
   flex: 1 1 auto;
   }
 
