@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.23.2
+ * @version     2025.05.24
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -52,7 +52,6 @@ class ModBearsPricingTablesHelper
         $bears_column_featured_background    = $params->get('bears_column_featured_background');
         $bears_header_background             = $params->get('bears_header_background');
         $bears_header_featured_background    = $params->get('bears_header_featured_background');
-        $bears_features_background_color     = $params->get('bears_features_background_color');
         $bears_title_color           = $params->get('bears_title_color');
         $bears_featured_title_color  = $params->get('bears_featured_title_color');
         $bears_title_font_size       = $params->get('bears_title_font_size');
@@ -64,6 +63,7 @@ class ModBearsPricingTablesHelper
         $bears_featured_price_color  = $params->get('bears_featured_price_color');
         $bears_subtitle_color        = $params->get('bears_subtitle_color');
         $bears_features_color        = $params->get('bears_features_color');
+        $bears_featured_features_color = $params->get('bears_featured_features_color');
         $bears_border_color          = $params->get('bears_border_color');
         $bears_featured_border_color = $params->get('bears_featured_border_color');
         $bears_accent_color          = $params->get('bears_accent_color');
@@ -131,7 +131,6 @@ class ModBearsPricingTablesHelper
             'bears_column_featured_background'    => $bears_column_featured_background,
             'bears_header_background'             => $bears_header_background,
             'bears_header_featured_background'    => $bears_header_featured_background,
-            'bears_features_background_color'     => $bears_features_background_color,
             'bears_title_color'           => $bears_title_color,
             'bears_featured_title_color'  => $bears_featured_title_color,
             'bears_title_font_size'       => $bears_title_font_size,
@@ -143,6 +142,7 @@ class ModBearsPricingTablesHelper
             'bears_featured_price_color'  => $bears_featured_price_color,
             'bears_subtitle_color'        => $bears_subtitle_color,
             'bears_features_color'        => $bears_features_color,
+            'bears_featured_features_color' => $bears_featured_features_color,
             'bears_border_color'          => $bears_border_color,
             'bears_border_style'          => $bears_border_style,
             'bears_featured_border_color' => $bears_featured_border_color,
@@ -314,9 +314,6 @@ public static function generateCustomCSS($params, $moduleId = 0)
     if ($params->get('bears_header_featured_background')) {
         $css .= '--bears-header-featured-background: ' . $params->get('bears_header_featured_background') . ';';
     }
-    if ($params->get('bears_features_background_color')) {
-        $css .= '--bears-features-background-color: ' . $params->get('bears_features_background_color') . ';';
-    }
     if ($params->get('bears_title_color')) {
         $css .= '--bears-title-color: ' . $params->get('bears_title_color') . ';';
     }
@@ -331,6 +328,9 @@ public static function generateCustomCSS($params, $moduleId = 0)
     }
     if ($params->get('bears_features_color')) {
         $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
+    }
+    if ($params->get('bears_featured_features_color')) {
+        $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
     }
     if ($params->get('bears_border_color')) {
         $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
@@ -510,9 +510,12 @@ public static function generateCustomCSS($params, $moduleId = 0)
         color: var(--bears-features-color);
         font-size: var(--bears-features-font-size);
     }
+    .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features li {
+        color: var(--bears-featured-features-color);
+    }
     .bears_pricing_tables' . $moduleId . ' .plan-features {
         color: var(--bears-accent-color);
-        background-color: var(--bears-features-background-color);
+        background-color: var(--bears-column-featured-background-color);
     }
     .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features {
         color: var(--bears-featured-accent-color);

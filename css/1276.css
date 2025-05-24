@@ -28,6 +28,7 @@
   --bears-featured-price-color: #fff;
   --bears-subtitle-color: #fff;
   --bears-features-color: #000000;
+  --bears-featured-features-color: var(--bears-features-color);
   --bears-button-text-color: #ffffff;
   
   /* Button Colors */
@@ -71,7 +72,6 @@
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  color: #495057;
   display: block; /* Ensure it's a block element */
   clear: both; /* Clear any floats */
   overflow: hidden; /* Changed from auto to hidden to prevent overflow issues */
@@ -102,8 +102,6 @@
   text-align: center;
   position: relative;
   height: auto; /* Changed from min-height to height: auto */
-  font-family: var(--bears-font-family);
-  font-size: 16px;
   flex: 1 1 0%; /* Added flexible growth and shrink with 0% basis */
   min-width: 0; /* Prevent flex items from overflowing */
   }
@@ -124,7 +122,7 @@
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: var(--bears-box-shadow);
   transition: all var(--bears-transition-speed) ease;
-  font-size: .8em;
+  
   height: 100%; /* Ensure all plans have the same height */
   display: flex; /* Added flex display */
   flex-direction: column; /* Added flex direction */
@@ -133,11 +131,12 @@
 
 .template-1276 .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-  color: #ffffff;
+  background-color: var(--bears-column-featured-background);
+  color: var(--bears-featured-features-color);
   z-index: 100;
   transform: scale(1.05);
   transform-origin: top center; /* Make the scaling start from the top */
-  font-size: .8em;
+  
   position: relative;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   /* Create space for the scaled element */
@@ -241,6 +240,11 @@ font-size: var(--bears-features-font-size);
   line-height: 1.4rem;
   color: var(--bears-features-color);
   }
+
+.template-1276 .bears_pricing_tables .plan.featured .plan-features li {
+  color: var(--bears-featured-features-color);
+}
+
 /* Style for alternating rows in feature list */
 .template-1276 .bears_pricing_tables .plan-features li:nth-child(even) {
   background: rgba(0, 0, 0, 0.06);
@@ -270,7 +274,7 @@ font-size: var(--bears-features-font-size);
   }
 .template-1276 .bears_pricing_tables .plan-select a, .template-1276 .bears_pricing_tables .plan-select a.btn {
   background-color: var(--bears-button-background-color);
-  color: #ffffff;
+  color: var(--bears-button-text-color);
   text-decoration: none;
   display: inline-block;
   border: none;

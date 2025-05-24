@@ -21,7 +21,6 @@
   --bears-header-background: #222f3d;
   --bears-header-featured-background: #156dab;
   --bears-featured-button-background: #10507e;
-  --bears-features-background-color: transparent;
   
   /* Text Colors */
   --bears-title-color: #ffffff;
@@ -30,7 +29,7 @@
   --bears-featured-price-color: #ffffff;
   --bears-subtitle-color: rgba(255, 255, 255, 0.8);
   --bears-features-color: #ffffff;
-  --bears-features-featured-color: #ffffff;
+  --bears-featured-features-color: var(--bears-features-color);
   
   /* Button Colors */
   --bears-button-text-color: #ffffff;
@@ -74,7 +73,6 @@
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  color: #ffffff;
   display: block;
   clear: both;
   overflow: hidden;
@@ -105,8 +103,6 @@
   text-align: center;
   position: relative;
   height: auto;
-  font-family: var(--bears-font-family);
-  font-size: 16px;
   flex: 1 1 0%;
   min-width: 0;
   }
@@ -127,7 +123,7 @@
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: var(--bears-box-shadow);
   transition: all var(--bears-transition-speed) ease;
-  font-size: .8em;
+  
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -137,11 +133,11 @@
 .template-1517 .bears_pricing_tables .plan.featured {
   border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   background-color: var(--bears-column-featured-background);
-  color: #ffffff;
+  color: var(--bears-featured-features-color);
   z-index: 100;
   transform: scale(1.05);
   transform-origin: top center;
-  font-size: .8em;
+  
   position: relative;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin: 0 -2.5% 0;
@@ -237,7 +233,9 @@
   line-height: 1.4rem;
   color: var(--bears-features-color);
   }
-
+.template-1517 .bears_pricing_tables .plan.featured .plan-features li {
+  color: var(--bears-featured-features-color);
+}
 /* Style for alternating rows in feature list */
 .template-1517 .bears_pricing_tables .plan-features li:nth-child(even) {
   background: rgba(255, 255, 255, 0.05);
