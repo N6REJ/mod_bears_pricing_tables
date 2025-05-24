@@ -3,21 +3,12 @@
  * within the pricing table elements
  */
 
-/* CSS Variable Definitions (for IDE support)
- * These variables are actually set dynamically by PHP in the module
- * but we define them here with defaults for IDE support
- */
-
 /* Base icon styles */
 .bears_pricing_tables .plan-icon {
 	display: inline-block;
-	color: var(--bears-icon-color);
-	font-size: var(--bears-icon-size);
-	transition: color var(--bears-transition-speed);
-	}
-
-.bears_pricing_tables .plan.featured .plan-icon {
-	color: var(--bears-featured-title-color);
+	color: var(--bears-icon-color, inherit);
+	font-size: var(--bears-icon-size, 24px);
+	transition: color var(--bears-transition-speed, 0.3s);
 	}
 
 /* Top position icons */
@@ -144,6 +135,37 @@
 	margin: 0;
 	padding: 0;
 	transition: padding 0.3s ease;
+	}
+
+/* Column-specific icon styling */
+.bears_pricing_tables .bears-column-1 .plan-icon,
+.bears_pricing_tables .bears-column-1 i {
+	color: var(--bears-icon-color-1, var(--bears-icon-color, inherit));
+	font-size: var(--bears-icon-size-1, var(--bears-icon-size, 24px));
+	}
+
+.bears_pricing_tables .bears-column-2 .plan-icon,
+.bears_pricing_tables .bears-column-2 i {
+	color: var(--bears-icon-color-2, var(--bears-icon-color, inherit));
+	font-size: var(--bears-icon-size-2, var(--bears-icon-size, 24px));
+	}
+
+.bears_pricing_tables .bears-column-3 .plan-icon,
+.bears_pricing_tables .bears-column-3 i {
+	color: var(--bears-icon-color-3, var(--bears-icon-color, inherit));
+	font-size: var(--bears-icon-size-3, var(--bears-icon-size, 24px));
+	}
+
+.bears_pricing_tables .bears-column-4 .plan-icon,
+.bears_pricing_tables .bears-column-4 i {
+	color: var(--bears-icon-color-4, var(--bears-icon-color, inherit));
+	font-size: var(--bears-icon-size-4, var(--bears-icon-size, 24px));
+	}
+
+.bears_pricing_tables .bears-column-5 .plan-icon,
+.bears_pricing_tables .bears-column-5 i {
+	color: var(--bears-icon-color-5, var(--bears-icon-color, inherit));
+	font-size: var(--bears-icon-size-5, var(--bears-icon-size, 24px));
 	}
 
 /* Responsive adjustments */
