@@ -154,91 +154,60 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             ?>
 						</header>
 
-						<ul class='plan-features dot'>
+                        <?php
+                        // Determine if we should use FontAwesome list format based on whether an icon class is specified
+                        $icon_class = !empty($params_array['features_icon_class'][$cur_column]) ?
+                            $params_array['features_icon_class'][$cur_column] : '';
+                        $icon_color = !empty($params_array['features_icon_color'][$cur_column]) ?
+                            $params_array['features_icon_color'][$cur_column] : '';
+
+                        // Prepare inline style for icon if color is set
+                        $icon_style = !empty($icon_color) ? ' style="color: ' . htmlspecialchars($icon_color) . ';"' : '';
+
+                        // Always use plan-features class and add fa-ul only if icon class is specified
+                        $list_class = !empty($icon_class) ? 'plan-features fa-ul centered-features' : 'plan-features';
+                        ?>
+
+						<ul class = "<?php echo $list_class; ?>">
                             <?php
                             if (!empty($params_array['bears_features'][$cur_column])) {
                                 $features = $params_array['bears_features'][$cur_column];
-                                $features_icon_class = !empty($params_array['features_icon_class'][$cur_column]) ?
-                                    ModBearsPricingTablesHelper::formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
-                                $features_icon_position = !empty($params_array['features_icon_position'][$cur_column]) ?
-                                    $params_array['features_icon_position'][$cur_column] : 'before';
-                                $features_icon_color = !empty($params_array['features_icon_color'][$cur_column]) ?
-                                    $params_array['features_icon_color'][$cur_column] : '';
-                                $features_icon_size = !empty($params_array['features_icon_size'][$cur_column]) ?
-                                    $params_array['features_icon_size'][$cur_column] : '';
-                                $features_color = !empty($params_array['features_color'][$cur_column]) ?
-                                    $params_array['features_color'][$cur_column] : '';
 
-                                // Build features_icon style attributes with consistent naming
-                                $features_icon_styles = [];
-                                if (!empty($features_icon_color)) {
-                                    $features_icon_styles[] = 'color: ' . htmlspecialchars($features_icon_color);
-                                }
-                                if (!empty($features_icon_size)) {
-                                    $features_icon_styles[] = 'font-size: ' . htmlspecialchars($features_icon_size);
-                                }
-                                $features_icon_style = !empty($features_icon_styles) ?
-                                    ' style="' . implode('; ', $features_icon_styles) . ';"' : '';
+                                // Handle the features data from the subform
+                                $features_items = is_string($features) ? json_decode($features) : $features;
 
-                                // Build text style for features list items
-                                $features_text_style = !empty($features_color) ?
-                                    ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
-
-                                // Normalize features to array of items
-                                $features_items = [];
-
-                                // Handle different possible data structures
-                                if (is_string($features) && !empty($features)) {
-                                    // Check if it's a JSON string
-                                    $decoded = json_decode($features);
-                                    if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-                                        $features_items = (array)$decoded;
-                                    } else {
-                                        // Plain string (single features item)
-                                        $features_items[] = $features;
-                                    }
-                                } elseif (is_array($features) || is_object($features)) {
-                                    $features_items = (array)$features;
+                                // Ensure we have an iterable
+                                if (!is_array($features_items) && !is_object($features_items)) {
+                                    $features_items = [$features_items];
                                 }
 
-                                // Render each features item
-                                foreach ($features_items as $features_item) {
-                                    $features_text = '';
+                                // Render each feature
+                                foreach ($features_items as $item) {
+                                    $feature_text = '';
 
-                                    // Extract the features text based on item type
-                                    if (is_object($features_item) && isset($features_item->bears_feature)) {
-                                        $features_text = $features_item->bears_feature;
-                                    } elseif (is_string($features_item)) {
-                                        $features_text = $features_item;
+                                    // Get the text (always from bears_feature property when using subform)
+                                    if (is_object($item) && isset($item->bears_feature)) {
+                                        $feature_text = $item->bears_feature;
+                                    } elseif (is_string($item)) {
+                                        $feature_text = $item;
                                     }
 
-                                    // Skip empty features
-                                    if (empty($features_text)) {
-                                        continue;
+                                    // Output the feature text if not empty
+                                    if (!empty($feature_text)) {
+                                        echo '<li>';
+
+                                        // Create a span to wrap the content for centering
+                                        echo '<span class="features-content">';
+
+                                        // Add icon with fa-li span if icon class is specified
+                                        if (!empty($icon_class)) {
+                                            echo '<span class="fa-li"><i class="' . htmlspecialchars($icon_class) . '"' . $icon_style . '></i></span>';
+                                        }
+
+                                        echo htmlspecialchars($feature_text);
+                                        echo '</span>';
+                                        echo '</li>';
                                     }
-
-                                    echo '<li class="features-item"' . $features_text_style . '>';
-
-                                    // Icon before text
-                                    if ($features_icon_class && $features_icon_position === 'before') {
-                                        echo '<i class="features-icon features-icon-before ' .
-                                            htmlspecialchars($features_icon_class) . '"' .
-                                            $features_icon_style . '></i>';
-                                    }
-
-                                    // Features text
-                                    echo '<span class="features-text">' .
-                                        htmlspecialchars($features_text) .
-                                        '</span>';
-
-                                    // Icon after text
-                                    if ($features_icon_class && $features_icon_position === 'after') {
-                                        echo '<i class="features-icon features-icon-after ' .
-                                            htmlspecialchars($features_icon_class) . '"' .
-                                            $features_icon_style . '></i>';
-                                    }
-
-                                    echo '</li>';
                                 }
                             }
                             ?>

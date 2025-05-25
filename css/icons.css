@@ -17,174 +17,192 @@
 	--bears-header-icon-size-4: var(--bears-header-icon-size);
 	--bears-header-icon-color-5: var(--bears-header-icon-color);
 	--bears-header-icon-size-5: var(--bears-header-icon-size);
-}
+	}
 
 /* Base icon styles */
 .bears_pricing_tables .plan-icon {
 	display: inline-block;
 	transition: color var(--bears-transition-speed, 0.3s);
-}
+	}
 
-	/* Top position icons */
-	.bears_pricing_tables [class*="icon-top-"],
-	.bears_pricing_tables .plan header [class*="icon-top-"],
-	.bears_pricing_tables .plan header div[class*="icon-top-"] {
-		display: block !important;
-		width: 100% !important;
-		text-align: center !important;
-		margin-bottom: 10px !important;
-		position: relative !important;
+/* Top position icons */
+.bears_pricing_tables [class*="icon-top-"],
+.bears_pricing_tables .plan header [class*="icon-top-"],
+.bears_pricing_tables .plan header div[class*="icon-top-"] {
+	display: block !important;
+	width: 100% !important;
+	text-align: center !important;
+	margin-bottom: 10px !important;
+	position: relative !important;
+	}
+
+.bears_pricing_tables .icon-top-left,
+.bears_pricing_tables .plan header .icon-top-left,
+.bears_pricing_tables .plan header div.icon-top-left {
+	text-align: left !important;
+	padding-left: 5px !important;
+	}
+
+.bears_pricing_tables .icon-top-center,
+.bears_pricing_tables .plan header .icon-top-center,
+.bears_pricing_tables .plan header div.icon-top-center {
+	text-align: center !important;
+	}
+
+.bears_pricing_tables .icon-top-right,
+.bears_pricing_tables .plan header .icon-top-right,
+.bears_pricing_tables .plan header div.icon-top-right {
+	text-align: right !important;
+	padding-right: 5px !important;
+	}
+
+/* Center position icons */
+.bears_pricing_tables [class*="icon-center-"],
+.bears_pricing_tables .plan header [class*="icon-center-"],
+.bears_pricing_tables .plan header div[class*="icon-center-"] {
+	display: block !important;
+	width: 100% !important;
+	text-align: center !important;
+	margin: 10px 0 !important;
+	position: relative !important;
+	}
+
+.bears_pricing_tables .icon-center-left,
+.bears_pricing_tables .plan header .icon-center-left,
+.bears_pricing_tables .plan header div.icon-center-left {
+	text-align: left !important;
+	padding-left: 5px !important;
+	}
+
+.bears_pricing_tables .icon-center-center,
+.bears_pricing_tables .plan header .icon-center-center,
+.bears_pricing_tables .plan header div.icon-center-center {
+	text-align: center !important;
+	}
+
+.bears_pricing_tables .icon-center-right,
+.bears_pricing_tables .plan header .icon-center-right,
+.bears_pricing_tables .plan header div.icon-center-right {
+	text-align: right !important;
+	padding-right: 5px !important;
+	}
+
+/* Bottom position icons */
+.bears_pricing_tables [class*="icon-bottom-"],
+.bears_pricing_tables .plan header [class*="icon-bottom-"],
+.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+	display: block !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-top: 10px !important;
+	position: relative !important;
+	}
+
+.bears_pricing_tables .icon-bottom-left,
+.bears_pricing_tables .plan header .icon-bottom-left,
+.bears_pricing_tables .plan header div.icon-bottom-left {
+	text-align: left !important;
+	padding-left: 5px !important;
+	}
+
+.bears_pricing_tables .icon-bottom-center,
+.bears_pricing_tables .plan header .icon-bottom-center,
+.bears_pricing_tables .plan header div.icon-bottom-center {
+	text-align: center !important;
+	}
+
+.bears_pricing_tables .icon-bottom-right,
+.bears_pricing_tables .plan header .icon-bottom-right,
+.bears_pricing_tables .plan header div.icon-bottom-right {
+	text-align: right !important;
+	padding-right: 5px !important;
+	}
+
+/* Price position icons */
+.bears_pricing_tables .price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
+
+.bears_pricing_tables .price-left {
+	float: left !important;
+	margin-right: 10px !important;
+	}
+
+.bears_pricing_tables .price-right {
+	float: right !important;
+	margin-left: 10px !important;
+	}
+
+/* Make header container to support icon positioning */
+.bears_pricing_tables .plan header {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	}
+
+/* Base styling for plan title */
+.bears_pricing_tables .plan-title {
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	transition: padding 0.3s ease;
+	}
+
+/* Column-specific icon styling - Updated to target icons properly */
+.bears_pricing_tables .bears-column-1 .plan-icon {
+	color: var(--bears-header-icon-color-1);
+	font-size: var(--bears-header-icon-size-1);
+	}
+
+.bears_pricing_tables .bears-column-2 .plan-icon {
+	color: var(--bears-header-icon-color-2);
+	font-size: var(--bears-header-icon-size-2);
+	}
+
+.bears_pricing_tables .bears-column-3 .plan-icon {
+	color: var(--bears-header-icon-color-3);
+	font-size: var(--bears-header-icon-size-3);
+	}
+
+.bears_pricing_tables .bears-column-4 .plan-icon {
+	color: var(--bears-header-icon-color-4);
+	font-size: var(--bears-header-icon-size-4);
+	}
+
+.bears_pricing_tables .bears-column-5 .plan-icon {
+	color: var(--bears-header-icon-color-5);
+	font-size: var(--bears-header-icon-size-5);
+	}
+
+.bears_pricing_tables .plan-features.centered-features {
+	position: relative;
+	}
+.bears_pricing_tables .plan-features.centered-features li {
+	position: relative;
+	text-align: center;
+	padding-left: 10px; /* Remove default padding */
+	padding-right: 10px;
+	}
+.bears_pricing_tables .plan-features.centered-features .fa-li {
+	position: relative !important;
+	left: -0.5em !important;
+	top: 0;
+	width: auto;
+	display: inline-block;
+	vertical-align: middle;
+	}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 767px) {
+	.bears_pricing_tables .plan-icon {
+		font-size: calc(var(--bears-header-icon-size) * 0.85); /* Slightly smaller on mobile */
 		}
 	
-	.bears_pricing_tables .icon-top-left,
-	.bears_pricing_tables .plan header .icon-top-left,
-	.bears_pricing_tables .plan header div.icon-top-left {
-		text-align: left !important;
-		padding-left: 5px !important;
-		}
-	
-	.bears_pricing_tables .icon-top-center,
-	.bears_pricing_tables .plan header .icon-top-center,
-	.bears_pricing_tables .plan header div.icon-top-center {
-		text-align: center !important;
-		}
-	
-	.bears_pricing_tables .icon-top-right,
-	.bears_pricing_tables .plan header .icon-top-right,
-	.bears_pricing_tables .plan header div.icon-top-right {
-		text-align: right !important;
-		padding-right: 5px !important;
-		}
-	
-	/* Center position icons */
-	.bears_pricing_tables [class*="icon-center-"],
-	.bears_pricing_tables .plan header [class*="icon-center-"],
-	.bears_pricing_tables .plan header div[class*="icon-center-"] {
-		display: block !important;
-		width: 100% !important;
-		text-align: center !important;
-		margin: 10px 0 !important;
-		position: relative !important;
-		}
-	
-	.bears_pricing_tables .icon-center-left,
-	.bears_pricing_tables .plan header .icon-center-left,
-	.bears_pricing_tables .plan header div.icon-center-left {
-		text-align: left !important;
-		padding-left: 5px !important;
-		}
-	
-	.bears_pricing_tables .icon-center-center,
-	.bears_pricing_tables .plan header .icon-center-center,
-	.bears_pricing_tables .plan header div.icon-center-center {
-		text-align: center !important;
-		}
-	
-	.bears_pricing_tables .icon-center-right,
-	.bears_pricing_tables .plan header .icon-center-right,
-	.bears_pricing_tables .plan header div.icon-center-right {
-		text-align: right !important;
-		padding-right: 5px !important;
-		}
-	
-	/* Bottom position icons */
-	.bears_pricing_tables [class*="icon-bottom-"],
-	.bears_pricing_tables .plan header [class*="icon-bottom-"],
-	.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
-		display: block !important;
-		width: 100% !important;
-		clear: both !important;
-		margin-top: 10px !important;
-		position: relative !important;
-		}
-	
-	.bears_pricing_tables .icon-bottom-left,
-	.bears_pricing_tables .plan header .icon-bottom-left,
-	.bears_pricing_tables .plan header div.icon-bottom-left {
-		text-align: left !important;
-		padding-left: 5px !important;
-		}
-	
-	.bears_pricing_tables .icon-bottom-center,
-	.bears_pricing_tables .plan header .icon-bottom-center,
-	.bears_pricing_tables .plan header div.icon-bottom-center {
-		text-align: center !important;
-		}
-	
-	.bears_pricing_tables .icon-bottom-right,
-	.bears_pricing_tables .plan header .icon-bottom-right,
-	.bears_pricing_tables .plan header div.icon-bottom-right {
-		text-align: right !important;
-		padding-right: 5px !important;
-		}
-	
-	/* Price position icons */
-	.bears_pricing_tables .price {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		}
-	
-	.bears_pricing_tables .price-left {
-		float: left !important;
-		margin-right: 10px !important;
-		}
-	
+	.bears_pricing_tables .price-left,
 	.bears_pricing_tables .price-right {
-		float: right !important;
-		margin-left: 10px !important;
+		margin: 0 5px; /* Less margin on mobile */
 		}
-	
-	/* Make header container to support icon positioning */
-	.bears_pricing_tables .plan header {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		}
-	
-	/* Base styling for plan title */
-	.bears_pricing_tables .plan-title {
-		width: 100%;
-		text-align: center;
-		margin: 0;
-		padding: 0;
-		transition: padding 0.3s ease;
-		}
-	
-	/* Column-specific icon styling - Updated to target icons properly */
-	.bears_pricing_tables .bears-column-1 .plan-icon {
-		color: var(--bears-header-icon-color-1);
-		font-size: var(--bears-header-icon-size-1);
 	}
-	
-	.bears_pricing_tables .bears-column-2 .plan-icon {
-		color: var(--bears-header-icon-color-2);
-		font-size: var(--bears-header-icon-size-2);
-	}
-	
-	.bears_pricing_tables .bears-column-3 .plan-icon {
-		color: var(--bears-header-icon-color-3);
-		font-size: var(--bears-header-icon-size-3);
-	}
-	
-	.bears_pricing_tables .bears-column-4 .plan-icon {
-		color: var(--bears-header-icon-color-4);
-		font-size: var(--bears-header-icon-size-4);
-	}
-	
-	.bears_pricing_tables .bears-column-5 .plan-icon {
-		color: var(--bears-header-icon-color-5);
-		font-size: var(--bears-header-icon-size-5);
-	}
-
-	/* Responsive adjustments */
-	@media only screen and (max-width: 767px) {
-		.bears_pricing_tables .plan-icon {
-			font-size: calc(var(--bears-header-icon-size) * 0.85); /* Slightly smaller on mobile */
-			}
-		
-		.bears_pricing_tables .price-left,
-		.bears_pricing_tables .price-right {
-			margin: 0 5px; /* Less margin on mobile */
-			}
-		}
