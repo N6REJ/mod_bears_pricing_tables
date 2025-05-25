@@ -158,77 +158,38 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             <?php
                             if (!empty($params_array['bears_features'][$cur_column])) {
                                 $features = $params_array['bears_features'][$cur_column];
-                                
-                                // Get feature icon settings for this column - use column-specific settings or array
-                                $featuresIconClass = !empty($params_array['bears_features_icon_class'][$cur_column]) ? 
-                                    $params_array['bears_features_icon_class'][$cur_column] : 
-                                    (!empty($params_array['bears_features_icon_class' . $cur_column]) ? 
-                                        $params_array['bears_features_icon_class' . $cur_column] : '');
-                                
-                                $featuresIconPosition = !empty($params_array['bears_features_icon_position'][$cur_column]) ? 
-                                    $params_array['bears_features_icon_position'][$cur_column] : 
-                                    (!empty($params_array['bears_features_icon_position' . $cur_column]) ? 
-                                        $params_array['bears_features_icon_position' . $cur_column] : 'before');
 
                                 // Process features based on their structure
                                 if (is_object($features)) {
                                     // Handle subform data structure
                                     foreach ($features as $key => $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li>' . ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                                $item->bears_feature, 
-                                                $featuresIconClass, 
-                                                $featuresIconPosition
-                                            ) . '</li>';
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                         }
                                     }
                                 } elseif (is_array($features)) {
                                     // Handle array of features
                                     foreach ($features as $item) {
-                                        echo '<li>';
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                                $item->bears_feature, 
-                                                $featuresIconClass, 
-                                                $featuresIconPosition
-                                            );
+                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                         } elseif (is_string($item)) {
-                                            echo ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                                $item, 
-                                                $featuresIconClass, 
-                                                $featuresIconPosition
-                                            );
+                                            echo '<li>' . htmlspecialchars($item) . '</li>';
                                         }
-                                        echo '</li>';
                                     }
                                 } elseif (is_string($features)) {
                                     // Try to decode if it's a JSON string
                                     $decoded = json_decode($features);
                                     if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
                                         foreach ($decoded as $item) {
-                                            echo '<li>';
                                             if (is_object($item) && isset($item->bears_feature)) {
-                                                echo ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                                    $item->bears_feature, 
-                                                    $featuresIconClass, 
-                                                    $featuresIconPosition
-                                                );
+                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
                                             } elseif (is_string($item)) {
-                                                echo ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                                    $item, 
-                                                    $featuresIconClass, 
-                                                    $featuresIconPosition
-                                                );
+                                                echo '<li>' . htmlspecialchars($item) . '</li>';
                                             }
-                                            echo '</li>';
                                         }
                                     } else {
                                         // It's just a plain string
-                                        echo '<li>' . ModBearsPricingTablesHelper::renderFeatureWithIcon(
-                                            $features, 
-                                            $featuresIconClass, 
-                                            $featuresIconPosition
-                                        ) . '</li>';
+                                        echo '<li>' . htmlspecialchars($features) . '</li>';
                                     }
                                 }
                             }
