@@ -82,17 +82,20 @@ class ModBearsPricingTablesHelper
         $bears_use_google_font    = $params->get('bears_use_google_font');
 
         // Initialize arrays for column-specific parameters
-        $bears_title         = array();
-        $bears_price         = array();
-        $bears_subtitle      = array();
-        $bears_features      = array();
-        $bears_featured      = array();
-        $bears_buttontext    = array();
-        $bears_buttonurl     = array();
-        $bears_icon_class    = array();
-        $bears_icon_size     = array();
-        $bears_icon_position = array();
-        $bears_icon_color    = array();
+        $bears_title                  = array();
+        $bears_price                  = array();
+        $bears_subtitle               = array();
+        $bears_features               = array();
+        $bears_featured               = array();
+        $bears_buttontext             = array();
+        $bears_buttonurl              = array();
+        $bears_icon_class             = array();
+        $bears_icon_size              = array();
+        $bears_icon_position          = array();
+        $bears_icon_color             = array();
+        $bears_features_icon_class    = array();
+        $bears_features_icon_position = array();
+        $bears_features_color         = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -101,18 +104,21 @@ class ModBearsPricingTablesHelper
 
         // Get parameters for each column
         for ($i = 1; $i <= $max_columns; $i++) {
-            $title                   = $params->get('bears_title' . $i, '');
-            $bears_title[$i]         = $title;
-            $bears_price[$i]         = $params->get('bears_price' . $i, '');
-            $bears_subtitle[$i]      = $params->get('bears_subtitle' . $i, '');
-            $bears_features[$i]      = $params->get('bears_features' . $i, array());
-            $bears_featured[$i]      = $params->get('bears_column_featured' . $i, 'no');
-            $bears_buttontext[$i]    = $params->get('bears_buttontext' . $i, '');
-            $bears_buttonurl[$i]     = $params->get('bears_buttonurl' . $i, '');
-            $bears_icon_class[$i]    = $params->get('bears_icon_class' . $i, '');
-            $bears_icon_size[$i]     = $params->get('bears_icon_size' . $i, '');
-            $bears_icon_position[$i] = $params->get('bears_icon_position' . $i);
-            $bears_icon_color[$i]    = $params->get('bears_icon_color' . $i, '');
+            $title                        = $params->get('bears_title' . $i, '');
+            $bears_title[$i]              = $title;
+            $bears_price[$i]              = $params->get('bears_price' . $i, '');
+            $bears_subtitle[$i]           = $params->get('bears_subtitle' . $i, '');
+            $bears_features[$i]           = $params->get('bears_features' . $i, array());
+            $bears_featured[$i]           = $params->get('bears_column_featured' . $i, 'no');
+            $bears_buttontext[$i]         = $params->get('bears_buttontext' . $i, '');
+            $bears_buttonurl[$i]          = $params->get('bears_buttonurl' . $i, '');
+            $bears_icon_class[$i]         = $params->get('bears_icon_class' . $i, '');
+            $bears_icon_size[$i]          = $params->get('bears_icon_size' . $i, '');
+            $bears_icon_position[$i]      = $params->get('bears_icon_position' . $i);
+            $bears_icon_color[$i]         = $params->get('bears_icon_color' . $i, '');
+            $bears_features_icon_class[$i] = $params->get('bears_features_icon_class' . $i, '');
+            $bears_features_icon_position[$i] = $params->get('bears_features_icon_position' . $i, 'before');
+            $bears_features_color[$i]     = $params->get('bears_features_color' . $i, '');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -172,6 +178,11 @@ class ModBearsPricingTablesHelper
             'iconSize'                         => $bears_icon_size,
             'iconPosition'                     => $bears_icon_position,
             'iconColor'                        => $bears_icon_color,
+            
+            // Feature icon parameters
+            'features_icon_class'              => $bears_features_icon_class,
+            'features_icon_position'           => $bears_features_icon_position,
+            'features_color'                   => $bears_features_color,
 
             // Column reference array for template use
             'column_ref'                       => $column_ref,

@@ -165,26 +165,67 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             ?>
 						</header>
 
-						<ul class = "plan-features dot">
+						<ul class = 'plan-features dot'>
                             <?php
                             if (!empty($params_array['bears_features'][$cur_column])) {
-                                $features = $params_array['bears_features'][$cur_column];
+                                $features               = $params_array['bears_features'][$cur_column];
+                                $features_icon_class    = !empty($params_array['features_icon_class'][$cur_column]) ?
+                                    ModBearsPricingTablesHelper::formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
+                                $features_icon_position = !empty($params_array['features_icon_position'][$cur_column]) ?
+                                    $params_array['features_icon_position'][$cur_column] : 'before';
+                                $features_color         = !empty($params_array['features_color'][$cur_column]) ?
+                                    $params_array['features_color'][$cur_column] : '';
+
+                                // Define the icon style if a color is specified
+                                $icon_style = !empty($features_color) ? ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
 
                                 // Process features based on their structure
                                 if (is_object($features)) {
                                     // Handle subform data structure
                                     foreach ($features as $key => $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            echo '<li>';
+                                            // Show icon before text if position is 'before' and an icon class is specified
+                                            if ($features_icon_class && $features_icon_position === 'before') {
+                                                echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                            }
+
+                                            echo htmlspecialchars($item->bears_feature);
+
+                                            // Show icon after text if position is 'after' and an icon class is specified
+                                            if ($features_icon_class && $features_icon_position === 'after') {
+                                                echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                            }
+                                            echo '</li>';
                                         }
                                     }
                                 } elseif (is_array($features)) {
                                     // Handle array of features
                                     foreach ($features as $item) {
                                         if (is_object($item) && isset($item->bears_feature)) {
-                                            echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                            echo '<li>';
+                                            if ($features_icon_class && $features_icon_position === 'before') {
+                                                echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                            }
+
+                                            echo htmlspecialchars($item->bears_feature);
+
+                                            if ($features_icon_class && $features_icon_position === 'after') {
+                                                echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                            }
+                                            echo '</li>';
                                         } elseif (is_string($item)) {
-                                            echo '<li>' . htmlspecialchars($item) . '</li>';
+                                            echo '<li>';
+                                            if ($features_icon_class && $features_icon_position === 'before') {
+                                                echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                            }
+
+                                            echo htmlspecialchars($item);
+
+                                            if ($features_icon_class && $features_icon_position === 'after') {
+                                                echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                            }
+                                            echo '</li>';
                                         }
                                     }
                                 } elseif (is_string($features)) {
@@ -193,14 +234,44 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                     if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
                                         foreach ($decoded as $item) {
                                             if (is_object($item) && isset($item->bears_feature)) {
-                                                echo '<li>' . htmlspecialchars($item->bears_feature) . '</li>';
+                                                echo '<li>';
+                                                if ($features_icon_class && $features_icon_position === 'before') {
+                                                    echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                                }
+
+                                                echo htmlspecialchars($item->bears_feature);
+
+                                                if ($features_icon_class && $features_icon_position === 'after') {
+                                                    echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                                }
+                                                echo '</li>';
                                             } elseif (is_string($item)) {
-                                                echo '<li>' . htmlspecialchars($item) . '</li>';
+                                                echo '<li>';
+                                                if ($features_icon_class && $features_icon_position === 'before') {
+                                                    echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                                }
+
+                                                echo htmlspecialchars($item);
+
+                                                if ($features_icon_class && $features_icon_position === 'after') {
+                                                    echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                                }
+                                                echo '</li>';
                                             }
                                         }
                                     } else {
                                         // It's just a plain string
-                                        echo '<li>' . htmlspecialchars($features) . '</li>';
+                                        echo '<li>';
+                                        if ($features_icon_class && $features_icon_position === 'before') {
+                                            echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                        }
+
+                                        echo htmlspecialchars($features);
+
+                                        if ($features_icon_class && $features_icon_position === 'after') {
+                                            echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                        }
+                                        echo '</li>';
                                     }
                                 }
                             }
