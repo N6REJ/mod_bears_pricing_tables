@@ -151,12 +151,6 @@
 				</field>
 				<field name="bears_features_icon_class1" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color1" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_features_icon_size1" type="textpx" default="" label="MOD_BEARS_FEATURES_ICON_SIZE" description="MOD_BEARS_FEATURES_ICON_SIZE_DESC" />
-				<field name="bears_features_icon_position1" type="radio" default="before" label="MOD_BEARS_FEATURES_ICON_POSITION" description="MOD_BEARS_FEATURES_ICON_POSITION_DESC"
-					   class="btn-group btn-group-yesno">
-					<option value="before">Before</option>
-					<option value="after">After</option>
-				</field>
 			</fieldset>
 
 			<fieldset name="column2">
@@ -187,12 +181,6 @@
 				</field>
 				<field name="bears_features_icon_class2" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color2" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_features_icon_size2" type="textpx" default="" label="MOD_BEARS_FEATURES_ICON_SIZE" description="MOD_BEARS_FEATURES_ICON_SIZE_DESC" />
-				<field name="bears_features_icon_position2" type="radio" default="before" label="MOD_BEARS_FEATURES_ICON_POSITION" description="MOD_BEARS_FEATURES_ICON_POSITION_DESC"
-					   class="btn-group btn-group-yesno">
-					<option value="before">Before</option>
-					<option value="after">After</option>
-				</field>
 			</fieldset>
 
 			<fieldset name="column3">
@@ -223,12 +211,6 @@
 				</field>
 				<field name="bears_features_icon_class3" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color3" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_features_icon_size3" type="textpx" default="" label="MOD_BEARS_FEATURES_ICON_SIZE" description="MOD_BEARS_FEATURES_ICON_SIZE_DESC" />
-				<field name="bears_features_icon_position3" type="radio" default="before" label="MOD_BEARS_FEATURES_ICON_POSITION" description="MOD_BEARS_FEATURES_ICON_POSITION_DESC"
-					   class="btn-group btn-group-yesno">
-					<option value="before">Before</option>
-					<option value="after">After</option>
-				</field>
 			</fieldset>
 
 			<fieldset name="column4">
@@ -259,12 +241,6 @@
 				</field>
 				<field name="bears_features_icon_class4" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color4" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_features_icon_size4" type="textpx" default="" label="MOD_BEARS_FEATURES_ICON_SIZE" description="MOD_BEARS_FEATURES_ICON_SIZE_DESC" />
-				<field name="bears_features_icon_position4" type="radio" default="before" label="MOD_BEARS_FEATURES_ICON_POSITION" description="MOD_BEARS_FEATURES_ICON_POSITION_DESC"
-					   class="btn-group btn-group-yesno">
-					<option value="before">Before</option>
-					<option value="after">After</option>
-				</field>
 			</fieldset>
 
 			<fieldset name="column5">
@@ -295,12 +271,6 @@
 				</field>
 				<field name="bears_features_icon_class5" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color5" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_features_icon_size5" type="textpx" default="" label="MOD_BEARS_FEATURES_ICON_SIZE" description="MOD_BEARS_FEATURES_ICON_SIZE_DESC" />
-				<field name="bears_features_icon_position5" type="radio" default="before" label="MOD_BEARS_FEATURES_ICON_POSITION" description="MOD_BEARS_FEATURES_ICON_POSITION_DESC"
-					   class="btn-group btn-group-yesno">
-					<option value="before">Before</option>
-					<option value="after">After</option>
-				</field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field

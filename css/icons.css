@@ -176,7 +176,7 @@
 		color: var(--bears-header-icon-color-5);
 		font-size: var(--bears-header-icon-size-5);
 	}
-	
+
 	/* Responsive adjustments */
 	@media only screen and (max-width: 767px) {
 		.bears_pricing_tables .plan-icon {

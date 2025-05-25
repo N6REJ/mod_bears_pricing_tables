@@ -93,13 +93,13 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                     echo $columnClass; ?>">
 						<header>
                             <?php
-                            if (!empty($params_array['header_iconClass'][$cur_column]) && str_starts_with($params_array['header_iconPosition'][$cur_column], 'top-')) {
+                            if (!empty($params_array['header_icon_class'][$cur_column]) && str_starts_with($params_array['header_icon_position'][$cur_column], 'top-')) {
                                 ?>
 								<div class = "plan-icon icon-<?php
-                                echo htmlspecialchars($params_array['header_iconPosition'][$cur_column]); ?> <?php
+                                echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_iconClass'][$cur_column])); ?>"></i>
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"></i>
 								</div>
                                 <?php
                             } ?>
@@ -111,12 +111,12 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 
 							<div class = "price">
                                 <?php
-                                if (!empty($params_array['header_iconClass'][$cur_column]) && $params_array['header_iconPosition'][$cur_column] === 'price-left') {
+                                if (!empty($params_array['header_icon_class'][$cur_column]) && $params_array['header_icon_position'][$cur_column] === 'price-left') {
                                     ?>
 									<div class = "plan-icon price-left <?php
                                     echo $columnClass; ?>">
 										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_iconClass'][$cur_column])); ?>"></i>
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"></i>
 									</div>
                                     <?php
                                 } ?>
@@ -129,25 +129,25 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 								</div>
 
                                 <?php
-                                if (!empty($params_array['header_iconClass'][$cur_column]) && $params_array['header_iconPosition'][$cur_column] === 'price-right') {
+                                if (!empty($params_array['header_icon_class'][$cur_column]) && $params_array['header_icon_position'][$cur_column] === 'price-right') {
                                     ?>
 									<div class = "plan-icon price-right <?php
                                     echo $columnClass; ?>">
 										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_iconClass'][$cur_column])); ?>"></i>
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"></i>
 									</div>
                                     <?php
                                 } ?>
 							</div>
 
                             <?php
-                            if (!empty($params_array['header_iconClass'][$cur_column]) && str_starts_with($params_array['header_iconPosition'][$cur_column], 'bottom-')) {
+                            if (!empty($params_array['header_icon_class'][$cur_column]) && str_starts_with($params_array['header_icon_position'][$cur_column], 'bottom-')) {
                                 ?>
 								<div class = "plan-icon icon-<?php
-                                echo htmlspecialchars($params_array['header_iconPosition'][$cur_column]); ?> <?php
+                                echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_iconClass'][$cur_column])); ?>"></i>
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"></i>
 								</div>
                                 <?php
                             }
@@ -169,65 +169,75 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 $features_color = !empty($params_array['features_color'][$cur_column]) ?
                                     $params_array['features_color'][$cur_column] : '';
 
-                                // Build icon style attributes
-                                $icon_styles = [];
+                                // Build features_icon style attributes with consistent naming
+                                $features_icon_styles = [];
                                 if (!empty($features_icon_color)) {
-                                    $icon_styles[] = 'color: ' . htmlspecialchars($features_icon_color);
+                                    $features_icon_styles[] = 'color: ' . htmlspecialchars($features_icon_color);
                                 }
                                 if (!empty($features_icon_size)) {
-                                    $icon_styles[] = 'font-size: ' . htmlspecialchars($features_icon_size);
+                                    $features_icon_styles[] = 'font-size: ' . htmlspecialchars($features_icon_size);
                                 }
-                                $icon_style = !empty($icon_styles) ? ' style="' . implode('; ', $icon_styles) . ';"' : '';
+                                $features_icon_style = !empty($features_icon_styles) ?
+                                    ' style="' . implode('; ', $features_icon_styles) . ';"' : '';
 
-                                // Build text style for features
-                                $text_style = !empty($features_color) ? ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
+                                // Build text style for features list items
+                                $features_text_style = !empty($features_color) ?
+                                    ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
 
                                 // Normalize features to array of items
-                                $feature_items = [];
+                                $features_items = [];
 
                                 // Handle different possible data structures
                                 if (is_string($features) && !empty($features)) {
                                     // Check if it's a JSON string
                                     $decoded = json_decode($features);
                                     if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-                                        $feature_items = (array)$decoded;
+                                        $features_items = (array)$decoded;
                                     } else {
-                                        // Plain string (single feature)
-                                        $feature_items[] = $features;
+                                        // Plain string (single features item)
+                                        $features_items[] = $features;
                                     }
                                 } elseif (is_array($features) || is_object($features)) {
-                                    $feature_items = (array)$features;
+                                    $features_items = (array)$features;
                                 }
 
-                                // Render each feature item
-                                foreach ($feature_items as $item) {
-                                    $feature_text = '';
+                                // Render each features item
+                                foreach ($features_items as $features_item) {
+                                    $features_text = '';
 
-                                    // Extract the feature text based on item type
-                                    if (is_object($item) && isset($item->bears_feature)) {
-                                        $feature_text = $item->bears_feature;
-                                    } elseif (is_string($item)) {
-                                        $feature_text = $item;
+                                    // Extract the features text based on item type
+                                    if (is_object($features_item) && isset($features_item->bears_feature)) {
+                                        $features_text = $features_item->bears_feature;
+                                    } elseif (is_string($features_item)) {
+                                        $features_text = $features_item;
                                     }
 
                                     // Skip empty features
-                                    if (empty($feature_text)) {
+                                    if (empty($features_text)) {
                                         continue;
                                     }
 
-                                    echo '<li' . $text_style . '>';
+                                    echo '<li class="features-item"' . $features_text_style . '>';
+
                                     // Icon before text
                                     if ($features_icon_class && $features_icon_position === 'before') {
-                                        echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
+                                        echo '<i class="features-icon features-icon-before ' .
+                                            htmlspecialchars($features_icon_class) . '"' .
+                                            $features_icon_style . '></i>';
                                     }
 
-                                    // Feature text
-                                    echo htmlspecialchars($feature_text);
+                                    // Features text
+                                    echo '<span class="features-text">' .
+                                        htmlspecialchars($features_text) .
+                                        '</span>';
 
                                     // Icon after text
                                     if ($features_icon_class && $features_icon_position === 'after') {
-                                        echo ' <i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i>';
+                                        echo '<i class="features-icon features-icon-after ' .
+                                            htmlspecialchars($features_icon_class) . '"' .
+                                            $features_icon_style . '></i>';
                                     }
+
                                     echo '</li>';
                                 }
                             }

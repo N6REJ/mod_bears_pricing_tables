@@ -93,6 +93,8 @@ class ModBearsPricingTablesHelper
         $bears_header_icon_size     = array();
         $bears_header_icon_position = array();
         $bears_header_icon_color    = array();
+        $bears_features_icon_class = array();
+        $bears_features_icon_color = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -113,6 +115,8 @@ class ModBearsPricingTablesHelper
             $bears_header_icon_size[$i]     = $params->get('bears_header_icon_size' . $i, '');
             $bears_header_icon_position[$i] = $params->get('bears_header_icon_position' . $i);
             $bears_header_icon_color[$i]    = $params->get('bears_header_icon_color' . $i, '');
+            $bears_features_icon_class[$i] = $params->get('bears_features_icon_class'.$i, '');
+            $bears_features_icon_color[$i] = $params->get('bears_features_icon_color'.$i, '');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -168,10 +172,12 @@ class ModBearsPricingTablesHelper
             'bears_buttonurl'                  => $bears_buttonurl,
 
             // Icon parameters - using header_ prefix for clarity
-            'header_iconClass'                 => $bears_header_icon_class,
-            'header_iconSize'                  => $bears_header_icon_size,
-            'header_iconPosition'              => $bears_header_icon_position,
-            'header_iconColor'                 => $bears_header_icon_color,
+            'header_icon_class'                 => $bears_header_icon_class,
+            'header_icon_size'                  => $bears_header_icon_size,
+            'header_icon_position'              => $bears_header_icon_position,
+            'header_icon_color'                 => $bears_header_icon_color,
+            'features_icon_class' => $bears_features_icon_class,
+            'features_icon_color' => $bears_features_icon_color,
 
             // Column reference array for template use
             'column_ref'                       => $column_ref,

@@ -262,10 +262,7 @@ font-size: var(--bears-features-font-size);
 .template-1276 .bears_pricing_tables .plan-features li::before {
   display: none;
   }
-.template-1276 .bears_pricing_tables .plan-features i {
-  margin-right: 8px;
-  opacity: 0.4;
-  }
+
 .template-1276 .bears_pricing_tables .plan-select {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
