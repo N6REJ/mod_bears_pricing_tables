@@ -179,3 +179,64 @@
 		margin: 0 5px; /* Less margin on mobile */
 		}
 	}
+
+/* Features Icons Styling */
+.bears_pricing_tables .plan-features .features-icon {
+    display: inline-block;
+    color: var(--bears-features-icon-color, var(--bears-icon-color, inherit));
+    font-size: var(--bears-features-icon-size, var(--bears-icon-size, 16px));
+    vertical-align: middle;
+    margin-top: -2px;
+    transition: color var(--bears-transition-speed, 0.3s);
+}
+
+/* Column-specific features icon styling */
+.bears_pricing_tables .bears-column-1 .plan-features .features-icon {
+    color: var(--bears-features-icon-color-1, var(--bears-features-icon-color, var(--bears-icon-color-1, var(--bears-icon-color, inherit))));
+    font-size: var(--bears-features-icon-size-1, var(--bears-features-icon-size, var(--bears-icon-size-1, var(--bears-icon-size, 16px))));
+}
+
+.bears_pricing_tables .bears-column-2 .plan-features .features-icon {
+    color: var(--bears-features-icon-color-2, var(--bears-features-icon-color, var(--bears-icon-color-2, var(--bears-icon-color, inherit))));
+    font-size: var(--bears-features-icon-size-2, var(--bears-features-icon-size, var(--bears-icon-size-2, var(--bears-icon-size, 16px))));
+}
+
+.bears_pricing_tables .bears-column-3 .plan-features .features-icon {
+    color: var(--bears-features-icon-color-3, var(--bears-features-icon-color, var(--bears-icon-color-3, var(--bears-icon-color, inherit))));
+    font-size: var(--bears-features-icon-size-3, var(--bears-features-icon-size, var(--bears-icon-size-3, var(--bears-icon-size, 16px))));
+}
+
+.bears_pricing_tables .bears-column-4 .plan-features .features-icon {
+    color: var(--bears-features-icon-color-4, var(--bears-features-icon-color, var(--bears-icon-color-4, var(--bears-icon-color, inherit))));
+    font-size: var(--bears-features-icon-size-4, var(--bears-features-icon-size, var(--bears-icon-size-4, var(--bears-icon-size, 16px))));
+}
+
+.bears_pricing_tables .bears-column-5 .plan-features .features-icon {
+    color: var(--bears-features-icon-color-5, var(--bears-features-icon-color, var(--bears-icon-color-5, var(--bears-icon-color, inherit))));
+    font-size: var(--bears-features-icon-size-5, var(--bears-features-icon-size, var(--bears-icon-size-5, var(--bears-icon-size, 16px))));
+}
+
+/* Feature icon positioning - before/after */
+.bears_pricing_tables .plan-features .features-icon.icon-before {
+    margin-right: 6px;
+    margin-left: 0;
+}
+
+.bears_pricing_tables .plan-features .features-icon.icon-after {
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+/* Legacy support for non-class based positioning */
+.bears_pricing_tables .plan-features li .features-icon:first-child:not(.icon-after) {
+    margin-right: 5px;
+}
+
+.bears_pricing_tables .plan-features li .features-icon:last-child:not(.icon-before) {
+    margin-left: 5px;
+}
+
+/* Featured column icon color adjustment */
+.bears_pricing_tables .plan.featured .plan-features .features-icon {
+    color: var(--bears-featured-features-color, var(--bears-features-icon-color, var(--bears-icon-color, #fff)));
+}

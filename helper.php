@@ -64,6 +64,8 @@ class ModBearsPricingTablesHelper
         $bears_subtitle_color             = $params->get('bears_subtitle_color');
         $bears_features_color             = $params->get('bears_features_color');
         $bears_featured_features_color    = $params->get('bears_featured_features_color');
+        $bears_features_icon_color        = $params->get('bears_features_icon_color');
+        $bears_features_icon_size         = $params->get('bears_features_icon_size');
         $bears_border_color               = $params->get('bears_border_color');
         $bears_featured_border_color      = $params->get('bears_featured_border_color');
         $bears_accent_color               = $params->get('bears_accent_color');
@@ -143,6 +145,8 @@ class ModBearsPricingTablesHelper
             'bears_subtitle_color'             => $bears_subtitle_color,
             'bears_features_color'             => $bears_features_color,
             'bears_featured_features_color'    => $bears_featured_features_color,
+            'bears_features_icon_color'        => $bears_features_icon_color,
+            'bears_features_icon_size'         => $bears_features_icon_size,
             'bears_border_color'               => $bears_border_color,
             'bears_border_style'               => $bears_border_style,
             'bears_featured_border_color'      => $bears_featured_border_color,
@@ -306,6 +310,16 @@ class ModBearsPricingTablesHelper
         }
         if ($params->get('bears_featured_features_color')) {
             $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
+        }
+        if ($params->get('bears_features_icon_color')) {
+            $css .= '--bears-features-icon-color: ' . $params->get('bears_features_icon_color') . ';';
+        }
+        if ($params->get('bears_features_icon_size')) {
+            $featuresIconSize = $params->get('bears_features_icon_size');
+            if (!preg_match('/[a-z%]$/i', $featuresIconSize)) {
+                $featuresIconSize .= 'px';
+            }
+            $css .= '--bears-features-icon-size: ' . $featuresIconSize . ';';
         }
         if ($params->get('bears_border_color')) {
             $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
@@ -488,6 +502,30 @@ class ModBearsPricingTablesHelper
     .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features li {
         color: var(--bears-featured-features-color);
     }
+    .bears_pricing_tables' . $moduleId . ' .features-icon {
+        color: var(--bears-features-icon-color);
+        font-size: var(--bears-features-icon-size);
+    }
+    .bears_pricing_tables' . $moduleId . ' .bears-column-1 .features-icon {
+        color: var(--bears-features-icon-color-1, var(--bears-features-icon-color));
+        font-size: var(--bears-features-icon-size-1, var(--bears-features-icon-size));
+    }
+    .bears_pricing_tables' . $moduleId . ' .bears-column-2 .features-icon {
+        color: var(--bears-features-icon-color-2, var(--bears-features-icon-color));
+        font-size: var(--bears-features-icon-size-2, var(--bears-features-icon-size));
+    }
+    .bears_pricing_tables' . $moduleId . ' .bears-column-3 .features-icon {
+        color: var(--bears-features-icon-color-3, var(--bears-features-icon-color));
+        font-size: var(--bears-features-icon-size-3, var(--bears-features-icon-size));
+    }
+    .bears_pricing_tables' . $moduleId . ' .bears-column-4 .features-icon {
+        color: var(--bears-features-icon-color-4, var(--bears-features-icon-color));
+        font-size: var(--bears-features-icon-size-4, var(--bears-features-icon-size));
+    }
+    .bears_pricing_tables' . $moduleId . ' .bears-column-5 .features-icon {
+        color: var(--bears-features-icon-color-5, var(--bears-features-icon-color));
+        font-size: var(--bears-features-icon-size-5, var(--bears-features-icon-size));
+    }
     .bears_pricing_tables' . $moduleId . ' .plan-features {
         color: var(--bears-accent-color);
         background-color: var(--bears-column-featured-background-color);
@@ -587,6 +625,20 @@ class ModBearsPricingTablesHelper
                 }
                 $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-icon-size-' . $i . ': ' . $iconSize . '; }';
             }
+            
+            // Feature icon color for each column
+            if (!empty($params->get('bears_features_icon_color' . $i))) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-features-icon-color-' . $i . ': ' . $params->get('bears_features_icon_color' . $i) . '; }';
+            }
+            
+            // Feature icon size for each column
+            if (!empty($params->get('bears_features_icon_size' . $i))) {
+                $featuresIconSize = $params->get('bears_features_icon_size' . $i);
+                if (!preg_match('/[a-z%]$/i', $featuresIconSize)) {
+                    $featuresIconSize .= 'px';
+                }
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-features-icon-size-' . $i . ': ' . $featuresIconSize . '; }';
+            }
         }
 
         // Add global icon variables with module-specific selectors
@@ -678,5 +730,43 @@ class ModBearsPricingTablesHelper
 
         // Default case: add fa- prefix and fas class
         return 'fas fa-' . $iconClass;
+    }
+
+    /**
+     * Render feature icons for list items based on feature icon settings
+     *
+     * @param   string  $text            The feature text to display
+     * @param   string  $iconClass       The icon class to use (e.g., 'fas fa-check')
+     * @param   string  $iconPosition    The position of the icon ('before', 'after', or 'none')
+     *
+     * @return  string  HTML for the feature with icon positioned correctly
+     * @since   2025.5.24
+     */
+    public static function renderFeatureWithIcon($text, $iconClass, $iconPosition = 'before')
+    {
+        // Sanitize inputs
+        $text = htmlspecialchars($text);
+        
+        // If no icon class or position is 'none', just return the text
+        if (empty($iconClass) || $iconPosition === 'none') {
+            return $text;
+        }
+        
+        // Format and sanitize the icon class
+        $iconClass = htmlspecialchars(self::formatIconClass($iconClass));
+        
+        // Add position-specific class to help with CSS styling
+        $positionClass = ($iconPosition === 'after') ? 'icon-after' : 'icon-before';
+        
+        // Create icon HTML with position class
+        $iconHtml = '<i class="features-icon ' . $positionClass . ' ' . $iconClass . '"></i>';
+        
+        // Position the icon based on iconPosition parameter
+        if ($iconPosition === 'after') {
+            return $text . ' ' . $iconHtml;
+        } else {
+            // Default to 'before'
+            return $iconHtml . ' ' . $text;
+        }
     }
 }
