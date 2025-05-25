@@ -619,40 +619,6 @@ class ModBearsPricingTablesHelper
     }
 
     /**
-     * Generate CSS for column widths based on number of columns
-     *
-     * @param   int     $moduleId    The module ID for specificity
-     * @param   string  $template    The template name
-     * @param   int     $numColumns  The number of columns
-     *
-     * @return  string  The column width CSS
-     * @since   2025.5.22
-     * @deprecated  Use column-widths.css file instead
-     */
-    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
-    {
-        // This method is deprecated as we now use a dedicated CSS file
-        // Return empty string as we're now using column-widths.css
-        return '';
-    }
-
-    /**
-     * Load only FontAwesome CSS
-     *
-     * @return  void
-     * @since   2025.5.18
-     * @deprecated  Will be removed in a future version
-     */
-    public static function loadFontAwesomeOnly()
-    {
-        // Get the document
-        $document = Factory::getDocument();
-        
-        // Directly add FontAwesome
-        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
-    }
-
-    /**
      * Helper function to format icon class correctly for FontAwesome 5/6
      *
      * @param   string  $iconClass  The icon class to format
