@@ -64,8 +64,8 @@
   --bears-border-style: solid;
   
   /* Icon settings */
-  --bears-icon-color: #ffffff;
-  --bears-icon-size: 24px;
+  --bears-header-icon-color: #ffffff;
+  --bears-header-icon-size: 24px;
   }
 
 /* Base container styles */
@@ -258,7 +258,7 @@
 .template-1517 .bears_pricing_tables .plan-features i {
   margin-right: 8px;
   opacity: 0.4;
-  color: var(--bears-icon-color);
+  color: var(--bears-header-icon-color);
   }
 
 .template-1517 .bears_pricing_tables .plan-select {

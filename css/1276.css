@@ -62,8 +62,8 @@
   --bears-border-style: solid;
   
   /* Icon settings */
-  --bears-icon-color: red;
-  --bears-icon-size: 24px;
+  --bears-header-icon-color: red;
+  --bears-header-icon-size: 24px;
 }
 
 

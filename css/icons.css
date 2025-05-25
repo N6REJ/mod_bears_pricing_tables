@@ -6,8 +6,8 @@
 /* Base icon styles */
 .bears_pricing_tables .plan-icon {
 	display: inline-block;
-	color: var(--bears-icon-color, inherit);
-	font-size: var(--bears-icon-size, 24px);
+	color: var(--bears-header-icon-color, inherit);
+	font-size: var(--bears-header-icon-size, 24px);
 	transition: color var(--bears-transition-speed, 0.3s);
 	}
 
@@ -140,38 +140,38 @@
 /* Column-specific icon styling */
 .bears_pricing_tables .bears-column-1 .plan-icon,
 .bears_pricing_tables .bears-column-1 i {
-	color: var(--bears-icon-color-1, var(--bears-icon-color, inherit));
-	font-size: var(--bears-icon-size-1, var(--bears-icon-size, 24px));
+	color: var(--bears-header-icon-color-1, var(--bears-header-icon-color, inherit));
+	font-size: var(--bears-header-icon-size-1, var(--bears-header-icon-size, 24px));
 	}
 
 .bears_pricing_tables .bears-column-2 .plan-icon,
 .bears_pricing_tables .bears-column-2 i {
-	color: var(--bears-icon-color-2, var(--bears-icon-color, inherit));
-	font-size: var(--bears-icon-size-2, var(--bears-icon-size, 24px));
+	color: var(--bears-header-icon-color-2, var(--bears-header-icon-color, inherit));
+	font-size: var(--bears-header-icon-size-2, var(--bears-header-icon-size, 24px));
 	}
 
 .bears_pricing_tables .bears-column-3 .plan-icon,
 .bears_pricing_tables .bears-column-3 i {
-	color: var(--bears-icon-color-3, var(--bears-icon-color, inherit));
-	font-size: var(--bears-icon-size-3, var(--bears-icon-size, 24px));
+	color: var(--bears-header-icon-color-3, var(--bears-header-icon-color, inherit));
+	font-size: var(--bears-header-icon-size-3, var(--bears-header-icon-size, 24px));
 	}
 
 .bears_pricing_tables .bears-column-4 .plan-icon,
 .bears_pricing_tables .bears-column-4 i {
-	color: var(--bears-icon-color-4, var(--bears-icon-color, inherit));
-	font-size: var(--bears-icon-size-4, var(--bears-icon-size, 24px));
+	color: var(--bears-header-icon-color-4, var(--bears-header-icon-color, inherit));
+	font-size: var(--bears-header-icon-size-4, var(--bears-header-icon-size, 24px));
 	}
 
 .bears_pricing_tables .bears-column-5 .plan-icon,
 .bears_pricing_tables .bears-column-5 i {
-	color: var(--bears-icon-color-5, var(--bears-icon-color, inherit));
-	font-size: var(--bears-icon-size-5, var(--bears-icon-size, 24px));
+	color: var(--bears-header-icon-color-5, var(--bears-header-icon-color, inherit));
+	font-size: var(--bears-header-icon-size-5, var(--bears-header-icon-size, 24px));
 	}
 
 /* Responsive adjustments */
 @media only screen and (max-width: 767px) {
 	.bears_pricing_tables .plan-icon {
-		font-size: calc(var(--bears-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
+		font-size: calc(var(--bears-header-icon-size, 24px) * 0.85); /* Slightly smaller on mobile */
 		}
 	
 	.bears_pricing_tables .price-left,

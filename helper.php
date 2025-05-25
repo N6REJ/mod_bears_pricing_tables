@@ -89,10 +89,10 @@ class ModBearsPricingTablesHelper
         $bears_featured      = array();
         $bears_buttontext    = array();
         $bears_buttonurl     = array();
-        $bears_icon_class    = array();
-        $bears_icon_size     = array();
-        $bears_icon_position = array();
-        $bears_icon_color    = array();
+        $bears_header_icon_class    = array();
+        $bears_header_icon_size     = array();
+        $bears_header_icon_position = array();
+        $bears_header_icon_color    = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -109,10 +109,10 @@ class ModBearsPricingTablesHelper
             $bears_featured[$i]      = $params->get('bears_column_featured' . $i, 'no');
             $bears_buttontext[$i]    = $params->get('bears_buttontext' . $i, '');
             $bears_buttonurl[$i]     = $params->get('bears_buttonurl' . $i, '');
-            $bears_icon_class[$i]    = $params->get('bears_icon_class' . $i, '');
-            $bears_icon_size[$i]     = $params->get('bears_icon_size' . $i, '');
-            $bears_icon_position[$i] = $params->get('bears_icon_position' . $i);
-            $bears_icon_color[$i]    = $params->get('bears_icon_color' . $i, '');
+            $bears_header_icon_class[$i]    = $params->get('bears_header_icon_class' . $i, '');
+            $bears_header_icon_size[$i]     = $params->get('bears_header_icon_size' . $i, '');
+            $bears_header_icon_position[$i] = $params->get('bears_header_icon_position' . $i);
+            $bears_header_icon_color[$i]    = $params->get('bears_header_icon_color' . $i, '');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -168,10 +168,10 @@ class ModBearsPricingTablesHelper
             'bears_buttonurl'                  => $bears_buttonurl,
 
             // Icon parameters
-            'iconClass'                        => $bears_icon_class,
-            'iconSize'                         => $bears_icon_size,
-            'iconPosition'                     => $bears_icon_position,
-            'iconColor'                        => $bears_icon_color,
+            'iconClass'                        => $bears_header_icon_class,
+            'iconSize'                         => $bears_header_icon_size,
+            'iconPosition'                     => $bears_header_icon_position,
+            'iconColor'                        => $bears_header_icon_color,
 
             // Column reference array for template use
             'column_ref'                       => $column_ref,
@@ -367,9 +367,9 @@ class ModBearsPricingTablesHelper
 
         // Column-specific icon colors
         for ($i = 1; $i <= 5; $i++) {
-            $iconColor = $params->get('bears_icon_color' . $i);
+            $iconColor = $params->get('bears_header_icon_color' . $i);
             if (!empty($iconColor)) {
-                $css .= '--bears-icon-color-' . $i . ': ' . $iconColor . ';';
+                $css .= '--bears-header-icon-color-' . $i . ': ' . $iconColor . ';';
             }
         }
 
@@ -548,8 +548,8 @@ class ModBearsPricingTablesHelper
 
         // Add column-specific icon sizes and colors with module-specific selectors
         for ($i = 1; $i <= 5; $i++) {
-            $iconSize  = $params->get('bears_icon_size' . $i);
-            $iconClass = $params->get('bears_icon_class' . $i);
+            $iconSize  = $params->get('bears_header_icon_size' . $i);
+            $iconClass = $params->get('bears_header_icon_class' . $i);
 
             if (!empty($iconSize)) {
                 // Add 'px' to the size if it doesn't already have a unit
@@ -577,28 +577,28 @@ class ModBearsPricingTablesHelper
 
         // Icon-specific CSS variables with module-specific selectors
         for ($i = 1; $i <= 5; $i++) {
-            if (!empty($params->get('bears_icon_color' . $i))) {
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-icon-color-' . $i . ': ' . $params->get('bears_icon_color' . $i) . '; }';
+            if (!empty($params->get('bears_header_icon_color' . $i))) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-color-' . $i . ': ' . $params->get('bears_header_icon_color' . $i) . '; }';
             }
-            if (!empty($params->get('bears_icon_size' . $i))) {
-                $iconSize = $params->get('bears_icon_size' . $i);
+            if (!empty($params->get('bears_header_icon_size' . $i))) {
+                $iconSize = $params->get('bears_header_icon_size' . $i);
                 if (!preg_match('/[a-z%]$/i', $iconSize)) {
                     $iconSize .= 'px';
                 }
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-icon-size-' . $i . ': ' . $iconSize . '; }';
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-size-' . $i . ': ' . $iconSize . '; }';
             }
         }
 
         // Add global icon variables with module-specific selectors
-        if (!empty($params->get('bears_icon_color'))) {
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-color: ' . $params->get('bears_icon_color') . '; }';
+        if (!empty($params->get('bears_header_icon_color'))) {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-color: ' . $params->get('bears_header_icon_color') . '; }';
         }
-        if (!empty($params->get('bears_icon_size'))) {
-            $iconSize = $params->get('bears_icon_size');
+        if (!empty($params->get('bears_header_icon_size'))) {
+            $iconSize = $params->get('bears_header_icon_size');
             if (!preg_match('/[a-z%]$/i', $iconSize)) {
                 $iconSize .= 'px';
             }
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-size: ' . $iconSize . '; }';
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-size: ' . $iconSize . '; }';
         }
 
         // Module-specific column count attribute
