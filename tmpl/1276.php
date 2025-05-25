@@ -162,11 +162,25 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                     ModBearsPricingTablesHelper::formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
                                 $features_icon_position = !empty($params_array['features_icon_position'][$cur_column]) ?
                                     $params_array['features_icon_position'][$cur_column] : 'before';
+                                $features_icon_color = !empty($params_array['features_icon_color'][$cur_column]) ?
+                                    $params_array['features_icon_color'][$cur_column] : '';
+                                $features_icon_size = !empty($params_array['features_icon_size'][$cur_column]) ?
+                                    $params_array['features_icon_size'][$cur_column] : '';
                                 $features_color = !empty($params_array['features_color'][$cur_column]) ?
                                     $params_array['features_color'][$cur_column] : '';
 
-                                // Define the icon style if a color is specified
-                                $icon_style = !empty($features_color) ? ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
+                                // Build icon style attributes
+                                $icon_styles = [];
+                                if (!empty($features_icon_color)) {
+                                    $icon_styles[] = 'color: ' . htmlspecialchars($features_icon_color);
+                                }
+                                if (!empty($features_icon_size)) {
+                                    $icon_styles[] = 'font-size: ' . htmlspecialchars($features_icon_size);
+                                }
+                                $icon_style = !empty($icon_styles) ? ' style="' . implode('; ', $icon_styles) . ';"' : '';
+
+                                // Build text style for features
+                                $text_style = !empty($features_color) ? ' style="color: ' . htmlspecialchars($features_color) . ';"' : '';
 
                                 // Normalize features to array of items
                                 $feature_items = [];
@@ -201,7 +215,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                         continue;
                                     }
 
-                                    echo '<li>';
+                                    echo '<li' . $text_style . '>';
                                     // Icon before text
                                     if ($features_icon_class && $features_icon_position === 'before') {
                                         echo '<i class="' . htmlspecialchars($features_icon_class) . '"' . $icon_style . '></i> ';
