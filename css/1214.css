@@ -60,7 +60,7 @@
   --bears-border-style: solid;
   
   /* Icon settings */
-  --bears-header-icon-color: #27ae60;
+  --bears-header-icon-color: inherit;
   --bears-header-icon-size: 16px;
   }
 
