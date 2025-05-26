@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE</license>
 	<authorEmail>troy@hallhome.us</authorEmail>
 	<authorUrl>https://hallhome.us</authorUrl>
-	<version>2025.05.26</version>
+	<version>2025.05.26.1</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
 	<files>
 		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>

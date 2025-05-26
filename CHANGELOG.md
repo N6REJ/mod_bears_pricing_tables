@@ -1,18 +1,7 @@
-# 2025.05.26 (2025 May 26)
+# 2025.05.26.1 (2025 May 26)
 
 ## What's Changed
 
-* Update updates.xml for version 2025.05.23.2 (6891788)
-* Fix CSS variable naming consistency and background color references (bdf0e41)
-* Add background-color variable for featured plans in CSS templates (5ce45f4)
-* Add background-color variable for featured plans in CSS templates (317d4db)
-* Merge branch 'main' into typos (2c9b57f)
-* Add featured features color variable for consistent text styling in pricing tables (7bc134c)
-* Fix button text color variable usage in pricing tables CSS templates (b6dc28b)
-* Add explicit color styling for featured plan features in all CSS templates (bf033ab)
-* Update version to 2025.05.24, creation date to 2025 May 24, and copyright year to 2025 (58bd7e5)
-* Merge pull request #15 from N6REJ/typos (b2bed18)
-* Update version to 2025.05.24 for release (ae79684)
 * Update updates.xml for version 2025.05.24 (994f4e6)
 * Add icon styling and improve CSS organization for pricing tables module (cf08bdb)
 * Add icon support and refactor CSS loading for pricing tables module (0a23f58)
@@ -33,4 +22,10 @@
 * Simplify feature list rendering with FontAwesome icon support in pricing tables (abdcabe)
 * Update version to 2025.05.26, creation date to 2025 May 26, and copyright year to 2025 (580c0d8)
 * Merge pull request #16 from N6REJ/icons (3902f30)
+* Update version to 2025.05.26 for release (6cae3c8)
+* Update updates.xml for version 2025.05.26 (095a586)
+* all templates now share thes same html (65bc041)
+* Enhance FontAwesome icon support for pricing table feature lists (c9ffe61)
+* Improve feature list icon support with consistent styling and color controls (e7bc9ae)
+* Merge pull request #17 from N6REJ/checkmarks (957e9d0)
 
