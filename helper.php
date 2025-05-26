@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.26.3
+ * @version     2025.05.26.4
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
