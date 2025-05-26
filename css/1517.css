@@ -265,7 +265,7 @@
   }
 
 .template-1517 .bears_pricing_tables .plan-select {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
   padding: 20px;
   text-align: center;
   width: 100%;
@@ -301,9 +301,10 @@
 
 .template-1517 .bears_pricing_tables .plan.featured header {
   background-color: var(--bears-header-featured-background);
-  margin: 0 -1px 20px -1px;
+  margin: 0 -1px 0 -1px;
   width: calc(100% + 2px);
   box-sizing: border-box;
+  border-bottom: 1px solid var(--bears-header-background);
   }
 
 .template-1517 .bears_pricing_tables .plan.featured .plan-select {
