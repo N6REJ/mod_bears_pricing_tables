@@ -671,17 +671,23 @@ class ModBearsPricingTablesHelper
         if (empty($iconClass)) {
             return '';
         }
-        
-        // If it already has a Font Awesome prefix, return as is
-        if (preg_match('/^(fa[srb]?|fab?)\s/', $iconClass)) {
+
+        // Support for FontAwesome 6+ prefixes (fa-solid, fa-regular, fa-brands, etc.)
+        // as well as FontAwesome 5 prefixes (fas, far, fab, etc.)
+        if (preg_match('/^(fa[srb]?|fa-solid|fa-regular|fa-brands|fa-light|fa-thin|fa-duotone|fab?)\s/', $iconClass)) {
             return $iconClass;
         }
-        
-        // If it's just the icon name (e.g., "home"), add "fas" prefix
-        if (!strpos($iconClass, ' ')) {
-            return 'fas fa-' . $iconClass;
+
+        // Handle FontAwesome 6+ syntax with fa-* format
+        if (strpos($iconClass, 'fa-') === 0) {
+            return 'fa-solid ' . $iconClass;
         }
-        
+
+        // If it's just the icon name (e.g., "home"), add "fa-solid fa-" prefix for FA6+
+        if (!strpos($iconClass, ' ')) {
+            return 'fa-solid fa-' . $iconClass;
+        }
+
         return $iconClass;
     }
 }
