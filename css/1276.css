@@ -20,6 +20,8 @@
   --bears-header-background: #191919;
   --bears-header-featured-background: #222f3d; /* Header background for featured plans */
   --bears-featured-button-background: #222f3d; /* Button background for featured plans */
+  --bears-features-background-even: rgba(0, 0, 0, 0.06);
+  --bears-features-background-odd: var(--bears-column-background);
   
   /* Text Colors */
   --bears-title-color: #fff;
@@ -60,6 +62,8 @@
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
+  --bears-features-border-color: none;
+  --bears-features-featured_border-color: none;
   
   /* Icon settings */
   --bears-header-icon-color: inherit;
@@ -245,9 +249,17 @@ font-size: var(--bears-features-font-size);
   color: var(--bears-featured-features-color);
 }
 
+.template-1276 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
+  background: rgba(0, 0, 0, 0.08);
+}
+
 /* Style for alternating rows in feature list */
 .template-1276 .bears_pricing_tables .plan-features li:nth-child(even) {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--bears-features-background-even);
+  }
+
+.template-1276 .bears_pricing_tables .plan-features li:nth-child(odd) {
+  background: var(--bears-features-background-odd);
   }
 
 /* Remove duplicate bottom border from adjacent items */
@@ -304,7 +316,7 @@ font-size: var(--bears-features-font-size);
   border-width: 24px 150px 0 150px;
   }
 .template-1276 .bears_pricing_tables .plan.featured .plan-select {
-  padding: 30px 20px;
+  padding: 20px;
   }
 
 
@@ -313,7 +325,7 @@ font-size: var(--bears-features-font-size);
   content: '';
   display: block;
   width: 100%;
-  height: 30px; /* Increased from 20px to provide more space */
+  height: 20px; /* Increased from 20px to provide more space */
   clear: both;
   }
 

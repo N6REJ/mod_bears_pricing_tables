@@ -1,6 +1,6 @@
 /**
  * Bears Pricing Tables - Red CSS
- * Version: 2025.5.10
+ * Version: 2025.5.15
  * Created by: N6REJ
  * Email: troy@hallhome.us
  * URL: www.hallhome.us
@@ -20,6 +20,8 @@
   --bears-header-background: #f5f5f5;
   --bears-header-featured-background: #252525; /* Header background for featured plans */
   --bears-featured-button-background: #ef3340; /* Button background for featured plans */
+  --bears-features-background-even: rgba(0, 0, 0, 0.070);
+  --bears-features-background-odd: var(--bears-column-background);
   
   /* Text Colors */
   --bears-title-color: #ef3340;
@@ -38,6 +40,8 @@
   /* Border Colors */
   --bears-border-color: #ef3340;
   --bears-featured-border-color: #ef3340;
+  --bears-features-border-color: none;
+  --bears-features-featured-border-color: none;
   
   /* Accent Colors */
   --bears-accent-color: #ef3340;
@@ -232,18 +236,28 @@
   width: 100%; /* Added explicit width */
   }
 .template-red .bears_pricing_tables .plan-features li {
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--bears-features-border-color);
+  border-bottom: 1px solid var(--bears-features-border-color);
   padding: 10px 40px;
   line-height: 1.4rem;
   color: var(--bears-features-color);
   }
 .template-red .bears_pricing_tables .plan.featured .plan-features li {
   color: var(--bears-featured-features-color);
+  border-top: 1px solid var(--bears-features-featured-border-color);
+  border-bottom: 1px solid var(--bears-features-featured-border-color);
 }
 /* Style for alternating rows in feature list */
 .template-red .bears_pricing_tables .plan-features li:nth-child(even) {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--bears-features-background-even);
+  }
+
+.template-red .bears_pricing_tables .plan-features li:nth-child(odd) {
+  background: var(--bears-features-background-odd);
+  }
+
+.template-red .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
+  background: rgba(0, 0, 0, 0.050);
   }
 
 /* Remove duplicate bottom border from adjacent items */
@@ -253,7 +267,11 @@
 
 /* Add border to the last feature item */
 .template-red .bears_pricing_tables .plan-features li:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--bears-features-border-color);
+  }
+  
+.template-red .bears_pricing_tables .plan.featured .plan-features li:last-child {
+  border-bottom: 1px solid var(--bears-features-featured-border-color);
   }
 .template-red .bears_pricing_tables .plan-features li::before {
   display: none;
