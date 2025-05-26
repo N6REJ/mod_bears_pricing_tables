@@ -1,7 +1,6 @@
-
 <?php
 /**
- * Bears Pricing Tables - 1517 Template
+ * Bears Pricing Tables - Default Template
  * Version : 2025.5.15
  * Created by : N6REJ
  * Email : troy@hallhome.us

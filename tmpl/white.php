@@ -1,14 +1,11 @@
 <?php
 /**
- * Bears Pricing Tables - White Template
- *
- * @version     2025.05.26
- * @package     Bears Pricing Tables
- * @author      N6REJ
- * @email       troy@hallhome.us
- * @website     https://www.hallhome.us
- * @copyright   Copyright (c) 2025 N6REJ
- * @license     GNU General Public License version 3 or later; see LICENSE.txt
+ * Bears Pricing Tables - Default Template
+ * Version : 2025.5.15
+ * Created by : N6REJ
+ * Email : troy@hallhome.us
+ * URL : www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // no direct access
