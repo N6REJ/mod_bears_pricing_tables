@@ -157,8 +157,8 @@
   position: relative;
   width: 100%;
   background-color: transparent;
-  padding: 30px 0px 20px;
-  margin-top: 10px;
+  padding: 20px 0 0;
+  margin-top: -4px;
   margin-bottom: 0; /* Added margin-bottom property */
   border: var(--bears-header-border);
   }
@@ -208,7 +208,7 @@
   }
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-cost {
-  padding: 10px 0;
+  padding: 0 0 10px;
   }
 
 .template-1214 .bears_pricing_tables .plan-price {

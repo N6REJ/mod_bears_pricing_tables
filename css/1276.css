@@ -213,6 +213,9 @@
   align-items: flex-end;
   flex: 1;
   }
+.template-1276 .bears_pricing_tables .plan.featured .plan-cost {
+  padding: 0 0 10px;
+  }
 .template-1276 .bears_pricing_tables .plan-price {
   display: block;
   margin-bottom: 6px;

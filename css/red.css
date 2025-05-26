@@ -209,7 +209,9 @@
   justify-content: center;
   align-items: flex-end;
   flex: 1;
+  padding: 0 0 10px;
   }
+
 .template-red .bears_pricing_tables .plan-price {
   display: block;
   margin-bottom: 6px;

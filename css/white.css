@@ -40,7 +40,7 @@
 	
 	/* Border Colors */
 	--bears-border-color: #e0e0e0;
-	--bears-featured-border-color: #000000;
+	--bears-featured-border-color: rgba(255, 255, 255, 0.05);
 	--bears-features-border-color: none;
 	--bears-features-featured_border-color: none;
 	
@@ -197,6 +197,7 @@
 	justify-content: center;
 	align-items: flex-end;
 	flex: 1;
+	padding: 0 0 10px;
 	}
 
 .template-white .bears_pricing_tables .plan-price {
@@ -267,7 +268,7 @@
 	}
 
 .template-white .bears_pricing_tables .plan.featured .plan-features li:last-child {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-bottom: none;
 	}
 
 .template-white .bears_pricing_tables .plan-features li::before {
@@ -282,7 +283,7 @@
 	}
 
 .template-white .bears_pricing_tables .plan.featured .plan-select {
-	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 .template-white .bears_pricing_tables .plan-select a,
@@ -316,9 +317,10 @@
 
 .template-white .bears_pricing_tables .plan.featured header {
 	background-color: var(--bears-header-featured-background);
-	margin: 0 -1px 20px -1px;
+	margin: 0 -1px 0px -1px;
 	width: calc(100% + 2px);
 	box-sizing: border-box;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 .template-white .bears_pricing_tables .plan.featured .plan-select {
