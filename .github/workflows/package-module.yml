@@ -2,7 +2,7 @@ name: Package and Release Bears Pricing Tables Module
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [closed]
     branches:
       - main
   workflow_dispatch:
@@ -20,16 +20,16 @@ jobs:
         id: context
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            if [ "${{ github.event.action }}" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+            if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
               echo "is_pr_merge=true" >> $GITHUB_OUTPUT
               echo "is_pr_update=false" >> $GITHUB_OUTPUT
               echo "is_manual=false" >> $GITHUB_OUTPUT
               echo "Running in PR merge context"
             else
               echo "is_pr_merge=false" >> $GITHUB_OUTPUT
-              echo "is_pr_update=true" >> $GITHUB_OUTPUT
+              echo "is_pr_update=false" >> $GITHUB_OUTPUT
               echo "is_manual=false" >> $GITHUB_OUTPUT
-              echo "Running in PR update context"
+              echo "Running in PR update context (PR closed without merge)"
             fi
           else
             echo "is_pr_merge=false" >> $GITHUB_OUTPUT
