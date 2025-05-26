@@ -2,7 +2,7 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.05.24
+ * @version     2025.05.26
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
@@ -14,11 +14,11 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Router\Router;
-use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Document\HtmlDocument;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Router;
+use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Version;
 
 /**
@@ -46,31 +46,31 @@ class ModBearsPricingTablesHelper
         $bears_num_columns = (int)$params->get('bears_num_columns', 3);
 
         // CSS-variable backed parameters - use null to allow CSS variables as defaults
-        $bears_column_margin_x       = $params->get('bears_column_margin_x');
-        $bears_column_margin_y       = $params->get('bears_column_margin_y');
-        $bears_column_background             = $params->get('bears_column_background');
-        $bears_column_featured_background    = $params->get('bears_column_featured_background');
-        $bears_header_background             = $params->get('bears_header_background');
-        $bears_header_featured_background    = $params->get('bears_header_featured_background');
-        $bears_title_color           = $params->get('bears_title_color');
-        $bears_featured_title_color  = $params->get('bears_featured_title_color');
-        $bears_title_font_size       = $params->get('bears_title_font_size');
-        $bears_subtitle_font_size    = $params->get('bears_subtitle_font_size');
-        $bears_price_font_size       = $params->get('bears_price_font_size');
-        $bears_features_font_size    = $params->get('bears_features_font_size');
-        $bears_button_font_size      = $params->get('bears_button_font_size');
-        $bears_price_color           = $params->get('bears_price_color');
-        $bears_featured_price_color  = $params->get('bears_featured_price_color');
-        $bears_subtitle_color        = $params->get('bears_subtitle_color');
-        $bears_features_color        = $params->get('bears_features_color');
-        $bears_featured_features_color = $params->get('bears_featured_features_color');
-        $bears_border_color          = $params->get('bears_border_color');
-        $bears_featured_border_color = $params->get('bears_featured_border_color');
-        $bears_accent_color          = $params->get('bears_accent_color');
-        $bears_featured_accent_color = $params->get('bears_featured_accent_color');
-        $bears_button_text_color     = $params->get('bears_button_text_color');
-        $bears_button_background_color       = $params->get('bears_button_background_color');
-        $bears_button_hover_color    = $params->get('bears_button_hover_color');
+        $bears_column_margin_x            = $params->get('bears_column_margin_x');
+        $bears_column_margin_y            = $params->get('bears_column_margin_y');
+        $bears_column_background          = $params->get('bears_column_background');
+        $bears_column_featured_background = $params->get('bears_column_featured_background');
+        $bears_header_background          = $params->get('bears_header_background');
+        $bears_header_featured_background = $params->get('bears_header_featured_background');
+        $bears_title_color                = $params->get('bears_title_color');
+        $bears_featured_title_color       = $params->get('bears_featured_title_color');
+        $bears_title_font_size            = $params->get('bears_title_font_size');
+        $bears_subtitle_font_size         = $params->get('bears_subtitle_font_size');
+        $bears_price_font_size            = $params->get('bears_price_font_size');
+        $bears_features_font_size         = $params->get('bears_features_font_size');
+        $bears_button_font_size           = $params->get('bears_button_font_size');
+        $bears_price_color                = $params->get('bears_price_color');
+        $bears_featured_price_color       = $params->get('bears_featured_price_color');
+        $bears_subtitle_color             = $params->get('bears_subtitle_color');
+        $bears_features_color             = $params->get('bears_features_color');
+        $bears_featured_features_color    = $params->get('bears_featured_features_color');
+        $bears_border_color               = $params->get('bears_border_color');
+        $bears_featured_border_color      = $params->get('bears_featured_border_color');
+        $bears_accent_color               = $params->get('bears_accent_color');
+        $bears_featured_accent_color      = $params->get('bears_featured_accent_color');
+        $bears_button_text_color          = $params->get('bears_button_text_color');
+        $bears_button_background_color    = $params->get('bears_button_background_color');
+        $bears_button_hover_color         = $params->get('bears_button_hover_color');
 
         // Parameters with explicit defaults that might vary by template
         $bears_border_style          = $params->get('bears_border_style');
@@ -82,17 +82,19 @@ class ModBearsPricingTablesHelper
         $bears_use_google_font    = $params->get('bears_use_google_font');
 
         // Initialize arrays for column-specific parameters
-        $bears_title               = array();
-        $bears_price               = array();
-        $bears_subtitle            = array();
-        $bears_features            = array();
-        $bears_featured            = array();
-        $bears_buttontext          = array();
-        $bears_buttonurl           = array();
-        $bears_icon_class          = array();
-        $bears_icon_size           = array();
-        $bears_icon_position       = array();
-        $bears_icon_color          = array();
+        $bears_title         = array();
+        $bears_price         = array();
+        $bears_subtitle      = array();
+        $bears_features      = array();
+        $bears_featured      = array();
+        $bears_buttontext    = array();
+        $bears_buttonurl     = array();
+        $bears_header_icon_class    = array();
+        $bears_header_icon_size     = array();
+        $bears_header_icon_position = array();
+        $bears_header_icon_color    = array();
+        $bears_features_icon_class = array();
+        $bears_features_icon_color = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -102,17 +104,19 @@ class ModBearsPricingTablesHelper
         // Get parameters for each column
         for ($i = 1; $i <= $max_columns; $i++) {
             $title                   = $params->get('bears_title' . $i, '');
-            $bears_title[$i]               = $title;
-            $bears_price[$i]               = $params->get('bears_price' . $i, '');
-            $bears_subtitle[$i]            = $params->get('bears_subtitle' . $i, '');
-            $bears_features[$i]            = $params->get('bears_features' . $i, array());
-            $bears_featured[$i]            = $params->get('bears_column_featured' . $i, 'no');
-            $bears_buttontext[$i]          = $params->get('bears_buttontext' . $i, '');
-            $bears_buttonurl[$i]           = $params->get('bears_buttonurl' . $i, '');
-            $bears_icon_class[$i]          = $params->get('bears_icon_class' . $i, '');
-            $bears_icon_size[$i]           = $params->get('bears_icon_size' . $i, '');
-            $bears_icon_position[$i]       = $params->get('bears_icon_position' . $i);
-            $bears_icon_color[$i]          = $params->get('bears_icon_color' . $i, '');
+            $bears_title[$i]         = $title;
+            $bears_price[$i]         = $params->get('bears_price' . $i, '');
+            $bears_subtitle[$i]      = $params->get('bears_subtitle' . $i, '');
+            $bears_features[$i]      = $params->get('bears_features' . $i, array());
+            $bears_featured[$i]      = $params->get('bears_column_featured' . $i, 'no');
+            $bears_buttontext[$i]    = $params->get('bears_buttontext' . $i, '');
+            $bears_buttonurl[$i]     = $params->get('bears_buttonurl' . $i, '');
+            $bears_header_icon_class[$i]    = $params->get('bears_header_icon_class' . $i, '');
+            $bears_header_icon_size[$i]     = $params->get('bears_header_icon_size' . $i, '');
+            $bears_header_icon_position[$i] = $params->get('bears_header_icon_position' . $i);
+            $bears_header_icon_color[$i]    = $params->get('bears_header_icon_color' . $i, '');
+            $bears_features_icon_class[$i] = $params->get('bears_features_icon_class'.$i, '');
+            $bears_features_icon_color[$i] = $params->get('bears_features_icon_color'.$i, '');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -123,356 +127,333 @@ class ModBearsPricingTablesHelper
 
         return array(
             // Global parameters
-            'bears_template'              => $bears_template,
-            'bears_num_columns'           => $bears_num_columns,
-            'bears_column_margin_x'       => $bears_column_margin_x,
-            'bears_column_margin_y'       => $bears_column_margin_y,
-            'bears_column_background'             => $bears_column_background,
-            'bears_column_featured_background'    => $bears_column_featured_background,
-            'bears_header_background'             => $bears_header_background,
-            'bears_header_featured_background'    => $bears_header_featured_background,
-            'bears_title_color'           => $bears_title_color,
-            'bears_featured_title_color'  => $bears_featured_title_color,
-            'bears_title_font_size'       => $bears_title_font_size,
-            'bears_subtitle_font_size'    => $bears_subtitle_font_size,
-            'bears_price_font_size'       => $bears_price_font_size,
-            'bears_features_font_size'    => $bears_features_font_size,
-            'bears_button_font_size'      => $bears_button_font_size,
-            'bears_price_color'           => $bears_price_color,
-            'bears_featured_price_color'  => $bears_featured_price_color,
-            'bears_subtitle_color'        => $bears_subtitle_color,
-            'bears_features_color'        => $bears_features_color,
-            'bears_featured_features_color' => $bears_featured_features_color,
-            'bears_border_color'          => $bears_border_color,
-            'bears_border_style'          => $bears_border_style,
-            'bears_featured_border_color' => $bears_featured_border_color,
-            'bears_featured_border_style' => $bears_featured_border_style,
-            'bears_accent_color'          => $bears_accent_color,
-            'bears_featured_accent_color' => $bears_featured_accent_color,
-            'bears_button_text_color'     => $bears_button_text_color,
-            'bears_button_background_color'       => $bears_button_background_color,
-            'bears_button_hover_color'    => $bears_button_hover_color,
-            'bears_use_google_font'       => $bears_use_google_font,
+            'bears_template'                   => $bears_template,
+            'bears_num_columns'                => $bears_num_columns,
+            'bears_column_margin_x'            => $bears_column_margin_x,
+            'bears_column_margin_y'            => $bears_column_margin_y,
+            'bears_column_background'          => $bears_column_background,
+            'bears_column_featured_background' => $bears_column_featured_background,
+            'bears_header_background'          => $bears_header_background,
+            'bears_header_featured_background' => $bears_header_featured_background,
+            'bears_title_color'                => $bears_title_color,
+            'bears_featured_title_color'       => $bears_featured_title_color,
+            'bears_title_font_size'            => $bears_title_font_size,
+            'bears_subtitle_font_size'         => $bears_subtitle_font_size,
+            'bears_price_font_size'            => $bears_price_font_size,
+            'bears_features_font_size'         => $bears_features_font_size,
+            'bears_button_font_size'           => $bears_button_font_size,
+            'bears_price_color'                => $bears_price_color,
+            'bears_featured_price_color'       => $bears_featured_price_color,
+            'bears_subtitle_color'             => $bears_subtitle_color,
+            'bears_features_color'             => $bears_features_color,
+            'bears_featured_features_color'    => $bears_featured_features_color,
+            'bears_border_color'               => $bears_border_color,
+            'bears_border_style'               => $bears_border_style,
+            'bears_featured_border_color'      => $bears_featured_border_color,
+            'bears_featured_border_style'      => $bears_featured_border_style,
+            'bears_accent_color'               => $bears_accent_color,
+            'bears_featured_accent_color'      => $bears_featured_accent_color,
+            'bears_button_text_color'          => $bears_button_text_color,
+            'bears_button_background_color'    => $bears_button_background_color,
+            'bears_button_hover_color'         => $bears_button_hover_color,
+            'bears_use_google_font'            => $bears_use_google_font,
 
             // Font parameters
-            'bears_google_font_family'    => $bears_google_font_family,
-            'bears_font_weight'           => $bears_font_weight,
+            'bears_google_font_family'         => $bears_google_font_family,
+            'bears_font_weight'                => $bears_font_weight,
 
             // Column-specific parameters
-            'bears_title'                 => $bears_title,
-            'bears_price'                 => $bears_price,
-            'bears_subtitle'              => $bears_subtitle,
-            'bears_features'              => $bears_features,
-            'bears_featured'              => $bears_featured,
-            'bears_buttontext'            => $bears_buttontext,
-            'bears_buttonurl'             => $bears_buttonurl,
+            'bears_title'                      => $bears_title,
+            'bears_price'                      => $bears_price,
+            'bears_subtitle'                   => $bears_subtitle,
+            'bears_features'                   => $bears_features,
+            'bears_featured'                   => $bears_featured,
+            'bears_buttontext'                 => $bears_buttontext,
+            'bears_buttonurl'                  => $bears_buttonurl,
 
-            // Icon parameters
-            'iconClass'                   => $bears_icon_class,
-            'iconSize'                    => $bears_icon_size,
-            'iconPosition'                => $bears_icon_position,
-            'iconColor'                   => $bears_icon_color,
+            // Icon parameters - using header_ prefix for clarity
+            'header_icon_class'                 => $bears_header_icon_class,
+            'header_icon_size'                  => $bears_header_icon_size,
+            'header_icon_position'              => $bears_header_icon_position,
+            'header_icon_color'                 => $bears_header_icon_color,
+            'features_icon_class' => $bears_features_icon_class,
+            'features_icon_color' => $bears_features_icon_color,
 
             // Column reference array for template use
-            'column_ref'                  => $column_ref,
-            'columnnr'                    => $columnnr,
+            'column_ref'                       => $column_ref,
+            'columnnr'                         => $columnnr,
         );
     }
+
 
     /**
      * Load all module CSS files in the correct order
      *
      * @param   object  $params    The module parameters
-     * @param   int     $moduleId  The module ID for increased CSS specificity
+     * @param   int     $moduleId  The module ID for increased CSS specificity (required)
      *
      * @return  void
      * @since   2025.5.20
+     * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function loadModuleCSS($params, $moduleId = 0)
+    public static function loadModuleCSS($params, $moduleId)
     {
+        // Ensure we have a valid module ID
+        if (empty($moduleId)) {
+            throw new \InvalidArgumentException('Module ID is required for CSS specificity');
+        }
+
         // Get the document
         $document = Factory::getDocument();
 
-        // Get the WebAsset Manager
-        $wa = $document->getWebAssetManager();
+        // 1. First, load FontAwesome directly
+        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
 
-// First, handle FontAwesome loading (but not icons.css yet)
-        self::loadFontAwesome(false);  // Load FontAwesome only
+        // 2. Next, load icons.css with base styles
+        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $iconsCssPath, ['version' => 'auto']);
+        
+        // 3. Load the generic column-widths.css before any template-specific CSS
+        $columnCssPath = 'modules/mod_bears_pricing_tables/css/column-widths.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $columnCssPath, ['version' => 'auto']);
 
-// Next, load the template CSS file
+        // 4. Next, load the template CSS file (template-specific defaults)
         $template = self::getTemplateName($params);
-        $templateAssetId = 'mod_bears_pricing_tables.' . $template;
         $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $templateCssPath, ['version' => 'auto']);
 
-// Register the asset if it doesn't exist yet
-        if (!$wa->assetExists('style', $templateAssetId)) {
-            $wa->registerStyle($templateAssetId, $templateCssPath);
-        }
-
-// Use the asset
-        $wa->useStyle($templateAssetId);
-
-        // Add custom CSS variables as module-specific CSS
+        // 5. Finally, add our custom CSS variables with high specificity to override everything
         $css = self::generateCustomCSS($params, $moduleId);
         if (!empty($css)) {
             $document->addStyleDeclaration($css);
         }
     }
 
+
     /**
-     * Load the appropriate CSS file based on template selection
+     * Get the appropriate template file based on template selection
+     *
+     * @param   object  $params  The module parameters
+     *
+     * @return  string  The template file name without extension
+     * @since   2025.5.10
+     */
+    public static function getTemplateName($params)
+    {
+        // Get template selection with default fallback
+        $template = $params->get('bears_template', '1276');
+
+        // Get application
+        $app = Factory::getApplication();
+
+        // Check if the template file exists
+        $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
+
+        // If the template file doesn't exist, fall back to white.php
+        if (!file_exists($templateFile)) {
+            // Get application
+            $app = Factory::getApplication();
+            $app->enqueueMessage('Template "' . $template . '" not found, falling back to white.php', 'notice');
+
+            return 'white';
+        }
+
+        // Return the template value
+        return $template;
+    }
+
+    /**
+     * Generate custom CSS based on module parameters
      *
      * @param   object  $params    The module parameters
-     * @param   int     $moduleId  The module ID for increased CSS specificity
+     * @param   int     $moduleId  The module ID for instance-specific CSS (required)
      *
-     * @return  void
+     * @return  string  The custom CSS
      * @since   2025.5.10
-     * @deprecated  Use loadModuleCSS instead
+     * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function loadTemplateCSS($params, $moduleId = 0)
+    public static function generateCustomCSS($params, $moduleId)
     {
-        // Use the new combined loading function
-        self::loadModuleCSS($params, $moduleId);
-    }
+        // Ensure we have a valid module ID for specificity
+        if (empty($moduleId)) {
+            throw new \InvalidArgumentException('Module ID is required for CSS specificity');
+        }
 
-    /**
-     * Load FontAwesome with optional icons.css loading
-     *
-     * @param   bool  $includeIcons  Whether to include the module's icons.css file
-     * 
-     * @return  void
-     * @since   2025.5.18
-     */
-    public static function loadFontAwesome($includeIcons = true)
-    {
-        // Get the document
-        $document = Factory::getDocument();
+        // Start with a module-specific CSS variable container with high specificity
+        $css = '.bears_pricing_tables' . $moduleId . ' {';
 
-        // Directly add FontAwesome without lazy loading
-        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
+        // Add custom CSS variables
+        if ($params->get('bears_column_background')) {
+            $css .= '--bears-column-background: ' . $params->get('bears_column_background') . ';';
+        }
+        if ($params->get('bears_column_featured_background')) {
+            $css .= '--bears-column-featured-background: ' . $params->get('bears_column_featured_background') . ';';
+        }
+        if ($params->get('bears_header_background')) {
+            $css .= '--bears-header-background: ' . $params->get('bears_header_background') . ';';
+        }
+        if ($params->get('bears_header_featured_background')) {
+            $css .= '--bears-header-featured-background: ' . $params->get('bears_header_featured_background') . ';';
+        }
+        if ($params->get('bears_title_color')) {
+            $css .= '--bears-title-color: ' . $params->get('bears_title_color') . ';';
+        }
+        if ($params->get('bears_price_color')) {
+            $css .= '--bears-price-color: ' . $params->get('bears_price_color') . ';';
+        }
+        if ($params->get('bears_featured_price_color')) {
+            $css .= '--bears-featured-price-color: ' . $params->get('bears_featured_price_color') . ';';
+        }
+        if ($params->get('bears_subtitle_color')) {
+            $css .= '--bears-subtitle-color: ' . $params->get('bears_subtitle_color') . ';';
+        }
+        if ($params->get('bears_features_color')) {
+            $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
+        }
+        if ($params->get('bears_featured_features_color')) {
+            $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
+        }
+        if ($params->get('bears_border_color')) {
+            $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
+        }
+        if ($params->get('bears_border_style')) {
+            $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ';';
+        }
+        if ($params->get('bears_featured_border_color')) {
+            $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
+        }
+        if ($params->get('bears_featured_border_style')) {
+            $css .= '--bears-featured-border-style: ' . $params->get('bears_featured_border_style') . ';';
+        }
+        if ($params->get('bears_accent_color')) {
+            $css .= '--bears-accent-color: ' . $params->get('bears_accent_color') . ';';
+        }
+        if ($params->get('bears_featured_accent_color')) {
+            $css .= '--bears-featured-accent-color: ' . $params->get('bears_featured_accent_color') . ';';
+        }
+        if ($params->get('bears_button_text_color')) {
+            $css .= '--bears-button-text-color: ' . $params->get('bears_button_text_color') . ';';
+        }
+        if ($params->get('bears_button_background_color')) {
+            $css .= '--bears-button-background-color: ' . $params->get('bears_button_background_color') . ';';
+        }
+        if ($params->get('bears_button_hover_color')) {
+            $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
+        }
 
-        // Include icons.css if requested
-        if ($includeIcons) {
-            // Get the WebAsset Manager
-            $wa = $document->getWebAssetManager();
+        // Additional CSS variables
+        if ($params->get('bears_box_shadow')) {
+            $css .= '--bears-box-shadow: ' . $params->get('bears_box_shadow') . ';';
+        }
 
-            // Register and use the icons CSS file
-            $iconsAssetId = 'mod_bears_pricing_tables.icons';
-            $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
-
-            // Register the asset if it doesn't exist yet
-            if (!$wa->assetExists('style', $iconsAssetId)) {
-                $wa->registerStyle($iconsAssetId, $iconsCssPath);
+        // Add 'px' to size-related fields if they don't already have a unit
+        if ($params->get('bears_border_radius')) {
+            $borderRadius = $params->get('bears_border_radius');
+            if (!preg_match('/[a-z%]$/i', $borderRadius)) {
+                $borderRadius .= 'px';
             }
-
-            // Use the asset
-            $wa->useStyle($iconsAssetId);
+            $css .= '--bears-border-radius: ' . $borderRadius . ';';
         }
-    }
 
-    /**
-     * Load only FontAwesome (not icons.css)
-     * 
-     * @return  void
-     * @since   2025.5.18
-     * @deprecated  Use loadFontAwesome(false) instead
-     */
-    public static function loadFontAwesomeOnly()
-    {
-        self::loadFontAwesome(false);
-    }
-
-   /**
- * Generate custom CSS based on module parameters
- *
- * @param   object  $params    The module parameters
- * @param   int     $moduleId  The module ID for instance-specific CSS
- *
- * @return  string  The custom CSS
- * @since   2025.5.10
- */
-public static function generateCustomCSS($params, $moduleId = 0)
-{
-    // Ensure we have a valid module ID for specificity
-    if (empty($moduleId)) {
-        $moduleId = mt_rand(1000, 9999);
-    }
-
-    // Start with a module-specific CSS variable container
-    $css = '.bears_pricing_tables' . $moduleId . ' {';
-
-    // Add custom CSS variables
-    if ($params->get('bears_column_background')) {
-        $css .= '--bears-column-background: ' . $params->get('bears_column_background') . ';';
-    }
-    if ($params->get('bears_column_featured_background')) {
-        $css .= '--bears-column-featured-background: ' . $params->get('bears_column_featured_background') . ';';
-    }
-    if ($params->get('bears_header_background')) {
-        $css .= '--bears-header-background: ' . $params->get('bears_header_background') . ';';
-    }
-    if ($params->get('bears_header_featured_background')) {
-        $css .= '--bears-header-featured-background: ' . $params->get('bears_header_featured_background') . ';';
-    }
-    if ($params->get('bears_title_color')) {
-        $css .= '--bears-title-color: ' . $params->get('bears_title_color') . ';';
-    }
-    if ($params->get('bears_price_color')) {
-        $css .= '--bears-price-color: ' . $params->get('bears_price_color') . ';';
-    }
-    if ($params->get('bears_featured_price_color')) {
-        $css .= '--bears-featured-price-color: ' . $params->get('bears_featured_price_color') . ';';
-    }
-    if ($params->get('bears_subtitle_color')) {
-        $css .= '--bears-subtitle-color: ' . $params->get('bears_subtitle_color') . ';';
-    }
-    if ($params->get('bears_features_color')) {
-        $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
-    }
-    if ($params->get('bears_featured_features_color')) {
-        $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
-    }
-    if ($params->get('bears_border_color')) {
-        $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
-    }
-    if ($params->get('bears_border_style')) {
-        $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ';';
-    }
-    if ($params->get('bears_featured_border_color')) {
-        $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
-    }
-    if ($params->get('bears_featured_border_style')) {
-        $css .= '--bears-featured-border-style: ' . $params->get('bears_featured_border_style') . ';';
-    }
-    if ($params->get('bears_accent_color')) {
-        $css .= '--bears-accent-color: ' . $params->get('bears_accent_color') . ';';
-    }
-    if ($params->get('bears_featured_accent_color')) {
-        $css .= '--bears-featured-accent-color: ' . $params->get('bears_featured_accent_color') . ';';
-    }
-    if ($params->get('bears_button_text_color')) {
-        $css .= '--bears-button-text-color: ' . $params->get('bears_button_text_color') . ';';
-    }
-    if ($params->get('bears_button_background_color')) {
-        $css .= '--bears-button-background-color: ' . $params->get('bears_button_background_color') . ';';
-    }
-    if ($params->get('bears_button_hover_color')) {
-        $css .= '--bears-button-hover-color: ' . $params->get('bears_button_hover_color') . ';';
-    }
-
-    // Additional CSS variables
-    if ($params->get('bears_box_shadow')) {
-        $css .= '--bears-box-shadow: ' . $params->get('bears_box_shadow') . ';';
-    }
-
-    // Add 'px' to size-related fields if they don't already have a unit
-    if ($params->get('bears_border_radius')) {
-        $borderRadius = $params->get('bears_border_radius');
-        if (!preg_match('/[a-z%]$/i', $borderRadius)) {
-            $borderRadius .= 'px';
+        if ($params->get('bears_border_width')) {
+            $borderWidth = $params->get('bears_border_width');
+            if (!preg_match('/[a-z%]$/i', $borderWidth)) {
+                $borderWidth .= 'px';
+            }
+            $css .= '--bears-border-width: ' . $borderWidth . ';';
         }
-        $css .= '--bears-border-radius: ' . $borderRadius . ';';
-    }
 
-    if ($params->get('bears_border_width')) {
-        $borderWidth = $params->get('bears_border_width');
-        if (!preg_match('/[a-z%]$/i', $borderWidth)) {
-            $borderWidth .= 'px';
+        if ($params->get('bears_transition_speed')) {
+            $transitionSpeed = $params->get('bears_transition_speed');
+            if (!preg_match('/[a-z]$/i', $transitionSpeed)) {
+                $transitionSpeed .= 's';
+            }
+            $css .= '--bears-transition-speed: ' . $transitionSpeed . ';';
         }
-        $css .= '--bears-border-width: ' . $borderWidth . ';';
-    }
 
-    if ($params->get('bears_transition_speed')) {
-        $transitionSpeed = $params->get('bears_transition_speed');
-        if (!preg_match('/[a-z]$/i', $transitionSpeed)) {
-            $transitionSpeed .= 's';
+        // Column-specific icon colors
+        for ($i = 1; $i <= 5; $i++) {
+            $iconColor = $params->get('bears_header_icon_color' . $i);
+            if (!empty($iconColor)) {
+                $css .= '--bears-header-icon-color-' . $i . ': ' . $iconColor . ';';
+            }
         }
-        $css .= '--bears-transition-speed: ' . $transitionSpeed . ';';
-    }
 
-    // Column-specific icon colors
-    for ($i = 1; $i <= 5; $i++) {
-        $iconColor = $params->get('bears_icon_color' . $i);
-        if (!empty($iconColor)) {
-            $css .= '--bears-icon-color-' . $i . ': ' . $iconColor . ';';
+        // Font sizes - add 'px' if not already present
+        if ($params->get('bears_title_font_size')) {
+            $titleFontSize = $params->get('bears_title_font_size');
+            if (!preg_match('/[a-z%]$/i', $titleFontSize)) {
+                $titleFontSize .= 'px';
+            }
+            $css .= '--bears-title-font-size: ' . $titleFontSize . ';';
         }
-    }
 
-    // Font sizes - add 'px' if not already present
-    if ($params->get('bears_title_font_size')) {
-        $titleFontSize = $params->get('bears_title_font_size');
-        if (!preg_match('/[a-z%]$/i', $titleFontSize)) {
-            $titleFontSize .= 'px';
+        if ($params->get('bears_subtitle_font_size')) {
+            $subtitleFontSize = $params->get('bears_subtitle_font_size');
+            if (!preg_match('/[a-z%]$/i', $subtitleFontSize)) {
+                $subtitleFontSize .= 'px';
+            }
+            $css .= '--bears-subtitle-font-size: ' . $subtitleFontSize . ';';
         }
-        $css .= '--bears-title-font-size: ' . $titleFontSize . ';';
-    }
 
-    if ($params->get('bears_subtitle_font_size')) {
-        $subtitleFontSize = $params->get('bears_subtitle_font_size');
-        if (!preg_match('/[a-z%]$/i', $subtitleFontSize)) {
-            $subtitleFontSize .= 'px';
+        if ($params->get('bears_price_font_size')) {
+            $priceFontSize = $params->get('bears_price_font_size');
+            if (!preg_match('/[a-z%]$/i', $priceFontSize)) {
+                $priceFontSize .= 'px';
+            }
+            $css .= '--bears-price-font-size: ' . $priceFontSize . ';';
         }
-        $css .= '--bears-subtitle-font-size: ' . $subtitleFontSize . ';';
-    }
 
-    if ($params->get('bears_price_font_size')) {
-        $priceFontSize = $params->get('bears_price_font_size');
-        if (!preg_match('/[a-z%]$/i', $priceFontSize)) {
-            $priceFontSize .= 'px';
+        if ($params->get('bears_features_font_size')) {
+            $featuresFontSize = $params->get('bears_features_font_size');
+            if (!preg_match('/[a-z%]$/i', $featuresFontSize)) {
+                $featuresFontSize .= 'px';
+            }
+            $css .= '--bears-features-font-size: ' . $featuresFontSize . ';';
         }
-        $css .= '--bears-price-font-size: ' . $priceFontSize . ';';
-    }
 
-    if ($params->get('bears_features_font_size')) {
-        $featuresFontSize = $params->get('bears_features_font_size');
-        if (!preg_match('/[a-z%]$/i', $featuresFontSize)) {
-            $featuresFontSize .= 'px';
+        if ($params->get('bears_button_font_size')) {
+            $buttonFontSize = $params->get('bears_button_font_size');
+            if (!preg_match('/[a-z%]$/i', $buttonFontSize)) {
+                $buttonFontSize .= 'px';
+            }
+            $css .= '--bears-button-font-size: ' . $buttonFontSize . ';';
         }
-        $css .= '--bears-features-font-size: ' . $featuresFontSize . ';';
-    }
 
-    if ($params->get('bears_button_font_size')) {
-        $buttonFontSize = $params->get('bears_button_font_size');
-        if (!preg_match('/[a-z%]$/i', $buttonFontSize)) {
-            $buttonFontSize .= 'px';
+        // Margins - add 'px' if not already present
+        if ($params->get('bears_column_margin_x')) {
+            $columnMarginX = $params->get('bears_column_margin_x');
+            if (!preg_match('/[a-z%]$/i', $columnMarginX)) {
+                $columnMarginX .= 'px';
+            }
+            $css .= '--bears-column-margin-x: ' . $columnMarginX . ';';
         }
-        $css .= '--bears-button-font-size: ' . $buttonFontSize . ';';
-    }
 
-    // Margins - add 'px' if not already present
-    if ($params->get('bears_column_margin_x')) {
-        $columnMarginX = $params->get('bears_column_margin_x');
-        if (!preg_match('/[a-z%]$/i', $columnMarginX)) {
-            $columnMarginX .= 'px';
+        if ($params->get('bears_column_margin_y')) {
+            $columnMarginY = $params->get('bears_column_margin_y');
+            if (!preg_match('/[a-z%]$/i', $columnMarginY)) {
+                $columnMarginY .= 'px';
+            }
+            $css .= '--bears-column-margin-y: ' . $columnMarginY . ';';
         }
-        $css .= '--bears-column-margin-x: ' . $columnMarginX . ';';
-    }
 
-    if ($params->get('bears_column_margin_y')) {
-        $columnMarginY = $params->get('bears_column_margin_y');
-        if (!preg_match('/[a-z%]$/i', $columnMarginY)) {
-            $columnMarginY .= 'px';
+        $css .= '}';
+
+        // Add Google Font if specified - still use module-specific selector
+        if ($params->get('bears_use_google_font', '0') == '1' && $params->get('bears_google_font_family')) {
+            $fontFamily = $params->get('bears_google_font_family', 'Raleway');
+            $fontWeight = $params->get('bears_font_weight', '400');
+
+            // Add Google Font import
+            $css = '@import url("https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . ':wght@' . $fontWeight . '&display=swap");' . "\n" . $css;
+
+            // Apply font family to the pricing tables with module ID for specificity
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { font-family: "' . $fontFamily . '", sans-serif; font-weight: ' . $fontWeight . '; }';
         }
-        $css .= '--bears-column-margin-y: ' . $columnMarginY . ';';
-    }
 
-    $css .= '}';
-
-    // Add Google Font if specified - still use module-specific selector
-    if ($params->get('bears_use_google_font', '0') == '1' && $params->get('bears_google_font_family')) {
-        $fontFamily = $params->get('bears_google_font_family', 'Raleway');
-        $fontWeight = $params->get('bears_font_weight', '400');
-
-        // Add Google Font import
-        $css = '@import url("https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . ':wght@' . $fontWeight . '&display=swap");' . "\n" . $css;
-
-        // Apply font family to the pricing tables with module ID for specificity
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { font-family: "' . $fontFamily . '", sans-serif; font-weight: ' . $fontWeight . '; }';
-    }
-
-    // Add all component-specific CSS rules with module ID for specificity
-    $css .= '
-    /* Base styles for module '.$moduleId.' */
+        // Add all component-specific CSS rules with module ID for specificity
+        $css .= '
+    /* Base styles for module ' . $moduleId . ' */
     .bears_pricing_tables' . $moduleId . ' .bears_pricing_tables {
         padding: var(--bears-column-margin-y) var(--bears-column-margin-x);
     }
@@ -571,263 +552,136 @@ public static function generateCustomCSS($params, $moduleId = 0)
         overflow: hidden; 
     }';
 
-    // Add column-specific icon sizes and colors with module-specific selectors
-    for ($i = 1; $i <= 5; $i++) {
-        $iconSize = $params->get('bears_icon_size' . $i);
-        $iconClass = $params->get('bears_icon_class' . $i);
+        // Add column-specific icon sizes and colors with module-specific selectors
+        for ($i = 1; $i <= 5; $i++) {
+            $iconSize  = $params->get('bears_header_icon_size' . $i);
+            $iconColor = $params->get('bears_header_icon_color' . $i);
 
-        if (!empty($iconSize)) {
-            // Add 'px' to the size if it doesn't already have a unit
-            if (!preg_match('/[a-z%]$/i', $iconSize)) {
-                $iconSize .= 'px';
-            }
-
-            if (!empty($iconClass)) {
-                // Extract the base class (fa, fas, far, fab) and the specific icon name
-                $classes = explode(' ', trim($iconClass));
-                $baseClass = $classes[0]; // e.g., 'fas'
-
-                // Apply the size to the specific icon within this column - with module ID for specificity
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' i.' . $baseClass . ' { font-size: ' . $iconSize . '; }';
-            } else {
-                // Fallback: if icon size is specified but no specific class, apply to all icons in the column
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' i, ' .
-                    '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .fa, ' .
-                    '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .fas, ' .
-                    '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .far, ' .
-                    '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .fab { font-size: ' . $iconSize . '; }';
-            }
-        }
-    }
-
-    // Icon-specific CSS variables with module-specific selectors
-    for ($i = 1; $i <= 5; $i++) {
-        if (!empty($params->get('bears_icon_color' . $i))) {
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-icon-color-' . $i . ': ' . $params->get('bears_icon_color' . $i) . '; }';
-        }
-        if (!empty($params->get('bears_icon_size' . $i))) {
-            $iconSize = $params->get('bears_icon_size' . $i);
-            if (!preg_match('/[a-z%]$/i', $iconSize)) {
-                $iconSize .= 'px';
-            }
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-icon-size-' . $i . ': ' . $iconSize . '; }';
-        }
-    }
-
-    // Add global icon variables with module-specific selectors
-    if (!empty($params->get('bears_icon_color'))) {
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-color: ' . $params->get('bears_icon_color') . '; }';
-    }
-    if (!empty($params->get('bears_icon_size'))) {
-        $iconSize = $params->get('bears_icon_size');
-        if (!preg_match('/[a-z%]$/i', $iconSize)) {
-            $iconSize .= 'px';
-        }
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-icon-size: ' . $iconSize . '; }';
-    }
-
-    // Get template name for column width CSS
-    $template = self::getTemplateName($params);
-    $bears_num_columns = (int)$params->get('bears_num_columns', 3);
-    
-    // Explicitly add the column width CSS
-    $columnWidthCSS = self::getColumnWidthCSS($moduleId, $template, $bears_num_columns);
-    $css .= "\n\n" . $columnWidthCSS;
-
-    // Add accent triangle if accent colors are specified
-    if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' header:after { border-color: ' . $params->get('bears_accent_color') . ' transparent transparent transparent; }';
-    }
-    if ($params->get('bears_featured_accent_color') !== null && $params->get('bears_featured_accent_color') !== '') {
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan.featured header:after { border-color: ' . $params->get('bears_featured_accent_color') . ' transparent transparent transparent; }';
-    }
-
-    return $css;
-}
-
-    /**
-     * Get the appropriate template file based on template selection
-     *
-     * @param   object  $params  The module parameters
-     *
-     * @return  string  The template file name without extension
-     * @since   2025.5.10
-     */
-    public static function getTemplateName($params)
-    {
-        // Get template selection with default fallback
-        $template = $params->get('bears_template', '1276');
-
-        // Get application
-        $app = Factory::getApplication();
-
-        // Check if the template file exists
-        $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
-
-        // If the template file doesn't exist, fall back to white.php
-        if (!file_exists($templateFile)) {
-            // Get application
-            $app = Factory::getApplication();
-            $app->enqueueMessage('Template "' . $template . '" not found, falling back to white.php', 'notice');
-
-            return 'white';
-        }
-
-        // Return the template value
-        return $template;
-    }
-
-    /**
-     * Method to generate CSS for the module - DEPRECATED, use generateCustomCSS instead
-     * Kept for backward compatibility
-     *
-     * @param   \Joomla\Registry\Registry  $params  Module parameters
-     *
-     * @return  string                     CSS code
-     * @since   2025.5.18
-     * @deprecated
-     */
-    public static function getCSS($params)
-    {
-        return self::generateCustomCSS($params);
-    }
-
-    /**
-     * Process icon positions to split into horizontal and vertical components
-     *
-     * @param   array  $iconPositions  Array of icon positions
-     *
-     * @return  array   Array containing horizontal and vertical position arrays
-     * @since   2025.5.18
-     */
-    public static function processIconPositions($iconPositions)
-    {
-        $iconHorz = array();
-        $iconVert = array();
-
-        foreach ($iconPositions as $i => $position) {
-            if (!empty($position)) {
-                // Handle special cases like 'price-left' and 'price-right'
-                if ($position === 'price-left' || $position === 'price-right') {
-                    $iconVert[$i] = 'price';
-                    $iconHorz[$i] = str_replace('price-', '', $position);
-                } else {
-                    $positionParts = explode('-', $position);
-                    // First part is vertical (top, center, bottom)
-                    $iconVert[$i] = isset($positionParts[0]) ? $positionParts[0] : 'center';
-                    // Second part is horizontal (left, center, right)
-                    $iconHorz[$i] = isset($positionParts[1]) ? $positionParts[1] : 'center';
+            // Set CSS variables for each column
+            if (!empty($iconSize)) {
+                if (!preg_match('/[a-z%]$/i', $iconSize)) {
+                    $iconSize .= 'px';
                 }
-            } else {
-                $iconVert[$i] = 'center';
-                $iconHorz[$i] = 'center';
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-size-' . $i . ': ' . $iconSize . '; }';
+            }
+            
+            if (!empty($iconColor)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-color-' . $i . ': ' . $iconColor . '; }';
+            }
+            
+            // Apply styles directly to plan-icon elements
+            if (!empty($iconSize) || !empty($iconColor)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .plan-icon {';
+                if (!empty($iconSize)) {
+                    $css .= ' font-size: ' . $iconSize . ' !important;';
+                }
+                if (!empty($iconColor)) {
+                    $css .= ' color: ' . $iconColor . ' !important;';
+                }
+                $css .= ' }';
+                
+                // Also apply to the i element inside for better specificity
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .plan-icon i {';
+                if (!empty($iconSize)) {
+                    $css .= ' font-size: inherit !important;';
+                }
+                if (!empty($iconColor)) {
+                    $css .= ' color: inherit !important;';
+                }
+                $css .= ' }';
             }
         }
 
-        return array(
-            'horizontal' => $iconHorz,
-            'vertical'   => $iconVert
-        );
+        // Add global icon variables with module-specific selectors
+        if (!empty($params->get('bears_header_icon_color'))) {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-color: ' . $params->get('bears_header_icon_color') . '; }';
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon { color: ' . $params->get('bears_header_icon_color') . ' !important; }';
+        }
+        if (!empty($params->get('bears_header_icon_size'))) {
+            $iconSize = $params->get('bears_header_icon_size');
+            if (!preg_match('/[a-z%]$/i', $iconSize)) {
+                $iconSize .= 'px';
+            }
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-size: ' . $iconSize . '; }';
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon { font-size: ' . $iconSize . ' !important; }';
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon i { font-size: inherit !important; }';
+        }
+
+        // Module-specific column count attribute
+        $bears_num_columns = (int)$params->get('bears_num_columns', 3);
+        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables-container { data-columns: "' . $bears_num_columns . '"; }';
+
+        // Add accent triangle if accent colors are specified
+        if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' header:after { border-color: ' . $params->get('bears_accent_color') . ' transparent transparent transparent; }';
+        }
+        if ($params->get('bears_featured_accent_color') !== null && $params->get('bears_featured_accent_color') !== '') {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan.featured header:after { border-color: ' . $params->get(
+                    'bears_featured_accent_color'
+                ) . ' transparent transparent transparent; }';
+        }
+
+        return $css;
     }
 
     /**
-     * Helper function to format icon class correctly for FontAwesome 5/6
+     * Generate CSS for column widths based on number of columns
      *
-     * @param   string  $iconClass  The icon class to format
+     * @param   int     $moduleId    The module ID for specificity
+     * @param   string  $template    The template name
+     * @param   int     $numColumns  The number of columns
      *
-     * @return  string  Properly formatted icon class
-     * @since   2025.5.20
+     * @return  string  The column width CSS
+     * @since   2025.5.22
+     * @deprecated  Use column-widths.css file instead
+     */
+    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
+    {
+        // This method is deprecated as we now use a dedicated CSS file
+        // Return empty string as we're now using column-widths.css
+        return '';
+    }
+
+    /**
+     * Load only FontAwesome CSS
+     *
+     * @return  void
+     * @since   2025.5.18
+     * @deprecated  Will be removed in a future version
+     */
+    public static function loadFontAwesomeOnly()
+    {
+        // Get the document
+        $document = Factory::getDocument();
+        
+        // Directly add FontAwesome
+        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
+    }
+
+    /**
+     * Format icon class to ensure it includes the proper Font Awesome prefix
+     *
+     * @param   string  $iconClass  The icon class string
+     *
+     * @return  string  The formatted icon class
+     * @since   2025.5.24
      */
     public static function formatIconClass($iconClass)
     {
         if (empty($iconClass)) {
             return '';
         }
-
-        // If class already has fa/fas/far/fab prefix with space, return as is
-        if (preg_match('/^(fa|fas|far|fab|fa-solid|fa-regular|fa-brands)\s+/', $iconClass)) {
+        
+        // If it already has a Font Awesome prefix, return as is
+        if (preg_match('/^(fa[srb]?|fab?)\s/', $iconClass)) {
             return $iconClass;
         }
-
-        // If class starts with fa- but doesn't have a prefix, add fas
-        if (strpos($iconClass, 'fa-') === 0) {
-            return 'fas ' . $iconClass;
-        }
-
-        // Default case: add fa- prefix and fas class
-        return 'fas fa-' . $iconClass;
-    }
-
-    /**
-     * Generate CSS for column widths based on number of columns
-     * 
-     * @param   int     $moduleId   The module ID for specificity
-     * @param   string  $template   The template name
-     * @param   int     $numColumns The number of columns
-     * 
-     * @return  string  The column width CSS
-     * @since   2025.5.22
-     */
-    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
-    {
-        // Start the CSS block
-        $css = "/* Column width settings for module {$moduleId} */\n";
         
-        // Define width percentages based on column count
-        $widths = [
-            1 => '100%',
-            2 => 'calc(50% - var(--bears-column-margin-x) * 2)',
-            3 => 'calc(33.333% - var(--bears-column-margin-x) * 2)',
-            4 => 'calc(25% - var(--bears-column-margin-x) * 2)',
-            5 => 'calc(20% - var(--bears-column-margin-x) * 2)',
-        ];
-        
-        // Generate CSS for each column count (1-5)
-        foreach ($widths as $cols => $width) {
-            // Module-specific selector (primary approach)
-            $css .= ".bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
-            $css .= "  flex: 1 1 {$width};\n";
-            $css .= "}\n\n";
-            
-            // Template-specific selectors for older templates that might not have the moduleId class
-            $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
-            foreach ($templates as $tmpl) {
-                $css .= ".{$tmpl} .bears_pricing_tables-container[data-columns=\"{$cols}\"] .bears_pricing_tables {\n";
-                $css .= "  flex: 1 1 {$width};\n";
-                $css .= "}\n\n";
-            }
+        // If it's just the icon name (e.g., "home"), add "fas" prefix
+        if (!strpos($iconClass, ' ')) {
+            return 'fas fa-' . $iconClass;
         }
         
-        // Add tablet-specific responsive styles (2 columns)
-        $css .= "@media (max-width: 992px) and (min-width: 769px) {\n";
-        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
-        $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
-        $css .= "  }\n";
-        
-        // Add for template-specific classes too
-        $templates = ['template-red', 'template-white', 'template-1214', 'template-1276', 'template-1517'];
-        foreach ($templates as $tmpl) {
-            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables {\n";
-            $css .= "    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2) !important;\n";
-            $css .= "  }\n";
-        }
-        $css .= "}\n\n";
-        
-        // Add mobile-specific responsive styles (1 column)
-        $css .= "@media (max-width: 768px) {\n";
-        $css .= "  .bears_pricing_tables{$moduleId} .bears_pricing_tables-container[data-columns] .bears_pricing_tables,\n";
-        
-        // Add template-specific selectors with proper comma separation
-        foreach ($templates as $index => $tmpl) {
-            $css .= "  .{$tmpl} .bears_pricing_tables-container[data-columns] .bears_pricing_tables" . 
-                    ($index < count($templates) - 1 ? ",\n" : " {\n");
-        }
-        $css .= "    flex: 1 1 100% !important;\n";
-        $css .= "    margin-left: var(--bears-column-margin-x);\n";
-        $css .= "    margin-right: var(--bears-column-margin-x);\n";
-        $css .= "  }\n";
-        $css .= "}\n";
-        
-        return $css;
+        return $iconClass;
     }
 }

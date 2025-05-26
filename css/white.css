@@ -64,8 +64,8 @@
   --bears-border-style: solid;
   
   /* Icon settings */
-  --bears-icon-color: #333333;
-  --bears-icon-size: 24px;
+  --bears-header-icon-color: #333333;
+  --bears-header-icon-size: 24px;
   }
 
 /* Base container styles */
@@ -270,16 +270,6 @@
   display: none;
   }
 
-.template-white .bears_pricing_tables .plan-features i {
-  margin-right: 8px;
-  opacity: 0.6;
-  color: var(--bears-icon-color);
-  }
-
-.template-white .bears_pricing_tables .plan.featured .plan-features i {
-  color: var(--bears-subtitle-color);
-  }
-
 .template-white .bears_pricing_tables .plan-select {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -331,27 +321,6 @@
   padding: 30px 20px;
   }
 
-/* Column width settings - Using improved flex approach */
-.template-white .bears_pricing_tables-container[data-columns="1"] .bears_pricing_tables {
-  flex: 1 1 100%;
-  }
-
-.template-white .bears_pricing_tables-container[data-columns="2"] .bears_pricing_tables {
-  flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2);
-  }
-
-.template-white .bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables {
-  flex: 1 1 calc(33.333% - var(--bears-column-margin-x) * 2);
-  }
-
-.template-white .bears_pricing_tables-container[data-columns="4"] .bears_pricing_tables {
-  flex: 1 1 calc(25% - var(--bears-column-margin-x) * 2);
-  }
-
-.template-white .bears_pricing_tables-container[data-columns="5"] .bears_pricing_tables {
-  flex: 1 1 calc(20% - var(--bears-column-margin-x) * 2);
-  }
-
 /* Add padding to the bottom of the container to account for the featured scaling */
 .template-white .bears_pricing_tables-container::after {
   content: '';
@@ -359,14 +328,6 @@
   width: 100%;
   height: 30px;
   clear: both;
-  }
-
-/* Add a mid-size breakpoint for better transitions */
-@media only screen and (max-width: 991px) {
-  .template-white .bears_pricing_tables-container[data-columns="4"] .bears_pricing_tables,
-  .template-white .bears_pricing_tables-container[data-columns="5"] .bears_pricing_tables {
-    flex: 1 1 calc(50% - var(--bears-column-margin-x) * 2);
-    }
   }
 
 /* Mobile Media Query - The key fix */
