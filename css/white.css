@@ -41,6 +41,8 @@
 	/* Border Colors */
 	--bears-border-color: #e0e0e0;
 	--bears-featured-border-color: #000000;
+	--bears-features-border-color: none;
+	--bears-features-featured_border-color: none;
 	
 	/* Accent Colors */
 	--bears-accent-color: #333333;
@@ -63,8 +65,7 @@
 	--bears-border-radius: 8px;
 	--bears-border-width: 1px;
 	--bears-border-style: solid;
-	--bears-features-border-color: none;
-	--bears-features-featured_border-color: none;
+	--bears-header-border: 1px solid rgba(0,0,0,.15);
 	
 	/* Icon settings */
 	--bears-header-icon-color: inherit;

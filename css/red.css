@@ -64,6 +64,7 @@
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
   --bears-border-style: solid;
+  --bears-header-border: 1px solid rgba(0,0,0,.15);
   
   /* Icon settings */
   --bears-header-icon-color: inherit;

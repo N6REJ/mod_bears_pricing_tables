@@ -42,7 +42,8 @@
   /* Border Colors */
   --bears-border-color: transparent;
   --bears-featured-border-color: #156dab;
-  
+  --bears-features-border-color: none;
+  --bears-features-featured-border-color: none;
   /* Accent Colors */
   --bears-accent-color: #ffffff;
   --bears-featured-accent-color: #ffffff;
@@ -64,8 +65,7 @@
   --bears-border-radius: 8px;
   --bears-border-width: 0;
   --bears-border-style: solid;
-  --bears-features-border-color: none;
-  --bears-features-featured-border-color: none;
+  --bears-header-border: 1px solid rgba(0,0,0,.15);
   
   /* Icon settings */
   --bears-header-icon-color: inherit;

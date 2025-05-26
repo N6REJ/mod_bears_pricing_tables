@@ -39,7 +39,7 @@
   --bears-border-color: rgba(0, 0, 0, 0.1);
   --bears-featured-border-color: transparent;
   --bears-features-border-color: none;
-  --bears-features-featured-border-color: none;
+  --bears-features-featured_border-color: none;
   
   /* Accent Colors */
   --bears-accent-color: #222f3d;
@@ -62,6 +62,8 @@
   --bears-border-radius: 0px;
   --bears-border-width: 1px;
   --bears-border-style: solid;
+  --bears-header-border: 1px solid rgba(0,0,0,.15);
+
   
   /* Icon settings */
   --bears-header-icon-color: inherit;
@@ -158,6 +160,7 @@
   padding: 30px 0px 20px;
   margin-top: 10px;
   margin-bottom: 0; /* Added margin-bottom property */
+  border: var(--bears-header-border);
   }
 
 /* Title styling */
