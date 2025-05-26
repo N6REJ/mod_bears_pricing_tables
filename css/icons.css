@@ -281,3 +281,14 @@
 .bears_pricing_tables .plan-features.centered-features .fa-ul {
 	margin-left: 0;
 }
+
+/* Fix for feature icons consistency across all templates */
+.bears_pricing_tables .plan-features .fa-li i {
+	vertical-align: middle;
+	font-size: 1em !important; /* Force consistent size */
+	min-width: 1em;
+	min-height: 1em;
+	display: inline-block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+}
