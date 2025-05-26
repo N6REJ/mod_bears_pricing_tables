@@ -209,7 +209,7 @@ class ModBearsPricingTablesHelper
         // 1. First, load FontAwesome directly
         $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
 
-        // 2. Next, load icons.css with base styles
+        // 2. Next, load icons.css with base styles FIRST
         $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
         $document->addStyleSheet(Uri::root(true) . '/' . $iconsCssPath, ['version' => 'auto']);
         
@@ -371,11 +371,25 @@ class ModBearsPricingTablesHelper
             $css .= '--bears-transition-speed: ' . $transitionSpeed . ';';
         }
 
-        // Column-specific icon colors
+        // Column-specific icon colors and sizes
         for ($i = 1; $i <= 5; $i++) {
-            $iconColor = $params->get('bears_header_icon_color' . $i);
-            if (!empty($iconColor)) {
-                $css .= '--bears-header-icon-color-' . $i . ': ' . $iconColor . ';';
+            $headerIconColor = $params->get('bears_header_icon_color' . $i);
+            $headerIconSize = $params->get('bears_header_icon_size' . $i);
+            $featuresIconColor = $params->get('bears_features_icon_color' . $i);
+            
+            if (!empty($headerIconColor)) {
+                $css .= '--bears-header-icon-color-' . $i . ': ' . $headerIconColor . ';';
+            }
+            
+            if (!empty($headerIconSize)) {
+                if (!preg_match('/[a-z%]$/i', $headerIconSize)) {
+                    $headerIconSize .= 'px';
+                }
+                $css .= '--bears-header-icon-size-' . $i . ': ' . $headerIconSize . ';';
+            }
+            
+            if (!empty($featuresIconColor)) {
+                $css .= '--bears-features-icon-color-' . $i . ': ' . $featuresIconColor . ';';
             }
         }
 
@@ -558,27 +572,13 @@ class ModBearsPricingTablesHelper
             $headerIconColor = $params->get('bears_header_icon_color' . $i);
             $featuresIconColor = $params->get('bears_features_icon_color' . $i);
 
-            // Set CSS variables for each column - header icons
-            if (!empty($headerIconSize)) {
-                if (!preg_match('/[a-z%]$/i', $headerIconSize)) {
-                    $headerIconSize .= 'px';
-                }
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-size-' . $i . ': ' . $headerIconSize . '; }';
-            }
-            
-            if (!empty($headerIconColor)) {
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-header-icon-color-' . $i . ': ' . $headerIconColor . '; }';
-            }
-            
-            // Set CSS variables for features icons
-            if (!empty($featuresIconColor)) {
-                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' { --bears-features-icon-color-' . $i . ': ' . $featuresIconColor . '; }';
-            }
-            
             // Apply styles directly to plan-icon elements (header icons)
             if (!empty($headerIconSize) || !empty($headerIconColor)) {
                 $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' .plan-icon {';
                 if (!empty($headerIconSize)) {
+                    if (!preg_match('/[a-z%]$/i', $headerIconSize)) {
+                        $headerIconSize .= 'px';
+                    }
                     $css .= ' font-size: ' . $headerIconSize . ' !important;';
                 }
                 if (!empty($headerIconColor)) {
@@ -593,6 +593,16 @@ class ModBearsPricingTablesHelper
                 }
                 if (!empty($headerIconColor)) {
                     $css .= ' color: inherit !important;';
+                }
+                $css .= ' }';
+                
+                // Add CSS variables for column-specific header icons
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' {';
+                if (!empty($headerIconSize)) {
+                    $css .= ' --bears-header-icon-size-' . $i . ': ' . $headerIconSize . ';';
+                }
+                if (!empty($headerIconColor)) {
+                    $css .= ' --bears-header-icon-color-' . $i . ': ' . $headerIconColor . ';';
                 }
                 $css .= ' }';
             }
@@ -611,27 +621,31 @@ class ModBearsPricingTablesHelper
                 $css .= ' min-width: 1em !important;';
                 $css .= ' min-height: 1em !important;';
                 $css .= ' }';
+                
+                // Add CSS variable for column-specific feature icons
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears-column-' . $i . ' {';
+                $css .= ' --bears-features-icon-color-' . $i . ': ' . $featuresIconColor . ';';
+                $css .= ' }';
             }
         }
 
         // Add global icon variables with module-specific selectors
         if (!empty($params->get('bears_header_icon_color'))) {
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-color: ' . $params->get('bears_header_icon_color') . '; }';
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon { color: ' . $params->get('bears_header_icon_color') . ' !important; }';
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon i { color: inherit !important; }';
         }
+        
         if (!empty($params->get('bears_header_icon_size'))) {
             $iconSize = $params->get('bears_header_icon_size');
             if (!preg_match('/[a-z%]$/i', $iconSize)) {
                 $iconSize .= 'px';
             }
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-size: ' . $iconSize . '; }';
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon { font-size: ' . $iconSize . ' !important; }';
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-icon i { font-size: inherit !important; }';
         }
         
         // Add global features icon color if specified
         if (!empty($params->get('bears_features_icon_color'))) {
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-features-icon-color: ' . $params->get('bears_features_icon_color') . '; }';
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-features i { color: ' . $params->get('bears_features_icon_color') . ' !important; }';
             
             // Ensure feature icons are visible globally
@@ -642,6 +656,15 @@ class ModBearsPricingTablesHelper
             $css .= ' min-width: 1em !important;';
             $css .= ' min-height: 1em !important;';
             $css .= ' }';
+        }
+
+        // Add CSS variables for global icon settings
+        if (!empty($params->get('bears_header_icon_color'))) {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-header-icon-color: ' . $params->get('bears_header_icon_color') . '; }';
+        }
+        
+        if (!empty($params->get('bears_features_icon_color'))) {
+            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-features-icon-color: ' . $params->get('bears_features_icon_color') . '; }';
         }
 
         // Module-specific column count attribute
@@ -670,7 +693,7 @@ class ModBearsPricingTablesHelper
      *
      * @return  string  The column width CSS
      * @since   2025.5.22
-     * @deprecated  Use column-widths.css file instead
+     * @deprecated  Use column-widths.css file instead - loaded by loadModuleCSS
      */
     public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
     {
@@ -684,7 +707,7 @@ class ModBearsPricingTablesHelper
      *
      * @return  void
      * @since   2025.5.18
-     * @deprecated  Will be removed in a future version
+     * @deprecated  Use loadModuleCSS instead
      */
     public static function loadFontAwesomeOnly()
     {
@@ -710,8 +733,12 @@ class ModBearsPricingTablesHelper
         }
 
         // Support for FontAwesome 6+ prefixes (fa-solid, fa-regular, fa-brands, etc.)
-        // as well as FontAwesome 5 prefixes (fas, far, fab, etc.)
-        if (preg_match('/^(fa[srbltkd]?|fa-solid|fa-regular|fa-brands|fa-light|fa-thin|fa-duotone|fa-kit)\s/', $iconClass)) {
+        if (preg_match('/^(fa-solid|fa-regular|fa-brands|fa-light|fa-thin|fa-duotone|fa-kit)\s/', $iconClass)) {
+            return $iconClass;
+        }
+        
+        // Support for FontAwesome 5 prefixes (fas, far, fab, etc.)
+        if (preg_match('/^(fas|far|fab|fal|fad|fat)\s/', $iconClass)) {
             return $iconClass;
         }
 
