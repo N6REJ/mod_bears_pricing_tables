@@ -265,7 +265,7 @@
 /* Ensure all templates have consistent feature styling */
 .bears_pricing_tables .plan-features li {
 	position: relative;
-	margin-bottom: 8px;
+	margin-bottom: 0;
 }
 
 /* Ensure consistent icon alignment in all templates */

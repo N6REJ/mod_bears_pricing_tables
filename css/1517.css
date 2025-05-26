@@ -21,6 +21,8 @@
   --bears-header-background: #222f3d;
   --bears-header-featured-background: #156dab;
   --bears-featured-button-background: #10507e;
+  --bears-features-background-even: rgba(255, 255, 255, 0.05);
+  --bears-features-background-odd: var(--bears-column-background);
   
   /* Text Colors */
   --bears-title-color: #ffffff;
@@ -40,7 +42,8 @@
   /* Border Colors */
   --bears-border-color: transparent;
   --bears-featured-border-color: #156dab;
-  
+  --bears-features-border-color: none;
+  --bears-features-featured-border-color: none;
   /* Accent Colors */
   --bears-accent-color: #ffffff;
   --bears-featured-accent-color: #ffffff;
@@ -62,6 +65,7 @@
   --bears-border-radius: 8px;
   --bears-border-width: 0;
   --bears-border-style: solid;
+  --bears-header-border: 1px solid rgba(0,0,0,.15);
   
   /* Icon settings */
   --bears-header-icon-color: inherit;
@@ -158,7 +162,7 @@
   background-color: var(--bears-header-background);
   color: var(--bears-title-color);
   padding: 20px 30px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   text-align: center;
   border-radius: var(--bears-border-radius) var(--bears-border-radius) 0 0;
   overflow: visible;
@@ -194,6 +198,7 @@
   justify-content: center;
   align-items: flex-end;
   flex: 1;
+  padding: 0 0 10px;
   }
 
 .template-1517 .bears_pricing_tables .plan-price {
@@ -238,7 +243,11 @@
 }
 /* Style for alternating rows in feature list */
 .template-1517 .bears_pricing_tables .plan-features li:nth-child(even) {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bears-features-background-even);
+  }
+
+.template-1517 .bears_pricing_tables .plan-features li:nth-child(odd) {
+  background: var(--bears-features-background-odd);
   }
 
 /* Remove duplicate bottom border from adjacent items */
@@ -256,7 +265,7 @@
   }
 
 .template-1517 .bears_pricing_tables .plan-select {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
   padding: 20px;
   text-align: center;
   width: 100%;
@@ -292,9 +301,10 @@
 
 .template-1517 .bears_pricing_tables .plan.featured header {
   background-color: var(--bears-header-featured-background);
-  margin: 0 -1px 20px -1px;
+  margin: 0 -1px 0 -1px;
   width: calc(100% + 2px);
   box-sizing: border-box;
+  border-bottom: 1px solid var(--bears-header-background);
   }
 
 .template-1517 .bears_pricing_tables .plan.featured .plan-select {
