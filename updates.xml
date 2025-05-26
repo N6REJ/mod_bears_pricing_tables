@@ -5,11 +5,11 @@
         <description>Pricing Tables module by Bear</description>
         <element>mod_bears_pricing_tables</element>
         <type>module</type>
-        <version>2025.05.26</version>
+        <version>2025.05.26.2</version>
         <client>site</client>
         <infourl title="GitHub Repository">https://github.com/N6REJ/mod_bears_pricing_tables</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/N6REJ/mod_bears_pricing_tables/releases/download/2025.05.26/mod_bears_pricing_tables_2025.05.26.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/N6REJ/mod_bears_pricing_tables/releases/download/2025.05.26.2/mod_bears_pricing_tables_2025.05.26.2.zip</downloadurl>
         </downloads>
         <targetplatform name="joomla" version="4.*" />
         <targetplatform name="joomla" version="5.*" />
