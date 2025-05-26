@@ -177,14 +177,49 @@
 	font-size: var(--bears-header-icon-size-5);
 	}
 
+/* FontAwesome 6+ Support */
+.bears_pricing_tables .fa-ul {
+	list-style-type: none;
+	margin-left: 2.5em;
+	padding-left: 0;
+	}
+
+.bears_pricing_tables .fa-li {
+	position: absolute;
+	left: -2em;
+	width: 2em;
+	text-align: center;
+	line-height: inherit;
+	}
+
+/* Support for both FA5 and FA6 classes */
+.bears_pricing_tables .fa-solid,
+.bears_pricing_tables .fa-regular,
+.bears_pricing_tables .fa-brands,
+.bears_pricing_tables .fa-light,
+.bears_pricing_tables .fa-thin,
+.bears_pricing_tables .fa-duotone,
+.bears_pricing_tables .fas,
+.bears_pricing_tables .far,
+.bears_pricing_tables .fab {
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	}
+
+/* Centered features styling */
 .bears_pricing_tables .plan-features.centered-features {
 	position: relative;
+	text-align: center;
 	}
 .bears_pricing_tables .plan-features.centered-features li {
 	position: relative;
 	text-align: center;
 	padding-left: 10px; /* Remove default padding */
 	padding-right: 10px;
+	display: block;
 	}
 .bears_pricing_tables .plan-features.centered-features .fa-li {
 	position: relative !important;
@@ -193,6 +228,12 @@
 	width: auto;
 	display: inline-block;
 	vertical-align: middle;
+	}
+
+.bears_pricing_tables .plan-features.centered-features .features-content {
+	display: inline-block;
+	position: relative;
+	text-align: center;
 	}
 
 /* Responsive adjustments */
@@ -206,3 +247,48 @@
 		margin: 0 5px; /* Less margin on mobile */
 		}
 	}
+
+/* Additional FontAwesome 6+ Support */
+.bears_pricing_tables .fa-kit {
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+}
+
+/* Ensure proper alignment for all feature lists */
+.bears_pricing_tables .plan-features {
+	margin-bottom: 20px;
+}
+
+/* Ensure all templates have consistent feature styling */
+.bears_pricing_tables .plan-features li {
+	position: relative;
+	margin-bottom: 8px;
+}
+
+/* Ensure consistent icon alignment in all templates */
+.bears_pricing_tables .plan-features .fa-li i {
+	vertical-align: middle;
+}
+
+/* Fix for centered features text alignment */
+.bears_pricing_tables .plan-features.centered-features ul {
+	text-align: center;
+}
+
+.bears_pricing_tables .plan-features.centered-features .fa-ul {
+	margin-left: 0;
+}
+
+/* Fix for feature icons consistency across all templates */
+.bears_pricing_tables .plan-features .fa-li i {
+	vertical-align: middle;
+	font-size: 1em !important; /* Force consistent size */
+	min-width: 1em;
+	min-height: 1em;
+	display: inline-block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+}

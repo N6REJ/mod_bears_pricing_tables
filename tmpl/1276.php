@@ -157,7 +157,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                         <?php
                         // Determine if we should use FontAwesome list format based on whether an icon class is specified
                         $icon_class = !empty($params_array['features_icon_class'][$cur_column]) ?
-                            $params_array['features_icon_class'][$cur_column] : '';
+                            ModBearsPricingTablesHelper::formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
                         $icon_color = !empty($params_array['features_icon_color'][$cur_column]) ?
                             $params_array['features_icon_color'][$cur_column] : '';
 
@@ -182,7 +182,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 }
 
                                 // Render each feature
-                                foreach ($features_items as $item) {
+                                foreach ($features_items as $item)
+                                {
                                     $feature_text = '';
 
                                     // Get the text (always from bears_feature property when using subform)
