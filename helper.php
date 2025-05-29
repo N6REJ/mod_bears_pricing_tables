@@ -75,6 +75,8 @@ class ModBearsPricingTablesHelper
         // Parameters with explicit defaults that might vary by template
         $bears_border_style          = $params->get('bears_border_style');
         $bears_featured_border_style = $params->get('bears_featured_border_style');
+        $bears_border_width          = $params->get('bears_border_width');
+        $bears_featured_border_width = $params->get('bears_featured_border_width');
 
         // Font parameters with proper defaults
         $bears_google_font_family = $params->get('bears_google_font_family');
@@ -149,8 +151,10 @@ class ModBearsPricingTablesHelper
             'bears_featured_features_color'    => $bears_featured_features_color,
             'bears_border_color'               => $bears_border_color,
             'bears_border_style'               => $bears_border_style,
+            'bears_border_width'               => $bears_border_width,
             'bears_featured_border_color'      => $bears_featured_border_color,
             'bears_featured_border_style'      => $bears_featured_border_style,
+            'bears_featured_border_width'      => $bears_featured_border_width,
             'bears_accent_color'               => $bears_accent_color,
             'bears_featured_accent_color'      => $bears_featured_accent_color,
             'bears_button_text_color'          => $bears_button_text_color,
@@ -279,8 +283,12 @@ class ModBearsPricingTablesHelper
             throw new \InvalidArgumentException('Module ID is required for CSS specificity');
         }
 
+        // Get the template name for dynamic CSS generation
+        $template = self::getTemplateName($params);
+        
         // Start with a module-specific CSS variable container with high specificity
-        $css = '.bears_pricing_tables' . $moduleId . ' {';
+        // We need to set variables at multiple levels to ensure proper inheritance and override template defaults
+        $css = '.template-' . $template . ' .bears_pricing_tables' . $moduleId . ', .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .bears_pricing_tables, .bears_pricing_tables' . $moduleId . ' {';
 
         // Add custom CSS variables
         if ($params->get('bears_column_background')) {
@@ -313,11 +321,18 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_featured_features_color')) {
             $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
         }
-        if ($params->get('bears_border_color')) {
-            $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ';';
+        if ($params->get('bears_border_color') !== null && $params->get('bears_border_color') !== '') {
+            $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ' !important;';
         }
-        if ($params->get('bears_border_style')) {
-            $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ';';
+        if ($params->get('bears_border_width') !== null && $params->get('bears_border_width') !== '') {
+            $borderWidth = $params->get('bears_border_width');
+            if (!preg_match('/[a-z%]$/i', $borderWidth)) {
+                $borderWidth .= 'px';
+            }
+            $css .= '--bears-border-width: ' . $borderWidth . ' !important;';
+        }
+        if ($params->get('bears_border_style') !== null && $params->get('bears_border_style') !== '') {
+            $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ' !important;';
         }
         if ($params->get('bears_featured_border_color')) {
             $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
@@ -361,6 +376,14 @@ class ModBearsPricingTablesHelper
                 $borderWidth .= 'px';
             }
             $css .= '--bears-border-width: ' . $borderWidth . ';';
+        }
+        
+        if ($params->get('bears_featured_border_width')) {
+            $featuredBorderWidth = $params->get('bears_featured_border_width');
+            if (!preg_match('/[a-z%]$/i', $featuredBorderWidth)) {
+                $featuredBorderWidth .= 'px';
+            }
+            $css .= '--bears-featured-border-width: ' . $featuredBorderWidth . ';';
         }
 
         if ($params->get('bears_transition_speed')) {
@@ -526,41 +549,67 @@ class ModBearsPricingTablesHelper
         background-color: var(--bears-button-hover-color);
     }
     
-    /* Border styles for regular plans */
-    .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-shadow { 
+    /* Border styles for regular plans - with template-specific selectors for higher specificity */';
+    
+    // Get the actual border values
+    $borderWidth = $params->get('bears_border_width');
+    $borderStyle = $params->get('bears_border_style');
+    $borderColor = $params->get('bears_border_color');
+    
+    // Process border width
+    if ($borderWidth !== null && $borderWidth !== '') {
+        if (!preg_match('/[a-z%]$/i', $borderWidth)) {
+            $borderWidth .= 'px';
+        }
+    } else {
+        $borderWidth = 'var(--bears-border-width, 1px)';
+    }
+    
+    // Process border style
+    if ($borderStyle === null || $borderStyle === '') {
+        $borderStyle = 'var(--bears-border-style, solid)';
+    }
+    
+    // Process border color
+    if ($borderColor === null || $borderColor === '') {
+        $borderColor = 'var(--bears-border-color)';
+    }
+    
+    $css .= '
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-shadow { 
         border: none !important; 
         box-shadow: var(--bears-box-shadow) !important; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-solid { 
-        border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color) !important; 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-solid { 
+        border: ' . $borderWidth . ' ' . $borderStyle . ' ' . $borderColor . ' !important; 
         box-shadow: none !important; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-both { 
-        border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color) !important; 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-both { 
+        border: ' . $borderWidth . ' ' . $borderStyle . ' ' . $borderColor . ' !important; 
         box-shadow: var(--bears-box-shadow) !important; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-none { 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-none { 
         border: none !important; 
         box-shadow: none !important; 
     }
     
-    /* Border styles for featured plans */
-    .bears_pricing_tables' . $moduleId . ' .plan.featured.border-shadow { 
+    /* Border styles for featured plans - with template-specific selectors for higher specificity */
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-shadow { 
         border: none !important; 
         box-shadow: var(--bears-box-shadow) !important; 
         overflow: hidden; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan.featured.border-solid { 
-        border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color) !important; 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-solid { 
+        border: var(--bears-featured-border-width, 1px) var(--bears-border-style, solid) var(--bears-featured-border-color) !important; 
         box-shadow: none !important; 
         overflow: hidden; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan.featured.border-both { 
-        border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color) !important; 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-both { 
+        border: var(--bears-featured-border-width, 1px) var(--bears-border-style, solid) var(--bears-featured-border-color) !important; 
         box-shadow: var(--bears-box-shadow) !important; 
         overflow: hidden; 
     }
-    .bears_pricing_tables' . $moduleId . ' .plan.featured.border-none { 
+    .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-none { 
         border: none !important; 
         box-shadow: none !important; 
         overflow: hidden; 

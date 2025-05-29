@@ -63,6 +63,7 @@
   /* Border Settings */
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
+  --bears-featured-border-width: 5px;
   --bears-border-style: solid;
   --bears-header-border: 1px solid rgba(0,0,0,.15);
 
@@ -110,7 +111,8 @@
   height: auto; /* Changed from min-height to height: auto */
   flex: 1 1 0%; /* Added flexible growth and shrink with 0% basis */
   min-width: 0; /* Prevent flex items from overflowing */
-  }
+}
+
 
 .template-1276 .bears_pricing_tables ul {
   list-style: none;
@@ -145,8 +147,6 @@
   
   position: relative;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  /* Create space for the scaled element */
-  margin: 0 -2.5% 0; /* Negative horizontal margin to compensate for scaling */
   }
 .template-1276 .bears_pricing_tables * {
   -webkit-box-sizing: border-box;
@@ -414,12 +414,12 @@ font-size: var(--bears-features-font-size);
   }
 
 .template-1276 .bears_pricing_tables .plan:not(.featured).border-solid {
-  border: 3px solid var(--bears-border-color);
+  border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: none;
   }
 
 .template-1276 .bears_pricing_tables .plan:not(.featured).border-both {
-  border: 3px solid var(--bears-border-color);
+  border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
 
@@ -436,13 +436,13 @@ font-size: var(--bears-features-font-size);
   }
 
 .template-1276 .bears_pricing_tables .plan.featured.border-solid {
-  border: 3px solid var(--bears-featured-border-color);
+  border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   box-shadow: none;
   overflow: hidden;
   }
 
 .template-1276 .bears_pricing_tables .plan.featured.border-both {
-  border: 3px solid var(--bears-featured-border-color);
+  border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   }

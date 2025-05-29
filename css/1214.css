@@ -61,6 +61,7 @@
   /* Border Settings */
   --bears-border-radius: 0px;
   --bears-border-width: 1px;
+  --bears-featured-border-width: 1px;
   --bears-border-style: solid;
   --bears-header-border: 1px solid rgba(0,0,0,.15);
 
@@ -107,7 +108,8 @@
   position: relative;
   height: auto;
   flex: 1 1 auto;
-  }
+}
+
 
 .template-1214 .bears_pricing_tables ul {
   list-style: none;

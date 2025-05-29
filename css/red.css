@@ -63,6 +63,7 @@
   /* Border Settings */
   --bears-border-radius: 5px;
   --bears-border-width: 5px;
+  --bears-featured-border-width: 5px;
   --bears-border-style: solid;
   --bears-header-border: 1px solid rgba(0,0,0,.15);
   
@@ -109,6 +110,7 @@
   height: auto; /* Changed from min-height to height: auto */
   flex: 1 1 0%; /* Added flexible growth and shrink with 0% basis */
   min-width: 0; /* Prevent flex items from overflowing */
+  border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
   }
 
 .template-red .bears_pricing_tables ul {
