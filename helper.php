@@ -221,12 +221,16 @@ class ModBearsPricingTablesHelper
         $columnCssPath = 'modules/mod_bears_pricing_tables/css/column-widths.css';
         $document->addStyleSheet(Uri::root(true) . '/' . $columnCssPath, ['version' => 'auto']);
 
-        // 4. Next, load the template CSS file (template-specific defaults)
+        // 4. Load the generic column-widths.css before any template-specific CSS
+        $globalCssPath = 'modules/mod_bears_pricing_tables/css/global.css';
+        $document->addStyleSheet(Uri::root(true) . '/' . $globalCssPath, ['version' => 'auto']);
+
+        // 5. Next, load the template CSS file (template-specific defaults)
         $template = self::getTemplateName($params);
         $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
         $document->addStyleSheet(Uri::root(true) . '/' . $templateCssPath, ['version' => 'auto']);
 
-        // 5. Finally, add our custom CSS variables with high specificity to override everything
+        // 6. Finally, add our custom CSS variables with high specificity to override everything
         $css = self::generateCustomCSS($params, $moduleId);
         if (!empty($css)) {
             $document->addStyleDeclaration($css);
