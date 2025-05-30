@@ -61,6 +61,7 @@
 
     /* Effects */
     --bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     --bears-transition-speed: 0.25s;
 
     /* Border Settings */
@@ -401,5 +402,5 @@
 
 .template-white .bears_pricing_tables .plan.featured {
     border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--bears-featured-box-shadow);
 }

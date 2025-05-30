@@ -334,11 +334,17 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_border_style') === "none" || $params->get('bears_border_style') === 'shadow') {
             $css .= '--bears-border-style: none !important;';
         }
+        if ($params->get('bears_border_style') === 'none' || $params->get('bears_border_style') === 'solid') {
+            $css .= '--bears-box-shadow: none !important;';
+        }
         if ($params->get('bears_featured_border_color')) {
             $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
         }
         if ($params->get('bears_featured_border_style') === 'none' || $params->get('bears_featured_border_style') === 'shadow') {
             $css .= '--bears-border-style: none !important;';
+        }
+        if ($params->get('bears_featured_border_style') === 'none' || $params->get('bears_featured_border_style') === 'solid') {
+            $css .= '--bears-featured-box-shadow: none !important;';
         }
         if ($params->get('bears_featured_border_width') !== null && $params->get('bears_featured_border_width') !== '') {
             $featured_borderWidth = $params->get('bears_featured_border_width');

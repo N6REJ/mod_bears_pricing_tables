@@ -88,8 +88,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                 ?>
 				<div class = "bears_pricing_tables">
 					<div class = "plan<?php
-                    echo $is_featured ? ' featured' : ''; ?> border-<?php
-                    echo $border_style; ?> <?php
+                    echo $is_featured ? ' featured' : ''; ?> <?php
                     echo $columnClass; ?>">
 						<header>
                             <?php
