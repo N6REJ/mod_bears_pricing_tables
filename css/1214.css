@@ -14,8 +14,8 @@
 .template-1214 .bears_pricing_tables {
     /* Layout Variables */
     --bears-num-columns: 3;
-    --bears-column-margin-y: 0;
-    --bears-column-margin-x: 0;
+    --bears-column-margin-y: 10px;
+    --bears-column-margin-x: 10px;
 
     /* Background Colors */
     --bears-column-background: #ffffff;
@@ -76,24 +76,23 @@
 
     /* Icon settings */
     --bears-header-icon-color: inherit;
-    --bears-header-icon-size: 16px;
+    --bears-header-icon-size: 24px;
 }
 
 /* Template-specific styles */
 .template-1214 .bears_pricing_tables-outer {
-    margin: 40px 10px;
-    overflow: visible;
     font-family: var(--bears-font-family);
+    overflow: hidden;
 }
 
 .template-1214 .bears_pricing_tables-container {
-    justify-content: center;
-    padding: 30px 10px 80px;
+    justify-content: space-between;
+    padding: 30px 0px 80px;
 }
 
 .template-1214 .bears_pricing_tables {
     margin: 0 0 30px 0;
-    flex: 1 1 auto;
+    flex: 1 1 0%;
 }
 
 .template-1214 .bears_pricing_tables .plan {

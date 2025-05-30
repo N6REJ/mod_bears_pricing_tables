@@ -13,8 +13,8 @@
 .template-1517 .bears_pricing_tables {
     /* Layout Variables */
     --bears-num-columns: 4;
-    --bears-column-margin-y: 10px;
-    --bears-column-margin-x: 10px;
+    --bears-column-margin-y: 15px;
+    --bears-column-margin-x: 20px;
 
     /* Background Colors */
     --bears-column-background: #222f3d;
@@ -41,7 +41,7 @@
     --bears-featured-button-color: #222222;
 
     /* Border Colors */
-    --bears-border-color: transparent;
+    --bears-border-color: rgba(255, 255, 255, 0.1);
     --bears-featured-border-color: #156dab;
     --bears-features-border-color: none;
     --bears-features-featured-border-color: none;
@@ -60,15 +60,15 @@
     --bears-font-weight: 500;
 
     /* Effects */
-    --bears-box-shadow: none;
-    --bears-featured-box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    --bears-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    --bears-featured-box-shadow: 0 0 15px rgba(0,0,0,0.3);
     --bears-transition-speed: 0.25s;
 
     /* Border Settings */
     --bears-border-radius: 8px;
     --bears-featured-border-radius: 8px;
-    --bears-border-width: 0;
-    --bears-featured-border-width: 0;
+    --bears-border-width: 1px;
+    --bears-featured-border-width: 1px;
     --bears-border-style: solid;
     --bears-featured-border-style: var(--bears-border-style);
     --bears-header-border: 1px solid rgba(0,0,0,.15);
@@ -79,8 +79,24 @@
 }
 
 /* Template-specific styles */
+/* Add specific container styles for 1517 template */
+.template-1517 .bears_pricing_tables-container {
+    gap: var(--bears-column-margin-x);
+    padding: 20px 0 50px;
+    justify-content: space-between;
+}
+
+/* Add padding to each column to create more space */
+.template-1517 .bears_pricing_tables {
+    padding: 10px 0;
+}
+
+/* Add extra space around the featured plan */
 .template-1517 .bears_pricing_tables .plan.featured {
-    margin: 0 -2.5% 0;
+    margin: -5px -10px;
+    transform: scale(1.08);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .template-1517 .bears_pricing_tables .plan-title {
