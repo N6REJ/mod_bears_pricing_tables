@@ -67,8 +67,8 @@
     /* Border Settings */
     --bears-border-radius: 8px;
     --bears-featured-border-radius: 8px;
-    --bears-border-width: 1px;
-    --bears-featured-border-width: 1px;
+    --bears-border-width: 2px;
+    --bears-featured-border-width: 2px;
     --bears-border-style: solid;
     --bears-featured-border-style: var(--bears-border-style);
     --bears-header-border: 1px solid rgba(0,0,0,.15);
@@ -102,6 +102,11 @@
 .template-white .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
     background: rgba(255, 255, 255, 0.05);
 }
+
+.template-white .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.08);
+    }
+
 
 .template-white .bears_pricing_tables .plan-features li:last-child {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
