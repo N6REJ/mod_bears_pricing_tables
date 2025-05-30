@@ -409,50 +409,16 @@
     clear: both;
 }
 
-/* Border style classes */
-.template-1214 .bears_pricing_tables .plan:not(.featured).border-shadow {
-    border: none !important;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+/* Simplified border handling */
+.template-1214 .bears_pricing_tables .plan {
+    border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+    box-shadow: var(--bears-box-shadow);
 }
 
-.template-1214 .bears_pricing_tables .plan:not(.featured).border-solid {
-    border: 3px solid var(--bears-border-color) !important;
-    box-shadow: none !important;
-}
-
-.template-1214 .bears_pricing_tables .plan:not(.featured).border-both {
-    border: 3px solid var(--bears-border-color) !important;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
-}
-
-.template-1214 .bears_pricing_tables .plan:not(.featured).border-none {
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Featured plan border styles */
-.template-1214 .bears_pricing_tables .plan.featured.border-shadow {
-    border: none !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
-    overflow: visible !important;
-}
-
-.template-1214 .bears_pricing_tables .plan.featured.border-solid {
-    border: 3px solid var(--bears-featured-border-color) !important;
-    box-shadow: none !important;
-    overflow: visible !important;
-}
-
-.template-1214 .bears_pricing_tables .plan.featured.border-both {
-    border: 3px solid var(--bears-featured-border-color) !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
-    overflow: visible !important;
-}
-
-.template-1214 .bears_pricing_tables .plan.featured.border-none {
-    border: none !important;
-    box-shadow: none !important;
-    overflow: visible !important;
+.template-1214 .bears_pricing_tables .plan.featured {
+    border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    overflow: visible;
 }
 
 /* Legacy browser compatibility */

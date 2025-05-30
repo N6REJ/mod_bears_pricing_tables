@@ -321,7 +321,7 @@ class ModBearsPricingTablesHelper
         if ($params->get('bears_featured_features_color')) {
             $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
         }
-        if ($params->get('bears_border_color') !== null && $params->get('bears_border_color') !== '') {
+        if ($params->get('bears_border_color')) {
             $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ' !important;';
         }
         if ($params->get('bears_border_width') !== null && $params->get('bears_border_width') !== '') {
@@ -331,14 +331,21 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-border-width: ' . $borderWidth . ' !important;';
         }
-        if ($params->get('bears_border_style') !== null && $params->get('bears_border_style') !== '') {
-            $css .= '--bears-border-style: ' . $params->get('bears_border_style') . ' !important;';
+        if ($params->get('bears_border_style') === "none" || $params->get('bears_border_style') === 'shadow') {
+            $css .= '--bears-border-style: none !important;';
         }
         if ($params->get('bears_featured_border_color')) {
             $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
         }
-        if ($params->get('bears_featured_border_style')) {
-            $css .= '--bears-featured-border-style: ' . $params->get('bears_featured_border_style') . ';';
+        if ($params->get('bears_featured_border_style') === 'none' || $params->get('bears_featured_border_style') === 'shadow') {
+            $css .= '--bears-border-style: none !important;';
+        }
+        if ($params->get('bears_featured_border_width') !== null && $params->get('bears_featured_border_width') !== '') {
+            $featured_borderWidth = $params->get('bears_featured_border_width');
+            if (!preg_match('/[a-z%]$/i', $featured_borderWidth)) {
+                $featured_borderWidth .= 'px';
+            }
+            $css .= '--bears-featured-border-width: ' . $featured_borderWidth . ' !important;';
         }
         if ($params->get('bears_accent_color')) {
             $css .= '--bears-accent-color: ' . $params->get('bears_accent_color') . ';';
@@ -368,22 +375,6 @@ class ModBearsPricingTablesHelper
                 $borderRadius .= 'px';
             }
             $css .= '--bears-border-radius: ' . $borderRadius . ';';
-        }
-
-        if ($params->get('bears_border_width')) {
-            $borderWidth = $params->get('bears_border_width');
-            if (!preg_match('/[a-z%]$/i', $borderWidth)) {
-                $borderWidth .= 'px';
-            }
-            $css .= '--bears-border-width: ' . $borderWidth . ';';
-        }
-        
-        if ($params->get('bears_featured_border_width')) {
-            $featuredBorderWidth = $params->get('bears_featured_border_width');
-            if (!preg_match('/[a-z%]$/i', $featuredBorderWidth)) {
-                $featuredBorderWidth .= 'px';
-            }
-            $css .= '--bears-featured-border-width: ' . $featuredBorderWidth . ';';
         }
 
         if ($params->get('bears_transition_speed')) {
