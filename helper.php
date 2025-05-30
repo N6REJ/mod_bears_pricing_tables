@@ -247,9 +247,6 @@ class ModBearsPricingTablesHelper
         // Get template selection with default fallback
         $template = $params->get('bears_template', '1276');
 
-        // Get application
-        $app = Factory::getApplication();
-
         // Check if the template file exists
         $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
 
@@ -288,7 +285,7 @@ class ModBearsPricingTablesHelper
         
         // Start with a module-specific CSS variable container with high specificity
         // We need to set variables at multiple levels to ensure proper inheritance and override template defaults
-        $css = '.template-' . $template . ' .bears_pricing_tables' . $moduleId . ', .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .bears_pricing_tables, .bears_pricing_tables' . $moduleId . ' {';
+        $css = '.template-' . $template . ' .bears_pricing_tables-' . $moduleId . ' .bears_pricing_tables {';
 
         // Add custom CSS variables
         if ($params->get('bears_column_background')) {
@@ -331,6 +328,7 @@ class ModBearsPricingTablesHelper
             }
             $css .= '--bears-border-width: ' . $borderWidth . ' !important;';
         }
+        // Border style is applied to .plan in CSS, not to .bears_pricing_tables
         if ($params->get('bears_border_style') === "none" || $params->get('bears_border_style') === 'shadow') {
             $css .= '--bears-border-style: none !important;';
         }
@@ -341,7 +339,7 @@ class ModBearsPricingTablesHelper
             $css .= '--bears-featured-border-color: ' . $params->get('bears_featured_border_color') . ';';
         }
         if ($params->get('bears_featured_border_style') === 'none' || $params->get('bears_featured_border_style') === 'shadow') {
-            $css .= '--bears-border-style: none !important;';
+            $css .= '--bears-featured-border-style: none !important;';
         }
         if ($params->get('bears_featured_border_style') === 'none' || $params->get('bears_featured_border_style') === 'solid') {
             $css .= '--bears-featured-box-shadow: none !important;';
@@ -547,42 +545,17 @@ class ModBearsPricingTablesHelper
     }
     
     /* Border styles for regular plans - with template-specific selectors for higher specificity */';
-    
-    // Get the actual border values
-    $borderWidth = $params->get('bears_border_width');
-    $borderStyle = $params->get('bears_border_style');
-    $borderColor = $params->get('bears_border_color');
-    
-    // Process border width
-    if ($borderWidth !== null && $borderWidth !== '') {
-        if (!preg_match('/[a-z%]$/i', $borderWidth)) {
-            $borderWidth .= 'px';
-        }
-    } else {
-        $borderWidth = 'var(--bears-border-width, 1px)';
-    }
-    
-    // Process border style
-    if ($borderStyle === null || $borderStyle === '') {
-        $borderStyle = 'var(--bears-border-style, solid)';
-    }
-    
-    // Process border color
-    if ($borderColor === null || $borderColor === '') {
-        $borderColor = 'var(--bears-border-color)';
-    }
-    
-    $css .= '
+     $css .= '
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-shadow { 
         border: none !important; 
         box-shadow: var(--bears-box-shadow) !important; 
     }
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-solid { 
-        border: ' . $borderWidth . ' ' . $borderStyle . ' ' . $borderColor . ' !important; 
+        border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color) !important; 
         box-shadow: none !important; 
     }
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-both { 
-        border: ' . $borderWidth . ' ' . $borderStyle . ' ' . $borderColor . ' !important; 
+        border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color) !important;
         box-shadow: var(--bears-box-shadow) !important; 
     }
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan:not(.featured).border-none { 
@@ -593,16 +566,16 @@ class ModBearsPricingTablesHelper
     /* Border styles for featured plans - with template-specific selectors for higher specificity */
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-shadow { 
         border: none !important; 
-        box-shadow: var(--bears-box-shadow) !important; 
+        box-shadow: var(--bears-featured-box-shadow) !important; 
         overflow: hidden; 
     }
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-solid { 
-        border: var(--bears-featured-border-width, 1px) var(--bears-border-style, solid) var(--bears-featured-border-color) !important; 
+        border: var(--bears-featured-border-width) var(--bears-featured-border-style) var(--bears-featured-border-color) !important; 
         box-shadow: none !important; 
         overflow: hidden; 
     }
     .template-' . $template . ' .bears_pricing_tables' . $moduleId . ' .plan.featured.border-both { 
-        border: var(--bears-featured-border-width, 1px) var(--bears-border-style, solid) var(--bears-featured-border-color) !important; 
+        border: var(--bears-featured-border-width) var(--bears-featured-border-style) var(--bears-featured-border-color) !important; 
         box-shadow: var(--bears-box-shadow) !important; 
         overflow: hidden; 
     }
@@ -728,40 +701,6 @@ class ModBearsPricingTablesHelper
         }
 
         return $css;
-    }
-
-    /**
-     * Generate CSS for column widths based on number of columns
-     *
-     * @param   int     $moduleId    The module ID for specificity
-     * @param   string  $template    The template name
-     * @param   int     $numColumns  The number of columns
-     *
-     * @return  string  The column width CSS
-     * @since   2025.5.22
-     * @deprecated  Use column-widths.css file instead - loaded by loadModuleCSS
-     */
-    public static function getColumnWidthCSS($moduleId, $template, $numColumns = 3)
-    {
-        // This method is deprecated as we now use a dedicated CSS file
-        // Return empty string as we're now using column-widths.css
-        return '';
-    }
-
-    /**
-     * Load only FontAwesome CSS
-     *
-     * @return  void
-     * @since   2025.5.18
-     * @deprecated  Use loadModuleCSS instead
-     */
-    public static function loadFontAwesomeOnly()
-    {
-        // Get the document
-        $document = Factory::getDocument();
-        
-        // Directly add FontAwesome
-        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
     }
 
     /**

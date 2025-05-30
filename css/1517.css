@@ -66,9 +66,11 @@
 
     /* Border Settings */
     --bears-border-radius: 8px;
+    --bears-featured-border-radius: 8px;
     --bears-border-width: 0;
     --bears-featured-border-width: 0;
     --bears-border-style: solid;
+    --bears-featured-border-style: var(--bears-border-style);
     --bears-header-border: 1px solid rgba(0,0,0,.15);
 
     /* Icon settings */
