@@ -72,8 +72,8 @@
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
 					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
-				<field name="bears_border_width" type="textpx" default="0" label="MOD_BEARS_BORDER_WIDTH" description="MOD_BEARS_BORDER_WIDTH_DESC" />
-				<field name="bears_featured_border_width" type="textpx" default="0" label="MOD_BEARS_FEATURED_BORDER_WIDTH" description="MOD_BEARS_FEATURED_BORDER_WIDTH_DESC" />
+				<field name="bears_border_width" type="textpx" default="" label="MOD_BEARS_BORDER_WIDTH" description="MOD_BEARS_BORDER_WIDTH_DESC" />
+				<field name="bears_featured_border_width" type="textpx" default="" label="MOD_BEARS_FEATURED_BORDER_WIDTH" description="MOD_BEARS_FEATURED_BORDER_WIDTH_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">
