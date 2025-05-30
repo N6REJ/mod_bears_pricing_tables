@@ -393,14 +393,3 @@
 .template-white .clear {
     clear: both;
 }
-
-/* Simplified border handling */
-.template-white .bears_pricing_tables .plan {
-    border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
-    box-shadow: var(--bears-box-shadow);
-}
-
-.template-white .bears_pricing_tables .plan.featured {
-    border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-    box-shadow: var(--bears-featured-box-shadow);
-}

@@ -409,27 +409,3 @@
 .clear {
     clear: both;
 }
-
-/* Simplified border handling */
-.template-1214 .bears_pricing_tables .plan {
-    border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
-    box-shadow: var(--bears-box-shadow);
-}
-
-.template-1214 .bears_pricing_tables .plan.featured {
-    border: var(--bears-featured-border-width) var(--bears-border-style) var(--bears-featured-border-color);
-    box-shadow: var(--bears-featured-box-shadow);
-    overflow: visible;
-}
-
-/* Legacy browser compatibility */
-@supports not (display: flex) {
-    .template-1214 .bears_pricing_tables {
-        display: inline-block;
-        vertical-align: top;
-        margin-bottom: 50px;
-    }
-    .template-1214 .bears_pricing_tables-container {
-        text-align: center;
-    }
-}

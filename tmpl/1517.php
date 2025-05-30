@@ -80,9 +80,6 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                 // Check if this column is marked as featured
                 $is_featured = isset($params_array['bears_featured'][$cur_column]) && $params_array['bears_featured'][$cur_column] == 'yes';
 
-                // Determine border style based on featured status
-                $border_style = $is_featured ? $params_array['bears_featured_border_style'] : $params_array['bears_border_style'];
-
                 // Add column-specific class for styling
                 $columnClass = 'bears-column-' . $cur_column;
                 ?>
