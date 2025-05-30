@@ -708,3 +708,9 @@
 /.idea
 /.qodo
 *.bak
+/css/.idea/.gitignore
+/css/.idea/css.iml
+/css/.idea/misc.xml
+/css/.idea/modules.xml
+/css/.idea/php.xml
+/css/.idea/vcs.xml

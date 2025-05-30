@@ -58,20 +58,22 @@
 				</field>
 				<field name="bears_column_margin_x" type="textpx" default="20" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
 				<field name="bears_column_margin_y" type="textpx" default="10" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
-				<field name="bears_border_style" type="radio" default="shadow" label="MOD_BEARS_BORDER_STYLE" description="MOD_BEARS_BORDER_STYLE_DESC"
+				<field name="bears_border_style" type="radio" default="none" label="MOD_BEARS_BORDER_STYLE" description="MOD_BEARS_BORDER_STYLE_DESC"
 					   class="btn-group">
 					<option value="none">MOD_BEARS_BORDER_STYLE_NONE</option>
 					<option value="solid">MOD_BEARS_BORDER_STYLE_SOLID</option>
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
 					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
-				<field name="bears_featured_border_style" type="radio" default="shadow" label="MOD_BEARS_FEATURED_BORDER_STYLE" description="MOD_BEARS_FEATURED_BORDER_STYLE_DESC"
+				<field name="bears_featured_border_style" type="radio" default="none" label="MOD_BEARS_FEATURED_BORDER_STYLE" description="MOD_BEARS_FEATURED_BORDER_STYLE_DESC"
 					   class="btn-group">
 					<option value="none">MOD_BEARS_BORDER_STYLE_NONE</option>
 					<option value="solid">MOD_BEARS_BORDER_STYLE_SOLID</option>
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
 					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
+				<field name="bears_border_width" type="textpx" default="0" label="MOD_BEARS_BORDER_WIDTH" description="MOD_BEARS_BORDER_WIDTH_DESC" />
+				<field name="bears_featured_border_width" type="textpx" default="0" label="MOD_BEARS_FEATURED_BORDER_WIDTH" description="MOD_BEARS_FEATURED_BORDER_WIDTH_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">

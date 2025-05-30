@@ -3,39 +3,166 @@
  * regardless of their specific design implementation
  */
 
+/* Base container styles - applies to all templates */
+.bears_pricing_tables-outer {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	display: block; /* Ensure it's a block element */
+	clear: both; /* Clear any floats */
+	overflow: hidden; /* Prevent overflow issues */
+}
+
+.bears_pricing_tables-container {
+	display: flex;
+	flex-flow: row wrap; /* Flexible approach for wrapping */
+	justify-content: space-between; /* Changed to space-between to fill container */
+	align-items: stretch; /* Equal heights for all columns */
+	padding: 0;
+	position: relative;
+	overflow: visible;
+	clear: both;
+	width: 100%; /* Explicit width */
+	box-sizing: border-box; /* Include padding in width calculation */
+	/* Use gap property instead of margins for consistent spacing */
+	gap: var(--bears-column-margin-x);
+	/* Ensure the container takes full width */
+	max-width: 100%;
+}
+
+/* Ensure box-sizing includes borders */
+.template-1276 .bears_pricing_tables * {
+	box-sizing: border-box;
+}
+
+/* Base column styles - applies to all templates */
+.bears_pricing_tables {
+	box-sizing: border-box;
+	padding: var(--bears-column-margin-y) 0;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	text-align: center;
+	position: relative;
+	height: auto; /* Auto height for flexible content */
+	/* Changed from flex: 0 1 auto to flex: 1 1 0% to make columns expand */
+	flex: 1 1 0%;
+	min-width: 0; /* Prevent flex items from overflowing */
+}
+
 /* Generic column width settings - will apply to any template */
+/* Modified to use flex-basis instead of fixed calculations when using space-between */
 .bears_pricing_tables-container[data-columns="1"] .bears_pricing_tables {
-  flex: 1 1 100%;
+	flex: 1 1 100%;
+	max-width: 100%;
 }
 
 .bears_pricing_tables-container[data-columns="2"] .bears_pricing_tables {
-  flex: 1 1 calc(50% - var(--bears-column-margin-x, 10px) * 2);
+	flex: 1 1 0%; /* Changed to allow growth */
+	/* Set a min-width instead of fixed width to allow expansion */
+	min-width: calc((100% - var(--bears-column-margin-x)) / 2);
+	/* Keep max-width to prevent overflow on small screens */
+	max-width: calc(50% - (var(--bears-column-margin-x) / 2));
 }
 
 .bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables {
-  flex: 1 1 calc(33.333% - var(--bears-column-margin-x, 10px) * 2);
+	flex: 1 1 0%; /* Changed to allow growth */
+	min-width: calc((100% - 2 * var(--bears-column-margin-x)) / 3);
+	max-width: calc(33.333% - (var(--bears-column-margin-x) * 2 / 3));
 }
 
 .bears_pricing_tables-container[data-columns="4"] .bears_pricing_tables {
-  flex: 1 1 calc(25% - var(--bears-column-margin-x, 10px) * 2);
+	flex: 1 1 0%; /* Changed to allow growth */
+	min-width: calc((100% - 3 * var(--bears-column-margin-x)) / 4);
+	max-width: calc(25% - (var(--bears-column-margin-x) * 3 / 4));
 }
 
 .bears_pricing_tables-container[data-columns="5"] .bears_pricing_tables {
-  flex: 1 1 calc(20% - var(--bears-column-margin-x, 10px) * 2);
+	flex: 1 1 0%; /* Changed to allow growth */
+	min-width: calc((100% - 4 * var(--bears-column-margin-x)) / 5);
+	max-width: calc(20% - (var(--bears-column-margin-x) * 4 / 5));
+}
+
+/* Fix for border gap in header corners - applies to all templates */
+[class*="template-"] .bears_pricing_tables .plan {
+	/* Ensure the plan has overflow hidden to contain the header */
+	overflow: hidden;
+	/* Add width: 100% to ensure content doesn't overflow */
+	width: 100%;
+	/* Ensure the plan takes full height of the column */
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	/* Fix for content overflow - ensure content stays within bounds */
+	box-sizing: border-box;
+	max-width: 100%;
+}
+
+[class*="template-"] .bears_pricing_tables header {
+	/* Fix for the border gap - adjust border radius to only round the top */
+	border-radius: calc(var(--bears-border-radius) - var(--bears-border-width)) calc(var(--bears-border-radius) - var(--bears-border-width)) 0 0;
+	
+	/* Fix for the border gap - ensure header extends to the edges but doesn't create side gaps */
+	margin-top: calc(-1 * var(--bears-border-width));
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+/* Apply the same fix to featured plans */
+[class*="template-"] .bears_pricing_tables .plan.featured header {
+	/* Fix for the border gap in featured plans */
+	margin-top: calc(-1 * var(--bears-border-width));
+	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
+	border-radius: calc(var(--bears-border-radius) - var(--bears-border-width)) calc(var(--bears-border-radius) - var(--bears-border-width)) 0 0;
+}
+
+/* Ensure the header's after element (triangle) is positioned correctly */
+[class*="template-"] .bears_pricing_tables header:after {
+	z-index: 1; /* Ensure the accent appears above any potential gaps */
+	margin-bottom: 0; /* Remove any margin that might create a gap */
+}
+
+/* Fix for content overflow in columns */
+.bears_pricing_tables .plan {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden; /* Prevent content from overflowing */
+	/* Make sure plan content fills the column */
+	flex: 1 1 auto;
+}
+
+/* Ensure content within the plan fills the available space */
+.bears_pricing_tables .plan-content {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Responsive styles for tablet */
 @media (max-width: 992px) and (min-width: 769px) {
-  .bears_pricing_tables-container[data-columns] .bears_pricing_tables {
-    flex: 1 1 calc(50% - var(--bears-column-margin-x, 10px) * 2) !important;
-  }
+	.bears_pricing_tables-container[data-columns] .bears_pricing_tables {
+		flex: 1 1 0% !important; /* Changed to allow growth */
+		min-width: calc((100% - var(--bears-column-margin-x)) / 2) !important;
+		max-width: calc(50% - (var(--bears-column-margin-x) / 2)) !important;
+	}
 }
 
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
-  .bears_pricing_tables-container[data-columns] .bears_pricing_tables {
-    flex: 1 1 100% !important;
-    margin-left: var(--bears-column-margin-x, 10px);
-    margin-right: var(--bears-column-margin-x, 10px);
-  }
+	.bears_pricing_tables-container[data-columns] .bears_pricing_tables {
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		padding-left: 0;
+		padding-right: 0;
+		margin-bottom: var(--bears-column-margin-y);
+	}
+	
+	/* Add space between stacked columns on mobile */
+	.bears_pricing_tables-container .bears_pricing_tables:not(:last-child) {
+		margin-bottom: var(--bears-column-margin-y);
+	}
 }
