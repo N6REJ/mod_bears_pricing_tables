@@ -144,15 +144,59 @@
 
 /* Responsive styles for tablet */
 @media (max-width: 992px) and (min-width: 769px) {
+	/* General tablet layout for all templates */
+	.bears_pricing_tables-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between; /* Keep space-between for columns 1 and 2 */
+	}
+	
+	/* Default 2-column layout for tablet view */
 	.bears_pricing_tables-container[data-columns] .bears_pricing_tables {
-		flex: 1 1 0% !important; /* Changed to allow growth */
-		min-width: calc((100% - var(--bears-column-margin-x)) / 2) !important;
-		max-width: calc(50% - (var(--bears-column-margin-x) / 2)) !important;
+		flex: 0 0 calc(50% - var(--bears-column-margin-x) / 2) !important;
+		max-width: calc(50% - var(--bears-column-margin-x) / 2) !important;
+		margin-bottom: var(--bears-column-margin-y);
+	}
+	
+	/* Specific fix for 3-column layout */
+	.bears_pricing_tables-container[data-columns="3"] {
+		position: relative; /* For proper positioning of the third column */
+	}
+	
+	/* First two columns in a 3-column layout */
+	.bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables:nth-child(1),
+	.bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables:nth-child(2) {
+		flex: 0 0 calc(50% - var(--bears-column-margin-x) / 2) !important;
+		max-width: calc(50% - var(--bears-column-margin-x) / 2) !important;
+		margin-bottom: var(--bears-column-margin-y);
+	}
+	
+	/* Third column in a 3-column layout */
+	.bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables:nth-child(3) {
+		flex: 0 0 48% !important;
+		max-width: 48% !important;
+		margin: 0 auto;
+		clear: both;
+	}
+	
+	/* Fix for featured plans in tablet view */
+	[class*="template-"] .bears_pricing_tables-container[data-columns="3"] .bears_pricing_tables:nth-child(3) .plan.featured {
+		transform: none !important; /* Remove transform that causes overflow */
+		margin: 0 auto !important; /* Center the plan */
+		width: 100% !important; /* Full width within its column */
 	}
 }
 
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
+	/* Container adjustments for mobile */
+	.bears_pricing_tables-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	/* All columns in mobile view */
 	.bears_pricing_tables-container[data-columns] .bears_pricing_tables {
 		flex: 0 0 100% !important;
 		max-width: 100% !important;
@@ -164,5 +208,12 @@
 	/* Add space between stacked columns on mobile */
 	.bears_pricing_tables-container .bears_pricing_tables:not(:last-child) {
 		margin-bottom: var(--bears-column-margin-y);
+	}
+	
+	/* Fix for featured plans in mobile view - applies to all templates */
+	[class*="template-"] .bears_pricing_tables .plan.featured {
+		transform: none !important; /* Remove transform that causes overflow */
+		margin: 0 auto !important; /* Center the plan */
+		width: 100% !important; /* Full width within its column */
 	}
 }

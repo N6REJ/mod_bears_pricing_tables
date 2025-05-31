@@ -82,6 +82,8 @@
     overflow: hidden;
 }
 
+/* Template-specific styles for tablet view are now handled in column-widths.css */
+
 .template-red .bears_pricing_tables .plan.featured {
     margin: 0 -2.5% 0;
     transform-origin: top center;
@@ -122,7 +124,8 @@
 }
 
 /* Mobile Media Query - Template-specific adjustments */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
+    /* Only keep template-specific adjustments */
     .template-red .bears_pricing_tables header:after {
         height: 24px;
     }
