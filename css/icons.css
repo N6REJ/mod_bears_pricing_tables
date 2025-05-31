@@ -91,30 +91,30 @@
 .bears_pricing_tables [class*="icon-bottom-"],
 .bears_pricing_tables .plan header [class*="icon-bottom-"],
 .bears_pricing_tables .plan header div[class*="icon-bottom-"] {
-	display: block;
-	width: auto;
-	clear: both;
+	display: flex;
+	width: 100%;
 	position: relative;
-	padding-bottom: .5em;
+	margin: 0;
+	padding: 0;
 	}
 
 .bears_pricing_tables .icon-bottom-left,
 .bears_pricing_tables .plan header .icon-bottom-left,
 .bears_pricing_tables .plan header div.icon-bottom-left {
-	text-align: left;
+	justify-content: flex-start;
 	padding-left: 1em;
 	}
 
 .bears_pricing_tables .icon-bottom-center,
 .bears_pricing_tables .plan header .icon-bottom-center,
 .bears_pricing_tables .plan header div.icon-bottom-center {
-	text-align: center;
+	justify-content: center;
 	}
 
 .bears_pricing_tables .icon-bottom-right,
 .bears_pricing_tables .plan header .icon-bottom-right,
 .bears_pricing_tables .plan header div.icon-bottom-right {
-	text-align: right;
+	justify-content: flex-end;
 	padding-right: 1em;
 	}
 
