@@ -154,6 +154,19 @@ jobs:
             fi
           done
       
+      - name: Update version in all files
+        run: |
+          # Find all files and update any "* Version: X.X.X" pattern
+          find . -type f | while read -r FILE; do
+            if [ -f "$FILE" ]; then
+              if grep -q "\* Version:" "$FILE"; then
+                echo "Updating version in file: $FILE"
+                # Update the version pattern
+                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$FILE"
+              fi
+            fi
+          done
+      
       - name: Update existing language files
         run: |
           # Find language files and update copyright if they exist
