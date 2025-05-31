@@ -88,6 +88,10 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                     echo $is_featured ? ' featured' : ''; ?> <?php
                     echo $columnClass; ?>">
 						<header>
+							<h3 class = "plan-title">
+                                <?php
+                                echo htmlspecialchars($params_array['bears_title'][$cur_column] ?? ''); ?>
+							</h3>
                             <?php
                             if (!empty($params_array['header_icon_class'][$cur_column]) && str_starts_with($params_array['header_icon_position'][$cur_column], 'top-')) {
                                 // Prepare inline style for header icon if color is set
@@ -102,12 +106,6 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 								</div>
                                 <?php
                             } ?>
-
-							<h3 class = "plan-title">
-                                <?php
-                                echo htmlspecialchars($params_array['bears_title'][$cur_column] ?? ''); ?>
-							</h3>
-
 							<div class = "price">
                                 <?php
                                 if (!empty($params_array['header_icon_class'][$cur_column]) && $params_array['header_icon_position'][$cur_column] === 'price-left') {

@@ -72,8 +72,8 @@
 					<option value="shadow">MOD_BEARS_BORDER_STYLE_SHADOW</option>
 					<option value="both">MOD_BEARS_BORDER_STYLE_BOTH</option>
 				</field>
-				<field name="bears_border_width" type="textpx" default="0" label="MOD_BEARS_BORDER_WIDTH" description="MOD_BEARS_BORDER_WIDTH_DESC" />
-				<field name="bears_featured_border_width" type="textpx" default="0" label="MOD_BEARS_FEATURED_BORDER_WIDTH" description="MOD_BEARS_FEATURED_BORDER_WIDTH_DESC" />
+				<field name="bears_border_width" type="textpx" default="" label="MOD_BEARS_BORDER_WIDTH" description="MOD_BEARS_BORDER_WIDTH_DESC" />
+				<field name="bears_featured_border_width" type="textpx" default="" label="MOD_BEARS_FEATURED_BORDER_WIDTH" description="MOD_BEARS_FEATURED_BORDER_WIDTH_DESC" />
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_COLORS" label="COM_MODULES_MOD_BEARS_COLORS_FIELDSET_LABEL">
@@ -144,9 +144,8 @@
 					<option value="top-left">Top Left</option>
 					<option value="top-center">Top Center</option>
 					<option value="top-right">Top Right</option>
-					<option value="price-left">Center Left</option>
-					<option value="center-center">Center Center</option>
-					<option value="price-right">Center Right</option>
+					<option value="price-left">Price Left</option>
+					<option value="price-right">Price Right</option>
 					<option value="bottom-left">Bottom Left</option>
 					<option value="bottom-center">Bottom Center</option>
 					<option value="bottom-right">Bottom Right</option>
@@ -174,9 +173,8 @@
 					<option value="top-left">Top Left</option>
 					<option value="top-center">Top Center</option>
 					<option value="top-right">Top Right</option>
-					<option value="price-left">Center Left</option>
-					<option value="center-center">Center Center</option>
-					<option value="price-right">Center Right</option>
+					<option value="price-left">Price Left</option>
+					<option value="price-right">Price Right</option>
 					<option value="bottom-left">Bottom Left</option>
 					<option value="bottom-center">Bottom Center</option>
 					<option value="bottom-right">Bottom Right</option>
@@ -204,9 +202,8 @@
 					<option value="top-left">Top Left</option>
 					<option value="top-center">Top Center</option>
 					<option value="top-right">Top Right</option>
-					<option value="price-left">Center Left</option>
-					<option value="center-center">Center Center</option>
-					<option value="price-right">Center Right</option>
+					<option value="price-left">Price Left</option>
+					<option value="price-right">Price Right</option>
 					<option value="bottom-left">Bottom Left</option>
 					<option value="bottom-center">Bottom Center</option>
 					<option value="bottom-right">Bottom Right</option>
@@ -234,9 +231,8 @@
 					<option value="top-left">Top Left</option>
 					<option value="top-center">Top Center</option>
 					<option value="top-right">Top Right</option>
-					<option value="price-left">Center Left</option>
-					<option value="center-center">Center Center</option>
-					<option value="price-right">Center Right</option>
+					<option value="price-left">Price Left</option>
+					<option value="price-right">Price Right</option>
 					<option value="bottom-left">Bottom Left</option>
 					<option value="bottom-center">Bottom Center</option>
 					<option value="bottom-right">Bottom Right</option>
@@ -264,9 +260,8 @@
 					<option value="top-left">Top Left</option>
 					<option value="top-center">Top Center</option>
 					<option value="top-right">Top Right</option>
-					<option value="price-left">Center Left</option>
-					<option value="center-center">Center Center</option>
-					<option value="price-right">Center Right</option>
+					<option value="price-left">Price Left</option>
+					<option value="price-right">Price Right</option>
 					<option value="bottom-left">Bottom Left</option>
 					<option value="bottom-center">Bottom Center</option>
 					<option value="bottom-right">Bottom Right</option>
