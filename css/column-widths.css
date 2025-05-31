@@ -31,7 +31,7 @@
 }
 
 /* Ensure box-sizing includes borders */
-.template-1276 .bears_pricing_tables * {
+.bears_pricing_tables * {
 	box-sizing: border-box;
 }
 
