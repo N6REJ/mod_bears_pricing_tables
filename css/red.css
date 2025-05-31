@@ -95,6 +95,16 @@
     overflow: visible;
 }
 
+.template-red .bears_pricing_tables .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-red .bears_pricing_tables .plan-cost {
+    align-items: center;
+}
+
 .template-red .bears_pricing_tables header:after {
     content: '';
     position: absolute;

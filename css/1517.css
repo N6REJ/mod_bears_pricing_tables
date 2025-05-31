@@ -107,6 +107,16 @@
     line-height: 1.1;
 }
 
+.template-1517 .bears_pricing_tables .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-1517 .bears_pricing_tables .plan-cost {
+    align-items: center;
+}
+
 .template-1517 .bears_pricing_tables .plan-features li {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);

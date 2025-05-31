@@ -121,11 +121,17 @@
 .bears_pricing_tables .price-left {
 	float: left;
 	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	align-self: center;
 	}
 
 .bears_pricing_tables .price-right {
 	float: right;
 	margin-left: 10px;
+	display: flex;
+	align-items: center;
+	align-self: center;
 	}
 
 /* Column-specific icon styling - Updated to target icons properly */

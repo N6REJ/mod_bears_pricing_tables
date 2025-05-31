@@ -87,6 +87,16 @@
     font-size: 2em;
 }
 
+.template-white .bears_pricing_tables .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-white .bears_pricing_tables .plan-cost {
+    align-items: center;
+}
+
 .template-white .bears_pricing_tables .plan-type {
     font-size: 1em;
 }
