@@ -96,7 +96,7 @@
 .template-red .bears_pricing_tables header:after {
     content: '';
     position: absolute;
-    bottom: -24px;
+    bottom: -23px;
     left: 0;
     width: 100%;
     height: 24px;

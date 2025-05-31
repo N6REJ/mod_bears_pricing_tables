@@ -87,20 +87,16 @@
 }
 
 .template-1276 .bears_pricing_tables header:after {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 24px 150px 0 150px;
-    border-color: var(--bears-accent-color) transparent transparent transparent;
     content: '';
     position: absolute;
-    bottom: -23px;
-    left: 50%;
-    margin-left: 0;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+    bottom: -22px; /* Moved up by 1px to eliminate the gap */
+    left: 25%;
+    width: 50%;
+    height: 24px;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background-color: var(--bears-accent-color);
     z-index: 1;
-    margin-bottom: 0;
+    margin-top: -1px; /* Negative margin to ensure overlap with header */
 }
 
 .template-1276 .bears_pricing_tables .plan.featured header {
@@ -108,20 +104,20 @@
 }
 
 .template-1276 .bears_pricing_tables .plan.featured header:after {
-    border-color: var(--bears-featured-accent-color) transparent transparent transparent;
-    border-width: 24px 150px 0 150px;
+    background-color: var(--bears-featured-accent-color);
 }
 
 /* Mobile Media Query - Template-specific adjustments */
 @media only screen and (max-width: 767px) {
     .template-1276 .bears_pricing_tables header:after {
-        border-width: 24px 100px 0 100px;
+        height: 24px;
     }
 }
 
 /* Small screen fixes - Template-specific adjustments */
 @media only screen and (max-width: 440px) {
     .template-1276 .bears_pricing_tables header:after {
-        border-width: 20px 80px 0 80px;
+        height: 20px;
+        bottom: -19px; /* Adjusted to eliminate gap on small screens */
     }
 }
