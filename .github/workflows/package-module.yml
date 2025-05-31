@@ -197,7 +197,8 @@ jobs:
           fi
           
           # PHP header template
-          PHP_HEADER="<?php
+          PHP_HEADER=$(cat << EOL
+<?php
 /**
  * @package    Bears Pricing Tables
  * @subpackage mod_bears_pricing_tables
@@ -205,36 +206,47 @@ jobs:
  * @author     N6REJ <programming@hallhome.us>
  * @copyright  Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ
  * @license    GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- */"
+ */
+EOL
+)
           
           # CSS header template
-          CSS_HEADER="/*
+          CSS_HEADER=$(cat << EOL
+/*
  * Bears Pricing Tables
  * Version: $VERSION
  * Created by: N6REJ
  * Email: programming@hallhome.us
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
- */"
+ */
+EOL
+)
           
           # JS header template
-          JS_HEADER="/*
+          JS_HEADER=$(cat << EOL
+/*
  * Bears Pricing Tables
  * Version: $VERSION
  * Created by: N6REJ
  * Email: programming@hallhome.us
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
- */"
+ */
+EOL
+)
           
           # Language file header template
-          LANG_HEADER="; Bears Pricing Tables
+          LANG_HEADER=$(cat << EOL
+; Bears Pricing Tables
 ; Version: $VERSION
 ; Created by: N6REJ
 ; Email: programming@hallhome.us
 ; URL: www.hallhome.us
 ; License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
-; Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ"
+; Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ
+EOL
+)
           
           # Find all files except .xml and .yml
           find . -type f -not -path "*/\.*" -not -name "*.xml" -not -name "*.yml" | while read -r FILE; do
