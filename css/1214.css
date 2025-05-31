@@ -107,7 +107,7 @@
 
 .template-1214 .bears_pricing_tables header {
 	background-color: transparent;
-	padding: 1em 0 1em;
+	padding: 0;
 	border: var(--bears-header-border);
 	}
 
@@ -136,24 +136,8 @@
 	color: var(--bears-price-color);
 	}
 
-.template-1214 .bears_pricing_tables .price-left {
-	position: relative;
-	left: 1.5em;
-	display: flex;
-	align-items: center;
-	align-self: center;
-	}
-
 .template-1214 .bears_pricing_tables .icon-bottom-left {
 	position: relative;
-	}
-
-.template-1214 .bears_pricing_tables .price-right {
-	position: relative;
-	right: 1.5em;
-	display: flex;
-	align-items: center;
-	align-self: center;
 	}
 
 .template-1214 .bears_pricing_tables .price {
@@ -162,10 +146,7 @@
 	margin-top: 0;
 	}
 
-.template-1214 .bears_pricing_tables .plan header [class*="icon-top-"] {
-	position: absolute !important;
-	top: 1.5em !important;
-	}
+/* Remove absolute positioning for top icons as we're now using flexbox */
 
 .template-1214 .bears_pricing_tables .plan-cost {
 	padding: 0 !important;
