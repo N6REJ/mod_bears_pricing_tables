@@ -224,35 +224,123 @@ jobs:
           # Find the previous tag
           PREVIOUS_TAG=$(git describe --tags --abbrev=0 --always $(git rev-list --tags --skip=1 --max-count=1) 2>/dev/null || echo "")
           
+          # Get current date in ISO format
+          CURRENT_DATE=$(date -u +"%Y-%m-%d")
+          
+          # Initialize categories
+          ADDED=""
+          CHANGED=""
+          FIXED=""
+          REMOVED=""
+          SECURITY=""
+          
           if [ -z "$PREVIOUS_TAG" ]; then
             # If no previous tag exists, use the first commit
             echo "No previous tag found, using all commits"
-            CHANGELOG=$(git log --pretty=format:"* %s (%h)" --reverse)
+            COMMITS=$(git log --pretty=format:"%s|%h" --reverse)
           else
             echo "Previous tag: $PREVIOUS_TAG"
             # Get all commits since the previous tag
-            CHANGELOG=$(git log --pretty=format:"* %s (%h)" ${PREVIOUS_TAG}..HEAD --reverse)
+            COMMITS=$(git log --pretty=format:"%s|%h" ${PREVIOUS_TAG}..HEAD --reverse)
           fi
           
-          # Create changelog file
-          echo "# ${{ steps.set_version.outputs.version }} (${{ steps.set_version.outputs.creation_date }})" > CHANGELOG.md
+          # Process commits and categorize them
+          while IFS= read -r line; do
+            COMMIT_MSG=$(echo "$line" | cut -d'|' -f1)
+            COMMIT_HASH=$(echo "$line" | cut -d'|' -f2)
+            
+            # Categorize based on commit message prefixes
+            # You can adjust these patterns to match your commit style
+            if [[ "$COMMIT_MSG" =~ ^(Add|Create|Implement|Feature) ]]; then
+              ADDED="$ADDED\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            elif [[ "$COMMIT_MSG" =~ ^(Update|Improve|Enhance|Refactor|Change) ]]; then
+              CHANGED="$CHANGED\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            elif [[ "$COMMIT_MSG" =~ ^(Fix|Bug|Correct|Resolve) ]]; then
+              FIXED="$FIXED\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            elif [[ "$COMMIT_MSG" =~ ^(Remove|Delete|Deprecate) ]]; then
+              REMOVED="$REMOVED\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            elif [[ "$COMMIT_MSG" =~ ^(Security) ]]; then
+              SECURITY="$SECURITY\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            else
+              # Default to Changed category if no pattern matches
+              CHANGED="$CHANGED\n* $COMMIT_MSG ([${COMMIT_HASH}](https://github.com/${{ github.repository }}/commit/${COMMIT_HASH}))"
+            fi
+          done <<< "$COMMITS"
+          
+          # Create changelog file in Keep a Changelog format
+          echo "# Changelog" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "## What's Changed" >> CHANGELOG.md
+          echo "All notable changes to this project will be documented in this file." >> CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "$CHANGELOG" >> CHANGELOG.md
+          echo "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)," >> CHANGELOG.md
+          echo "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)." >> CHANGELOG.md
           echo "" >> CHANGELOG.md
           
-          # If previous changelog exists, append it
+          # Add current version section
+          echo "## [${{ steps.set_version.outputs.version }}] - $CURRENT_DATE" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          
+          # Add categorized changes
+          if [ ! -z "$ADDED" ]; then
+            echo "### Added" >> CHANGELOG.md
+            echo -e "$ADDED" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          if [ ! -z "$CHANGED" ]; then
+            echo "### Changed" >> CHANGELOG.md
+            echo -e "$CHANGED" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          if [ ! -z "$FIXED" ]; then
+            echo "### Fixed" >> CHANGELOG.md
+            echo -e "$FIXED" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          if [ ! -z "$REMOVED" ]; then
+            echo "### Removed" >> CHANGELOG.md
+            echo -e "$REMOVED" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          if [ ! -z "$SECURITY" ]; then
+            echo "### Security" >> CHANGELOG.md
+            echo -e "$SECURITY" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          # If previous changelog exists, append it (skipping the header)
           if [ -f "CHANGELOG.md.bak" ]; then
-            # Skip the first line of the backup (the previous version header)
-            tail -n +2 "CHANGELOG.md.bak" >> CHANGELOG.md
+            # Skip the first 7 lines of the backup (the standard header)
+            tail -n +8 "CHANGELOG.md.bak" >> CHANGELOG.md
           fi
           
-          # Save changelog to output
+          # Save changelog to output for release notes
+          CHANGELOG_OUTPUT=""
+          if [ ! -z "$ADDED" ]; then
+            CHANGELOG_OUTPUT="${CHANGELOG_OUTPUT}### Added\n${ADDED}\n\n"
+          fi
+          
+          if [ ! -z "$CHANGED" ]; then
+            CHANGELOG_OUTPUT="${CHANGELOG_OUTPUT}### Changed\n${CHANGED}\n\n"
+          fi
+          
+          if [ ! -z "$FIXED" ]; then
+            CHANGELOG_OUTPUT="${CHANGELOG_OUTPUT}### Fixed\n${FIXED}\n\n"
+          fi
+          
+          if [ ! -z "$REMOVED" ]; then
+            CHANGELOG_OUTPUT="${CHANGELOG_OUTPUT}### Removed\n${REMOVED}\n\n"
+          fi
+          
+          if [ ! -z "$SECURITY" ]; then
+            CHANGELOG_OUTPUT="${CHANGELOG_OUTPUT}### Security\n${SECURITY}\n\n"
+          fi
+          
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "## What's Changed" >> $GITHUB_OUTPUT
-          echo "" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo -e "$CHANGELOG_OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           
           # Display the generated changelog
@@ -400,7 +488,10 @@ jobs:
             - Download directly from this release page
             - Access the artifact from the Actions tab of this workflow run
             
+            ## Changelog
             ${{ steps.changelog.outputs.changelog }}
+            
+            [View full changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
