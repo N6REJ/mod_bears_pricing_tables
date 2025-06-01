@@ -191,6 +191,7 @@
 
 .bears_pricing_tables .plan-title {
 	top: 0;
+	color: var(--bears-title-color);
 	font-size: var(--bears-title-font-size);
 	font-weight: 700;
 	text-transform: uppercase;
@@ -199,7 +200,7 @@
 	text-align: center;
 	margin: 0;
 	padding: 0;
-	transition: all 0.3s ease;
+	transition: all var(--bears-transition-speed) ease;
 	}
 
 .bears_pricing_tables .plan-title:hover {

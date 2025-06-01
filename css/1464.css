@@ -61,8 +61,8 @@
 	/* Effects */
 	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	--bears-featured-box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-	--bears-transition-speed: 0.3s;
-	--bears-scale-amount: 1.05;
+	--bears-transition-speed: 0.25s;
+	--bears-scale-amount: 1.1;
 	
 	/* Border Settings */
 	--bears-border-radius: 8px;
@@ -84,39 +84,68 @@
 	}
 
 .template-1464 .bears_pricing_tables header {
-	margin-bottom: 40px;
+	line-height: 70px;
+	}
+
+.template-1464 .bears_pricing_tables .featured header {
+	line-height: 90px;
+	}
+
+.template-1464 .plan:first-of-type {
+	border-radius: 8px 0 0 8px;
+	border-left: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+	}
+.template-1464 .plan:last-of-type {
+	border-radius: 0 8px 8px 0;
+	border-right: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+	}
+
+.template-1464 .plan-title {
+	background-color: var(--bears-header-background);
+	margin: 20px 0;
+	padding: 0 20px;
+	letter-spacing: 2px;
 	}
 
 .template-1464 .bears_pricing_tables .plan-cost {
-	align-items: center;
+	position: absolute;
+	top: 20px;
+	right: 0;
+	padding: 0 20px;
+	text-align: right;
 	}
 
 .template-1464 .bears_pricing_tables .price {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	}
 
-.template-1464 .bears_pricing_tables header:after {
+.template-1464 .bears_pricing_tables .plan-price {
+	font-weight: 600;
+	}
+
+.template-1464 .bears_pricing_tables plan-title:after {
 	content: '';
 	position: absolute;
-	bottom: -22px; /* Moved up by 1px to eliminate the gap */
-	left: 25%;
-	width: 50%;
-	height: 24px;
-	clip-path: polygon(0 0, 100% 0, 50% 100%);
-	background-color: var(--bears-accent-color);
-	z-index: 1;
-	margin-top: -1px; /* Negative margin to ensure overlap with header */
-	}
-
-.template-1464 .bears_pricing_tables .plan.featured header {
-	margin-bottom: 40px;
+	top: 100%;
+	left: 20px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 10px 0 10px;
+	border-color: #156dab transparent transparent transparent;
 	}
 
 .template-1464 .bears_pricing_tables .plan.featured header:after {
 	background-color: var(--bears-featured-accent-color);
 	}
+
+.template-1464 .plan-select {
+	padding: 30px 20px;
+	border: none;
+	}
+
 
 /* Mobile Media Query - Template-specific adjustments */
 @media only screen and (max-width: 767px) {
