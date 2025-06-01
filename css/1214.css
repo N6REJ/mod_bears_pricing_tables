@@ -32,7 +32,7 @@
 	--bears-featured-title-color: #ffffff;
 	--bears-price-color: #34495e;
 	--bears-featured-price-color: #ffffff;
-	--bears-subtitle-color: rgba(255, 255, 255, 0.6);
+	--bears-subtitle-color: #34495e;
 	--bears-features-color: #000000;
 	--bears-featured-features-color: #fff;
 	--bears-button-text-color: #ffffff;
@@ -53,11 +53,11 @@
 	
 	/* Typography */
 	--bears-font-family: 'Raleway', Arial, sans-serif;
-	--bears-title-font-size: 1.6em;
-	--bears-price-font-size: 2.8em;
-	--bears-features-font-size: 1em;
-	--bears-subtitle-font-size: 1.2em;
-	--bears-button-font-size: 1em;
+	--bears-title-font-size: var(--bears-h3);
+	--bears-price-font-size: var(--bears-h1);
+	--bears-features-font-size: var(--bears-body);
+	--bears-subtitle-font-size: var(--bears-h4);
+	--bears-button-font-size: var(--bears-body);
 	--bears-font-weight: 800;
 	
 	/* Effects */
@@ -158,11 +158,6 @@
 	font-family: 'Montserrat', sans-serif;
 	}
 
-.template-1214 .bears_pricing_tables .plan-type {
-	opacity: 0.6;
-	margin-top: 5px;
-	}
-
 .template-1214 .bears_pricing_tables .plan-features li {
 	padding: 10px 5%;
 	line-height: 1.4;
@@ -174,11 +169,11 @@
 	}
 
 .template-1214 .plan.featured .plan-features li:nth-child(odd) {
-	background: #34495e;
+	background: var(--bears-column-featured-background);
 	}
 
 .template-1214 .plan.featured .plan-features li:nth-child(even) {
-	background: #304357;
+	background: #2c425b;
 	}
 
 .template-1214 .bears_pricing_tables .plan-select {

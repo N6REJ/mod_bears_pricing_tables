@@ -52,11 +52,11 @@
 
     /* Typography */
     --bears-font-family: 'Roboto', sans-serif;
-    --bears-title-font-size: 1.6em;
-    --bears-price-font-size: 2.8em;
-    --bears-features-font-size: 1em;
-    --bears-subtitle-font-size: 1.2em;
-    --bears-button-font-size: 1em;
+    --bears-title-font-size: var(--bears-h3);
+    --bears-price-font-size: var(--bears-h1);
+    --bears-features-font-size: var(--bears-body);
+    --bears-subtitle-font-size: var(--bears-h4);
+    --bears-button-font-size: var(--bears-body);
     --bears-font-weight: 500;
 
     /* Effects */
