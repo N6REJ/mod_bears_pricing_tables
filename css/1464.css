@@ -51,7 +51,7 @@
 	
 	/* Typography */
 	--bears-font-family: 'Source Sans Pro', Arial, sans-serif;
-	--bears-title-font-size: var(--bears-h3);
+	--bears-title-font-size: var(--bears-body);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
@@ -83,81 +83,107 @@
 	padding: var(--bears-column-margin-y) 0;
 	}
 
+.template-1464 .bears_pricing_tables .plan {
+	border-radius: 8px;
+	border: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+	}
+
 .template-1464 .bears_pricing_tables header {
-	line-height: 70px;
+	position: relative;
+	background-color: var(--bears-header-background);
+	padding: 0;
+	margin-bottom: 20px;
+	margin-top: 20px; /* Add 20px margin to the top */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 100px; /* Set a minimum height for the header */
 	}
 
-.template-1464 .bears_pricing_tables .featured header {
-	line-height: 90px;
+/* Fix for icons in header */
+.template-1464 .bears_pricing_tables header .plan-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	}
 
-.template-1464 .plan:first-of-type {
-	border-radius: 8px 0 0 8px;
-	border-left: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
-	}
-.template-1464 .plan:last-of-type {
-	border-radius: 0 8px 8px 0;
-	border-right: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
+.template-1464 .bears_pricing_tables .plan.featured header {
+	background-color: var(--bears-header-featured-background);
 	}
 
 .template-1464 .plan-title {
-	background-color: var(--bears-header-background);
-	margin: 20px 0;
+	margin: 0;
 	padding: 0 20px;
 	letter-spacing: 2px;
-	}
-
-.template-1464 .bears_pricing_tables .plan-cost {
-	position: absolute;
-	top: 20px;
-	right: 0;
-	padding: 0 20px;
-	text-align: right;
+	text-align: left;
+	flex: 1;
+	line-height: normal;
+	font-size: larger;
 	}
 
 .template-1464 .bears_pricing_tables .price {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-end;
 	}
 
+.template-1464 .bears_pricing_tables .plan-cost {
+	padding: 0 20px;
+	text-align: right;
+	}
+
+.template-1464 .bears_pricing_tables .featured .plan-cost {
+	padding: 0 10px 10px;
+	}
+	
 .template-1464 .bears_pricing_tables .plan-price {
 	font-weight: 600;
 	}
 
-.template-1464 .bears_pricing_tables plan-title:after {
+.template-1464 .bears_pricing_tables header:after {
 	content: '';
 	position: absolute;
-	top: 100%;
+	top: 99.9%;
 	left: 20px;
 	width: 0;
 	height: 0;
 	border-style: solid;
 	border-width: 10px 10px 0 10px;
-	border-color: #156dab transparent transparent transparent;
+	border-color: var(--bears-header-background) transparent transparent transparent;
+	z-index: 1;
 	}
 
 .template-1464 .bears_pricing_tables .plan.featured header:after {
-	background-color: var(--bears-featured-accent-color);
+	border-color: var(--bears-header-featured-background) transparent transparent transparent;
+	border-width: 15px 15px 0 15px; /* 50% larger than the standard 10px */
 	}
 
 .template-1464 .plan-select {
 	padding: 30px 20px;
 	border: none;
 	}
-
+.template-1464 .plan-select a.btn {
+	border-radius: 20px;
+	}
 
 /* Mobile Media Query - Template-specific adjustments */
 @media only screen and (max-width: 767px) {
 	.template-1464 .bears_pricing_tables header:after {
-		height: 24px;
+		border-width: 8px 8px 0 8px;
+		}
+	.template-1464 .bears_pricing_tables .plan.featured header:after {
+		border-width: 12px 12px 0 12px; /* 50% larger than 8px */
 		}
 	}
 
 /* Small screen fixes - Template-specific adjustments */
 @media only screen and (max-width: 440px) {
 	.template-1464 .bears_pricing_tables header:after {
-		height: 20px;
-		bottom: -19px; /* Adjusted to eliminate gap on small screens */
+		border-width: 6px 6px 0 6px;
+		}
+	.template-1464 .bears_pricing_tables .plan.featured header:after {
+		border-width: 9px 9px 0 9px; /* 50% larger than 6px */
 		}
 	}
