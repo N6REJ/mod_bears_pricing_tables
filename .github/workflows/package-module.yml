@@ -150,6 +150,8 @@ jobs:
                 # Updated regex to handle versions with .n suffixes and variable spacing
                 sed -i -E "s|(@version[ ]+).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
                 sed -i -E "s|(Version[ ]*:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+                # Update version pattern with asterisk format
+                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
               fi
             fi
           done
@@ -183,12 +185,12 @@ jobs:
             fi
           done
       
-      - name: Update CSS file copyright
+      - name: Update CSS file copyright and version
         run: |
-          # Find CSS files and update copyright if they exist
+          # Find CSS files and update copyright and version if they exist
           find . -name "*.css" | while read -r CSS_FILE; do
             if [ -f "$CSS_FILE" ]; then
-              echo "Updating copyright in CSS file: $CSS_FILE"
+              echo "Updating copyright and version in CSS file: $CSS_FILE"
               
               # Check if copyright header already exists
               if grep -q "Copyright (C)" "$CSS_FILE"; then
@@ -204,6 +206,12 @@ jobs:
                   sed -i "s| \* Copyright (C) [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
                   sed -i "s| \* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
                 fi
+              fi
+              
+              # Update version if it exists in the format "* Version: X.X.X"
+              if grep -q "\* Version:" "$CSS_FILE"; then
+                echo "Updating version pattern in CSS file: $CSS_FILE"
+                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$CSS_FILE"
               fi
             fi
           done
