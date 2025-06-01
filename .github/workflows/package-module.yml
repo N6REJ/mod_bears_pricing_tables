@@ -151,20 +151,20 @@ jobs:
                 sed -i -E "s|(@version[ ]+).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
                 sed -i -E "s|(Version[ ]*:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
                 # Update version pattern with asterisk format
-                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$PHP_FILE"
+                sed -i -E "s|(\* Version:2025.06.01
               fi
             fi
           done
       
       - name: Update version in all files
         run: |
-          # Find all files and update any "* Version: X.X.X" pattern
+          # Find all files and update any "* Version: 2025.06.01
           find . -type f | while read -r FILE; do
             if [ -f "$FILE" ]; then
-              if grep -q "\* Version:" "$FILE"; then
+              if grep -q "\* Version:2025.06.01
                 echo "Updating version in file: $FILE"
                 # Update the version pattern
-                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$FILE"
+                sed -i -E "s|(\* Version:2025.06.01
               fi
             fi
           done
@@ -208,10 +208,10 @@ jobs:
                 fi
               fi
               
-              # Update version if it exists in the format "* Version: X.X.X"
-              if grep -q "\* Version:" "$CSS_FILE"; then
+              # Update version if it exists in the format "* Version: 2025.06.01
+              if grep -q "\* Version:2025.06.01
                 echo "Updating version pattern in CSS file: $CSS_FILE"
-                sed -i -E "s|(\* Version:[ ]*).*|\1${{ steps.set_version.outputs.version }}|g" "$CSS_FILE"
+                sed -i -E "s|(\* Version:2025.06.01
               fi
             fi
           done
