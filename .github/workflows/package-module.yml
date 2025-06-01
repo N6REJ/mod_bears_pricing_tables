@@ -183,213 +183,28 @@ jobs:
             fi
           done
       
-      - name: Ensure copyright headers in all files
+      - name: Update CSS file copyright
         run: |
-          # Define the copyright header for different file types
-          COPYRIGHT_YEAR="${{ steps.set_version.outputs.current_year }}"
-          VERSION="${{ steps.set_version.outputs.version }}"
-          
-          # Define copyright year range if needed
-          if [ "$COPYRIGHT_YEAR" -gt "2025" ]; then
-            COPYRIGHT_YEAR_TEXT="2025 - $COPYRIGHT_YEAR"
-          else
-            COPYRIGHT_YEAR_TEXT="$COPYRIGHT_YEAR"
-          fi
-          
-          # PHP header template
-          PHP_HEADER="<?php
-/**
- * @package    Bears Pricing Tables
- * @subpackage mod_bears_pricing_tables
- * @version    $VERSION
- * @author     N6REJ <programming@hallhome.us>
- * @copyright  Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ
- * @license    GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- */"
-          
-          # CSS header template
-          CSS_HEADER="/*
- * Bears Pricing Tables
- * Version: $VERSION
- * Created by: N6REJ
- * Email: programming@hallhome.us
- * URL: www.hallhome.us
- * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
- */"
-          
-          # JS header template
-          JS_HEADER="/*
- * Bears Pricing Tables
- * Version: $VERSION
- * Created by: N6REJ
- * Email: programming@hallhome.us
- * URL: www.hallhome.us
- * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
- */"
-          
-          # Language file header template
-          LANG_HEADER="; Bears Pricing Tables
-; Version: $VERSION
-; Created by: N6REJ
-; Email: programming@hallhome.us
-; URL: www.hallhome.us
-; License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
-; Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ"
-          
-          # Find all files except .xml and .yml
-          find . -type f -not -path "*/\.*" -not -name "*.xml" -not -name "*.yml" | while read -r FILE; do
-            if [ -f "$FILE" ]; then
-              # Get file extension
-              EXT="${FILE##*.}"
+          # Find CSS files and update copyright if they exist
+          find . -name "*.css" | while read -r CSS_FILE; do
+            if [ -f "$CSS_FILE" ]; then
+              echo "Updating copyright in CSS file: $CSS_FILE"
               
-              echo "Processing file: $FILE (.$EXT)"
-              
-              # Skip empty files
-              if [ ! -s "$FILE" ]; then
-                echo "  Skipping empty file"
-                continue
+              # Check if copyright header already exists
+              if grep -q "Copyright (C)" "$CSS_FILE"; then
+                # Update existing copyright with year range if needed
+                if [ "${{ steps.set_version.outputs.current_year }}" -gt "2025" ]; then
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} N6REJ \*/|/* Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ \*/|/* Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} N6REJ| * Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ| * Copyright (C) 2025 - ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                else
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} N6REJ \*/|/* Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s|/\* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ \*/|/* Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ */|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                  sed -i "s| \* Copyright (C) [0-9]\{4\} - [0-9]\{4\} N6REJ| * Copyright (C) ${{ steps.set_version.outputs.current_year }} N6REJ|g" "$CSS_FILE"
+                fi
               fi
-              
-              # Process based on file extension
-              case "$EXT" in
-                php)
-                  # Check if file already has a PHP header
-                  if grep -q "<?php" "$FILE" && grep -q "@package" "$FILE"; then
-                    echo "  Updating existing PHP header"
-                    # Create a temporary file
-                    TMP_FILE=$(mktemp)
-                    # Extract the first PHP block
-                    sed -n '/<?php/,/\*\//p' "$FILE" > "$TMP_FILE"
-                    # Update version and copyright in the existing header
-                    sed -i "s|@version.*|@version    $VERSION|g" "$TMP_FILE"
-                    sed -i "s|@copyright.*|@copyright  Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ|g" "$TMP_FILE"
-                    # Get the rest of the file (after the first comment block)
-                    sed '1,/\*\//d' "$FILE" > "${TMP_FILE}.rest"
-                    # Combine the updated header with the rest of the file
-                    cat "$TMP_FILE" "${TMP_FILE}.rest" > "$FILE"
-                    rm "$TMP_FILE" "${TMP_FILE}.rest"
-                  else
-                    echo "  Adding PHP header"
-                    # Create a temporary file with the new header
-                    TMP_FILE=$(mktemp)
-                    echo "$PHP_HEADER" > "$TMP_FILE"
-                    echo "" >> "$TMP_FILE"
-                    # If the file doesn't start with <?php, we need to preserve the content
-                    if ! grep -q "<?php" "$FILE"; then
-                      cat "$FILE" >> "$TMP_FILE"
-                      mv "$TMP_FILE" "$FILE"
-                    else
-                      # If it has <?php but no proper header, we need to be careful
-                      sed '1,1d' "$FILE" > "${TMP_FILE}.content"  # Remove the first line (<?php)
-                      cat "${TMP_FILE}.content" >> "$TMP_FILE"
-                      mv "$TMP_FILE" "$FILE"
-                      rm -f "${TMP_FILE}.content"
-                    fi
-                  fi
-                  ;;
-                
-                css)
-                  # Check if file already has a CSS header
-                  if grep -q "/\*" "$FILE" && grep -q "Bears Pricing Tables" "$FILE"; then
-                    echo "  Updating existing CSS header"
-                    # Create a temporary file
-                    TMP_FILE=$(mktemp)
-                    # Extract the first comment block
-                    sed -n '/\/\*/,/\*\//p' "$FILE" > "$TMP_FILE"
-                    # Update version in the existing header
-                    sed -i "s|Version:.*|Version: $VERSION|g" "$TMP_FILE"
-                    # Get the rest of the file (after the first comment block)
-                    sed '1,/\*\//d' "$FILE" > "${TMP_FILE}.rest"
-                    # Combine the updated header with the rest of the file
-                    cat "$TMP_FILE" "${TMP_FILE}.rest" > "$FILE"
-                    rm "$TMP_FILE" "${TMP_FILE}.rest"
-                  else
-                    echo "  Adding CSS header"
-                    # Create a temporary file with the new header
-                    TMP_FILE=$(mktemp)
-                    echo "$CSS_HEADER" > "$TMP_FILE"
-                    echo "" >> "$TMP_FILE"
-                    cat "$FILE" >> "$TMP_FILE"
-                    mv "$TMP_FILE" "$FILE"
-                  fi
-                  ;;
-                
-                js)
-                  # Check if file already has a JS header
-                  if grep -q "/\*" "$FILE" && grep -q "Bears Pricing Tables" "$FILE"; then
-                    echo "  Updating existing JS header"
-                    # Create a temporary file
-                    TMP_FILE=$(mktemp)
-                    # Extract the first comment block
-                    sed -n '/\/\*/,/\*\//p' "$FILE" > "$TMP_FILE"
-                    # Update version in the existing header
-                    sed -i "s|Version:.*|Version: $VERSION|g" "$TMP_FILE"
-                    # Get the rest of the file (after the first comment block)
-                    sed '1,/\*\//d' "$FILE" > "${TMP_FILE}.rest"
-                    # Combine the updated header with the rest of the file
-                    cat "$TMP_FILE" "${TMP_FILE}.rest" > "$FILE"
-                    rm "$TMP_FILE" "${TMP_FILE}.rest"
-                  else
-                    echo "  Adding JS header"
-                    # Create a temporary file with the new header
-                    TMP_FILE=$(mktemp)
-                    echo "$JS_HEADER" > "$TMP_FILE"
-                    echo "" >> "$TMP_FILE"
-                    cat "$FILE" >> "$TMP_FILE"
-                    mv "$TMP_FILE" "$FILE"
-                  fi
-                  ;;
-                
-                ini|sys.ini)
-                  # Check if file already has a language header
-                  if grep -q "; Bears Pricing Tables" "$FILE"; then
-                    echo "  Updating existing language header"
-                    # Create a temporary file
-                    TMP_FILE=$(mktemp)
-                    # Extract the first comment block
-                    sed -n '/; Bears Pricing Tables/,/; Copyright/p' "$FILE" > "$TMP_FILE"
-                    # Update version and copyright in the existing header
-                    sed -i "s|; Version:.*|; Version: $VERSION|g" "$TMP_FILE"
-                    sed -i "s|; Copyright (C).*|; Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ|g" "$TMP_FILE"
-                    # Get the rest of the file (after the first comment block)
-                    sed '1,/; Copyright/d' "$FILE" > "${TMP_FILE}.rest"
-                    # Combine the updated header with the rest of the file
-                    cat "$TMP_FILE" "${TMP_FILE}.rest" > "$FILE"
-                    rm "$TMP_FILE" "${TMP_FILE}.rest"
-                  else
-                    echo "  Adding language header"
-                    # Create a temporary file with the new header
-                    TMP_FILE=$(mktemp)
-                    echo "$LANG_HEADER" > "$TMP_FILE"
-                    echo "" >> "$TMP_FILE"
-                    cat "$FILE" >> "$TMP_FILE"
-                    mv "$TMP_FILE" "$FILE"
-                  fi
-                  ;;
-                
-                md|markdown)
-                  # For markdown files, we'll add a simple header if it doesn't exist
-                  if ! grep -q "# Bears Pricing Tables" "$FILE"; then
-                    echo "  Adding markdown header"
-                    TMP_FILE=$(mktemp)
-                    echo "# Bears Pricing Tables" > "$TMP_FILE"
-                    echo "Version: $VERSION" >> "$TMP_FILE"
-                    echo "Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ" >> "$TMP_FILE"
-                    echo "" >> "$TMP_FILE"
-                    cat "$FILE" >> "$TMP_FILE"
-                    mv "$TMP_FILE" "$FILE"
-                  else
-                    echo "  Updating existing markdown header"
-                    sed -i "s|Version:.*|Version: $VERSION|g" "$FILE"
-                    sed -i "s|Copyright (C).*|Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ|g" "$FILE"
-                  fi
-                  ;;
-                
-                *)
-                  # For other file types, we'll skip
-                  echo "  Skipping file with unknown extension: .$EXT"
-                  ;;
-              esac
             fi
           done
       
