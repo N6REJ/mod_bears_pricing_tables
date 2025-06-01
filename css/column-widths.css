@@ -1,7 +1,16 @@
+/*
+ * Bears Pricing Tables
+ * Version: 2025.06.01
+ * Created by: N6REJ
+ * Email: programming@hallhome.us
+ * URL: www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ */
 /* Base column width settings for Bears Pricing Tables
  * This file provides responsive column layouts for all templates
  * regardless of their specific design implementation
  */
+
 
 /* Base container styles - applies to all templates */
 .bears_pricing_tables-outer {
