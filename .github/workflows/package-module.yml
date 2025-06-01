@@ -196,57 +196,49 @@ jobs:
             COPYRIGHT_YEAR_TEXT="$COPYRIGHT_YEAR"
           fi
           
-          # PHP header template
-          PHP_HEADER=$(cat << EOL
-<?php
+          # Create PHP header template
+          echo '<?php
 /**
  * @package    Bears Pricing Tables
  * @subpackage mod_bears_pricing_tables
- * @version    $VERSION
+ * @version    '"$VERSION"'
  * @author     N6REJ <programming@hallhome.us>
- * @copyright  Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ
+ * @copyright  Copyright (C) '"$COPYRIGHT_YEAR_TEXT"' N6REJ
  * @license    GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
-EOL
-)
+' > php_header.tmp
           
-          # CSS header template
-          CSS_HEADER=$(cat << EOL
-/*
+          # Create CSS header template
+          echo '/*
  * Bears Pricing Tables
- * Version: $VERSION
+ * Version: '"$VERSION"'
  * Created by: N6REJ
  * Email: programming@hallhome.us
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  */
-EOL
-)
+' > css_header.tmp
           
-          # JS header template
-          JS_HEADER=$(cat << EOL
-/*
+          # Create JS header template
+          echo '/*
  * Bears Pricing Tables
- * Version: $VERSION
+ * Version: '"$VERSION"'
  * Created by: N6REJ
  * Email: programming@hallhome.us
  * URL: www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  */
-EOL
-)
+' > js_header.tmp
           
-          # Language file header template
-          LANG_HEADER=$(cat << EOL
-; Bears Pricing Tables
-; Version: $VERSION
+          # Create language header template
+          echo '; Bears Pricing Tables
+; Version: '"$VERSION"'
 ; Created by: N6REJ
 ; Email: programming@hallhome.us
 ; URL: www.hallhome.us
 ; License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
-; Copyright (C) $COPYRIGHT_YEAR_TEXT N6REJ
-EOL
-)
+; Copyright (C) '"$COPYRIGHT_YEAR_TEXT"' N6REJ
+' > lang_header.tmp
           
           # Find all files except .xml and .yml
           find . -type f -not -path "*/\.*" -not -name "*.xml" -not -name "*.yml" | while read -r FILE; do
@@ -284,7 +276,7 @@ EOL
                     echo "  Adding PHP header"
                     # Create a temporary file with the new header
                     TMP_FILE=$(mktemp)
-                    echo "$PHP_HEADER" > "$TMP_FILE"
+                    cat php_header.tmp > "$TMP_FILE"
                     echo "" >> "$TMP_FILE"
                     # If the file doesn't start with <?php, we need to preserve the content
                     if ! grep -q "<?php" "$FILE"; then
@@ -319,7 +311,7 @@ EOL
                     echo "  Adding CSS header"
                     # Create a temporary file with the new header
                     TMP_FILE=$(mktemp)
-                    echo "$CSS_HEADER" > "$TMP_FILE"
+                    cat css_header.tmp > "$TMP_FILE"
                     echo "" >> "$TMP_FILE"
                     cat "$FILE" >> "$TMP_FILE"
                     mv "$TMP_FILE" "$FILE"
@@ -345,7 +337,7 @@ EOL
                     echo "  Adding JS header"
                     # Create a temporary file with the new header
                     TMP_FILE=$(mktemp)
-                    echo "$JS_HEADER" > "$TMP_FILE"
+                    cat js_header.tmp > "$TMP_FILE"
                     echo "" >> "$TMP_FILE"
                     cat "$FILE" >> "$TMP_FILE"
                     mv "$TMP_FILE" "$FILE"
@@ -372,7 +364,7 @@ EOL
                     echo "  Adding language header"
                     # Create a temporary file with the new header
                     TMP_FILE=$(mktemp)
-                    echo "$LANG_HEADER" > "$TMP_FILE"
+                    cat lang_header.tmp > "$TMP_FILE"
                     echo "" >> "$TMP_FILE"
                     cat "$FILE" >> "$TMP_FILE"
                     mv "$TMP_FILE" "$FILE"
