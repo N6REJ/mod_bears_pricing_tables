@@ -53,7 +53,7 @@ jobs:
           # Use fetch-depth: 0 for changelog generation when PR is merged or manual run
           # Otherwise use fetch-depth: 1 for PR updates to be more efficient
           fetch-depth: ${{ ((steps.context.outputs.is_pr_merge == 'true' || steps.context.outputs.is_manual == 'true') && '0') || '1' }}
-          token: ${{ secrets.GITHUB_TOKEN }}  # Needed for pushing changes
+          token: ${{ secrets.GH_PAT }}  # Needed for pushing changes
           # For PR merges, always use main branch; for PR updates use the PR branch; for manual runs use main
           ref: ${{ (steps.context.outputs.is_pr_merge == 'true' && 'main') || (steps.context.outputs.is_pr_update == 'true' && github.event.pull_request.head.ref) || 'main' }}
           # For PR updates, use the PR repository; otherwise use the current repository
@@ -493,7 +493,7 @@ jobs:
             
             [View full changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
       
       # Update the Joomla update server XML file after release is created
       - name: Update Joomla update server XML
