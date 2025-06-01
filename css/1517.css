@@ -63,6 +63,7 @@
     --bears-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --bears-featured-box-shadow: 0 0 15px rgba(0,0,0,0.3);
     --bears-transition-speed: 0.25s;
+    --bears-scale-amount: 1.08;
 
     /* Border Settings */
     --bears-border-radius: 8px;
@@ -94,7 +95,7 @@
 /* Add extra space around the featured plan */
 .template-1517 .bears_pricing_tables .plan.featured {
     margin: -5px -10px;
-    transform: scale(1.08);
+    transform: scale(var(--bears-scale-amount));
     z-index: 10;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }

@@ -63,6 +63,7 @@
     --bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     --bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     --bears-transition-speed: 0.25s;
+    --bears-scale-amount: 1.05;
 
     /* Border Settings */
     --bears-border-radius: 8px;

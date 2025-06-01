@@ -144,7 +144,7 @@
 	background-color: var(--bears-column-featured-background);
 	color: var(--bears-featured-features-color);
 	z-index: 100;
-	transform: scale(1.05);
+	transform: scale(var(--bears-scale-amount));
 	transform-origin: center;
 	position: relative;
 	box-shadow: var(--bears-featured-box-shadow);
@@ -311,7 +311,7 @@
 .bears_pricing_tables .plan-select a.btn:hover {
 	background-color: var(--bears-button-hover-color, var(--bears-button-background-color));
 	opacity: 0.9;
-	transform: scale(1.05);
+	transform: scale(var(--bears-scale-amount));
 	}
 
 /* Featured plan button styling */

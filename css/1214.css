@@ -64,6 +64,7 @@
 	--bears-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 	--bears-transition-speed: 0.3s;
+	--bears-scale-amount: 1.05;
 	
 	/* Border Settings */
 	--bears-border-radius: 0px;
@@ -201,7 +202,7 @@
 
 .template-1214 .bears_pricing_tables .plan-select a:hover,
 .template-1214 .bears_pricing_tables .plan-select a.btn:hover {
-	transform: translateY(50%) scale(1.05);
+	transform: translateY(50%) scale(var(--bears-scale-amount));
 	}
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a,
@@ -213,7 +214,7 @@
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a:hover,
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a.btn:hover {
-	transform: translateY(50%) scale(1.05);
+	transform: translateY(50%) scale(var(--bears-scale-amount));
 	}
 
 .template-1214 .bears_pricing_tables-container::after {
