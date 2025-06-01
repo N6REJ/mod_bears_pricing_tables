@@ -15,6 +15,10 @@
 	--bears-num-columns: 3;
 	--bears-column-margin-y: 10px;
 	--bears-column-margin-x: 10px;
+	--bears-h1: calc(1.375rem + 1.5vw);
+	--bears-h3: calc(1.3rem + 0.6vw);
+	--bears-h4: calc(1.275rem + 0.3vw);
+	--bears-body: 1rem;
 	
 	/* Background Colors - Template specific */
 	--bears-column-background: #ffffff;
@@ -49,13 +53,13 @@
 	--bears-accent-color: #191919;
 	--bears-featured-accent-color: #222222;
 	
-	/* Typography - Template specific */
+	/* Typography - Global settings */
 	--bears-font-family: sans-serif;
-	--bears-title-font-size: 1.6em;
-	--bears-price-font-size: 2.8em;
-	--bears-features-font-size: 1em;
-	--bears-subtitle-font-size: 1.2em;
-	--bears-button-font-size: 1em;
+	--bears-title-font-size: var(--bears-h3);
+	--bears-price-font-size: var(--bears-h1);
+	--bears-features-font-size: var(--bears-body);
+	--bears-subtitle-font-size: var(--bears-h4);
+	--bears-button-font-size: var(--bears-body);
 	--bears-font-weight: 700;
 	
 	/* Effects - Template specific */
@@ -144,7 +148,7 @@
 	background-color: var(--bears-column-featured-background);
 	color: var(--bears-featured-features-color);
 	z-index: 100;
-	transform: scale(1.05);
+	transform: scale(var(--bears-scale-amount));
 	transform-origin: center;
 	position: relative;
 	box-shadow: var(--bears-featured-box-shadow);
@@ -187,6 +191,7 @@
 
 .bears_pricing_tables .plan-title {
 	top: 0;
+	color: var(--bears-title-color);
 	font-size: var(--bears-title-font-size);
 	font-weight: 700;
 	text-transform: uppercase;
@@ -195,8 +200,11 @@
 	text-align: center;
 	margin: 0;
 	padding: 0;
-	transition: padding 0.3s ease;
-	
+	transition: all var(--bears-transition-speed) ease;
+	}
+
+.bears_pricing_tables .plan-title:hover {
+	transform: scale(var(--bears-scale-amount));
 	}
 
 .bears_pricing_tables .plan.featured .plan-title {
@@ -235,6 +243,12 @@
 	display: block;
 	color: var(--bears-subtitle-color);
 	line-height: 1.2em;
+	opacity: 0.9;
+	margin-top: 5px;
+	}
+
+.bears_pricing_tables .plan.featured .plan-type {
+	color: var(--bears-featured-price-color);
 	}
 
 .bears_pricing_tables .plan-features {
@@ -311,7 +325,7 @@
 .bears_pricing_tables .plan-select a.btn:hover {
 	background-color: var(--bears-button-hover-color, var(--bears-button-background-color));
 	opacity: 0.9;
-	transform: scale(1.05);
+	transform: scale(var(--bears-scale-amount));
 	}
 
 /* Featured plan button styling */
