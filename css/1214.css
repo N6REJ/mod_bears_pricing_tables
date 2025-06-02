@@ -16,10 +16,6 @@
 	--bears-num-columns: 3;
 	--bears-column-margin-y: 10px;
 	--bears-column-margin-x: 10px;
-	--bears-h1: calc(1.375rem + 1.5vw);
-	--bears-h3: calc(1.3rem + 0.6vw);
-	--bears-h4: calc(1.275rem + 0.3vw);
-	--bears-body: 1rem;
 	
 	/* Typography */
 	--bears-font-family: 'Raleway', Arial, sans-serif;
