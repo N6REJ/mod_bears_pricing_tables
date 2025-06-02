@@ -69,6 +69,7 @@
 	/* Border Settings */
 	--bears-border-radius: 0px;
 	--bears-featured-border-radius: 0px;
+	--bears-button-border-radius: 0px;
 	--bears-border-width: 1px;
 	--bears-featured-border-width: 1px;
 	--bears-border-style: solid;

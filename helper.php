@@ -97,6 +97,7 @@ class ModBearsPricingTablesHelper
         $bears_header_icon_color    = array();
         $bears_features_icon_class  = array();
         $bears_features_icon_color  = array();
+        $bears_custom_value         = array();
 
         // Initialize column reference array and counter
         $column_ref  = array();
@@ -119,6 +120,7 @@ class ModBearsPricingTablesHelper
             $bears_header_icon_color[$i]    = $params->get('bears_header_icon_color' . $i, '');
             $bears_features_icon_class[$i]  = $params->get('bears_features_icon_class' . $i, '');
             $bears_features_icon_color[$i]  = $params->get('bears_features_icon_color' . $i, '');
+            $bears_custom_value[$i]         = $params->get('bears_custom_value' . $i, '0');
 
             // Build the column reference array based on which columns have titles
             if (!empty($title)) {
@@ -182,6 +184,7 @@ class ModBearsPricingTablesHelper
             'header_icon_color'                => $bears_header_icon_color,
             'features_icon_class'              => $bears_features_icon_class,
             'features_icon_color'              => $bears_features_icon_color,
+            'bears_custom_value'               => $bears_custom_value,
 
             // Column reference array for template use
             'column_ref'                       => $column_ref,
