@@ -51,13 +51,14 @@
 	/* Typography - Global settings */
 	--bears-title-font-family: "Roboto", Arial, sans-serif;
 	--bears-price-font-family: "Montserrat", Arial, sans-serif;
+	--bears-title-font-weight: 600;
+	--bears-price-font-weight: 600;
 	--bears-title-font-size: var(--bears-h4);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-button-font-size: var(--bears-body);
-	--bears-title-font-weight: 600;
-	--bears-price-font-weight: 600;
+	
 	
 	/* Border Settings - Template specific */
 	--bears-border-radius: 5px;

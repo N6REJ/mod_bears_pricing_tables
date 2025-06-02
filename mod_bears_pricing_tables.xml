@@ -111,7 +111,7 @@
 						default=""
 						label="MOD_BEARS_TITLE_FONT_WEIGHT"
 						description="MOD_BEARS_TITLE_FONT_WEIGHT_DESC">
-					<option value="normal">Normal</option>
+					<option value="">Inherited</option>
 					<option value="300">Light (300)</option>
 					<option value="400">Regular (400)</option>
 					<option value="500">Medium (500)</option>
@@ -135,7 +135,7 @@
 						default=""
 						label="MOD_BEARS_PRICE_FONT_WEIGHT"
 						description="MOD_BEARS_PRICE_FONT_WEIGHT_DESC">
-					<option value="normal">Normal</option>
+					<option value="">Inherited</option>
 					<option value="300">Light (300)</option>
 					<option value="400">Regular (400)</option>
 					<option value="500">Medium (500)</option>
