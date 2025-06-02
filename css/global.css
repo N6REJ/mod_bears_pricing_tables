@@ -76,7 +76,7 @@
 	--bears-accent-color: #191919;
 	--bears-featured-accent-color: #222f3d;
 	--bears-transition-speed: 0.3s;
-	--bears-scale-amount: 1.05;
+	--bears-scale-amount: 1;
 	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
@@ -198,7 +198,7 @@
 	background-color: var(--bears-column-featured-background);
 	color: var(--bears-featured-features-color);
 	z-index: 100;
-	transform: scale(var(--bears-scale-amount));
+	transform: scaleY(var(--bears-scale-amount));
 	transform-origin: center;
 	position: relative;
 	box-shadow: var(--bears-featured-box-shadow);
@@ -254,8 +254,8 @@
 	transition: all var(--bears-transition-speed) ease;
 	}
 
-.bears_pricing_tables .plan-title:hover {
-	transform: scale(var(--bears-scale-amount));
+.bears_pricing_tables .plan:hover {
+	transform: scaleY(1.02);
 	}
 
 .bears_pricing_tables .plan.featured .plan-title {
@@ -379,7 +379,7 @@
 .bears_pricing_tables .plan-select a.btn:hover {
 	background-color: var(--bears-button-hover-color, var(--bears-button-background-color));
 	opacity: 0.9;
-	transform: scale(var(--bears-scale-amount));
+	transform: scaleY(var(--bears-scale-amount));
 	}
 
 /* Featured plan button styling */
@@ -432,7 +432,7 @@
 	.bears_pricing_tables .plan.featured {
 		transform: none;
 		margin: 0 auto 20px;
-		border: var(--bears-border-width) var(--bears-border-style) var(--bears-featured-border-color);
+		border: var(--bears-featured-border-width) var(--bears-featured-border-style) var(--bears-featured-border-color);
 		}
 	
 	/* Adjust flexbox rows for mobile */
