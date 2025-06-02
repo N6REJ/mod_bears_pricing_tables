@@ -11,69 +11,72 @@
 
 /* Template-specific CSS Variables */
 .template-1276 .bears_pricing_tables {
-	/* Layout Variables */
+	/* Layout & Structure */
 	--bears-num-columns: 3;
 	--bears-column-margin-y: 20px;
 	--bears-column-margin-x: 20px;
 	
-	/* Background Colors */
-	--bears-column-background: #e6e6e6;
-	--bears-column-featured-background: #e6e6e6;
-	--bears-header-background: #191919;
-	--bears-header-featured-background: #222f3d;
-	--bears-featured-button-background: #222f3d;
-	--bears-features-background-even: rgba(0, 0, 0, 0.06);
-	--bears-features-background-odd: var(--bears-column-background);
-	
-	/* Text Colors */
-	--bears-title-color: #fff;
-	--bears-featured-title-color: #fff;
-	--bears-price-color: #fff;
-	--bears-featured-price-color: #fff;
-	--bears-subtitle-color: #fff;
-	--bears-features-color: #000000;
-	--bears-featured-features-color: var(--bears-features-color);
-	--bears-button-text-color: #ffffff;
-	
-	/* Button Colors */
-	--bears-button-background-color: #191919;
-	--bears-button-hover-color: #666666;
-	
-	/* Border Colors */
-	--bears-border-color: #efefef;
-	--bears-featured-border-color: #222f3d;
-	--bears-features-border-color: none;
-	--bears-features-featured_border-color: none;
-	
-	/* Accent Colors */
-	--bears-accent-color: #191919;
-	--bears-featured-accent-color: #222f3d;
-	
 	/* Typography */
 	--bears-font-family: "Crimson Text", serif;
+	--bears-font-weight: 700;
 	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h1);
-	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
+	--bears-features-font-size: var(--bears-body);
 	--bears-button-font-size: var(--bears-body);
-	--bears-font-weight: 700;
 	
-	/* Effects */
-	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-	--bears-transition-speed: 0.3s;
-	--bears-scale-amount: 1.05;
+	/* Colors - Standard Elements */
+	--bears-accent-color: #191919;
+	--bears-column-background: #e6e6e6;
+	--bears-header-background: #191919;
+	--bears-features-background-odd: var(--bears-column-background);
+	--bears-features-background-even: rgba(0, 0, 0, 0.06);
 	
-	/* Border Settings */
-	--bears-border-radius: 5px;
-	--bears-featured-border-radius: 5px;
-	--bears-border-width: 5px;
-	--bears-featured-border-width: 5px;
+	/* Colors - Text */
+	--bears-title-color: #fff;
+	--bears-price-color: #fff;
+	--bears-subtitle-color: #fff;
+	--bears-features-color: #000000;
+	
+	/* Colors - Featured Elements */
+	--bears-featured-accent-color: #222f3d;
+	--bears-column-featured-background: #e6e6e6;
+	--bears-header-featured-background: #222f3d;
+	--bears-featured-title-color: #fff;
+	--bears-featured-price-color: #fff;
+	--bears-featured-features-color: var(--bears-features-color);
+	
+	/* Colors - Buttons */
+	--bears-button-text-color: #ffffff;
+	--bears-button-background-color: #191919;
+	--bears-button-hover-color: #666666;
+	--bears-featured-button-background: #222f3d;
+	
+	/* Borders - Standard */
 	--bears-border-style: solid;
-	--bears-featured-border-style: var(--bears-border-style);
+	--bears-border-width: 5px;
+	--bears-border-radius: 5px;
+	--bears-border-color: #efefef;
+	--bears-features-border-color: none;
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
-	/* Icon settings */
+	/* Borders - Buttons */
+	--bears-button-border-radius: 4px;
+	
+	/* Borders - Featured */
+	--bears-featured-border-radius: 5px;
+	--bears-featured-border-width: 5px;
+	--bears-featured-border-style: var(--bears-border-style);
+	--bears-featured-border-color: #222f3d;
+	--bears-features-featured_border-color: none;
+	
+	/* Effects & Animation */
+	--bears-transition-speed: 0.3s;
+	--bears-scale-amount: 1.05;
+	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	
+	/* Icons */
 	--bears-header-icon-color: inherit;
 	--bears-header-icon-size: 24px;
 	}
