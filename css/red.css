@@ -77,7 +77,10 @@
     --bears-featured-box-shadow: 0 0 15px rgba(0,0,0,0.2);
     
     /* Icons */
-    --bears-header-icon-color: inherit;
+    --bears-header-icon-color: var(--bears-title-color);
+    --bears-featured-header-icon-color: var(--bears-featured-title-color);
+    --bears-features-icon-color: var(--bears-features-color);
+    --bears-featured-features-icon-color: var(--bears-featured-features-color);
     --bears-header-icon-size: 24px;
 }
 

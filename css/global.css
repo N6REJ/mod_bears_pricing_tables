@@ -74,8 +74,11 @@
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
-	/* Icon settings - Template specific */
-	--bears-header-icon-color: inherit;
+	/* Icons - Template specific */
+	--bears-header-icon-color: var(--bears-title-color);
+	--bears-featured-header-icon-color: var(--bears-featured-title-color);
+	--bears-features-icon-color: var(--bears-features-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-color);
 	--bears-header-icon-size: 24px;
 	}
 
