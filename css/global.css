@@ -15,9 +15,10 @@
 	--bears-num-columns: 3;
 	--bears-column-margin-y: 10px;
 	--bears-column-margin-x: 10px;
-	--bears-h1: calc(1.375rem + 1.5vw);
-	--bears-h3: calc(1.3rem + 0.6vw);
-	--bears-h4: calc(1.275rem + 0.3vw);
+	--bears-h1: 2.5rem;
+	--bears-h2: 2rem;
+	--bears-h3: 1.75rem;
+	--bears-h4: 1.5rem;
 	--bears-body: 1rem;
 	
 	/* Background Colors - Template specific */
@@ -50,7 +51,7 @@
 	/* Typography - Global settings */
 	--bears-title-font-family: "Roboto", Arial, sans-serif;
 	--bears-price-font-family: "Montserrat", Arial, sans-serif;
-	--bears-title-font-size: var(--bears-h3);
+	--bears-title-font-size: var(--bears-h4);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);

@@ -21,7 +21,7 @@
 	--bears-price-font-family: "Montserrat", Arial, sans-serif;
 	--bears-title-font-weight: 600;
 	--bears-price-font-weight: 600;
-	--bears-title-font-size: var(--bears-h3);
+	--bears-title-font-size: var(--bears-h4);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-features-font-size: var(--bears-body);
@@ -87,14 +87,6 @@
 }
 
 /* Template-specific styles */
-.template-white .bears_pricing_tables .plan-title {
-	font-size: 1.17em;
-	}
-
-.template-white .bears_pricing_tables .plan-price {
-	font-size: 2em;
-	}
-
 .template-white .bears_pricing_tables .price {
 	display: flex;
 	align-items: center;
@@ -128,11 +120,6 @@
 
 .template-white .bears_pricing_tables .plan.featured .plan-select {
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	}
-
-.template-white .bears_pricing_tables .plan-select a,
-.template-white .bears_pricing_tables .plan-select a.btn {
-	font-size: 1em;
 	}
 
 .template-white .bears_pricing_tables .plan.featured .plan-select a,
