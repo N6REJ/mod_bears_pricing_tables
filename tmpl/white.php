@@ -103,10 +103,10 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 <?php
                             } ?>
 
-							<h3 class = "plan-title">
+							<h4 class = "plan-title">
                                 <?php
                                 echo htmlspecialchars($params_array['bears_title'][$cur_column] ?? ''); ?>
-							</h3>
+							</h4>
 
 							<div class = "price">
                                 <?php

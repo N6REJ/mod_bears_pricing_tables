@@ -1,6 +1,6 @@
 <?php
 /**
- * Bears Pricing Tables - red Template
+ * Bears Pricing Tables - Default Template
  * Version : 2025.5.15
  * Created by : N6REJ
  * Email : troy@hallhome.us
@@ -60,7 +60,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 
 // IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
-<div class = "template-red">
+<div class = "template-1299">
 	<div class = "bears_pricing_tables-outer bears_pricing_tables-<?php
     echo $bears_moduleid; ?>">
 		<!-- Add data-columns attribute for CSS targeting -->
@@ -98,7 +98,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php echo $header_icon_color; ?>></i>
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo $header_icon_color; ?>></i>
 								</div>
                                 <?php
                             } ?>
@@ -118,7 +119,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 									<div class = "plan-icon price-left <?php
                                     echo $columnClass; ?>">
 										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php echo $header_icon_color; ?>></i>
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                        echo $header_icon_color; ?>></i>
 									</div>
                                     <?php
                                 } ?>
@@ -139,7 +141,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 									<div class = "plan-icon price-right <?php
                                     echo $columnClass; ?>">
 										<i class = "<?php
-                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php echo $header_icon_color; ?>></i>
+                                        echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                        echo $header_icon_color; ?>></i>
 									</div>
                                     <?php
                                 } ?>
@@ -155,7 +158,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php echo $header_icon_color; ?>></i>
+                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo $header_icon_color; ?>></i>
 								</div>
                                 <?php
                             }
@@ -176,7 +180,8 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                         $list_class = !empty($icon_class) ? 'plan-features fa-ul centered-features' : 'plan-features';
                         ?>
 
-						<ul class = "<?php echo $list_class; ?>">
+						<ul class = "<?php
+                        echo $list_class; ?>">
                             <?php
                             if (!empty($params_array['bears_features'][$cur_column])) {
                                 $features = $params_array['bears_features'][$cur_column];
@@ -190,8 +195,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 }
 
                                 // Render each feature
-                                foreach ($features_items as $item)
-                                {
+                                foreach ($features_items as $item) {
                                     $feature_text = '';
 
                                     // Get the text (always from bears_feature property when using subform)

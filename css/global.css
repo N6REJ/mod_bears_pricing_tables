@@ -3,7 +3,7 @@
  * Version: 2025.06.01
  * Created by: N6REJ
  * Email: programming@hallhome.us
- * URL: www.hallhome.us
+ * URL: http://www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  */
 
@@ -15,9 +15,10 @@
 	--bears-num-columns: 3;
 	--bears-column-margin-y: 10px;
 	--bears-column-margin-x: 10px;
-	--bears-h1: calc(1.375rem + 1.5vw);
-	--bears-h3: calc(1.3rem + 0.6vw);
-	--bears-h4: calc(1.275rem + 0.3vw);
+	--bears-h1: 2.5rem;
+	--bears-h2: 2rem;
+	--bears-h3: 1.75rem;
+	--bears-h4: 1.5rem;
 	--bears-body: 1rem;
 	
 	/* Background Colors - Template specific */
@@ -46,26 +47,17 @@
 	/* Border Colors - Template specific */
 	--bears-border-color: #e0e0e0;
 	--bears-featured-border-color: #222222;
-	--bears-features-border-color: none;
-	--bears-features-featured_border-color: none;
-	
-	/* Accent Colors - Template specific */
-	--bears-accent-color: #191919;
-	--bears-featured-accent-color: #222222;
 	
 	/* Typography - Global settings */
-	--bears-font-family: sans-serif;
-	--bears-title-font-size: var(--bears-h3);
+	--bears-title-font-family: "Roboto", Arial, sans-serif;
+	--bears-price-font-family: "Montserrat", Arial, sans-serif;
+	--bears-title-font-size: var(--bears-h4);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-button-font-size: var(--bears-body);
-	--bears-font-weight: 700;
-	
-	/* Effects - Template specific */
-	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-	--bears-transition-speed: 0.3s;
+	--bears-title-font-weight: 600;
+	--bears-price-font-weight: 600;
 	
 	/* Border Settings - Template specific */
 	--bears-border-radius: 5px;
@@ -76,9 +68,66 @@
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
-	/* Icon settings - Template specific */
-	--bears-header-icon-color: inherit;
+	/* Borders - Buttons */
+	--bears-button-border-radius: 4px;
+	
+	/* Effects & Animation */
+	--bears-accent-color: #191919;
+	--bears-featured-accent-color: #222f3d;
+	--bears-transition-speed: 0.3s;
+	--bears-scale-amount: 1.05;
+	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	
+	/* Icons - Template specific */
+    --bears-header-icon-color: var(--bears-price-color);
+    --bears-featured-header-icon-color: var(--bears-featured-price-color);
+	--bears-features-icon-color: var(--bears-features-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-color);
 	--bears-header-icon-size: 24px;
+	}
+
+/* Icon styles for FontAwesome */
+.bears_pricing_tables .fa,
+.bears_pricing_tables .fas,
+.bears_pricing_tables .far,
+.bears_pricing_tables .fab {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	}
+
+/* Header icon styles */
+.bears_pricing_tables header .fa,
+.bears_pricing_tables header .fas,
+.bears_pricing_tables header .far,
+.bears_pricing_tables header .fab {
+	color: var(--bears-header-icon-color);
+	font-size: var(--bears-header-icon-size);
+	margin: 0 5px;
+	}
+
+.bears_pricing_tables .plan.featured header .fa,
+.bears_pricing_tables .plan.featured header .fas,
+.bears_pricing_tables .plan.featured header .far,
+.bears_pricing_tables .plan.featured header .fab {
+	color: var(--bears-featured-header-icon-color);
+	}
+
+/* Feature list icon styles */
+.bears_pricing_tables .plan-features .fa,
+.bears_pricing_tables .plan-features .fas,
+.bears_pricing_tables .plan-features .far,
+.bears_pricing_tables .plan-features .fab {
+	color: var(--bears-features-icon-color);
+	margin-right: 8px;
+	}
+
+.bears_pricing_tables .plan.featured .plan-features .fa,
+.bears_pricing_tables .plan.featured .plan-features .fas,
+.bears_pricing_tables .plan.featured .plan-features .far,
+.bears_pricing_tables .plan.featured .plan-features .fab {
+	color: var(--bears-featured-features-icon-color);
 	}
 
 /* Base container styles */
@@ -192,8 +241,9 @@
 .bears_pricing_tables .plan-title {
 	top: 0;
 	color: var(--bears-title-color);
+	font-family: var(--bears-title-font-family);
 	font-size: var(--bears-title-font-size);
-	font-weight: 700;
+	font-weight: var(--bears-title-font-weight);
 	text-transform: uppercase;
 	flex: 1;
 	width: 100%;
@@ -217,6 +267,9 @@
 	justify-content: center;
 	align-items: center;
 	flex: 1;
+	font-family: var(--bears-price-font-family);
+	font-size: var(--bears-price-font-size);
+	font-weight: var(--bears-price-font-weight);
 	}
 
 .bears_pricing_tables .plan.featured .plan-cost {
@@ -315,7 +368,7 @@
 	display: inline-block;
 	border: none;
 	border-radius: var(--bears-button-border-radius);
-	font-weight: 700;
+	font-weight: 600;
 	padding: 12px 30px;
 	text-transform: uppercase;
 	transition: all var(--bears-transition-speed) ease;

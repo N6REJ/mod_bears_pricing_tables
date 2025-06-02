@@ -3,7 +3,7 @@
  * Version: 2025.06.01
  * Created by: N6REJ
  * Email: programming@hallhome.us
- * URL: www.hallhome.us
+ * URL: http://www.hallhome.us
  * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
  * Based on: https://www.littlesnippets.net/snip1214
  */
@@ -18,16 +18,17 @@
 	--bears-column-margin-x: 10px;
 	
 	/* Typography */
-	--bears-font-family: 'Raleway', Arial, sans-serif;
-	--bears-font-weight: 800;
-	--bears-title-font-size: var(--bears-h3);
+	--bears-title-font-family: 'Raleway', Arial, sans-serif;
+	--bears-price-font-family: "Montserrat", Arial, sans-serif;
+	--bears-title-font-weight: 800;
+	--bears-price-font-weight: 600;
+	--bears-title-font-size: var(--bears-h4);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-features-font-size: var(--bears-body);
 	--bears-button-font-size: var(--bears-body);
 	
 	/* Colors - Standard Elements */
-	--bears-accent-color: #222f3d;
 	--bears-column-background: #ffffff;
 	--bears-header-background: #ffffff;
 	--bears-features-background-odd: var(--bears-column-background);
@@ -38,9 +39,9 @@
 	--bears-price-color: #34495e;
 	--bears-subtitle-color: #34495e;
 	--bears-features-color: #000000;
+	--bears-button-text-color: #ffffff;
 	
 	/* Colors - Featured Elements */
-	--bears-featured-accent-color: #34495e;
 	--bears-column-featured-background: #34495e;
 	--bears-header-featured-background: #34495e;
 	--bears-featured-title-color: #ffffff;
@@ -48,10 +49,10 @@
 	--bears-featured-features-color: #fff;
 	
 	/* Colors - Buttons */
-	--bears-button-text-color: #ffffff;
 	--bears-button-background-color: #222f3d;
 	--bears-button-hover-color: #34495e;
 	--bears-featured-button-background: #222f3d;
+	--bears-featured-button-text-color: #ffffff;
 	
 	/* Borders - Standard */
 	--bears-border-style: solid;
@@ -69,18 +70,22 @@
 	--bears-featured-border-width: 1px;
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-featured-border-color: transparent;
-	--bears-features-featured_border-color: none;
 	
 	/* Effects & Animation */
+	--bears-accent-color: #222f3d;
+	--bears-featured-accent-color: #34495e;
 	--bears-transition-speed: 0.3s;
 	--bears-scale-amount: 1.05;
 	--bears-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 	
 	/* Icons */
-	--bears-header-icon-color: inherit;
+	--bears-header-icon-color: var(--bears-price-color);
+	--bears-featured-header-icon-color: var(--bears-featured-price-color);
+	--bears-features-icon-color: var(--bears-features-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-color);
 	--bears-header-icon-size: 24px;
-	}
+}
 
 /* Template-specific styles */
 .template-1214 .bears_pricing_tables-outer {
