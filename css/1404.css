@@ -26,7 +26,6 @@
     --bears-button-font-size: clamp(0.75rem, 1vw + 0.5rem, 1rem);
     
     /* Colors - Standard Elements */
-    --bears-accent-color: #2F1823;
     --bears-column-background: #5f3047;
     --bears-header-background: #5f3047;
     --bears-features-background-odd: var(--bears-column-background);
@@ -37,9 +36,9 @@
     --bears-price-color: #ffffff;
     --bears-subtitle-color: rgba(255, 255, 255, 0.8);
     --bears-features-color: #ffffff;
+    --bears-button-text-color: #ffffff;
     
     /* Colors - Featured Elements */
-    --bears-featured-accent-color: #ffffff;
     --bears-column-featured-background: #5f3047;
     --bears-header-featured-background: #5f3047;
     --bears-featured-title-color: #ffffff;
@@ -47,11 +46,10 @@
     --bears-featured-features-color: var(--bears-features-color);
     
     /* Colors - Buttons */
-    --bears-button-text-color: #ffffff;
     --bears-button-background-color: #2F1823;
     --bears-button-hover-color: #6b3652; /* Just slightly lighter than the background color #5f3047 */
-    --bears-featured-button-text-color: #fff;
     --bears-featured-button-background: #2F1823;
+    --bears-featured-button-text-color: #fff;
     
     /* Borders - Standard */
     --bears-border-style: solid;
@@ -69,9 +67,10 @@
     --bears-featured-border-width: 1px;
     --bears-featured-border-style: var(--bears-border-style);
     --bears-featured-border-color: #156dab;
-    --bears-features-featured-border-color: none;
     
     /* Effects & Animation */
+    --bears-accent-color: #2F1823;
+    --bears-featured-accent-color: #ffffff;
     --bears-transition-speed: 0.25s;
     --bears-scale-amount: 1.08;
     --bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);

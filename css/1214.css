@@ -27,7 +27,6 @@
 	--bears-button-font-size: var(--bears-body);
 	
 	/* Colors - Standard Elements */
-	--bears-accent-color: #222f3d;
 	--bears-column-background: #ffffff;
 	--bears-header-background: #ffffff;
 	--bears-features-background-odd: var(--bears-column-background);
@@ -38,20 +37,20 @@
 	--bears-price-color: #34495e;
 	--bears-subtitle-color: #34495e;
 	--bears-features-color: #000000;
+	--bears-button-text-color: #ffffff;
 	
 	/* Colors - Featured Elements */
-	--bears-featured-accent-color: #34495e;
 	--bears-column-featured-background: #34495e;
 	--bears-header-featured-background: #34495e;
 	--bears-featured-title-color: #ffffff;
 	--bears-featured-price-color: #ffffff;
 	--bears-featured-features-color: #fff;
+	--bears-featured-button-background: #222f3d;
+	--bears-featured-button-text-color: #ffffff;
 	
 	/* Colors - Buttons */
-	--bears-button-text-color: #ffffff;
 	--bears-button-background-color: #222f3d;
 	--bears-button-hover-color: #34495e;
-	--bears-featured-button-background: #222f3d;
 	
 	/* Borders - Standard */
 	--bears-border-style: solid;
@@ -69,9 +68,10 @@
 	--bears-featured-border-width: 1px;
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-featured-border-color: transparent;
-	--bears-features-featured_border-color: none;
 	
 	/* Effects & Animation */
+	--bears-accent-color: #222f3d;
+	--bears-featured-accent-color: #34495e;
 	--bears-transition-speed: 0.3s;
 	--bears-scale-amount: 1.05;
 	--bears-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
