@@ -18,8 +18,8 @@
 	--bears-column-margin-x: 10px;
 	
 	/* Typography */
-	--bears-font-family: 'Raleway', Arial, sans-serif;
-	--bears-font-weight: 800;
+--bears-title-font-family: 'Raleway', Arial, sans-serif;
+	--bears-title-font-weight: 800;
 	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-subtitle-font-size: var(--bears-h4);

@@ -47,23 +47,15 @@
 	--bears-border-color: #e0e0e0;
 	--bears-featured-border-color: #222222;
 	
-	/* Accent Colors - Template specific */
-	--bears-accent-color: #191919;
-	--bears-featured-accent-color: #222222;
-	
 	/* Typography - Global settings */
-	--bears-font-family: sans-serif;
+	--bears-title-font-family: "Roboto", Arial, sans-serif;
 	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-button-font-size: var(--bears-body);
-	--bears-font-weight: 700;
-	
-	/* Effects - Template specific */
-	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-	--bears-transition-speed: 0.3s;
+	--bears-title-font-weight: 700;
+	--bears-price-font-weight: 700;
 	
 	/* Border Settings - Template specific */
 	--bears-border-radius: 5px;
@@ -73,6 +65,17 @@
 	--bears-border-style: solid;
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
+	
+	/* Borders - Buttons */
+	--bears-button-border-radius: 4px;
+	
+	/* Effects & Animation */
+	--bears-accent-color: #191919;
+	--bears-featured-accent-color: #222f3d;
+	--bears-transition-speed: 0.3s;
+	--bears-scale-amount: 1.05;
+	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
 	/* Icons - Template specific */
     --bears-header-icon-color: var(--bears-price-color);
@@ -237,7 +240,7 @@
 	top: 0;
 	color: var(--bears-title-color);
 	font-size: var(--bears-title-font-size);
-	font-weight: 700;
+	font-weight: var(--bears-title-font-weight);
 	text-transform: uppercase;
 	flex: 1;
 	width: 100%;
