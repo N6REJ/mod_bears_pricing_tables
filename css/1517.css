@@ -17,7 +17,7 @@
     --bears-column-margin-x: 20px;
     
     /* Typography */
-    --bears-font-family: 'Roboto', Arial, sans-serif;
+    --bears-title-font-family: 'Roboto', Arial, sans-serif;
     --bears-title-font-weight: 500;
     --bears-price-font-weight: 700;
     --bears-title-font-size: var(--bears-h3);

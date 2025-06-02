@@ -78,12 +78,12 @@
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
 	/* Icons */
-    --bears-header-icon-color: var(--bears-price-color);
-    --bears-featured-header-icon-color: var(--bears-featured-price-color);
+	--bears-header-icon-color: var(--bears-price-color);
+	--bears-featured-header-icon-color: var(--bears-featured-price-color);
 	--bears-features-icon-color: var(--bears-features-color);
 	--bears-featured-features-icon-color: var(--bears-featured-features-color);
 	--bears-header-icon-size: 24px;
-	}
+}
 
 /* Template-specific styles */
 .template-1276 .bears_pricing_tables {

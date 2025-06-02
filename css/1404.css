@@ -16,8 +16,8 @@
     --bears-column-margin-y: 15px;
     --bears-column-margin-x: 20px;
     
-    /* Typography - Responsive font sizes that scale with column width */
-    --bears-font-family: 'Roboto', Arial, sans-serif;
+    /* Typography */
+    --bears-title-font-family: 'Roboto', Arial, sans-serif;
     --bears-title-font-weight: 500;
     --bears-price-font-weight: 700;
     --bears-title-font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
