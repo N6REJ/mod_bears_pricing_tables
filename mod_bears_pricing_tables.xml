@@ -97,30 +97,56 @@
 			</fieldset>
 
 			<fieldset name="MOD_BEARS_FONTS" label="COM_MODULES_MOD_BEARS_FONTS_FIELDSET_LABEL">
+				<!-- Title Font Settings -->
 				<field
-						name="bears_google_font_family"
+						name="bears_title_font_family"
 						type="text"
 						default=""
-						label="MOD_BEARS_GOOGLE_FONT_FAMILY"
-						description="MOD_BEARS_GOOGLE_FONT_FAMILY_DESC"
+						label="MOD_BEARS_TITLE_FONT_FAMILY"
+						description="MOD_BEARS_TITLE_FONT_FAMILY_DESC"
 				/>
 				<field
-						name="bears_font_weight"
+						name="bears_title_font_weight"
 						type="list"
-						default="normal"
-						label="MOD_BEARS_FONT_WEIGHT"
-						description="MOD_BEARS_FONT_WEIGHT_DESC">
+						default=""
+						label="MOD_BEARS_TITLE_FONT_WEIGHT"
+						description="MOD_BEARS_TITLE_FONT_WEIGHT_DESC">
 					<option value="normal">Normal</option>
 					<option value="300">Light (300)</option>
 					<option value="400">Regular (400)</option>
 					<option value="500">Medium (500)</option>
 					<option value="600">Semi-Bold (600)</option>
-					<option value="700">Bold (600)</option>
+					<option value="700">Bold (700)</option>
 					<option value="800">Extra Bold (800)</option>
 				</field>
 				<field name="bears_title_font_size" type="textpx" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />
-				<field name="bears_subtitle_font_size" type="textpx" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
+				
+				<!-- Price Font Settings -->
+				<field
+						name="bears_price_font_family"
+						type="text"
+						default=""
+						label="MOD_BEARS_PRICE_FONT_FAMILY"
+						description="MOD_BEARS_PRICE_FONT_FAMILY_DESC"
+				/>
+				<field
+						name="bears_price_font_weight"
+						type="list"
+						default=""
+						label="MOD_BEARS_PRICE_FONT_WEIGHT"
+						description="MOD_BEARS_PRICE_FONT_WEIGHT_DESC">
+					<option value="normal">Normal</option>
+					<option value="300">Light (300)</option>
+					<option value="400">Regular (400)</option>
+					<option value="500">Medium (500)</option>
+					<option value="600">Semi-Bold (600)</option>
+					<option value="700">Bold (700)</option>
+					<option value="800">Extra Bold (800)</option>
+				</field>
 				<field name="bears_price_font_size" type="textpx" default="" label="MOD_BEARS_PRICE_FONT_SIZE" description="MOD_BEARS_PRICE_FONT_SIZE_DESC" />
+				
+				<!-- Other Font Sizes -->
+				<field name="bears_subtitle_font_size" type="textpx" default="" label="MOD_BEARS_SUBTITLE_FONT_SIZE" description="MOD_BEARS_SUBTITLE_FONT_SIZE_DESC" />
 				<field name="bears_features_font_size" type="textpx" default="" label="MOD_BEARS_FEATURES_FONT_SIZE" description="MOD_BEARS_FEATURES_FONT_SIZE_DESC" />
 				<field name="bears_button_font_size" type="textpx" default="" label="MOD_BEARS_BUTTON_FONT_SIZE" description="MOD_BEARS_BUTTON_FONT_SIZE_DESC" />
 			</fieldset>

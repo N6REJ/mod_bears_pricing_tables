@@ -79,9 +79,10 @@ class ModBearsPricingTablesHelper
         $bears_featured_border_width = $params->get('bears_featured_border_width');
 
         // Font parameters with proper defaults
-        $bears_google_font_family = $params->get('bears_google_font_family');
-        $bears_font_weight        = $params->get('bears_font_weight');
-        $bears_use_google_font    = $params->get('bears_use_google_font');
+        $bears_title_font_family  = $params->get('bears_title_font_family');
+        $bears_title_font_weight  = $params->get('bears_title_font_weight');
+        $bears_price_font_family  = $params->get('bears_price_font_family');
+        $bears_price_font_weight  = $params->get('bears_price_font_weight');
 
         // Initialize arrays for column-specific parameters
         $bears_title         = array();
@@ -160,11 +161,12 @@ class ModBearsPricingTablesHelper
             'bears_button_text_color'          => $bears_button_text_color,
             'bears_button_background_color'    => $bears_button_background_color,
             'bears_button_hover_color'         => $bears_button_hover_color,
-            'bears_use_google_font'            => $bears_use_google_font,
 
             // Font parameters
-            'bears_google_font_family'         => $bears_google_font_family,
-            'bears_font_weight'                => $bears_font_weight,
+            'bears_title_font_family'          => $bears_title_font_family,
+            'bears_title_font_weight'          => $bears_title_font_weight,
+            'bears_price_font_family'          => $bears_price_font_family,
+            'bears_price_font_weight'          => $bears_price_font_weight,
 
             // Column-specific parameters
             'bears_title'                      => $bears_title,
@@ -475,16 +477,80 @@ class ModBearsPricingTablesHelper
 
         $css .= '}';
 
-        // Add Google Font if specified - still use module-specific selector
-        if ($params->get('bears_use_google_font', '0') == '1' && $params->get('bears_google_font_family')) {
-            $fontFamily = $params->get('bears_google_font_family', 'Raleway');
-            $fontWeight = $params->get('bears_font_weight', '400');
+        // Apply font settings for title and price
+        $titleFontFamily = $params->get('bears_title_font_family', '');
+        $titleFontWeight = $params->get('bears_title_font_weight', 'normal');
+        $priceFontFamily = $params->get('bears_price_font_family', '');
+        $priceFontWeight = $params->get('bears_price_font_weight', 'normal');
 
-            // Add Google Font import
-            $css = '@import url("https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . ':wght@' . $fontWeight . '&display=swap");' . "\n" . $css;
+        // Prepare Google Fonts if needed
+        if (!empty($titleFontFamily) || !empty($priceFontFamily)) {
+            $fontFamilies = [];
+            $fontWeights = [];
 
-            // Apply font family to the pricing tables with module ID for specificity
-            $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { font-family: "' . $fontFamily . '", sans-serif; font-weight: ' . $fontWeight . '; }';
+            if (!empty($titleFontFamily)) {
+                $fontFamilies[] = $titleFontFamily;
+                if ($titleFontWeight !== 'normal') {
+                    $fontWeights[] = $titleFontWeight;
+                }
+            }
+
+            if (!empty($priceFontFamily) && !in_array($priceFontFamily, $fontFamilies)) {
+                $fontFamilies[] = $priceFontFamily;
+                if ($priceFontWeight !== 'normal' && !in_array($priceFontWeight, $fontWeights)) {
+                    $fontWeights[] = $priceFontWeight;
+                }
+            }
+
+            // Add default weight if no weights specified
+            if (empty($fontWeights)) {
+                $fontWeights[] = '400';
+            }
+
+            $fontWeightsStr = implode(',', $fontWeights);
+
+            // Add Google Font imports for each font family
+            foreach ($fontFamilies as $fontFamily) {
+                if (!empty($fontFamily)) {
+                    $css = '@import url("https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $fontFamily) . ':wght@' . $fontWeightsStr . '&display=swap");' . "\n" . $css;
+                }
+            }
+            
+            // Apply title font family and weight if specified
+            if (!empty($titleFontFamily)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-title { font-family: "' . $titleFontFamily . '", sans-serif; }';
+            }
+            if ($titleFontWeight !== 'normal') {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-title { font-weight: ' . $titleFontWeight . '; }';
+            }
+            
+            // Apply price font family and weight if specified
+            if (!empty($priceFontFamily)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-price { font-family: "' . $priceFontFamily . '", sans-serif; }';
+            }
+            if ($priceFontWeight !== 'normal') {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-price { font-weight: ' . $priceFontWeight . '; }';
+            }
+        } else {
+            // Even if Google Fonts are not used, still apply title and price font settings if specified
+            $titleFontFamily = $params->get('bears_title_font_family', '');
+            $titleFontWeight = $params->get('bears_title_font_weight', 'normal');
+            $priceFontFamily = $params->get('bears_price_font_family', '');
+            $priceFontWeight = $params->get('bears_price_font_weight', 'normal');
+            
+            if (!empty($titleFontFamily)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-title { font-family: "' . $titleFontFamily . '", sans-serif; }';
+            }
+            if ($titleFontWeight !== 'normal') {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-title { font-weight: ' . $titleFontWeight . '; }';
+            }
+            
+            if (!empty($priceFontFamily)) {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-price { font-family: "' . $priceFontFamily . '", sans-serif; }';
+            }
+            if ($priceFontWeight !== 'normal') {
+                $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .plan-price { font-weight: ' . $priceFontWeight . '; }';
+            }
         }
 
         // Add all component-specific CSS rules with module ID for specificity
