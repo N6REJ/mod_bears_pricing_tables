@@ -28,7 +28,7 @@
 	/* Colors - Standard Elements */
 	--bears-accent-color: #156dab;
 	--bears-column-background: #1a1a1a;
-	--bears-header-background: #156DAB;
+	--bears-header-background: #156dab;
 	--bears-features-background-odd: var(--bears-column-background);
 	--bears-features-background-even: rgba(0, 0, 0, 0.06);
 	
@@ -42,14 +42,14 @@
 	/* Colors - Featured Elements */
 	--bears-featured-accent-color: #156dab;
 	--bears-column-featured-background: #1a1a1a;
-	--bears-header-featured-background: #156DAB;
+	--bears-header-featured-background: #156dab;
 	--bears-featured-title-color: #fff;
 	--bears-featured-price-color: #fff;
 	--bears-featured-features-color: var(--bears-features-color);
-	--bears-featured-button-background: #156DAB;
+	--bears-featured-button-background: #156dab;
 	
 	/* Colors - Buttons */
-	--bears-button-background-color: #156DAB;
+	--bears-button-background-color: #156dab;
 	--bears-button-hover-color: #1b8ad8;
 	
 	/* Borders - Standard */
