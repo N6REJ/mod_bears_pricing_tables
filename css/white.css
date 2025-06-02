@@ -11,71 +11,73 @@
 
 /* Template-specific CSS Variables */
 .template-white .bears_pricing_tables {
-    /* Layout Variables */
+    /* Layout & Structure */
     --bears-num-columns: 4;
     --bears-column-margin-y: 10px;
     --bears-column-margin-x: 10px;
-
-    /* Background Colors */
+    
+    /* Typography */
+    --bears-font-family: 'Roboto', sans-serif;
+    --bears-font-weight: 600;
+    --bears-title-font-size: var(--bears-h3);
+    --bears-price-font-size: var(--bears-h1);
+    --bears-subtitle-font-size: var(--bears-h4);
+    --bears-features-font-size: var(--bears-body);
+    --bears-button-font-size: var(--bears-body);
+    
+    /* Colors - Standard Elements */
+    --bears-accent-color: #333333;
     --bears-column-background: #ffffff;
-    --bears-column-featured-background: #222222;
     --bears-header-background: rgba(0, 0, 0, 0.08);
-    --bears-header-featured-background: #222222;
-    --bears-featured-button-background: #ffffff;
-    --bears-features-background-even: rgba(0, 0, 0, 0.08);
     --bears-features-background-odd: var(--bears-column-background);
-
-    /* Text Colors */
+    --bears-features-background-even: rgba(0, 0, 0, 0.08);
+    
+    /* Colors - Text */
     --bears-title-color: #333333;
-    --bears-featured-title-color: #ffffff;
     --bears-price-color: #333333;
-    --bears-featured-price-color: #ffffff;
     --bears-subtitle-color: rgba(255, 255, 255, 0.7);
     --bears-features-color: #000;
+    
+    /* Colors - Featured Elements */
+    --bears-featured-accent-color: #ffffff;
+    --bears-column-featured-background: #222222;
+    --bears-header-featured-background: #222222;
+    --bears-featured-title-color: #ffffff;
+    --bears-featured-price-color: #ffffff;
     --bears-featured-features-color: #fff;
-
-    /* Button Colors */
+    --bears-featured-button-background: #ffffff;
+    --bears-featured-button-color: #222222;
+    
+    /* Colors - Buttons */
     --bears-button-text-color: #fff;
     --bears-button-background-color: #333333;
     --bears-button-hover-color: #555555;
-    --bears-featured-button-color: #222222;
-
-    /* Border Colors */
+    
+    /* Borders - Standard */
+    --bears-border-style: solid;
+    --bears-border-width: 2px;
+    --bears-border-radius: 8px;
     --bears-border-color: #e0e0e0;
-    --bears-featured-border-color: rgba(255, 255, 255, 0.05);
     --bears-features-border-color: none;
+    --bears-header-border: 1px solid rgba(0,0,0,.15);
+    
+    /* Borders - Buttons */
+    --bears-button-border-radius: 4px;
+    
+    /* Borders - Featured */
+    --bears-featured-border-radius: 8px;
+    --bears-featured-border-width: 2px;
+    --bears-featured-border-style: var(--bears-border-style);
+    --bears-featured-border-color: rgba(255, 255, 255, 0.05);
     --bears-features-featured_border-color: none;
-
-    /* Accent Colors */
-    --bears-accent-color: #333333;
-    --bears-featured-accent-color: #ffffff;
-
-    /* Typography */
-    --bears-font-family: 'Roboto', sans-serif;
-    --bears-title-font-size: var(--bears-h3);
-    --bears-price-font-size: var(--bears-h1);
-    --bears-features-font-size: var(--bears-body);
-    --bears-subtitle-font-size: var(--bears-h4);
-    --bears-button-font-size: var(--bears-body);
-    --bears-font-weight: 600;
-
-    /* Effects */
-    --bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    --bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
+    /* Effects & Animation */
     --bears-transition-speed: 0.25s;
     --bears-scale-amount: 1.05;
-
-    /* Border Settings */
-    --bears-border-radius: 8px;
-    --bears-featured-border-radius: 8px;
-    --bears-button-border-radius: 4px;
-    --bears-border-width: 2px;
-    --bears-featured-border-width: 2px;
-    --bears-border-style: solid;
-    --bears-featured-border-style: var(--bears-border-style);
-    --bears-header-border: 1px solid rgba(0,0,0,.15);
-
-    /* Icon settings */
+    --bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
+    /* Icons */
     --bears-header-icon-color: inherit;
     --bears-header-icon-size: 24px;
 }
