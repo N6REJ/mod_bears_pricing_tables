@@ -115,7 +115,7 @@
 					<option value="400">Regular (400)</option>
 					<option value="500">Medium (500)</option>
 					<option value="600">Semi-Bold (600)</option>
-					<option value="700">Bold (700)</option>
+					<option value="700">Bold (600)</option>
 					<option value="800">Extra Bold (800)</option>
 				</field>
 				<field name="bears_title_font_size" type="textpx" default="" label="MOD_BEARS_TITLE_FONT_SIZE" description="MOD_BEARS_TITLE_FONT_SIZE_DESC" />

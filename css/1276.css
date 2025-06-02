@@ -18,8 +18,9 @@
 	
 	/* Typography */
 	--bears-title-font-family: "Crimson Text", serif;
-	--bears-title-font-weight: 700;
-	--bears-price-font-weight: 700;
+	--bears-price-font-family: "Montserrat", Arial, sans-serif;
+	--bears-title-font-weight: 600;
+	--bears-price-font-weight: 600;
 	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-subtitle-font-size: var(--bears-h4);

@@ -49,13 +49,14 @@
 	
 	/* Typography - Global settings */
 	--bears-title-font-family: "Roboto", Arial, sans-serif;
+	--bears-price-font-family: "Montserrat", Arial, sans-serif;
 	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h1);
 	--bears-features-font-size: var(--bears-body);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-button-font-size: var(--bears-body);
-	--bears-title-font-weight: 700;
-	--bears-price-font-weight: 700;
+	--bears-title-font-weight: 600;
+	--bears-price-font-weight: 600;
 	
 	/* Border Settings - Template specific */
 	--bears-border-radius: 5px;
@@ -239,6 +240,7 @@
 .bears_pricing_tables .plan-title {
 	top: 0;
 	color: var(--bears-title-color);
+	font-family: var(--bears-title-font-family);
 	font-size: var(--bears-title-font-size);
 	font-weight: var(--bears-title-font-weight);
 	text-transform: uppercase;
@@ -264,6 +266,9 @@
 	justify-content: center;
 	align-items: center;
 	flex: 1;
+	font-family: var(--bears-price-font-family);
+	font-size: var(--bears-price-font-size);
+	font-weight: var(--bears-price-font-weight);
 	}
 
 .bears_pricing_tables .plan.featured .plan-cost {
@@ -362,7 +367,7 @@
 	display: inline-block;
 	border: none;
 	border-radius: var(--bears-button-border-radius);
-	font-weight: 700;
+	font-weight: 600;
 	padding: 12px 30px;
 	text-transform: uppercase;
 	transition: all var(--bears-transition-speed) ease;
