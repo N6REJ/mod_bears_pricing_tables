@@ -75,11 +75,54 @@
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
 	/* Icons - Template specific */
-	--bears-header-icon-color: var(--bears-title-color);
-	--bears-featured-header-icon-color: var(--bears-featured-title-color);
+    --bears-header-icon-color: var(--bears-price-color);
+    --bears-featured-header-icon-color: var(--bears-featured-price-color);
 	--bears-features-icon-color: var(--bears-features-color);
 	--bears-featured-features-icon-color: var(--bears-featured-features-color);
 	--bears-header-icon-size: 24px;
+	}
+
+/* Icon styles for FontAwesome */
+.bears_pricing_tables .fa,
+.bears_pricing_tables .fas,
+.bears_pricing_tables .far,
+.bears_pricing_tables .fab {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	}
+
+/* Header icon styles */
+.bears_pricing_tables header .fa,
+.bears_pricing_tables header .fas,
+.bears_pricing_tables header .far,
+.bears_pricing_tables header .fab {
+	color: var(--bears-header-icon-color);
+	font-size: var(--bears-header-icon-size);
+	margin: 0 5px;
+	}
+
+.bears_pricing_tables .plan.featured header .fa,
+.bears_pricing_tables .plan.featured header .fas,
+.bears_pricing_tables .plan.featured header .far,
+.bears_pricing_tables .plan.featured header .fab {
+	color: var(--bears-featured-header-icon-color);
+	}
+
+/* Feature list icon styles */
+.bears_pricing_tables .plan-features .fa,
+.bears_pricing_tables .plan-features .fas,
+.bears_pricing_tables .plan-features .far,
+.bears_pricing_tables .plan-features .fab {
+	color: var(--bears-features-icon-color);
+	margin-right: 8px;
+	}
+
+.bears_pricing_tables .plan.featured .plan-features .fa,
+.bears_pricing_tables .plan.featured .plan-features .fas,
+.bears_pricing_tables .plan.featured .plan-features .far,
+.bears_pricing_tables .plan.featured .plan-features .fab {
+	color: var(--bears-featured-features-icon-color);
 	}
 
 /* Base container styles */
