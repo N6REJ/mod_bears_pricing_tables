@@ -152,7 +152,6 @@
 				</field>
 				<field name="bears_features_icon_class1" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color1" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_custom_value1" type="text" default="0" label="MOD_BEARS_CUSTOM_VALUE" description="MOD_BEARS_CUSTOM_VALUE_DESC" />
 			</fieldset>
 
 			<fieldset name="column2">
@@ -182,7 +181,6 @@
 				</field>
 				<field name="bears_features_icon_class2" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color2" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_custom_value2" type="text" default="0" label="MOD_BEARS_CUSTOM_VALUE" description="MOD_BEARS_CUSTOM_VALUE_DESC" />
 			</fieldset>
 
 			<fieldset name="column3">
@@ -212,7 +210,6 @@
 				</field>
 				<field name="bears_features_icon_class3" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color3" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_custom_value3" type="text" default="0" label="MOD_BEARS_CUSTOM_VALUE" description="MOD_BEARS_CUSTOM_VALUE_DESC" />
 			</fieldset>
 
 			<fieldset name="column4">
@@ -242,7 +239,6 @@
 				</field>
 				<field name="bears_features_icon_class4" type="text" default="" label="MOD_BEARS_FEATURES_ICON_CLASS" description="MOD_BEARS_FEATURES_ICON_CLASS_DESC" />
 				<field name="bears_features_icon_color4" type="color" default="" label="MOD_BEARS_FEATURES_ICON_COLOR" description="MOD_BEARS_FEATURES_ICON_COLOR_DESC" />
-				<field name="bears_custom_value4" type="text" default="0" label="MOD_BEARS_CUSTOM_VALUE" description="MOD_BEARS_CUSTOM_VALUE_DESC" />
 			</fieldset>
 
 			<fieldset name="column5">
