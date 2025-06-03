@@ -176,23 +176,3 @@
 .template-1464 .plan-select a.btn {
 	border-radius: 20px;
 	}
-
-/* Mobile Media Query - Template-specific adjustments */
-@media only screen and (max-width: 767px) {
-	.template-1464 .bears_pricing_tables header:after {
-		border-width: 8px 8px 0 8px;
-		}
-	.template-1464 .bears_pricing_tables .plan.featured header:after {
-		border-width: 12px 12px 0 12px; /* 50% larger than 8px */
-		}
-	}
-
-/* Small screen fixes - Template-specific adjustments */
-@media only screen and (max-width: 440px) {
-	.template-1464 .bears_pricing_tables header:after {
-		border-width: 6px 6px 0 6px;
-		}
-	.template-1464 .bears_pricing_tables .plan.featured header:after {
-		border-width: 9px 9px 0 9px; /* 50% larger than 6px */
-		}
-	}

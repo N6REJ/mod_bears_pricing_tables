@@ -225,28 +225,3 @@
 .template-1404 .bears_pricing_tables .plan.featured .plan-select {
     padding: 30px 20px;
 }
-
-/* Responsive adjustments for smaller screens */
-@media only screen and (max-width: 991px) {
-    .template-1404 .bears_pricing_tables .price {
-        overflow: visible;
-        justify-content: flex-end;
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-cost {
-        flex-direction: row; /* Keep items on the same line */
-        align-items: baseline;
-        justify-content: flex-end;
-        flex-shrink: 0; /* Prevent shrinking */
-        min-width: auto; /* Use natural width */
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-price {
-        padding-right: 5px; /* Reduced padding */
-        flex-shrink: 0; /* Prevent shrinking */
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-type {
-        flex-shrink: 0; /* Prevent shrinking */
-    }
-}

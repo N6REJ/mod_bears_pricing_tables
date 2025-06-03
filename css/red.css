@@ -142,19 +142,3 @@
 .template-red .bears_pricing_tables .plan.featured .plan-select {
     padding: 30px 20px;
 }
-
-/* Mobile Media Query - Template-specific adjustments */
-@media only screen and (max-width: 768px) {
-    /* Only keep template-specific adjustments */
-    .template-red .bears_pricing_tables header:after {
-        height: 24px;
-    }
-}
-
-/* Small screen fixes - Template-specific adjustments */
-@media only screen and (max-width: 440px) {
-    .template-red .bears_pricing_tables header:after {
-        height: 20px;
-        bottom: -20px;
-    }
-}

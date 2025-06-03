@@ -142,23 +142,3 @@
 .template-1207 .bears_pricing_tables .plan.featured .plan-select {
     padding: 30px 20px;
 }
-
-/* Mobile Media Query - Template-specific adjustments */
-@media only screen and (max-width: 767px) {
-    .template-1207 .bears_pricing_tables .plan-title {
-        font-size: 1.3em;
-    }
-    .template-1207 .bears_pricing_tables .plan-price {
-        font-size: 1.8em;
-    }
-}
-
-/* Small screen fixes - Template-specific adjustments */
-@media only screen and (max-width: 440px) {
-    .template-1207 .bears_pricing_tables .plan-title {
-        font-size: 1.2em;
-    }
-    .template-1207 .bears_pricing_tables .plan-price {
-        font-size: 1.6em;
-    }
-}
