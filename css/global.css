@@ -26,7 +26,6 @@
 	--bears-column-featured-background: #222222;
 	--bears-header-background: #191919;
 	--bears-header-featured-background: #222222;
-	--bears-featured-button-background: #222222;
 	--bears-features-background-even: rgba(0, 0, 0, 0.08);
 	--bears-features-background-odd: var(--bears-column-background);
 	
@@ -44,6 +43,8 @@
 	/* Button Colors - Template specific */
 	--bears-button-background-color: #191919;
 	--bears-button-hover-color: #666666;
+	--bears-featured-button-background: #222;
+	--bears-featured-button-text-color: var(--bears-featured-price-color);
 	
 	/* Border Colors - Template specific */
 	--bears-border-color: #e0e0e0;
@@ -273,7 +274,7 @@
 
 .bears_pricing_tables .plan-price {
 	margin-bottom: 6px;
-	margin-right: 5px;
+	margin-right: 0;
 	font-family: var(--bears-price-font-family);
 	font-size: var(--bears-price-font-size);
 	font-weight: var(--bears-price-font-weight);
@@ -369,6 +370,7 @@
 	transition: all var(--bears-transition-speed) ease;
 	font-weight: var(--bears-title-font-weight);
 	font-size: var(--bears-button-font-size);
+	font-family: var(--bears-title-font-family);
 	}
 
 .bears_pricing_tables .plan-select a:hover,

@@ -17,7 +17,7 @@
     --bears-column-margin-x: 20px;
     
     /* Typography */
-    --bears-title-font-family: 'Roboto', Arial, sans-serif;
+    --bears-title-font-family: 'Raleway', Arial, sans-serif;
     --bears-price-font-family: "Montserrat", Arial, sans-serif;
     --bears-title-font-weight: 500;
     --bears-price-font-weight: 600;
@@ -36,9 +36,9 @@
     /* Colors - Text */
     --bears-title-color: #595959;
     --bears-price-color: #2980b9;
-    --bears-subtitle-color: rgba(255, 255, 255, 0.8);
+    --bears-subtitle-color: var(--bears-price-color);
     --bears-featured-subtitle-color: var(--bears-featured-price-color);
-    --bears-features-color: #000;
+    --bears-features-color: #595959;
     --bears-button-text-color: #ffffff;
     
     /* Colors - Featured Elements */
@@ -58,8 +58,8 @@
     --bears-border-style: solid;
     --bears-border-width: 1px;
     --bears-border-radius: 8px;
-    --bears-border-color: rgba(0, 0, 0, 0.1);
-    --bears-header-border: 1px solid rgba(0,0,0,.15);
+    --bears-border-color: rgba(0, 0, 0, 0.15);
+    --bears-header-border: 2px solid #EBEBEB;
     
     /* Borders - Buttons */
     --bears-button-border-radius: 8px;
@@ -74,7 +74,7 @@
     --bears-accent-color: #EBEBEB;
     --bears-featured-accent-color: #2676AA;
     --bears-transition-speed: 0.25s;
-    --bears-scale-amount: 1.08;
+    --bears-scale-amount: 1.1;
     --bears-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     --bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     
@@ -99,10 +99,25 @@
     padding: 10px 0;
 }
 
+.template-1207 .bears_pricing_tables header {
+    padding: 0;
+    border-bottom: var(--bears-header-border);
+    }
+
+.template-1207 .bears_pricing_tables .plan-title {
+    background-color: #EBEBEB;
+    padding: 1em;
+    }
+
+.template-1207 .bears_pricing_tables .plan.featured .plan-title {
+    background-color: #2676AA;
+    }
+
+
 /* Add extra space around the featured plan */
 .template-1207 .bears_pricing_tables .plan.featured {
-    margin: -5px -10px;
-    transform: scale(var(--bears-scale-amount));
+    margin-top: -20px;
+    transform: scale(1);
     z-index: 2;
     box-shadow: var(--bears-featured-box-shadow);
 }
@@ -125,20 +140,37 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.template-1207 .bears_pricing_tables .plan-features i {
+    opacity: 0.8;
+    }
+
 .template-1207 .bears_pricing_tables .plan-select {
     border-top: none;
 }
+
+.template-1207 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
+    background: var(--bears-column-featured-background);
+    border-top: 1px solid #d2d7e2;
+    }
+
+.template-1207 .bears_pricing_tables .plan.featured .plan-select {
+    padding: 40px 10px;
+    }
 
 .template-1207 .bears_pricing_tables .plan-select a,
 .template-1207 .bears_pricing_tables .plan-select a.btn {
     font-weight: var(--bears-title-font-weight);
     font-size: var(--bears-button-font-size);
+    paddding: .5em 1em;
 }
+
+.template-1207 .bears_pricing_tables .plan.featured .plan-select a,
+.template-1207 .bears_pricing_tables .plan.featured .plan-select a.btn {
+    color: var(--bears-featured-button-text-color);
+    background-color: var(--bears-featured-button-background);
+    }
+
 
 .template-1207 .bears_pricing_tables .plan.featured header {
     border-bottom: 1px solid var(--bears-header-background);
-}
-
-.template-1207 .bears_pricing_tables .plan.featured .plan-select {
-    padding: 30px 20px;
 }
