@@ -197,7 +197,7 @@
 	border-radius: var(--bears-featured-border-radius);
 	background-color: var(--bears-column-featured-background);
 	color: var(--bears-featured-features-color);
-	z-index: 100;
+	z-index: 3;
 	transform: scaleY(var(--bears-scale-amount));
 	transform-origin: center;
 	position: relative;
