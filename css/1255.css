@@ -1,0 +1,132 @@
+/*
+ * Bears Pricing Tables
+ * Version: 2025.06.01
+ * Created by: N6REJ
+ * Email: programming@hallhome.us
+ * URL: http://www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/* 1255 Template - Template-specific styles */
+
+/* Template-specific CSS Variables */
+.template-1255 .bears_pricing_tables {
+	/* Layout & Structure */
+	--bears-num-columns: 3;
+	--bears-column-margin-y: 20px;
+	--bears-column-margin-x: 20px;
+	
+	/* Typography */
+	--bears-title-font-family: "Raleway", Arial, sans-serif;
+	--bears-price-font-family: "Montserrat", Arial, sans-serif;
+	--bears-title-font-weight: 500;
+	--bears-price-font-weight: 600;
+	--bears-title-font-size: var(--bears-h4);
+	--bears-price-font-size: var(--bears-h1);
+	--bears-subtitle-font-size: var(--bears-h4);
+	--bears-features-font-size: var(--bears-body);
+	--bears-button-font-size: var(--bears-body);
+	
+	/* Colors - Standard Elements */
+	--bears-column-background: #E6E6E6;
+	--bears-header-background: #262626;
+	--bears-features-background-odd: #E6E6E6;
+	--bears-features-background-even: #D4D4D4;
+	
+	/* Colors - Text */
+	--bears-title-color: #fff;
+	--bears-price-color: #fff;
+	--bears-subtitle-color: #fff;
+	--bears-features-color: #000000;
+	--bears-button-text-color: #ffffff;
+	
+	/* Colors - Featured Elements */
+	--bears-column-featured-background: #e6e6e6;
+	--bears-header-featured-background: #262626;
+	--bears-featured-title-color: #fff;
+	--bears-featured-price-color: #fff;
+	--bears-featured-features-color: var(--bears-features-color);
+	
+	/* Colors - Buttons */
+	--bears-button-background-color: #191919;
+	--bears-button-hover-color: #262626;
+	--bears-featured-button-background: #191919;
+	--bears-featured-button-text-color: #ffffff;
+	
+	/* Borders - Standard */
+	--bears-border-style: solid;
+	--bears-border-width: 1px;
+	--bears-border-radius: 0;
+	--bears-border-color: #191919;
+	--bears-header-border: #191919;
+	
+	/* Borders - Buttons */
+	--bears-button-border-radius: 0;
+	
+	/* Borders - Featured */
+	--bears-featured-border-radius: 0;
+	--bears-featured-border-width: 1px;
+	--bears-featured-border-style: var(--bears-border-style);
+	--bears-featured-border-color: #191919;
+	
+	/* Effects & Animation */
+	--bears-accent-color: transparent;
+	--bears-featured-accent-color: transparent;
+	--bears-transition-speed: 0.25s;
+	--bears-scale-amount: 1.0;
+	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	
+	/* Icons */
+	--bears-header-icon-color: var(--bears-price-color);
+	--bears-featured-header-icon-color: var(--bears-featured-price-color);
+	--bears-features-icon-color: var(--bears-features-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-color);
+	--bears-header-icon-size: 24px;
+}
+
+/* Template-specific styles */
+.template-1255 .bears_pricing_tables {
+	padding: var(--bears-column-margin-y) 0;
+	}
+
+.template-1255 .bears_pricing_tables header {
+	padding: 1em;
+	}
+
+.template-1255 .bears_pricing_tables .plan-title {
+	margin: .5em 0 ;
+	}
+
+/* Header icon styles with higher z-index */
+.template-1255 .bears_pricing_tables header .fa,
+.template-1255 .bears_pricing_tables header .fas,
+.template-1255 .bears_pricing_tables header .far,
+.template-1255 .bears_pricing_tables header .fab {
+	position: relative;
+	z-index: 2;
+	}
+
+.template-1255 .bears_pricing_tables .plan-cost {
+	align-items: center;
+	}
+
+.template-1255 .bears_pricing_tables .price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	}
+
+.template-1255 .bears_pricing_tables .featured .plan-select {
+	background-color: #191919;
+	}
+
+.template-1255 .bears_pricing_tables .featured .plan-select:hover {
+	background-color: #262626;
+	}
+
+/* special top icons */
+.template-1255 .bears_pricing_tables .plan header div[class*="icon-top-"] i {
+	font-size: 3.5rem;
+	}
