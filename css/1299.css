@@ -73,7 +73,7 @@
 	--bears-accent-color: #191919;
 	--bears-featured-accent-color: #4D2909;
 	--bears-transition-speed: 0.25s;
-	--bears-scale-amount: 1;
+	--bears-scale-amount: 1.0;
 	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
@@ -147,6 +147,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 2;
 	}
 
 .template-1299 .bears_pricing_tables .featured .plan-select {
