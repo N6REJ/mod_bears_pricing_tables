@@ -265,9 +265,6 @@
 	justify-content: center;
 	align-items: center;
 	flex: 1;
-	font-family: var(--bears-price-font-family);
-	font-size: var(--bears-price-font-size);
-	font-weight: var(--bears-price-font-weight);
 	}
 
 .bears_pricing_tables .plan.featured .plan-cost {
@@ -277,8 +274,9 @@
 .bears_pricing_tables .plan-price {
 	margin-bottom: 6px;
 	margin-right: 5px;
-	font-weight: bold;
+	font-family: var(--bears-price-font-family);
 	font-size: var(--bears-price-font-size);
+	font-weight: var(--bears-price-font-weight);
 	color: var(--bears-price-color);
 	/* Price position icons */
 	display: flex;
@@ -366,10 +364,11 @@
 	display: inline-block;
 	border: none;
 	border-radius: var(--bears-button-border-radius);
-	font-weight: 600;
 	padding: 12px 30px;
 	text-transform: uppercase;
 	transition: all var(--bears-transition-speed) ease;
+	font-weight: var(--bears-title-font-weight);
+	font-size: var(--bears-button-font-size);
 	}
 
 .bears_pricing_tables .plan-select a:hover,

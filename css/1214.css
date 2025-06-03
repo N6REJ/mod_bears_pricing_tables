@@ -200,7 +200,7 @@
 	padding: 0.5em 2em;
 	transform: translateY(50%);
 	position: relative;
-	z-index: 15;
+	z-index: 1;
 	}
 
 .template-1214 .bears_pricing_tables .plan-select a:hover,
@@ -212,7 +212,7 @@
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a.btn {
 	padding: 0.5em 2em;
 	transform: translateY(50%);
-	z-index: 20;
+	z-index: 2;
 	}
 
 .template-1214 .bears_pricing_tables .plan.featured .plan-select a:hover,

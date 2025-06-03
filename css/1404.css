@@ -112,8 +112,8 @@
 .template-1404 .bears_pricing_tables .plan.featured {
     margin: -5px -10px;
     transform: scale(var(--bears-scale-amount));
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    box-shadow: var(--bears-featured-box-shadow);
 }
 
 .template-1404 .bears_pricing_tables header {
@@ -218,8 +218,8 @@
 
 .template-1404 .bears_pricing_tables .plan-select a,
 .template-1404 .bears_pricing_tables .plan-select a.btn {
-    font-weight: var(--bears-font-weight, 600);
-    font-size: var(--bears-button-font-size, 1.1em);
+    font-weight: var(--bears-title-font-weight);
+    font-size: var(--bears-button-font-size);
 }
 
 .template-1404 .bears_pricing_tables .plan.featured .plan-select {
