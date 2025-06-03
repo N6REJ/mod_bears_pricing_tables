@@ -37,6 +37,7 @@
     --bears-title-color: #ffffff;
     --bears-price-color: #ffffff;
     --bears-subtitle-color: rgba(255, 255, 255, 0.8);
+    --bears-featured-subtitle-color: var(--bears-featured-price-color);
     --bears-features-color: #ffffff;
     --bears-button-text-color: #ffffff;
     

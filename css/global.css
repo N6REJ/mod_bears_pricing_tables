@@ -36,6 +36,7 @@
 	--bears-price-color: #ffffff;
 	--bears-featured-price-color: #ffffff;
 	--bears-subtitle-color: var(--bears-price-color);
+	--bears-featured-subtitle-color: var(--bears-featured-price-color);
 	--bears-features-color: #000000;
 	--bears-featured-features-color: var(--bears-features-color);
 	--bears-button-text-color: #ffffff;
@@ -298,7 +299,7 @@
 	}
 
 .bears_pricing_tables .plan.featured .plan-type {
-	color: var(--bears-featured-price-color);
+	color: var(--bears-featured-subtitle-color);
 	}
 
 .bears_pricing_tables .plan-features {

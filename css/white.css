@@ -36,7 +36,7 @@
 	/* Colors - Text */
 	--bears-title-color: #333333;
 	--bears-price-color: #333333;
-	--bears-subtitle-color: rgba(255, 255, 255, 0.7);
+	--bears-subtitle-color: var(--bears-price-color);
 	--bears-features-color: #000;
 	--bears-button-text-color: #fff;
 	
@@ -58,7 +58,6 @@
 	--bears-border-width: 2px;
 	--bears-border-radius: 8px;
 	--bears-border-color: #e0e0e0;
-	--bears-featured-border-color: none;
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
 	/* Borders - Buttons */

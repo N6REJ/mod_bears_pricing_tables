@@ -38,6 +38,7 @@
 	--bears-title-color: #ffffff;
 	--bears-price-color: #34495e;
 	--bears-subtitle-color: #34495e;
+	--bears-featured-subtitle-color: var(--bears-featured-price-color);
 	--bears-features-color: #000000;
 	--bears-button-text-color: #ffffff;
 	
