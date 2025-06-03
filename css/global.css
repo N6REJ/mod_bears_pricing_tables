@@ -35,7 +35,7 @@
 	--bears-featured-title-color: #ffffff;
 	--bears-price-color: #ffffff;
 	--bears-featured-price-color: #ffffff;
-	--bears-subtitle-color: #ffffff;
+	--bears-subtitle-color: var(--bears-price-color);
 	--bears-features-color: #000000;
 	--bears-featured-features-color: var(--bears-features-color);
 	--bears-button-text-color: #ffffff;
@@ -252,10 +252,6 @@
 	margin: 0;
 	padding: 0;
 	transition: all var(--bears-transition-speed) ease;
-	}
-
-.bears_pricing_tables .plan:hover {
-	transform: scaleY(1.02);
 	}
 
 .bears_pricing_tables .plan.featured .plan-title {
