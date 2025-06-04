@@ -83,7 +83,7 @@
 	--bears-featured-header-icon-color: var(--bears-featured-price-color);
 	--bears-features-icon-color: var(--bears-features-color);
 	--bears-featured-features-icon-color: var(--bears-featured-features-color);
-	--bears-header-icon-size: 3.5rem;
+	--bears-header-icon-size: 36px;
 	}
 
 /* Template-specific styles */
@@ -119,6 +119,19 @@
 .template-1223 .bears_pricing_tables header .fab {
 	position: relative;
 	z-index: 2;
+	}
+
+.template-1223 .bears_pricing_tables [class*="icon-top-"],
+.template-1223 .bears_pricing_tables .plan header [class*="icon-top-"],
+.template-1223 .bears_pricing_tables .plan header div[class*="icon-top-"] {
+	position: absolute !important;
+	}
+
+.template-1223 .bears_pricing_tables [class*="icon-bottom-"],
+.template-1223 .bears_pricing_tables .plan header [class*="icon-bottom-"],
+.template-1223 .bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+	position: absolute !important;
+	bottom: 10px;
 	}
 
 .template-1223 .bears_pricing_tables .price {
