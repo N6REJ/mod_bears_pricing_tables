@@ -106,21 +106,13 @@
 
 .template-1207 .bears_pricing_tables .plan-title {
 	background-color: #ebebeb;
-	padding: 1em;
+	padding: 1em 1em 0;
 	}
 
 .template-1207 .bears_pricing_tables .plan.featured .plan-title {
 	background-color: #2676aa;
 	}
 
-
-/* Add extra space around the featured plan */
-.template-1207 .bears_pricing_tables .plan {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 100%;
-	}
 
 .template-1207 .bears_pricing_tables .plan.featured {
 	margin-top: -20px;
@@ -163,11 +155,6 @@
 .template-1207 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
 	background: var(--bears-column-featured-background);
 	border-top: 1px solid #d2d7e2;
-	}
-
-/* Fix for the extra gap in non-featured columns */
-.template-1207 .bears_pricing_tables .plan-select {
-	margin-top: -28px;
 	}
 
 .template-1207 .bears_pricing_tables .plan:not(.featured) .plan-select {
