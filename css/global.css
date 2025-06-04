@@ -158,20 +158,6 @@
 	min-width: 100%;
 	}
 
-/* Column styles */
-.bears_pricing_tables {
-	box-sizing: border-box;
-	padding: var(--bears-column-margin-y) 0;
-	display: flex;
-	flex-direction: column;
-	margin: 0;
-	text-align: center;
-	position: relative;
-	height: auto;
-	flex: 1 1 0%;
-	min-width: 0;
-	}
-
 .bears_pricing_tables ul {
 	list-style: none;
 	margin: 0;
