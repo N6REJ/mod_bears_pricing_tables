@@ -28,7 +28,7 @@
 	--bears-button-font-size: var(--bears-body);
 	
 	/* Colors - Standard Elements */
-	--bears-column-background: #E6E6E6;
+	--bears-column-background: #191919;
 	--bears-header-background: #262626;
 	--bears-features-background-odd: #E6E6E6;
 	--bears-features-background-even: #D4D4D4;
@@ -42,11 +42,11 @@
 	--bears-button-text-color: #ffffff;
 	
 	/* Colors - Featured Elements */
-	--bears-column-featured-background: #e6e6e6;
+	--bears-column-featured-background: #262626;
 	--bears-header-featured-background: #262626;
 	--bears-featured-title-color: #fff;
 	--bears-featured-price-color: #fff;
-	--bears-featured-features-color: var(--bears-features-color);
+	--bears-featured-features-color: #fff;
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #191919;
@@ -74,7 +74,7 @@
 	--bears-accent-color: transparent;
 	--bears-featured-accent-color: transparent;
 	--bears-transition-speed: 0.25s;
-	--bears-scale-amount: 1.0;
+	--bears-scale-amount: 1.05;
 	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
@@ -83,7 +83,7 @@
 	--bears-featured-header-icon-color: var(--bears-featured-price-color);
 	--bears-features-icon-color: var(--bears-features-color);
 	--bears-featured-features-icon-color: var(--bears-featured-features-color);
-	--bears-header-icon-size: 24px;
+	--bears-header-icon-size: 3.5rem;
 }
 
 /* Template-specific styles */
@@ -130,4 +130,12 @@
 /* special top icons */
 .template-1255 .bears_pricing_tables .plan header div[class*="icon-top-"] i {
 	font-size: 3.5rem;
+	}
+
+.template-1255 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
+	background: rgba(0, 0, 0, 0.15);
+	}
+
+.template-1255 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
+	background: #262626;
 	}
