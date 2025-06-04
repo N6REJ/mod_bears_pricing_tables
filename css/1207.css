@@ -142,7 +142,7 @@
 /* Ensure features div has consistent behavior in all plans */
 .template-1207 .bears_pricing_tables .features {
 	display: flex;
-	flex: 1 0 auto;
+	flex: 0;
 	}
 
 .template-1207 .bears_pricing_tables .plan-features {
@@ -171,34 +171,8 @@
 	border-top: 1px solid #d2d7e2;
 	}
 
-/* Fix for the extra gap in non-featured columns */
-.template-1207 .bears_pricing_tables .plan-select {
-	margin-top: -28px;
-	}
-
-.template-1207 .bears_pricing_tables .plan:not(.featured) .plan-select {
-	padding: 20px;
-	}
-
-.template-1207 .bears_pricing_tables .plan.featured .plan-select {
-	padding: 40px 10px;
-	margin-top: 0;
-	}
-
 /* Ensure consistent height for all columns */
 .template-1207 .bears_pricing_tables .plan:not(.featured) {
-	display: flex;
-	flex-direction: column;
-	}
-
-.template-1207 .bears_pricing_tables .plan:not(.featured) .features {
-	flex: 0 auto;
-	display: flex;
-	flex-direction: column;
-	}
-
-.template-1207 .bears_pricing_tables .plan.featured .features {
-	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
 	}
