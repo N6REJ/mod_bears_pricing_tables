@@ -248,17 +248,6 @@
 	line-height: 1;
 }
 
-/* Ensure proper alignment for all feature lists */
-.bears_pricing_tables .plan-features {
-	margin-bottom: 20px;
-}
-
-/* Ensure all templates have consistent feature styling */
-.bears_pricing_tables .plan-features li {
-	position: relative;
-	margin-bottom: 0;
-}
-
 /* Ensure consistent icon alignment in all templates */
 .bears_pricing_tables .plan-features .fa-li i {
 	vertical-align: middle;
