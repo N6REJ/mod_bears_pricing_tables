@@ -242,6 +242,10 @@
 	transition: all var(--bears-transition-speed) ease;
 	}
 
+.bears_pricing_tables .plan-title h4 {
+	background: none; /* fix for templates that apply styling to typography automatically */
+	}
+
 .bears_pricing_tables .plan.featured .plan-title {
 	color: var(--bears-featured-title-color);
 	}
