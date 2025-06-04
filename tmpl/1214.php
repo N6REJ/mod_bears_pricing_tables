@@ -173,7 +173,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                         // Always use plan-features class and add fa-ul only if icon class is specified
                         $list_class = !empty($icon_class) ? 'plan-features fa-ul centered-features' : 'plan-features';
                         ?>
-
+					<div class = "features">
 						<ul class = "<?php echo $list_class; ?>">
                             <?php
                             if (!empty($params_array['bears_features'][$cur_column])) {
@@ -219,7 +219,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                             }
                             ?>
 						</ul>
-
+					</div>
 						<div class = "plan-select">
 							<a class = "btn" href = "<?php
                             echo htmlspecialchars($params_array['bears_buttonurl'][$cur_column] ?? '#'); ?>">

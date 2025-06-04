@@ -301,13 +301,21 @@
 	color: var(--bears-featured-subtitle-color);
 	}
 
+.bears_pricing_tables .features {
+	flex: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	}
+
 .bears_pricing_tables .plan-features {
 	padding: 0;
 	margin: 0;
 	list-style: outside none none;
 	font-size: var(--bears-features-font-size);
 	text-align: center;
-	flex: 1;
 	width: 100%;
 	}
 
