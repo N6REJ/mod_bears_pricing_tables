@@ -37,6 +37,7 @@
     --bears-title-color: #ffffff;
     --bears-price-color: #ffffff;
     --bears-subtitle-color: rgba(255, 255, 255, 0.8);
+    --bears-featured-subtitle-color: var(--bears-featured-price-color);
     --bears-features-color: #ffffff;
     --bears-button-text-color: #ffffff;
     
@@ -111,8 +112,8 @@
 .template-1404 .bears_pricing_tables .plan.featured {
     margin: -5px -10px;
     transform: scale(var(--bears-scale-amount));
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    box-shadow: var(--bears-featured-box-shadow);
 }
 
 .template-1404 .bears_pricing_tables header {
@@ -217,35 +218,10 @@
 
 .template-1404 .bears_pricing_tables .plan-select a,
 .template-1404 .bears_pricing_tables .plan-select a.btn {
-    font-weight: var(--bears-font-weight, 600);
-    font-size: var(--bears-button-font-size, 1.1em);
+    font-weight: var(--bears-title-font-weight);
+    font-size: var(--bears-button-font-size);
 }
 
 .template-1404 .bears_pricing_tables .plan.featured .plan-select {
     padding: 30px 20px;
-}
-
-/* Responsive adjustments for smaller screens */
-@media only screen and (max-width: 991px) {
-    .template-1404 .bears_pricing_tables .price {
-        overflow: visible;
-        justify-content: flex-end;
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-cost {
-        flex-direction: row; /* Keep items on the same line */
-        align-items: baseline;
-        justify-content: flex-end;
-        flex-shrink: 0; /* Prevent shrinking */
-        min-width: auto; /* Use natural width */
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-price {
-        padding-right: 5px; /* Reduced padding */
-        flex-shrink: 0; /* Prevent shrinking */
-    }
-    
-    .template-1404 .bears_pricing_tables .plan-type {
-        flex-shrink: 0; /* Prevent shrinking */
-    }
 }

@@ -37,6 +37,7 @@
 	--bears-title-color: #fff;
 	--bears-price-color: #fff;
 	--bears-subtitle-color: #fff;
+	--bears-featured-subtitle-color: var(--bears-featured-price-color);
 	--bears-features-color: #000000;
 	--bears-button-text-color: #ffffff;
 	
@@ -124,19 +125,4 @@
 
 .template-1276 .bears_pricing_tables .plan.featured header:after {
 	background-color: var(--bears-featured-accent-color);
-	}
-
-/* Mobile Media Query - Template-specific adjustments */
-@media only screen and (max-width: 767px) {
-	.template-1276 .bears_pricing_tables header:after {
-		height: 24px;
-		}
-	}
-
-/* Small screen fixes - Template-specific adjustments */
-@media only screen and (max-width: 440px) {
-	.template-1276 .bears_pricing_tables header:after {
-		height: 20px;
-		bottom: -19px; /* Adjusted to eliminate gap on small screens */
-		}
 	}
