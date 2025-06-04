@@ -90,7 +90,6 @@
 
 /* Template-specific styles */
 .template-1214 .bears_pricing_tables-outer {
-	font-family: var(--bears-font-family);
 	overflow: hidden;
 	}
 
@@ -120,12 +119,17 @@
 	border: var(--bears-header-border);
 	}
 
+.template-1214 .bears_pricing_tables .plan header div[class*="icon-top-"] {
+	padding-top: .5em;
+	}
+
 .template-1214 .bears_pricing_tables .plan-title {
 	position: relative;
 	top: 0;
 	font-weight: 800;
 	padding: .4em 1em;
-	margin: -0.8em auto 0.5em;
+	margin-bottom: -1em;
+	transform: translateY(-50%);
 	display: inline-block;
 	background-color: #222f3d;
 	color: var(--bears-title-color);
