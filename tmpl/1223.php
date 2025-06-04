@@ -127,10 +127,10 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 } ?>
 							</div>
 
-							<h4 class = 'plan-title'>
+							<h3 class = 'plan-title'>
                                 <?php
                                 echo htmlspecialchars($params_array['bears_title'][$cur_column] ?? ''); ?>
-							</h4>
+							</h3>
 
                             <?php
                             if (!empty($params_array['header_icon_class'][$cur_column]) && str_starts_with($params_array['header_icon_position'][$cur_column], 'top-')) {

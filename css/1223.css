@@ -21,7 +21,7 @@
 	--bears-price-font-family: "Montserrat", Arial, sans-serif;
 	--bears-title-font-weight: 500;
 	--bears-price-font-weight: 600;
-	--bears-title-font-size: var(--bears-h4);
+	--bears-title-font-size: var(--bears-h3);
 	--bears-price-font-size: var(--bears-h4);
 	--bears-subtitle-font-size: var(--bears-h4);
 	--bears-features-font-size: var(--bears-body);
@@ -87,8 +87,21 @@
 	}
 
 /* Template-specific styles */
+
+.template-1223 {
+	margin-top: 30px;
+	}
+
 .template-1223 .bears_pricing_tables {
 	padding: var(--bears-column-margin-y) 0;
+	}
+
+.template-1223 .bears_pricing_tables-outer {
+	overflow: visible;
+	}
+
+.template-1223 .bears_pricing_tables .plan {
+	overflow: visible;
 	}
 
 .template-1223 .bears_pricing_tables header {
@@ -108,8 +121,8 @@
 	z-index: 2;
 	}
 
-.template-1223 .bears_pricing_tables .plan-cost {
-	display: inline-flex;
+.template-1223 .bears_pricing_tables .price {
+	display: flex;
 	background-color: #6d2018;
 	border-radius: 50%;
 	line-height: 80px;
@@ -118,10 +131,13 @@
 	position: absolute;
 	top: -40px;
 	right: 20px;
+	z-index: 2;
+	overflow: visible;
 	}
 
 .template-1223 .bears_pricing_tables .price {
 	font-size: 1.2em;
+	white-space: nowrap;
 	}
 
 .template-1223 .bears_pricing_tables .featured .plan-select a:hover,
