@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2025.06.04] - 2025-06-04
+## [2025.06.04.1] - 2025-06-04
 
 ### Added
 
@@ -15,16 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Update updates.xml for version 2025.06.02.2 ([18efc06](https://github.com/N6REJ/mod_bears_pricing_tables/commit/18efc06))
-* Update price element z-index for improved layering in template 1299 ([51039e8](https://github.com/N6REJ/mod_bears_pricing_tables/commit/51039e8))
-* Update template option from 1265 to 1255 with new styling and improved price element z-index ([f4da35d](https://github.com/N6REJ/mod_bears_pricing_tables/commit/f4da35d))
-* Update featured plan z-index from 100 to 3 for better layering in pricing tables ([491fbbb](https://github.com/N6REJ/mod_bears_pricing_tables/commit/491fbbb))
-* Merge pull request #27 from N6REJ/1255 ([ff9d5c5](https://github.com/N6REJ/mod_bears_pricing_tables/commit/ff9d5c5))
-* Update version to 2025.06.03 for release ([7d51235](https://github.com/N6REJ/mod_bears_pricing_tables/commit/7d51235))
 * Update updates.xml for version 2025.06.03 ([12393cc](https://github.com/N6REJ/mod_bears_pricing_tables/commit/12393cc))
 * Reorder template options and improve subtitle color inheritance in pricing tables ([0e2ae89](https://github.com/N6REJ/mod_bears_pricing_tables/commit/0e2ae89))
 * Update z-index values and improve typography inheritance in pricing tables ([49ea9f7](https://github.com/N6REJ/mod_bears_pricing_tables/commit/49ea9f7))
 * Merge pull request #28 from N6REJ/bugs ([7cc9889](https://github.com/N6REJ/mod_bears_pricing_tables/commit/7cc9889))
+* Update version to 2025.06.04 for release ([be8ac69](https://github.com/N6REJ/mod_bears_pricing_tables/commit/be8ac69))
+* Update updates.xml for version 2025.06.04 ([058690e](https://github.com/N6REJ/mod_bears_pricing_tables/commit/058690e))
+* Adjust plan-select margins and padding for improved layout consistency in template 1207 ([da8aa89](https://github.com/N6REJ/mod_bears_pricing_tables/commit/da8aa89))
+* Merge pull request #29 from N6REJ/1207 ([1d4b30b](https://github.com/N6REJ/mod_bears_pricing_tables/commit/1d4b30b))
 
 ### Removed
 
