@@ -139,12 +139,6 @@
 	align-items: center;
 	}
 
-/* Ensure features div has consistent behavior in all plans */
-.template-1207 .bears_pricing_tables .features {
-	display: flex;
-	flex: 1 0 auto;
-	}
-
 .template-1207 .bears_pricing_tables .plan-features {
 	margin-bottom: 0;
 	width: 100%;
@@ -185,23 +179,6 @@
 	margin-top: 0;
 	}
 
-/* Ensure consistent height for all columns */
-.template-1207 .bears_pricing_tables .plan:not(.featured) {
-	display: flex;
-	flex-direction: column;
-	}
-
-.template-1207 .bears_pricing_tables .plan:not(.featured) .features {
-	flex: 0 auto;
-	display: flex;
-	flex-direction: column;
-	}
-
-.template-1207 .bears_pricing_tables .plan.featured .features {
-	flex: 1 1 auto;
-	display: flex;
-	flex-direction: column;
-	}
 
 .template-1207 .bears_pricing_tables .plan-select a,
 .template-1207 .bears_pricing_tables .plan-select a.btn {
