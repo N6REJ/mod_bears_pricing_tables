@@ -27,9 +27,9 @@
 	--bears-header-background: #191919;
 	--bears-header-featured-background: #222222;
 	--bears-features-background-odd: var(--bears-column-background);
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 90%, rgba(0, 0, 0, 0.10));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
 	--bears-featured-features-background-odd: var(--bears-column-featured-background);
-	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 75%, rgba(0, 0, 0, 0.25));
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
 	
 	/* Text Colors - Template specific */
 	--bears-title-color: #ffffff;

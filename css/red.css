@@ -30,8 +30,9 @@
     /* Colors - Standard Elements */
     --bears-column-background: #f5f5f5;
     --bears-header-background: #f5f5f5;
-    --bears-features-background-odd: var(--bears-column-background);
-    --bears-features-background-even: rgba(0, 0, 0, 0.070);
+    --bears-features-background-odd: #f5f5f5;
+    --bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 75%, rgba(0, 0, 0, 0.25));
+    
     
     /* Colors - Text */
     --bears-title-color: #ef3340;
@@ -47,6 +48,8 @@
     --bears-featured-title-color: #ef3340;
     --bears-featured-price-color: #ef3340;
     --bears-featured-features-text-color: var(--bears-features-text-color);
+    --bears-featured-features-background-odd: #f5f5f5;
+    --bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
     
     /* Colors - Buttons */
     --bears-button-background-color: #ef3340;
@@ -127,9 +130,6 @@
     z-index: 1;
 }
 
-.template-red .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
-    background: rgba(0, 0, 0, 0.050);
-}
 
 .template-red .bears_pricing_tables .plan.featured header {
     margin-bottom: 40px;
