@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
-	<n>Bears Pricing Tables</n>
+	<name>Bears Pricing Tables</name>
 	<author>N6REJ</author>
 	<creationDate>2025 June 05</creationDate>
 	<copyright>Copyright (C)2025 N6REJ</copyright>
