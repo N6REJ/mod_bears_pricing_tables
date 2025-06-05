@@ -319,10 +319,10 @@ class ModBearsPricingTablesHelper
             $css .= '--bears-subtitle-color: ' . $params->get('bears_subtitle_color') . ';';
         }
         if ($params->get('bears_features_color')) {
-            $css .= '--bears-features-color: ' . $params->get('bears_features_color') . ';';
+            $css .= '--bears-features-text-color: ' . $params->get('bears_features_color') . ';';
         }
         if ($params->get('bears_featured_features_color')) {
-            $css .= '--bears-featured-features-color: ' . $params->get('bears_featured_features_color') . ';';
+            $css .= '--bears-featured-features-text-color: ' . $params->get('bears_featured_features_color') . ';';
         }
         if ($params->get('bears_border_color')) {
             $css .= '--bears-border-color: ' . $params->get('bears_border_color') . ' !important;';
@@ -590,11 +590,11 @@ class ModBearsPricingTablesHelper
         font-size: var(--bears-subtitle-font-size);
     }
     .bears_pricing_tables' . $moduleId . ' .plan-features li {
-        color: var(--bears-features-color);
+        color: var(--bears-features-text-color);
         font-size: var(--bears-features-font-size);
     }
     .bears_pricing_tables' . $moduleId . ' .plan.featured .plan-features li {
-        color: var(--bears-featured-features-color);
+        color: var(--bears-featured-features-text-color);
     }
     .bears_pricing_tables' . $moduleId . ' .plan-features {
         color: var(--bears-accent-color);

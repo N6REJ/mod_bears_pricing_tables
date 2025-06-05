@@ -38,7 +38,7 @@
     --bears-price-color: #ef3340;
     --bears-subtitle-color: #5c5c5c;
     --bears-featured-subtitle-color: var(--bears-featured-price-color);
-    --bears-features-color: #424242;
+    --bears-features-text-color: #424242;
     --bears-button-text-color: #ffffff;
     
     /* Colors - Featured Elements */
@@ -46,7 +46,7 @@
     --bears-header-featured-background: #252525;
     --bears-featured-title-color: #ef3340;
     --bears-featured-price-color: #ef3340;
-    --bears-featured-features-color: var(--bears-features-color);
+    --bears-featured-features-text-color: var(--bears-features-text-color);
     
     /* Colors - Buttons */
     --bears-button-background-color: #ef3340;
@@ -82,8 +82,8 @@
     /* Icons */
     --bears-header-icon-color: var(--bears-price-color);
     --bears-featured-header-icon-color: var(--bears-featured-price-color);
-    --bears-features-icon-color: var(--bears-features-color);
-    --bears-featured-features-icon-color: var(--bears-featured-features-color);
+    --bears-features-icon-color: var(--bears-features-text-color);
+    --bears-featured-features-icon-color: var(--bears-featured-features-text-color);
     --bears-header-icon-size: 24px;
 }
 

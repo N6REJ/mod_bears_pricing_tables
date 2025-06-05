@@ -36,8 +36,8 @@
 	--bears-featured-price-color: #ffffff;
 	--bears-subtitle-color: var(--bears-price-color);
 	--bears-featured-subtitle-color: var(--bears-featured-price-color);
-	--bears-features-color: #000000;
-	--bears-featured-features-color: var(--bears-features-color);
+	--bears-features-text-color: #000000;
+	--bears-featured-features-text-color: var(--bears-features-text-color);
 	--bears-button-text-color: #ffffff;
 	
 	/* Button Colors - Template specific */
@@ -85,8 +85,8 @@
 	/* Icons - Template specific */
     --bears-header-icon-color: var(--bears-price-color);
     --bears-featured-header-icon-color: var(--bears-featured-price-color);
-	--bears-features-icon-color: var(--bears-features-color);
-	--bears-featured-features-icon-color: var(--bears-featured-features-color);
+	--bears-features-icon-color: var(--bears-features-text-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-text-color);
 	--bears-header-icon-size: 24px;
 	}
 
@@ -184,7 +184,7 @@
 	border: var(--bears-featured-border-width) var(--bears-featured-border-style) var(--bears-featured-border-color);
 	border-radius: var(--bears-featured-border-radius);
 	background-color: var(--bears-column-featured-background);
-	color: var(--bears-featured-features-color);
+	color: var(--bears-featured-features-text-color);
 	z-index: 3;
 	transform: scaleY(var(--bears-scale-amount));
 	transform-origin: center;
@@ -309,11 +309,11 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 10px 40px;
 	line-height: 1.4rem;
-	color: var(--bears-features-color);
+	color: var(--bears-features-text-color);
 	}
 
 .bears_pricing_tables .plan.featured .plan-features li {
-	color: var(--bears-featured-features-color);
+	color: var(--bears-featured-features-text-color);
 	}
 
 /* Style for alternating rows in feature list */
@@ -326,8 +326,9 @@
 	}
 
 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
-	background: rgba(0, 0, 0, 0.08);
+	background: color-mix(in srgb, var(--bears-featured-features-text-color) 91%, transparent)
 	}
+
 
 /* Remove duplicate bottom border from adjacent items */
 .bears_pricing_tables .plan-features li + li {
