@@ -61,10 +61,10 @@
 	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
 	
 	/* Borders - Buttons */
-	--bears-button-border-radius: 4px;
+	--bears-button-border-radius: 40px;
 	
 	/* Borders - Featured */
-	--bears-featured-border-radius: 8px;
+	--bears-featured-border-radius: 0;
 	--bears-featured-border-width: 2px;
 	--bears-featured-border-style: var(--bears-border-style);
 	--bears-featured-border-color: rgba(255, 255, 255, 0.05);
@@ -74,8 +74,8 @@
 	--bears-featured-accent-color: #ffffff;
 	--bears-transition-speed: 0.25s;
 	--bears-scale-amount: 1.1;
-	--bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-	--bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	--bears-box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
 	/* Icons */
 	--bears-header-icon-color: #F39C12;
@@ -87,26 +87,47 @@
 
 /* Template-specific styles */
 .template-1265 .bears_pricing_tables .price {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	max-width: 90%;
+	margin: 0 auto;
 	}
 
-.template-1265 .bears_pricing_tables .price .plan-icon {
+.template-1265 .bears_pricing_tables header {
+	padding: 20px 10px;
+	}
+
+.template-1265 .bears_pricing_tables .price .plan-icon.price-left {
 	display: flex;
 	align-items: center;
-	margin-right: auto;
-	margin-left: -8px;
-	padding-right: .25em;
+	grid-column: 1;
 	}
 
 .template-1265 .bears_pricing_tables .price .wrapper {
 	display: block;
 	text-align: left;
+	grid-column: 2;
+	min-width: 0; /* Allow text to wrap within the cell */
+	overflow: hidden;
+	}
+
+.template-1265 .bears_pricing_tables .price .plan-icon.price-right {
+	display: flex;
+	align-items: center;
+	grid-column: 3;
+	margin-right: -8px;
+	padding-left: .25em;
 	}
 
 .template-1265 .bears_pricing_tables .plan-title {
 	text-align: left;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+	white-space: normal;
+	word-break: break-word;
 	}
 
 .template-1265 .bears_pricing_tables .plan-cost {
@@ -115,6 +136,7 @@
 	text-align: left;
 	padding: 0;
 	justify-content: flex-start;
+	flex-wrap: wrap;
 	}
 
 .template-1265 .bears_pricing_tables .plan-price {
@@ -135,8 +157,10 @@
 	border-bottom: none;
 	}
 
+.template-1265 .bears_pricing_tables .plan-select,
 .template-1265 .bears_pricing_tables .plan.featured .plan-select {
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	background: #1E1E1E;
 	}
 
 .template-1265 .bears_pricing_tables .plan-select a:hover {
@@ -149,15 +173,10 @@
 	background-color: #000 !important;
 	}
 
-.template-1265 .bears_pricing_tables .plan-select a,
-.template-1265 .bears_pricing_tables .plan-select a.btn {
-	border-radius: 40px !important;
-	}
-
 .template-1265 .bears_pricing_tables .plan.featured .plan-select a,
 .template-1265 .bears_pricing_tables .plan.featured .plan-select a.btn {
 	color: var(--bears-featured-button-text-color);
-	border-radius: inherit;
+	border-radius: var(--bears-button-border-radius);
 	}
 
 .template-1265 .bears_pricing_tables .plan.featured header {
@@ -173,7 +192,10 @@
 
 .template-1265 .bears_pricing_tables [class*="price-left"],
 .template-1265 .bears_pricing_tables .plan header [class*="price-left"],
-.template-1265 .bears_pricing_tables .plan header div[class*="price-left"] {
+.template-1265 .bears_pricing_tables .plan header div[class*="price-left"],
+.template-1265 .bears_pricing_tables [class*="price-right"],
+.template-1265 .bears_pricing_tables .plan header [class*="price-right"],
+.template-1265 .bears_pricing_tables .plan header div[class*="price-right"] {
 	color: var(--bears-button-background-color);
 	float: none;
 	}
@@ -221,3 +243,36 @@
 .template-1265 .bears_pricing_tables:hover .plan.featured .plan-features li:nth-child(even) {
 	background-color: rgba(0, 0, 0, 0.9);
 	}
+
+/* Scale the price-left and price-right icons on hover */
+.template-1265 .bears_pricing_tables:hover .price-left,
+.template-1265 .bears_pricing_tables:hover .plan header .price-left,
+.template-1265 .bears_pricing_tables:hover .plan header div.price-left,
+.template-1265 .bears_pricing_tables:hover .price-right,
+.template-1265 .bears_pricing_tables:hover .plan header .price-right,
+.template-1265 .bears_pricing_tables:hover .plan header div.price-right {
+	transform: scale(var(--bears-scale-amount));
+	transition: transform var(--bears-transition-speed) ease;
+	}
+
+/* Also apply to the icons inside the price-left and price-right containers */
+.template-1265 .bears_pricing_tables:hover .price-left i,
+.template-1265 .bears_pricing_tables:hover .plan header .price-left i,
+.template-1265 .bears_pricing_tables:hover .plan header div.price-left i,
+.template-1265 .bears_pricing_tables:hover .price-right i,
+.template-1265 .bears_pricing_tables:hover .plan header .price-right i,
+.template-1265 .bears_pricing_tables:hover .plan header div.price-right i {
+	transform: scale(var(--bears-scale-amount));
+	transition: transform var(--bears-transition-speed) ease;
+	}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+	.template-1265 .bears_pricing_tables .price {
+		grid-template-columns: auto 1fr auto;
+	}
+	
+	.template-1265 .bears_pricing_tables .plan-title {
+		font-size: 1.2rem;
+	}
+}
