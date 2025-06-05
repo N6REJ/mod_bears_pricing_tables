@@ -37,7 +37,7 @@
 	--bears-title-color: #fff;
 	--bears-price-color: #515151;
 	--bears-subtitle-color: var(--bears-price-color);
-	--bears-features-text-color: #6F6F6F;
+	--bears-features-text-color: #6f6f6f;
 	--bears-button-text-color: #fff;
 	
 	/* Colors - Featured Elements */
@@ -48,9 +48,9 @@
 	--bears-featured-features-text-color: #6f6f6f;
 	
 	/* Colors - Buttons */
-	--bears-button-background-color: #F39C12;
+	--bears-button-background-color: #f39c12;
 	--bears-button-hover-color: #555555;
-	--bears-featured-button-background: #F39C12;
+	--bears-featured-button-background: #f39c12;
 	--bears-featured-button-text-color: #fff;
 	
 	/* Borders - Standard */
@@ -78,12 +78,12 @@
 	--bears-featured-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	
 	/* Icons */
-	--bears-header-icon-color: #F39C12;
-	--bears-featured-header-icon-color: #F39C12;
+	--bears-header-icon-color: #f39c12;
+	--bears-featured-header-icon-color: #f39c12;
 	--bears-features-icon-color: var(--bears-features-text-color);
 	--bears-featured-features-icon-color: var(--bears-featured-features-text-color);
 	--bears-header-icon-size: 3.5rem;
-}
+	}
 
 /* Template-specific styles */
 .template-1265 .bears_pricing_tables .price {
@@ -161,7 +161,7 @@
 .template-1265 .bears_pricing_tables .plan-select,
 .template-1265 .bears_pricing_tables .plan.featured .plan-select {
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	background: #1E1E1E;
+	background: #1e1e1e;
 	}
 
 .template-1265 .bears_pricing_tables .plan-select a:hover {
@@ -271,9 +271,9 @@
 @media (max-width: 768px) {
 	.template-1265 .bears_pricing_tables .price {
 		grid-template-columns: auto 1fr auto;
-	}
+		}
 	
 	.template-1265 .bears_pricing_tables .plan-title {
 		font-size: 1.2rem;
+		}
 	}
-}
