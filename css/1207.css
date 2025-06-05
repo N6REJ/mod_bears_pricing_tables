@@ -31,7 +31,7 @@
 	--bears-column-background: #ffffff;
 	--bears-header-background: #ffffff;
 	--bears-features-background-odd: var(--bears-column-background);
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 90%, rgba(0, 0, 0, 0.10));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
 	
 	/* Colors - Text */
 	--bears-title-color: #595959;
@@ -48,7 +48,7 @@
 	--bears-featured-price-color: #ffffff;
 	--bears-featured-features-text-color: #fff;
 	--bears-featured-features-background-odd: var(--bears-column-featured-background);
-	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 80%, rgba(0, 0, 0, 0.20));
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #2980b9;
@@ -155,7 +155,6 @@
 	}
 
 .template-1207 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
-	background: var(--bears-column-featured-background);
 	border-top: 1px solid #d2d7e2;
 	}
 

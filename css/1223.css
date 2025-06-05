@@ -31,7 +31,7 @@
 	--bears-column-background: #190806;
 	--bears-header-background: #CCCCCC;
 	--bears-features-background-odd: #ffffff;
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 90%, rgba(0, 0, 0, 0.10));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 82%, rgba(0, 0, 0, 0.18));
 	
 	/* Colors - Text */
 	--bears-title-color: #190806;
@@ -47,8 +47,8 @@
 	--bears-featured-title-color: #fff;
 	--bears-featured-price-color: #fff;
 	--bears-featured-features-text-color: #fff;
-	--bears-featured-features-background-odd: var(--bears-column-featured-background);
-	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 80%, rgba(0, 0, 0, 0.20));
+	--bears-featured-features-background-odd: #43140F;
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #190806;
@@ -158,13 +158,6 @@
 .template-1223 .bears_pricing_tables .featured .plan-select a:hover,
 .template-1223 .bears_pricing_tables .featured .plan-select a.btn:hover{
 	background-color: #43140F;
-	}
-
-.template-1223 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
-	background: rgba(67, 20, 15, 0.7);
-	}
-.template-1223 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
-	background: #43140F;
 	}
 
 .template-1223 .bears_pricing_tables .plan:hover .plan-cost,
