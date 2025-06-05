@@ -31,7 +31,7 @@
 	--bears-column-background: #091b27;
 	--bears-header-background: #0d293c;
 	--bears-features-background-odd: #fff;
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 91%, transparent);
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 90%, rgba(0, 0, 0, 0.10));
 	
 	/* Colors - Text */
 	--bears-title-color: #fff;
@@ -46,6 +46,8 @@
 	--bears-featured-title-color: #ffffff;
 	--bears-featured-price-color: #ffffff;
 	--bears-featured-features-text-color: #fff;
+	--bears-featured-features-background-odd: #0D293C;
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 75%, rgba(0, 0, 0, 0.25));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #091b27;
@@ -128,6 +130,15 @@
 
 .template-1240 .bears_pricing_tables .plan-features li:last-child {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+/* Use CSS variables for featured plan feature list items */
+.template-1240 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
+	background: var(--bears-featured-features-background-even);
+	}
+
+.template-1240 .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
+	background: var(--bears-featured-features-background-odd);
 	}
 
 .template-1240 .bears_pricing_tables .plan.featured .plan-features li:last-child {

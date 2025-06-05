@@ -26,8 +26,10 @@
 	--bears-column-featured-background: #222222;
 	--bears-header-background: #191919;
 	--bears-header-featured-background: #222222;
-	--bears-features-background-even: rgba(0, 0, 0, 0.08);
 	--bears-features-background-odd: var(--bears-column-background);
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 90%, rgba(0, 0, 0, 0.10));
+	--bears-featured-features-background-odd: var(--bears-column-featured-background);
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 75%, rgba(0, 0, 0, 0.25));
 	
 	/* Text Colors - Template specific */
 	--bears-title-color: #ffffff;
@@ -325,8 +327,13 @@
 	background: var(--bears-features-background-odd);
 	}
 
+.bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
+	background: var(--bears-featured-features-background-odd);
+	}
+
+
 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
-	background: color-mix(in srgb, var(--bears-featured-features-text-color) 91%, transparent)
+	background: var(--bears-featured-features-background-even);
 	}
 
 
