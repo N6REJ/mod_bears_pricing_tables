@@ -32,7 +32,7 @@
 	--bears-column-background: #ffffff;
 	--bears-header-background: #ffffff;
 	--bears-features-background-odd: var(--bears-column-background);
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 80%, rgba(0, 0, 0, 0.20));
 	
 	/* Colors - Text */
 	--bears-title-color: #ffffff;
@@ -175,18 +175,6 @@
 	padding: 10px 5%;
 	line-height: 1.4;
 	border-top: var(--bears-border-width) var(--bears-border-style) var(--bears-border-color);
-	}
-
-.template-1214 .plan-features li:nth-child(even) {
-	background: rgba(0, 0, 0, 0.08);
-	}
-
-.template-1214 .plan.featured .plan-features li:nth-child(odd) {
-	background: var(--bears-column-featured-background);
-	}
-
-.template-1214 .plan.featured .plan-features li:nth-child(even) {
-	background: #2c425b;
 	}
 
 .template-1214 .bears_pricing_tables .plan-select {

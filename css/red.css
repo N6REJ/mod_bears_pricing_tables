@@ -31,7 +31,7 @@
     --bears-column-background: #f5f5f5;
     --bears-header-background: #f5f5f5;
     --bears-features-background-odd: #f5f5f5;
-    --bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 75%, rgba(0, 0, 0, 0.25));
+    --bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 82%, rgba(0, 0, 0, 0.18));
     
     
     /* Colors - Text */
@@ -49,7 +49,7 @@
     --bears-featured-price-color: #ef3340;
     --bears-featured-features-text-color: var(--bears-features-text-color);
     --bears-featured-features-background-odd: #f5f5f5;
-    --bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 70%, rgba(255, 255, 255, 0.30));
+    --bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 82%, rgba(0, 0, 0, 0.18));
     
     /* Colors - Buttons */
     --bears-button-background-color: #ef3340;

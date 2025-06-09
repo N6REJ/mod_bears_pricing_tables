@@ -30,8 +30,8 @@
 	/* Colors - Standard Elements */
 	--bears-column-background: #ffffff;
 	--bears-header-background: rgba(0, 0, 0, 0.08);
-	--bears-features-background-odd: var(--bears-column-background);
-	--bears-features-background-even: rgba(0, 0, 0, 0.08);
+	--bears-features-background-odd: #fff;
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 82%, rgba(0, 0, 0, 0.18)) !important;
 	
 	/* Colors - Text */
 	--bears-title-color: #333333;
@@ -46,6 +46,8 @@
 	--bears-featured-title-color: #ffffff;
 	--bears-featured-price-color: #ffffff;
 	--bears-featured-features-text-color: #fff;
+	--bears-featured-features-background-odd: #222222;
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 75%, rgba(255, 255, 255, 0.25));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #333333;
@@ -98,14 +100,6 @@
 
 .template-white .bears_pricing_tables .plan.featured {
 	margin: 0 -2.5% 0;
-	}
-
-.template-white .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
-	background: rgba(255, 255, 255, 0.05);
-	}
-
-.template-white .bears_pricing_tables .plan.featured .plan-features li:nth-child(odd) {
-	background: rgba(255, 255, 255, 0.08);
 	}
 
 
