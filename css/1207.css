@@ -48,7 +48,7 @@
 	--bears-featured-price-color: #ffffff;
 	--bears-featured-features-text-color: #fff;
 	--bears-featured-features-background-odd: var(--bears-column-featured-background);
-	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 70%, rgba(255, 255, 255, 0.30));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #2980b9;
