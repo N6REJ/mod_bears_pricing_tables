@@ -31,7 +31,7 @@
 	--bears-column-background: #1a1a1a;
 	--bears-header-background: #156dab;
 	--bears-features-background-odd: var(--bears-column-background);
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 72%, rgba(0, 0, 0, 0.28));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 80%, rgba(0, 0, 0, 0.20));
 	
 	/* Colors - Text */
 	--bears-title-color: #fff;

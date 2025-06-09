@@ -31,7 +31,7 @@
 	--bears-column-background: #333333;
 	--bears-header-background: #333333;
 	--bears-features-background-odd: #E6E6E6;
-	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 85%, rgba(0, 0, 0, 0.15));
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 92%, rgba(0, 0, 0, 0.08));
 	
 	/* Colors - Text */
 	--bears-title-color: #fff;
@@ -48,7 +48,7 @@
 	--bears-featured-price-color: #fff;
 	--bears-featured-features-text-color: var(--bears-features-text-color);
 	--bears-featured-features-background-odd: #fff;
-	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 70%, rgba(255, 255, 255, 0.30));
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 92%, rgba(0, 0, 0, 0.08));
 	
 	/* Colors - Buttons */
 	--bears-button-background-color: #191919;
@@ -116,7 +116,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	}
+	width: 100%;
+	box-sizing: border-box;
+}
 
 .template-1299 .bears_pricing_tables .featured .plan-title {
 	background-color: #4D2909;

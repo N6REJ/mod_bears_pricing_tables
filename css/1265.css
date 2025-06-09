@@ -226,12 +226,6 @@
     transition: background-color var(--bears-transition-speed) ease;
 }
 
-/* Ensure feature list items maintain the hover effect */
-.template-1265 .bears_pricing_tables:hover .plan .plan-features li:nth-child(odd),
-.template-1265 .bears_pricing_tables:hover .plan .plan-features li:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
 /* Ensure the hover effect works for featured plans too */
 .template-1265 .bears_pricing_tables:hover .plan.featured header,
 .template-1265 .bears_pricing_tables:hover .plan.featured .features,
@@ -239,10 +233,9 @@
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-.template-1265 .bears_pricing_tables:hover .plan.featured .plan-features li:nth-child(odd),
-.template-1265 .bears_pricing_tables:hover .plan.featured .plan-features li:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.9);
-}
+.template-1265 .bears_pricing_tables .plan.featured .plan-features li:nth-child(even) {
+    background: var(--bears-features-background-even);
+    }
 
 /* Scale the price-left and price-right icons on hover */
 .template-1265 .bears_pricing_tables:hover .price-left,
