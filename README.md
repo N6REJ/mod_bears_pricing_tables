@@ -1,6 +1,11 @@
 # Bear's pricing tables module
 Responsive pricing tables for Joomla 
-
+=========
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/N6REJ/mod_bears_pricing_tables)
+![GitHub top language](https://img.shields.io/github/languages/top/N6REJ/mod_bears_pricing_tables)
+![GitHub All Releases](https://img.shields.io/github/downloads/N6REJ/mod_bears_pricing_tables/total)
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
+=========
 ## Template Designer's Guide - CSS Variables
 
 This guide lists all CSS variables used in the Bears Pricing Tables module and explains their function.
