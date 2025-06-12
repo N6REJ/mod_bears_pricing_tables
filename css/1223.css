@@ -111,7 +111,7 @@
 	}
 
 .template-1223 .bears_pricing_tables .plan-title {
-	padding: 25px 15px 35px;
+	padding: 45px 15px 35px;
 	}
 
 /* Header icon styles with higher z-index */
@@ -126,8 +126,7 @@
 .template-1223 .bears_pricing_tables [class*="icon-top-"],
 .template-1223 .bears_pricing_tables .plan header [class*="icon-top-"],
 .template-1223 .bears_pricing_tables .plan header div[class*="icon-top-"] {
-	position: relative;
-	top: 20px;
+	position: absolute !important;
 	}
 
 .template-1223 .bears_pricing_tables [class*="icon-bottom-"],
