@@ -48,6 +48,7 @@
 					<option value="1517">10 - Rounded ( Blue Rounded - 1517)</option><!-- 1517 -->
 					<option value="red">11 - Red version of default ( Large Accent - red)</option> <!-- 1276-red -->
 					<option value="white">12 - White ( simple Black and White - white)</option><!-- custom -->
+					<option value="Green">13 - Green ( simple Green and White - Green)</option><!-- custom -->
 
 				</field>
 				<field name="bears_num_columns" type="radio" default="3" label="MOD_BEARS_NUMCOLUMNS" description="MOD_BEARS_NUMCOLUMNS_DESC"

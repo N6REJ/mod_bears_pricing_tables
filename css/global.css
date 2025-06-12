@@ -215,6 +215,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -253,6 +254,8 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+    flex-direction: row;
+    
 }
 
 .bears_pricing_tables .plan.featured .plan-cost {
@@ -265,11 +268,14 @@
     font-family: var(--bears-price-font-family);
     font-size: var(--bears-price-font-size);
     font-weight: var(--bears-price-font-weight);
+    text-align: center;
     color: var(--bears-price-color);
     /* Price position icons */
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    overflow: visible; /* Allows content to overflow if needed */
 }
 
 .bears_pricing_tables .plan.featured .plan-price {
@@ -286,6 +292,7 @@
 
 .bears_pricing_tables .plan.featured .plan-type {
     color: var(--bears-featured-subtitle-color);
+    text-overflow: ellipsis; /* Shows ellipsis for truncated text */
 }
 
 .bears_pricing_tables .features {
