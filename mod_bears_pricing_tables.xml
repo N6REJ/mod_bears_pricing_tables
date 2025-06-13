@@ -60,8 +60,8 @@
 					<option value="4">4</option>
 					<option value="5">5</option>
 				</field>
-				<field name="bears_column_margin_x" type="textpx" default="20" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
-				<field name="bears_column_margin_y" type="textpx" default="10" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
+				<field name="bears_column_margin_x" type="textpx" default="" label="MOD_BEARS_COLUMN_MARGINH" description="MOD_BEARS_COLUMN_MARGINH_DESC" />
+				<field name="bears_column_margin_y" type="textpx" default="" label="MOD_BEARS_COLUMN_MARGINV" description="MOD_BEARS_COLUMN_MARGINV_DESC" />
 				<field name="bears_border_style" type="radio" default="none" label="MOD_BEARS_BORDER_STYLE" description="MOD_BEARS_BORDER_STYLE_DESC"
 					   class="btn-group">
 					<option value="none">MOD_BEARS_BORDER_STYLE_NONE</option>
