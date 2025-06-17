@@ -50,7 +50,7 @@ env:
   TMPL_DIR: "tmpl"
   LANGUAGE_DIR: "language"
   PACKAGE_DIR: "package"
-  DIR_TREE_FILE: "directory-structure.txt"
+  DIR_TREE_FILE: ""
 
 jobs:
   update-version-and-release:
