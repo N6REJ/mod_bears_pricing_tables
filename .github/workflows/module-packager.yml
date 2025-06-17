@@ -14,7 +14,6 @@ on:
 #   REPO:   Your repo path (org/repo)
 #   MODULE_NAME: Module folder and file prefix (e.g. mod_example)
 #   MODULE_XML:  Main XML file (e.g. mod_example.xml)
-#   If blank, MODULE_NAME and MODULE_XML will be set automatically below
 #   COPYRIGHT_HOLDER: Copyright string (e.g. YourName (YourHandle))
 #   COPYRIGHT_START_YEAR: Copyright start year (e.g. 2025)
 #   PHP_VERSION: PHP version to use (e.g. 8.1)
@@ -33,9 +32,9 @@ on:
 # =============================
 env:
   AUTHOR: "N6REJ"
-  REPO: ${{ github.repository }}
-  MODULE_NAME: ""
-  MODULE_XML: ""
+  REPO: "N6REJ/mod_bears_aichatbot"
+  MODULE_NAME: "mod_bears_aichatbot"
+  MODULE_XML: "mod_bears_aichatbot.xml"
   COPYRIGHT_HOLDER: "BearLeeAble (N6REJ)"
   COPYRIGHT_START_YEAR: "2025"
   PHP_VERSION: "8.1"
@@ -46,11 +45,11 @@ env:
   FAVICON_FILE: "favicon.ico"
   UPDATES_XML_FILE: "updates.xml"
   CSS_DIR: "css"
-  JS_DIR: ""
+  JS_DIR: "js"
   TMPL_DIR: "tmpl"
   LANGUAGE_DIR: "language"
   PACKAGE_DIR: "package"
-  DIR_TREE_FILE: ""
+  DIR_TREE_FILE: "directory-structure.txt"
 
 jobs:
   update-version-and-release:
@@ -59,20 +58,6 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Set dynamic module variables
-        run: |
-          if [ -z "${{ env.MODULE_NAME }}" ]; then
-            MODULE_NAME="${GITHUB_REPOSITORY##*/}"
-          else
-            MODULE_NAME="${{ env.MODULE_NAME }}"
-          fi
-          if [ -z "${{ env.MODULE_XML }}" ]; then
-            MODULE_XML="${MODULE_NAME}.xml"
-          else
-            MODULE_XML="${{ env.MODULE_XML }}"
-          fi
-          echo "MODULE_NAME=$MODULE_NAME" >> $GITHUB_ENV
-          echo "MODULE_XML=$MODULE_XML" >> $GITHUB_ENV
       - name: Determine workflow context
         id: context
         run: |
