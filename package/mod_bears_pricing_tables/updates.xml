@@ -5,7 +5,7 @@
         <description>Pricing Tables module by Bear</description>
         <element>mod_bears_pricing_tables</element>
         <type>module</type>
-        <version>2025.06.24</version>
+        <version>2025.06.13.1</version>
         <client>site</client>
         <infourl title="GitHub Repository">https://github.com/N6REJ/mod_bears_pricing_tables</infourl>
         <downloads>
