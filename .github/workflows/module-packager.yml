@@ -23,6 +23,7 @@ jobs:
 
       - name: Joomla Extension Packager
         uses: N6REJ/joomla-packager@main
+        id: package
         with:
           copyright-holder: 'Troy Hall (N6REJ)'
           copyright-start-year: '2025'
