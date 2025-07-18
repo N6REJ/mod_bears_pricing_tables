@@ -1,0 +1,138 @@
+/*
+ * Bears Pricing Tables - newborn Template
+ * Version: 2025.06.01
+ * Created by: N6REJ
+ * Email: programming@hallhome.us
+ * URL: http://www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/* newborn Template - Template-specific styles */
+
+/* Template-specific CSS Variables */
+.template-newborn .bears_pricing_tables {
+	/* Layout & Structure */
+	--bears-num-columns: 3;
+	--bears-column-margin-y: 10px;
+	--bears-column-margin-x: 0;
+	--bears-header-height: calc(1.5 * var(--bears-header-icon-size));
+	
+	/* Typography */
+	--bears-title-font-family: 'Open Sans', sans-serif;
+	--bears-price-font-family: "Open Sans", Arial, sans-serif;
+	--bears-title-font-weight: 600;
+	--bears-price-font-weight: 600;
+	--bears-title-font-size: var(--bears-h4);
+	--bears-price-font-size: var(--bears-h2);
+	--bears-subtitle-font-size: var(--bears-h4);
+	--bears-features-font-size: var(--bears-body);
+	--bears-button-font-size: var(--bears-body);
+	
+	/* Colors - Standard Elements */
+	--bears-column-background: #ffffff;
+	--bears-header-background: #fff;
+	--bears-features-background-odd: #fff;
+	--bears-features-background-even: color-mix(in srgb, var(--bears-features-background-odd) 100%, rgba(0, 0, 0, 0)) !important;
+	
+	/* Colors - Text */
+	--bears-title-color: #888;
+	--bears-price-color: #48AAFF;
+	--bears-subtitle-color: var(--bears-price-color);
+	--bears-features-text-color: #1887fb;
+	--bears-button-text-color: #1887fb;
+	
+	/* Colors - Featured Elements */
+	--bears-column-featured-background: #fff;
+	--bears-header-featured-background: #fff;
+	--bears-featured-title-color: #888;
+	--bears-featured-price-color: #48AAFF;
+	--bears-featured-features-text-color: #1887fb;
+	--bears-featured-features-background-odd: #fff;
+	--bears-featured-features-background-even: color-mix(in srgb, var(--bears-featured-features-background-odd) 100%, rgba(0, 0, 0, 0));
+	
+	/* Colors - Buttons */
+	--bears-button-background-color: #fff;
+	--bears-button-hover-color: #e1f1ff;
+	--bears-featured-button-background: #48AAFF;
+	--bears-featured-button-text-color: #fff;
+	
+	/* Borders - Standard */
+	--bears-border-style: solid;
+	--bears-border-width: 1px;
+	--bears-border-radius: 0;
+	--bears-border-color: rgba(0, 0, 0, 0.1);
+	--bears-header-border: 1px solid rgba(0, 0, 0, .15);
+	
+	/* Borders - Buttons */
+	--bears-button-border-radius: 0;
+	
+	/* Borders - Featured */
+	--bears-featured-border-radius: 0;
+	--bears-featured-border-width: 1px;
+	--bears-featured-border-style: var(--bears-border-style);
+	--bears-featured-border-color: rgba(0, 0, 0, 0.1);
+	
+	/* Effects & Animation */
+	--bears-accent-color: #fff;
+	--bears-featured-accent-color: #ffffff;
+	--bears-transition-speed: 0.25s;
+	--bears-scale-amount: 1.0;
+	--bears-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	--bears-featured-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	
+	/* Icons */
+	--bears-header-icon-color: var(--bears-price-color);
+	--bears-featured-header-icon-color: var(--bears-featured-price-color);
+	--bears-features-icon-color: var(--bears-features-text-color);
+	--bears-featured-features-icon-color: var(--bears-featured-features-text-color);
+	--bears-header-icon-size: 160px;
+	}
+
+/* Template-specific styles */
+.template-newborn .bears_pricing_tables {
+	letter-spacing: 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
+
+.template-newborn .bears_pricing_tables header {
+	height: var(--bears-header-height);
+	justify-content: flex-start;
+	padding: 30px 0 20px 10px;
+	margin-bottom: 30px;
+	}
+
+.template-newborn .bears_pricing_tables .plan.featured header {
+    margin-bottom: 30px;
+}
+
+.template-newborn .bears_pricing_tables .plan-title,
+.template-newborn .bears_pricing_tables .featured .plan-title {
+	position: relative;
+	margin: 30px 0;
+	}
+
+.template-newborn .bears_pricing_tables .plan-select a,
+.template-newborn .bears_pricing_tables .plan-select a.btn {
+	border: var(--bears-border-width) var(--bears-border-style) #9dd1ff;
+	border-radius: 10px;
+	}
+
+.template-newborn .bears_pricing_tables .featured .plan-select a,
+.template-newborn .bears_pricing_tables .featured .plan-select a.btn {
+	color: #fff;
+	}
+
+.template-newborn .bears_pricing_tables .plan.featured .plan-cost {
+	padding: 0;
+	}
+
+.template-newborn .bears_pricing_tables .plan-select {
+	border-top: none;
+	}
+
+.template-newborn .bears_pricing_tables .plan-features li,
+.template-newborn .bears_pricing_tables .featured .plan-features li {
+	border: none;
+	}

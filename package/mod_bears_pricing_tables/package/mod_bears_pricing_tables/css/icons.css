@@ -1,0 +1,252 @@
+/*
+ * Bears Pricing Tables
+ * Version: 2025.06.01
+ * Created by: N6REJ
+ * Email: programming@hallhome.us
+ * URL: http://www.hallhome.us
+ * License GPLv3.0 - http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/* Icon styling for Bears Pricing Tables
+ * These classes define positioning and styling for icons in different locations
+ * within the pricing table elements
+ */
+
+/* set variables on the container, not :root */
+.bears_pricing_tables {
+    --bears-header-icon-color: var(--body-text-color);
+    --bears-header-icon-size: var(--body-font-size);
+    --bears-header-icon-color-1: var(--bears-header-icon-color);
+    --bears-header-icon-size-1: var(--bears-header-icon-size);
+    --bears-header-icon-color-2: var(--bears-header-icon-color);
+    --bears-header-icon-size-2: var(--bears-header-icon-size);
+    --bears-header-icon-color-3: var(--bears-header-icon-color);
+    --bears-header-icon-size-3: var(--bears-header-icon-size);
+    --bears-header-icon-color-4: var(--bears-header-icon-color);
+    --bears-header-icon-size-4: var(--bears-header-icon-size);
+    --bears-header-icon-color-5: var(--bears-header-icon-color);
+    --bears-header-icon-size-5: var(--bears-header-icon-size);
+}
+
+/* Base icon styles */
+.bears_pricing_tables .plan-icon {
+    display: inline-block;
+    transition: color var(--bears-transition-speed, 0.3s);
+}
+
+/* Top position icons */
+.bears_pricing_tables [class*="icon-top-"],
+.bears_pricing_tables .plan header [class*="icon-top-"],
+.bears_pricing_tables .plan header div[class*="icon-top-"] {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.bears_pricing_tables .icon-top-left,
+.bears_pricing_tables .plan header .icon-top-left,
+.bears_pricing_tables .plan header div.icon-top-left {
+    justify-content: flex-start;
+    padding-left: 1em;
+}
+
+.bears_pricing_tables .icon-top-center,
+.bears_pricing_tables .plan header .icon-top-center,
+.bears_pricing_tables .plan header div.icon-top-center {
+    justify-content: center;
+}
+
+.bears_pricing_tables .icon-top-right,
+.bears_pricing_tables .plan header .icon-top-right,
+.bears_pricing_tables .plan header div.icon-top-right {
+    justify-content: flex-end;
+    padding-right: 1em;
+}
+
+/* Bottom position icons */
+.bears_pricing_tables [class*="icon-bottom-"],
+.bears_pricing_tables .plan header [class*="icon-bottom-"],
+.bears_pricing_tables .plan header div[class*="icon-bottom-"] {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.bears_pricing_tables .icon-bottom-left,
+.bears_pricing_tables .plan header .icon-bottom-left,
+.bears_pricing_tables .plan header div.icon-bottom-left {
+    justify-content: flex-start;
+    padding-left: 1em;
+}
+
+.bears_pricing_tables .icon-bottom-center,
+.bears_pricing_tables .plan header .icon-bottom-center,
+.bears_pricing_tables .plan header div.icon-bottom-center {
+    justify-content: center;
+}
+
+.bears_pricing_tables .icon-bottom-right,
+.bears_pricing_tables .plan header .icon-bottom-right,
+.bears_pricing_tables .plan header div.icon-bottom-right {
+    justify-content: flex-end;
+    padding-right: 1em;
+}
+
+.bears_pricing_tables .price-left {
+    float: left;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.bears_pricing_tables .price-right {
+    float: right;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+/* Column-specific icon styling - Updated to target icons properly */
+.bears_pricing_tables .bears-column-1 .plan-icon {
+    color: var(--bears-header-icon-color-1);
+    font-size: var(--bears-header-icon-size-1);
+}
+
+.bears_pricing_tables .bears-column-2 .plan-icon {
+    color: var(--bears-header-icon-color-2);
+    font-size: var(--bears-header-icon-size-2);
+}
+
+.bears_pricing_tables .bears-column-3 .plan-icon {
+    color: var(--bears-header-icon-color-3);
+    font-size: var(--bears-header-icon-size-3);
+}
+
+.bears_pricing_tables .bears-column-4 .plan-icon {
+    color: var(--bears-header-icon-color-4);
+    font-size: var(--bears-header-icon-size-4);
+}
+
+.bears_pricing_tables .bears-column-5 .plan-icon {
+    color: var(--bears-header-icon-color-5);
+    font-size: var(--bears-header-icon-size-5);
+}
+
+/* FontAwesome 6+ Support */
+.bears_pricing_tables .fa-ul {
+    list-style-type: none;
+    margin-left: 2.5em;
+    padding-left: 0;
+}
+
+.bears_pricing_tables .fa-li {
+    position: absolute;
+    left: -2em;
+    width: 2em;
+    text-align: center;
+    line-height: inherit;
+}
+
+/* Support for both FA5 and FA6 classes */
+.bears_pricing_tables .fa-solid,
+.bears_pricing_tables .fa-regular,
+.bears_pricing_tables .fa-brands,
+.bears_pricing_tables .fa-light,
+.bears_pricing_tables .fa-thin,
+.bears_pricing_tables .fa-duotone,
+.bears_pricing_tables .fas,
+.bears_pricing_tables .far,
+.bears_pricing_tables .fab {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+/* Centered features styling */
+.bears_pricing_tables .plan-features.centered-features {
+    position: relative;
+    text-align: center;
+}
+
+.bears_pricing_tables .plan-features.centered-features li {
+    position: relative;
+    text-align: center;
+    padding-left: 10px; /* Remove default padding */
+    padding-right: 10px;
+    display: block;
+}
+
+.bears_pricing_tables .plan-features.centered-features .fa-li {
+    position: relative;
+    left: -0.5em;
+    top: 0;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bears_pricing_tables .plan-features.centered-features .features-content {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 767px) {
+    .bears_pricing_tables .plan-icon {
+        font-size: calc(var(--bears-header-icon-size) * 0.85); /* Slightly smaller on mobile */
+    }
+    
+    .bears_pricing_tables .price-left,
+    .bears_pricing_tables .price-right {
+        margin: 0 5px; /* Less margin on mobile */
+    }
+}
+
+/* Additional FontAwesome 6+ Support */
+.bears_pricing_tables .fa-kit {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+/* Ensure consistent icon alignment in all templates */
+.bears_pricing_tables .plan-features .fa-li i {
+    vertical-align: middle;
+}
+
+/* Fix for centered features text alignment */
+.bears_pricing_tables .plan-features.centered-features ul {
+    text-align: center;
+}
+
+.bears_pricing_tables .plan-features.centered-features .fa-ul {
+    margin-left: 0;
+}
+
+/* Fix for feature icons consistency across all templates */
+.bears_pricing_tables .plan-features .fa-li i {
+    vertical-align: middle;
+    font-size: 1em; /* Force consistent size */
+    min-width: 1em;
+    min-height: 1em;
+    display: inline-block;
+    visibility: visible;
+    font-style: normal;
+    opacity: 1;
+}
+
+/* force templates that misbehave to use normal font style */
+.bears_pricing_tables .plan-icon i {
+    font-style: normal;
+    }

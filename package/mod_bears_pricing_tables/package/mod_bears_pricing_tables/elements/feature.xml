@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+<fieldset name="feature_modal" class="feature-subform">
+<field name="bears_feature" type="text" default="" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
+</fieldset>
+</form>

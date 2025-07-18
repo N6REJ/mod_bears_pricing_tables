@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2025.06.24] - 2025-06-24
+## [2025.07.18] - 2025-07-18
 
 ### Added
 
@@ -13,9 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Update updates.xml for version 2025.06.13 ([7367518](https://github.com/N6REJ/mod_bears_pricing_tables/commit/7367518))
-* Merge remote-tracking branch 'origin/main' ([b102f93](https://github.com/N6REJ/mod_bears_pricing_tables/commit/b102f93))
-* Update version to 2025.06.13.1, creation date to 2025 June 13, and copyright year to 2025 ([3df7073](https://github.com/N6REJ/mod_bears_pricing_tables/commit/3df7073))
 * Update updates.xml for version 2025.06.13.1 ([99ffa22](https://github.com/N6REJ/mod_bears_pricing_tables/commit/99ffa22))
 * 🔄 created local '.github/workflows/module-packager.yml' from remote '.github/workflows/module-packager.yml' ([901a63c](https://github.com/N6REJ/mod_bears_pricing_tables/commit/901a63c))
 * Rename file for improved organization ([440654f](https://github.com/N6REJ/mod_bears_pricing_tables/commit/440654f))
@@ -29,12 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Joomla Extension Packager action add step ID ([7f311df](https://github.com/N6REJ/mod_bears_pricing_tables/commit/7f311df))
 * Merge remote-tracking branch 'origin/action' into action ([be319d6](https://github.com/N6REJ/mod_bears_pricing_tables/commit/be319d6))
 * Merge pull request #40 from N6REJ/action ([366b93f](https://github.com/N6REJ/mod_bears_pricing_tables/commit/366b93f))
-
-### Fixed
-
-* Fix Green template option value case consistency in template selection ([0b980ae](https://github.com/N6REJ/mod_bears_pricing_tables/commit/0b980ae))
-
-### Removed
-
-* Remove default margin values from column spacing configuration fields ([a15cfea](https://github.com/N6REJ/mod_bears_pricing_tables/commit/a15cfea))
+* Update version to 2025.06.24 [skip ci] ([e6d87bf](https://github.com/N6REJ/mod_bears_pricing_tables/commit/e6d87bf))
+* Update module-packager.yml ([5df905a](https://github.com/N6REJ/mod_bears_pricing_tables/commit/5df905a))
+* Update module-packager.yml ([c15ba86](https://github.com/N6REJ/mod_bears_pricing_tables/commit/c15ba86))
 
