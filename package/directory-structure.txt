@@ -77,6 +77,65 @@ package/mod_bears_pricing_tables
 │   │   ├── mod_bears_pricing_tables.iml
 │   │   ├── mod_bears_pricing_tables.php
 │   │   ├── mod_bears_pricing_tables.xml
+│   │   ├── package
+│   │   │   ├── directory-structure.txt
+│   │   │   ├── mod_bears_pricing_tables
+│   │   │   │   ├── CHANGELOG.md
+│   │   │   │   ├── License.txt
+│   │   │   │   ├── README.md
+│   │   │   │   ├── css
+│   │   │   │   │   ├── 1207.css
+│   │   │   │   │   ├── 1214.css
+│   │   │   │   │   ├── 1223.css
+│   │   │   │   │   ├── 1240.css
+│   │   │   │   │   ├── 1255.css
+│   │   │   │   │   ├── 1265.css
+│   │   │   │   │   ├── 1276.css
+│   │   │   │   │   ├── 1299.css
+│   │   │   │   │   ├── 1404.css
+│   │   │   │   │   ├── 1464.css
+│   │   │   │   │   ├── 1517.css
+│   │   │   │   │   ├── admin.css
+│   │   │   │   │   ├── column-widths.css
+│   │   │   │   │   ├── global.css
+│   │   │   │   │   ├── green.css
+│   │   │   │   │   ├── icons.css
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── newborn.css
+│   │   │   │   │   ├── red.css
+│   │   │   │   │   └── white.css
+│   │   │   │   ├── elements
+│   │   │   │   │   ├── feature.xml
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── textpx.php
+│   │   │   │   ├── helper.php
+│   │   │   │   ├── index.html
+│   │   │   │   ├── language
+│   │   │   │   │   └── en-GB
+│   │   │   │   │       ├── mod_bears_pricing_tables.ini
+│   │   │   │   │       └── mod_bears_pricing_tables.sys.ini
+│   │   │   │   ├── mod_bears_pricing_tables.iml
+│   │   │   │   ├── mod_bears_pricing_tables.php
+│   │   │   │   ├── mod_bears_pricing_tables.xml
+│   │   │   │   ├── tmpl
+│   │   │   │   │   ├── 1207.php
+│   │   │   │   │   ├── 1214.php
+│   │   │   │   │   ├── 1223.php
+│   │   │   │   │   ├── 1240.php
+│   │   │   │   │   ├── 1255.php
+│   │   │   │   │   ├── 1265.php
+│   │   │   │   │   ├── 1276.php
+│   │   │   │   │   ├── 1299.php
+│   │   │   │   │   ├── 1404.php
+│   │   │   │   │   ├── 1464.php
+│   │   │   │   │   ├── 1517.php
+│   │   │   │   │   ├── green.php
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── newborn.php
+│   │   │   │   │   ├── red.php
+│   │   │   │   │   └── white.php
+│   │   │   │   └── updates.xml
+│   │   │   └── mod_bears_pricing_tables_2025.06.24.zip
 │   │   ├── tmpl
 │   │   │   ├── 1207.php
 │   │   │   ├── 1214.php
@@ -95,7 +154,8 @@ package/mod_bears_pricing_tables
 │   │   │   ├── red.php
 │   │   │   └── white.php
 │   │   └── updates.xml
-│   └── mod_bears_pricing_tables_2025.06.24.zip
+│   ├── mod_bears_pricing_tables_2025.06.24.zip
+│   └── mod_bears_pricing_tables_2025.07.18.zip
 ├── tmpl
 │   ├── 1207.php
 │   ├── 1214.php
@@ -115,4 +175,4 @@ package/mod_bears_pricing_tables
 │   └── white.php
 └── updates.xml
 
-13 directories, 103 files
+20 directories, 156 files
