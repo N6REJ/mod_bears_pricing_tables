@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Joomla Extension Packager
-        uses: N6REJ/joomla-packager@2025.7.19.1
+        uses: N6REJ/joomla-packager@main
         id: package
         with:
           copyright-holder: 'Troy Hall (N6REJ)'
