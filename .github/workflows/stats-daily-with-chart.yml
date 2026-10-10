@@ -133,6 +133,9 @@ jobs:
         env:
           STATS_BRANCH: ${{ github.ref_name }}
         run: |
+          # Keep dashboard.md in sync with downloads.json. If a repository has no
+          # dashboard.md yet (the action only emits the JSON and charts), seed a
+          # generic one from the snapshot so the module can render immediately.
           python3 - <<'PY'
           import json
           import os
