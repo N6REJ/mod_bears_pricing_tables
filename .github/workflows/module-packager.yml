@@ -5,11 +5,13 @@ on:
     types: [closed]
     branches:
       - main
+    paths-ignore:
+      - 'stats/**'
   workflow_dispatch:
 
 jobs:
   package:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.head.ref != 'update-stats')
     runs-on: ubuntu-latest
     permissions:
       contents: write
