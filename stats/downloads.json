@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1",
+  "owner": "N6REJ",
+  "repo": "mod_bears_pricing_tables",
+  "visibility": "public",
+  "generatedAt": "2026-10-10T21:54:02.017Z",
+  "stats": {
+    "total": 189,
+    "day": 0,
+    "week": 0,
+    "month": 0
+  },
+  "partial": {
+    "day": true,
+    "week": true,
+    "month": true
+  },
+  "snapshots": {
+    "windowDays": 180,
+    "count": 1,
+    "firstDate": "2026-10-10",
+    "lastDate": "2026-10-10",
+    "series": {
+      "2026-10-10": 189
+    }
+  },
+  "profile": {
+    "defaultMode": "daily",
+    "hourlyEnabled": false
+  }
+}
