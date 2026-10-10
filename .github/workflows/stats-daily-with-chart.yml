@@ -104,23 +104,29 @@ jobs:
 
       - name: Apply downloads files
         run: |
-          # github-downloads-action only emits downloads.json + charts; preserve
-          # any committed dashboard page so it survives the snapshot write.
+          # The tracking folder is now named stats (was gh-dl). Preserve the
+          # repo-customized dashboard pages through every snapshot write because
+          # github-downloads-action only produces the JSON and charts.
           mkdir -p _dash
           for f in dashboard.html dashboard.md; do
-            if [ -f "stats/$f" ]; then
+            if [ -f "gh-dl/$f" ]; then
+              cp "gh-dl/$f" "_dash/$f"
+            elif [ -f "stats/$f" ]; then
               cp "stats/$f" "_dash/$f"
             fi
           done
           rm -rf stats
           mv stats-artifact stats
           if [ -f "_dash/dashboard.md" ]; then
+            sed -i 's@gh-dl@stats@g' "_dash/dashboard.md"
             mv "_dash/dashboard.md" "stats/dashboard.md"
           fi
           if [ -f "_dash/dashboard.html" ]; then
             mv "_dash/dashboard.html" "stats/dashboard.html"
           fi
-          rm -rf _dash
+          rm -rf _dash gh-dl
+          # Drop the previously synced gh-dl workflow so it stops racing this one.
+          rm -f .github/workflows/gh-dl-daily-with-chart.yml
           git status
 
       - name: Render dashboard.md from downloads.json
