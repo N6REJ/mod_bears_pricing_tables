@@ -66,7 +66,41 @@ jobs:
           if not any(l.startswith("* ") for l in out):
               print("Nothing to add; leaving release body unchanged.")
               raise SystemExit(0)
-          generated = "\n".join(out).strip()
+
+          def pr_number(url):
+              m = re.search(r"/pull/(\d+)", url)
+              return m.group(1) if m else None
+
+          heading_emoji = {"What's Changed": "📦", "New Contributors": "🎉"}
+          pr_bullet = re.compile(r"^\*\s+(?P<title>.*?)\s+by\s+(?P<author>@\S+)\s+in\s+(?P<url>https?://\S+)\s*$")
+          nc_bullet = re.compile(r"^\*\s+(?P<author>@\S+)\s+made their first contribution in\s+(?P<url>https?://\S+)\s*$")
+
+          final = []
+          for line in out:
+              m = re.match(r"^(##|###)\s+(.*?)\s*$", line)
+              if m:
+                  title = m.group(2)
+                  if title in heading_emoji:
+                      title = heading_emoji[title] + " " + title
+                  final.append(m.group(1) + " " + title)
+                  continue
+              m = nc_bullet.match(line)
+              if m:
+                  n = pr_number(m.group("url"))
+                  ref = f"[#{n}]({m.group('url')})" if n else m.group("url")
+                  final.append(f"- {m.group('author')} made their first contribution in ({ref})")
+                  continue
+              m = pr_bullet.match(line)
+              if m:
+                  n = pr_number(m.group("url"))
+                  ref = f"[#{n}]({m.group('url')})" if n else m.group("url")
+                  final.append(f"- {m.group('title')} ({ref}) by {m.group('author')}")
+                  continue
+              if line.startswith("* "):
+                  final.append("- " + line[2:])
+                  continue
+              final.append(line)
+          generated = "\n".join(final).strip()
           block = "<!-- changelog-start -->\n" + generated + "\n<!-- changelog-end -->"
           body = (existing + "\n\n" + block + "\n") if existing else (block + "\n")
           p("final.md").write_text(body, encoding="utf-8")
