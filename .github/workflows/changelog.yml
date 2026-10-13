@@ -46,7 +46,11 @@ jobs:
           existing = p("existing.md").read_text(encoding="utf-8") if p("existing.md").exists() else ""
           existing = re.sub(r"<!-- changelog-start -->.*?<!-- changelog-end -->\n?", "", existing, flags=re.S).strip()
           lines = p("generated.md").read_text(encoding="utf-8").splitlines()
-          kept = [l for l in lines if not re.match(r"^\*\s*Update\s+(?:downloads|stats)\s+(?:tracking\s+)?snapshot", l)]
+          kept = [
+              l for l in lines
+              if not re.match(r"^\*\s*Update\s+(?:downloads|stats)\s+(?:tracking\s+)?snapshot", l)
+              and not l.startswith("<!-- Release notes generated")
+          ]
           out = []
           i = 0
           while i < len(kept):
@@ -82,7 +86,7 @@ jobs:
                   title = m.group(2)
                   if title in heading_emoji:
                       title = heading_emoji[title] + " " + title
-                  final.append(m.group(1) + " " + title)
+                  final.append("## " + title)
                   continue
               m = nc_bullet.match(line)
               if m:
