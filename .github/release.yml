@@ -18,40 +18,40 @@
 changelog:
   exclude:
     labels:
-      - automated
-      - releases-update
-      - bot :robot:
-      - :robot: bot
-      - Sync :arrow_forward:
-      - released on @latest
-      - semantic-release
+      - "automated"
+      - "releases-update"
+      - "bot :robot:"
+      - ":robot: bot"
+      - "Sync :arrow_forward:"
+      - "released on @latest"
+      - "semantic-release"
   categories:
     - title: "🚀 Features"
       labels:
-        - enhancement
-        - :sparkles: enhancement
-        - feature request
-        - :bulb: feature request
-        - accessibility
+        - "enhancement"
+        - ":sparkles: enhancement"
+        - "feature request"
+        - ":bulb: feature request"
+        - "accessibility"
     - title: "🐛 Bug Fixes"
       labels:
-        - bug
-        - :bug: bug
+        - "bug"
+        - ":bug: bug"
     - title: "🔐 Security"
       labels:
-        - Possible security concern
-        - Security :closed_lock_with_key:
+        - "Possible security concern"
+        - "Security :closed_lock_with_key:"
     - title: "📚 Documentation"
       labels:
-        - documentation
-        - :memo: documentation
-        - documentation :books:
+        - "documentation"
+        - ":memo: documentation"
+        - "documentation :books:"
     - title: "⬆️ Dependencies"
       labels:
-        - dependencies
-        - :game_die: dependencies
-        - github_actions
-        - dependencies :man_cook:
-    - title: "What's Changed"
+        - "dependencies"
+        - ":game_die: dependencies"
+        - "github_actions"
+        - "dependencies :man_cook:"
+    - title: "📦 What's Changed"
       labels:
         - "*"
