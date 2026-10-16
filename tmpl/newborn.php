@@ -38,8 +38,10 @@ if (!isset($params)) {
     }
 }
 
-// Include the helper file
-require_once dirname(__DIR__) . '/helper.php';
+// Get the helper (provided by the module dispatcher)
+if (!isset($helper)) {
+    $helper = new \N6REJ\Module\BearsPricingTables\Site\Helper\BearsPricingTablesHelper();
+}
 
 // Make sure we have a valid module ID
 $bears_moduleid = $module->id;
@@ -47,7 +49,7 @@ $bears_moduleid = $module->id;
 $baseurl = Uri::base(); // Updated from JURI::base()
 
 // Get processed parameters
-$params_array = ModBearsPricingTablesHelper::getParams($params);
+$params_array = $helper->getParams($params);
 
 // Add moduleId to params_array for use in the template
 $params_array['moduleId'] = $bears_moduleid;
@@ -56,7 +58,7 @@ $params_array['moduleId'] = $bears_moduleid;
 $column_ref = array_keys(array_filter($params_array['bears_title']));
 
 // Load module CSS with moduleId to ensure proper specificity
-ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
+$helper->loadModuleCSS($params, $bears_moduleid);
 
 // IMPORTANT: All CSS is now loaded through the helper, so we remove all inline CSS that was here before
 ?>
@@ -98,7 +100,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo htmlspecialchars($helper->formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
                                     echo $header_icon_color; ?>></i>
 								</div>
                                 <?php
@@ -119,7 +121,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                                 echo htmlspecialchars($params_array['header_icon_position'][$cur_column]); ?> <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo htmlspecialchars($helper->formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
                                     echo $header_icon_color; ?>></i>
 								</div>
                                 <?php
@@ -130,7 +132,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
                         <?php
                         // Determine if we should use FontAwesome list format based on whether an icon class is specified
                         $icon_class = !empty($params_array['features_icon_class'][$cur_column]) ?
-                            ModBearsPricingTablesHelper::formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
+                            $helper->formatIconClass($params_array['features_icon_class'][$cur_column]) : '';
                         $icon_color = !empty($params_array['features_icon_color'][$cur_column]) ?
                             $params_array['features_icon_color'][$cur_column] : '';
 
@@ -197,7 +199,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 								<div class = "plan-icon price-left <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo htmlspecialchars($helper->formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
                                     echo $header_icon_color; ?>></i>
 								</div>
                                 <?php
@@ -219,7 +221,7 @@ ModBearsPricingTablesHelper::loadModuleCSS($params, $bears_moduleid);
 								<div class = "plan-icon price-right <?php
                                 echo $columnClass; ?>">
 									<i class = "<?php
-                                    echo htmlspecialchars(ModBearsPricingTablesHelper::formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
+                                    echo htmlspecialchars($helper->formatIconClass($params_array['header_icon_class'][$cur_column])); ?>"<?php
                                     echo $header_icon_color; ?>></i>
 								</div>
                                 <?php

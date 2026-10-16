@@ -9,12 +9,13 @@
 	<authorUrl>https://hallhome.us</authorUrl>
 	<version>2025.07.20</version>
 	<description><![CDATA[<link href="../modules/mod_bears_pricing_tables/css/admin.css" rel="stylesheet" type="text/css" media="all" />Pricing Tables module by Bear]]></description>
+	<namespace path="src">N6REJ\Module\BearsPricingTables</namespace>
 	<files>
-		<filename module="mod_bears_pricing_tables">mod_bears_pricing_tables.php</filename>
+		<folder module="mod_bears_pricing_tables">services</folder>
 		<filename>mod_bears_pricing_tables.xml</filename>
-		<filename>helper.php</filename>
 		<filename>License.txt</filename>
 		<filename>index.html</filename>
+		<folder>src</folder>
 		<folder>elements</folder>
 		<folder>css</folder>
 		<folder>tmpl</folder>
@@ -25,7 +26,7 @@
 		<language tag="en-GB">language/en-GB/mod_bears_pricing_tables.sys.ini</language>
 	</languages>
 	<config>
-		<fields name="params" addfieldpath="/modules/mod_bears_pricing_tables/elements">
+		<fields name="params" addfieldprefix="N6REJ\Module\BearsPricingTables\Site\Form\Field">
 
 			<fieldset name="MOD_BEARS_GENERALSETTINGS">
 				<!-- Template selection dropdown -->
@@ -157,8 +158,8 @@
 
 			<fieldset name="column1">
 				<field name="bears_title1" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price1" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle1" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price1" type="text" filter="string" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle1" type="text" filter="string" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features1" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured1" type="radio" default="no" label="MOD_BEARS_FEATURED_COLUMN" description="MOD_BEARS_FEATURED_COLUMN_DESC"
 					   class="btn-group btn-group-yesno">
@@ -186,8 +187,8 @@
 
 			<fieldset name="column2">
 				<field name="bears_title2" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price2" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle2" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price2" type="text" filter="string" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle2" type="text" filter="string" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features2" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured2" type="radio" default="no" label="MOD_BEARS_FEATURED_COLUMN" description="MOD_BEARS_FEATURED_COLUMN_DESC"
 					   class="btn-group btn-group-yesno">
@@ -215,8 +216,8 @@
 
 			<fieldset name="column3">
 				<field name="bears_title3" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price3" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle3" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price3" type="text" filter="string" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle3" type="text" filter="string" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features3" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured3" type="radio" default="yes" label="MOD_BEARS_FEATURED_COLUMN" description="MOD_BEARS_FEATURED_COLUMN_DESC"
 					   class="btn-group btn-group-yesno">
@@ -244,8 +245,8 @@
 
 			<fieldset name="column4">
 				<field name="bears_title4" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price4" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle4" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price4" type="text" filter="string" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle4" type="text" filter="string" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features4" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured4" type="radio" default="no" label="MOD_BEARS_FEATURED_COLUMN" description="MOD_BEARS_FEATURED_COLUMN_DESC"
 					   class="btn-group btn-group-yesno">
@@ -273,8 +274,8 @@
 
 			<fieldset name="column5">
 				<field name="bears_title5" type="text" size="60" default="" label="MOD_BEARS_TITLE" description="MOD_BEARS_TITLE_DESC" />
-				<field name="bears_price5" type="text" filter="raw" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
-				<field name="bears_subtitle5" type="text" filter="raw" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
+				<field name="bears_price5" type="text" filter="string" default="" label="MOD_BEARS_PRICE" description="MOD_BEARS_PRICE_DESC" />
+				<field name="bears_subtitle5" type="text" filter="string" default="" label="MOD_BEARS_SUBTITLE" description="MOD_BEARS_SUBTITLE_DESC" />
 				<field name="bears_features5" type="subform" formsource="modules/mod_bears_pricing_tables/elements/feature.xml" class="advancedSelect" min="1" max="50" multiple="true" layout="joomla.form.field.subform.repeatable" groupByFieldset="true" label="MOD_BEARS_FEATURES" description="MOD_BEARS_FEATURES_DESC" />
 				<field name="bears_column_featured5" type="radio" default="no" label="MOD_BEARS_FEATURED_COLUMN" description="MOD_BEARS_FEATURED_COLUMN_DESC"
 					   class="btn-group btn-group-yesno">

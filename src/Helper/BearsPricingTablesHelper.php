@@ -12,21 +12,19 @@
  * @since       2025.5.10
  */
 
-defined('_JEXEC') or die;
+namespace N6REJ\Module\BearsPricingTables\Site\Helper;
 
-use Joomla\CMS\Application\CMSApplication;
-use Joomla\CMS\Document\HtmlDocument;
+\defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
-use Joomla\CMS\Router\Router;
 use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Version;
 
 /**
  * Helper class for Bears Pricing Tables module
  *
  * @since  2025.5.10
  */
-class ModBearsPricingTablesHelper
+class BearsPricingTablesHelper
 {
     /**
      * Get module parameters for the template
@@ -37,7 +35,7 @@ class ModBearsPricingTablesHelper
      * @return  array   Array of parameters for the template
      * @since   2025.5.10
      */
-    public static function getParams($params, $useDefaults = false)
+    public function getParams($params, $useDefaults = false): array
     {
         // Get template (always provide default) - this is essential for module operation
         $bears_template = $params->get('bears_template', '1276');
@@ -202,40 +200,56 @@ class ModBearsPricingTablesHelper
      * @since   2025.5.20
      * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function loadModuleCSS($params, $moduleId)
+    public function loadModuleCSS($params, $moduleId): void
     {
         // Ensure we have a valid module ID
         if (empty($moduleId)) {
             throw new \InvalidArgumentException('Module ID is required for CSS specificity');
         }
 
-        // Get the document
-        $document = Factory::getDocument();
+        // Get the Web Asset Manager
+        $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 
         // 1. First, load FontAwesome directly
-        $document->addStyleSheet(Uri::base() . 'media/system/css/joomla-fontawesome.css', ['version' => 'auto']);
+        $wa->registerAndUseStyle(
+            'mod_bears_pricing_tables.fontawesome',
+            Uri::base() . 'media/system/css/joomla-fontawesome.css',
+            ['version' => 'auto']
+        );
 
         // 2. Next, load icons.css with base styles FIRST
-        $iconsCssPath = 'modules/mod_bears_pricing_tables/css/icons.css';
-        $document->addStyleSheet(Uri::root(true) . '/' . $iconsCssPath, ['version' => 'auto']);
-        
-        // 3. Load the generic column-widths.css before any template-specific CSS
-        $columnCssPath = 'modules/mod_bears_pricing_tables/css/column-widths.css';
-        $document->addStyleSheet(Uri::root(true) . '/' . $columnCssPath, ['version' => 'auto']);
+        $wa->registerAndUseStyle(
+            'mod_bears_pricing_tables.icons',
+            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/icons.css',
+            ['version' => 'auto']
+        );
 
-        // 4. Load the generic column-widths.css before any template-specific CSS
-        $globalCssPath = 'modules/mod_bears_pricing_tables/css/global.css';
-        $document->addStyleSheet(Uri::root(true) . '/' . $globalCssPath, ['version' => 'auto']);
+        // 3. Load the generic column-widths.css before any template-specific CSS
+        $wa->registerAndUseStyle(
+            'mod_bears_pricing_tables.column-widths',
+            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/column-widths.css',
+            ['version' => 'auto']
+        );
+
+        // 4. Load the generic global.css before any template-specific CSS
+        $wa->registerAndUseStyle(
+            'mod_bears_pricing_tables.global',
+            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/global.css',
+            ['version' => 'auto']
+        );
 
         // 5. Next, load the template CSS file (template-specific defaults)
-        $template = self::getTemplateName($params);
-        $templateCssPath = 'modules/mod_bears_pricing_tables/css/' . $template . '.css';
-        $document->addStyleSheet(Uri::root(true) . '/' . $templateCssPath, ['version' => 'auto']);
+        $template = $this->getTemplateName($params);
+        $wa->registerAndUseStyle(
+            'mod_bears_pricing_tables.template.' . $template,
+            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/' . $template . '.css',
+            ['version' => 'auto']
+        );
 
         // 6. Finally, add our custom CSS variables with high specificity to override everything
-        $css = self::generateCustomCSS($params, $moduleId);
+        $css = $this->generateCustomCSS($params, $moduleId);
         if (!empty($css)) {
-            $document->addStyleDeclaration($css);
+            $wa->addInlineStyle($css);
         }
     }
 
@@ -248,13 +262,13 @@ class ModBearsPricingTablesHelper
      * @return  string  The template file name without extension
      * @since   2025.5.10
      */
-    public static function getTemplateName($params)
+    public function getTemplateName($params): string
     {
         // Get template selection with default fallback
         $template = $params->get('bears_template', '1276');
 
         // Check if the template file exists
-        $templateFile = dirname(__DIR__) . '/mod_bears_pricing_tables/tmpl/' . $template . '.php';
+        $templateFile = __DIR__ . '/tmpl/' . $template . '.php';
 
         // If the template file doesn't exist, fall back to white.php
         if (!file_exists($templateFile)) {
@@ -279,7 +293,7 @@ class ModBearsPricingTablesHelper
      * @since   2025.5.10
      * @throws  \InvalidArgumentException  If moduleId is not provided
      */
-    public static function generateCustomCSS($params, $moduleId)
+    public function generateCustomCSS($params, $moduleId): string
     {
         // Ensure we have a valid module ID for specificity
         if (empty($moduleId)) {
@@ -287,7 +301,7 @@ class ModBearsPricingTablesHelper
         }
 
         // Get the template name for dynamic CSS generation
-        $template = self::getTemplateName($params);
+        $template = $this->getTemplateName($params);
         
         // Start with a module-specific CSS variable container with high specificity
         // We need to set variables at multiple levels to ensure proper inheritance and override template defaults
@@ -781,7 +795,7 @@ class ModBearsPricingTablesHelper
      * @return  string  The formatted icon class
      * @since   2025.5.24
      */
-    public static function formatIconClass($iconClass)
+    public function formatIconClass($iconClass): string
     {
         if (empty($iconClass)) {
             return '';
