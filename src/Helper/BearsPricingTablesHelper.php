@@ -220,21 +220,21 @@ class BearsPricingTablesHelper
         // 2. Next, load icons.css with base styles FIRST
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.icons',
-            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/icons.css',
+            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/icons.css',
             ['version' => 'auto']
         );
 
         // 3. Load the generic column-widths.css before any template-specific CSS
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.column-widths',
-            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/column-widths.css',
+            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/column-widths.css',
             ['version' => 'auto']
         );
 
         // 4. Load the generic global.css before any template-specific CSS
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.global',
-            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/global.css',
+            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/global.css',
             ['version' => 'auto']
         );
 
@@ -242,7 +242,7 @@ class BearsPricingTablesHelper
         $template = $this->getTemplateName($params);
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.template.' . $template,
-            Uri::root(true) . '/modules/mod_bears_pricing_tables/css/' . $template . '.css',
+            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/' . $template . '.css',
             ['version' => 'auto']
         );
 
@@ -268,7 +268,7 @@ class BearsPricingTablesHelper
         $template = $params->get('bears_template', '1276');
 
         // Check if the template file exists
-        $templateFile = __DIR__ . '/tmpl/' . $template . '.php';
+        $templateFile = \dirname(__DIR__, 2) . '/tmpl/' . $template . '.php';
 
         // If the template file doesn't exist, fall back to white.php
         if (!file_exists($templateFile)) {
@@ -769,10 +769,6 @@ class BearsPricingTablesHelper
         if (!empty($params->get('bears_features_icon_color'))) {
             $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' { --bears-features-icon-color: ' . $params->get('bears_features_icon_color') . '; }';
         }
-
-        // Module-specific column count attribute
-        $bears_num_columns = (int)$params->get('bears_num_columns', 3);
-        $css .= "\n" . '.bears_pricing_tables' . $moduleId . ' .bears_pricing_tables-container { data-columns: "' . $bears_num_columns . '"; }';
 
         // Add accent triangle if accent colors are specified
         if ($params->get('bears_accent_color') !== null && $params->get('bears_accent_color') !== '') {
