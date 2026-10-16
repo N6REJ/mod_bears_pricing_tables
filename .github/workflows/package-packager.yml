@@ -1,0 +1,56 @@
+name: package-packager
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    paths-ignore:
+      - 'stats/**'
+      - 'docs/**'
+  workflow_dispatch:
+
+jobs:
+  package:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.head.ref != 'update-stats')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7 # v7.0.1 (Node 24)
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Joomla Extension Packager
+        uses: N6REJ/joomla-packager@2026.10.16 # 2026.10.16 - fills in the update feed fields Joomla needs to match
+        id: package
+        with:
+          # Feed matching: Joomla silently ignores entries missing client or
+          # targetplatform. Match Joomla 5 and 6 so J5.4 installs are offered
+          # the update too; only applied when updates.xml does not already
+          # declare them.
+          extension-client: 'site'
+          targetplatform-name: 'joomla'
+          targetplatform-version: '(5|6).*'
+          copyright-holder: 'Troy Hall (N6REJ)'
+          copyright-start-year: '2025'
+          ignore-docs: 'true'
+          ignore-stats: 'true'
+          ignore-updates-xml: 'true'
+          github-token: ${{ secrets.GH_PAT }}
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          if git diff --exit-code; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Update version to ${{ steps.package.outputs.version }} [skip ci]"
+            git push origin main
+          fi
