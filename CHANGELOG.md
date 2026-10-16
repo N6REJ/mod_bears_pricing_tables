@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2026.10.16] - 2026-10-16
+## [2026.10.16.1] - 2026-10-16
 
 ### Added
 
@@ -13,8 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Update version to 2025.07.20 [skip ci] ([058b5f1](https://github.com/N6REJ/mod_bears_pricing_tables/commit/058b5f1))
-* Update module-packager.yml ([a623938](https://github.com/N6REJ/mod_bears_pricing_tables/commit/a623938))
 * Update version to 2025.07.20.1 [skip ci] ([6de9987](https://github.com/N6REJ/mod_bears_pricing_tables/commit/6de9987))
 * Update .gitignore ([dc22b4c](https://github.com/N6REJ/mod_bears_pricing_tables/commit/dc22b4c))
 * Update stats downloads snapshot [skip ci] ([1164bbe](https://github.com/N6REJ/mod_bears_pricing_tables/commit/1164bbe))
@@ -41,4 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Update stats downloads snapshot [skip ci] ([f2e282e](https://github.com/N6REJ/mod_bears_pricing_tables/commit/f2e282e))
 * refactor: replace static helper calls with instance-based helper in templates ([182ea74](https://github.com/N6REJ/mod_bears_pricing_tables/commit/182ea74))
 * Merge remote-tracking branch 'origin/main' ([99c76a0](https://github.com/N6REJ/mod_bears_pricing_tables/commit/99c76a0))
+* Update version to 2026.10.16 [skip ci] ([58ec607](https://github.com/N6REJ/mod_bears_pricing_tables/commit/58ec607))
+* refactor: normalize URI path handling in CSS asset loading ([2f05bb8](https://github.com/N6REJ/mod_bears_pricing_tables/commit/2f05bb8))
+* Merge remote-tracking branch 'origin/main' ([130cf8e](https://github.com/N6REJ/mod_bears_pricing_tables/commit/130cf8e))
 
