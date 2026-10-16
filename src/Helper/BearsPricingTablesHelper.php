@@ -220,21 +220,21 @@ class BearsPricingTablesHelper
         // 2. Next, load icons.css with base styles FIRST
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.icons',
-            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/icons.css',
+            Uri::base() . 'modules/mod_bears_pricing_tables/css/icons.css',
             ['version' => 'auto']
         );
 
         // 3. Load the generic column-widths.css before any template-specific CSS
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.column-widths',
-            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/column-widths.css',
+            Uri::base() . 'modules/mod_bears_pricing_tables/css/column-widths.css',
             ['version' => 'auto']
         );
 
         // 4. Load the generic global.css before any template-specific CSS
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.global',
-            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/global.css',
+            Uri::base() . 'modules/mod_bears_pricing_tables/css/global.css',
             ['version' => 'auto']
         );
 
@@ -242,7 +242,7 @@ class BearsPricingTablesHelper
         $template = $this->getTemplateName($params);
         $wa->registerAndUseStyle(
             'mod_bears_pricing_tables.template.' . $template,
-            rtrim(Uri::root(true), '/') . '/modules/mod_bears_pricing_tables/css/' . $template . '.css',
+            Uri::base() . 'modules/mod_bears_pricing_tables/css/' . $template . '.css',
             ['version' => 'auto']
         );
 
