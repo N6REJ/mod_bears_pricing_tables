@@ -3,12 +3,12 @@
 /**
  * Bears Pricing Tables
  *
- * @version     2025.07.20
+ * @version     2026.10.16
  * @package     Bears Pricing Tables
  * @author      N6REJ
  * @email       troy@hallhome.us
  * @website     https://www.hallhome.us
- * @copyright Copyright (C) 2025 Troy Hall (N6REJ)
+ * @copyright Copyright (C) 2026 Troy Hall (N6REJ)
  * @license     GNU General Public License version 3 or later; see LICENSE.txt
  */
 
