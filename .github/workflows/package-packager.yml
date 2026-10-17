@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Joomla Extension Packager
-        uses: N6REJ/joomla-packager@2026.10.16 # 2026.10.16 - fills in the update feed fields Joomla needs to match
+        uses: N6REJ/joomla-packager@2026.10.17 # 2026.10.17 - fills in the update feed fields Joomla needs to match
         id: package
         with:
           # Feed matching: Joomla silently ignores entries missing client or
