@@ -1,1 +1,4 @@
+# Default owner for all N6REJ repositories.
+# Override per repository by editing this file in the target repo and removing it
+# from the sync (see exclude in .settings/.github/sync.yml) if a different owner is needed.
 * @N6REJ
