@@ -1,29 +1,31 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a problem so we can fix it
 labels: bug
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the problem is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1.
+2.
+3.
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+What you expected to happen instead.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Actual behavior**
+What actually happened (error messages, wrong output, and so on).
 
-**Environment (please complete the following information):**
-- OS: [e.g. Windows, MacOS, Linux]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+**Environment**
+- Project version / release / commit:
+- Operating system:
+- Relevant runtime or platform (language/runtime version, browser, Joomla/PHP version, and so on):
+
+**Logs or screenshots**
+Paste any relevant logs or add screenshots.
 
 **Additional context**
-Add any other context about the problem here.
+Anything else that helps reproduce or diagnose the issue.
