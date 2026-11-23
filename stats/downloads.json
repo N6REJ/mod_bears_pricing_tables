@@ -3,7 +3,7 @@
   "owner": "N6REJ",
   "repo": "mod_bears_pricing_tables",
   "visibility": "public",
-  "generatedAt": "2026-11-22T14:17:50.488Z",
+  "generatedAt": "2026-11-23T17:40:31.099Z",
   "stats": {
     "total": 421,
     "day": 0,
@@ -17,9 +17,9 @@
   },
   "snapshots": {
     "windowDays": 180,
-    "count": 44,
+    "count": 45,
     "firstDate": "2026-10-10",
-    "lastDate": "2026-11-22",
+    "lastDate": "2026-11-23",
     "series": {
       "2026-10-10": 189,
       "2026-10-11": 191,
@@ -64,7 +64,8 @@
       "2026-11-19": 421,
       "2026-11-20": 421,
       "2026-11-21": 421,
-      "2026-11-22": 421
+      "2026-11-22": 421,
+      "2026-11-23": 421
     }
   },
   "profile": {
